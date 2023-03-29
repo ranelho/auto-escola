@@ -1,0 +1,21 @@
+server:
+  servlet:
+    context-path: /auto-escola/api
+
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/auto-escola
+    username: postgres
+    password: 852456
+  jpa:
+    generate-ddl: true
+    properties:
+      hibernate:
+        ddl-auto: update
+        show_sql: true
+        format_sql: true
+
+springdoc:
+  swagger-ui:
+    path: /public/swagger
