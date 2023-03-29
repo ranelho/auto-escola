@@ -23,7 +23,7 @@ public class Contato {
     private String cidade;
     private String uf;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "cliente_id")
     @JsonIgnore
     private Cliente cliente;

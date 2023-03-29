@@ -16,7 +16,6 @@ import java.util.UUID;
 @Getter
 @Entity
 public class Matricula {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idMatricula;
@@ -26,10 +25,12 @@ public class Matricula {
     @JsonIgnore
     private Cliente cliente;
 
+    @OneToOne
+    @JsonIgnore
     private Servico servico;
 
     @Enumerated(EnumType.STRING)
-    private Pagamento tipoPagamento;
+    private TipoPagamento tipoPagamento;
 
     private LocalDate dataMatricula;
     private Double valorEntrada;
@@ -38,5 +39,4 @@ public class Matricula {
     private int quantidadeParcelas;
 
     private String observacao;
-
 }
