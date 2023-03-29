@@ -2,10 +2,10 @@ package com.rlti.autoescola.cliente.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.contato.domain.Contato;
+import com.rlti.autoescola.matricula.domain.Matricula;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
@@ -32,4 +32,8 @@ public class Cliente {
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
     @JsonIgnore
     List<Contato> contato;
+
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
+    @JsonIgnore
+    List<Matricula> matriculas;
 }
