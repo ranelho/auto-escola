@@ -16,4 +16,9 @@ public interface VeiculoApi {
     @GetMapping("/{placa}")
     @ResponseStatus(code = HttpStatus.OK)
     VeiculoResponse getByPlaca(@PathVariable String placa);
+
+    @GetMapping
+    @ResponseStatus(code = HttpStatus.OK)
+    VeiculoResponse getAll();
+
 }

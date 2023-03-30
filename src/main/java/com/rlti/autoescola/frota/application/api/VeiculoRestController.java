@@ -27,4 +27,12 @@ public class VeiculoRestController implements VeiculoApi {
         log.info("[finaliza] FrotaRestController - getByPlaca");
         return new VeiculoResponse(veiculo);
     }
+
+    @Override
+    public VeiculoResponse getAll() {
+        log.info("[inicia] FrotaRestController - getAll");
+        Veiculo veiculo = veiculoService.getAll();
+        log.info("[finaliza] FrotaRestController - getAll");
+        return null;
+    }
 }
