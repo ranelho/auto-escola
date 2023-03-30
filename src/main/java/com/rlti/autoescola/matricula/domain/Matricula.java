@@ -2,6 +2,7 @@ package com.rlti.autoescola.matricula.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.cliente.domain.Cliente;
+import com.rlti.autoescola.financeiro.domain.Financeiro;
 import com.rlti.autoescola.laudo.domain.Laudo;
 import com.rlti.autoescola.servico.domain.Servico;
 import lombok.AllArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -38,4 +40,8 @@ public class Matricula {
     private int desconto;
     private int quantidadeParcelas;
     private String observacao;
+
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "matricula")
+    @JsonIgnore
+    private List<Financeiro> financeiro;
 }

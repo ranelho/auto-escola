@@ -13,7 +13,6 @@ import org.hibernate.validator.group.GroupSequenceProvider;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.security.PrivateKey;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
