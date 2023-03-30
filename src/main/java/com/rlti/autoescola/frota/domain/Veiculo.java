@@ -1,8 +1,6 @@
 package com.rlti.autoescola.frota.domain;
 
 import com.rlti.autoescola.frota.application.api.VeiculoRequest;
-import com.rlti.autoescola.matricula.domain.placa.Placa;
-import com.rlti.autoescola.matricula.domain.placa.TipoPlaca;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

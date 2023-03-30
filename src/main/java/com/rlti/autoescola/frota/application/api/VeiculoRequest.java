@@ -1,8 +1,8 @@
 package com.rlti.autoescola.frota.application.api;
 
 import com.rlti.autoescola.frota.domain.Tipo;
-import com.rlti.autoescola.matricula.domain.placa.Placa;
-import com.rlti.autoescola.matricula.domain.placa.TipoPlaca;
+import com.rlti.autoescola.frota.domain.placa.Placa;
+import com.rlti.autoescola.frota.domain.placa.TipoPlaca;
 import lombok.Value;
 
 import javax.validation.constraints.NotNull;

@@ -1,4 +1,4 @@
-package com.rlti.autoescola.matricula.domain.placa;
+package com.rlti.autoescola.frota.domain.placa;
 
 
 import javax.persistence.EnumType;

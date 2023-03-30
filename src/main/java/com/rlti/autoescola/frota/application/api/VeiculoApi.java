@@ -12,4 +12,8 @@ public interface VeiculoApi {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     VeiculoIdResponse saveFrota(@Valid @RequestBody VeiculoRequest request);
+
+    @GetMapping("/{placa}")
+    @ResponseStatus(code = HttpStatus.OK)
+    VeiculoResponse getByPlaca(@PathVariable String placa);
 }

@@ -18,4 +18,11 @@ public class VeiculoRestController implements VeiculoApi {
         log.info("[finaliza] FrotaRestController - saveFrota");
         return idResponse;
     }
+
+    @Override
+    public VeiculoResponse getByPlaca(String placa) {
+        log.info("[inicia] FrotaRestController - getByPlaca");
+        log.info("[finaliza] FrotaRestController - getByPlaca");
+        return null;
+    }
 }
