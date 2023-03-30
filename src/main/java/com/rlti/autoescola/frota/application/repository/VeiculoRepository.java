@@ -4,4 +4,5 @@ import com.rlti.autoescola.frota.domain.Veiculo;
 
 public interface VeiculoRepository {
     Veiculo salva(Veiculo veiculo);
+    Veiculo getByPlaca(String placa);
 }

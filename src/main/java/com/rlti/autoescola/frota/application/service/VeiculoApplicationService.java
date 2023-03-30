@@ -22,4 +22,12 @@ public class VeiculoApplicationService implements VeiculoService {
         log.info("[finaliza] VeiculoApplicationService - saveVeiculo");
         return VeiculoIdResponse.builder().idVeiculo(veiculo.getIdVeiculo()).build();
     }
+
+    @Override
+    public Veiculo getByPlaca(String placa) {
+        log.info("[inicia] VeiculoApplicationService - getByPlaca");
+        Veiculo veiculo = veiculoRepository.getByPlaca(placa);
+        log.info("[finaliza] VeiculoApplicationService - getByPlaca");
+        return null;
+    }
 }

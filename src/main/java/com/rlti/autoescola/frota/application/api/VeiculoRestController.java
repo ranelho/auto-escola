@@ -1,6 +1,7 @@
 package com.rlti.autoescola.frota.application.api;
 
 import com.rlti.autoescola.frota.application.service.VeiculoService;
+import com.rlti.autoescola.frota.domain.Veiculo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,7 @@ public class VeiculoRestController implements VeiculoApi {
     @Override
     public VeiculoResponse getByPlaca(String placa) {
         log.info("[inicia] FrotaRestController - getByPlaca");
+        Veiculo veiculo = veiculoService.getByPlaca(placa);
         log.info("[finaliza] FrotaRestController - getByPlaca");
         return null;
     }
