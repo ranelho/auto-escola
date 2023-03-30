@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/v1/veiculo")
@@ -19,6 +20,6 @@ public interface VeiculoApi {
 
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
-    VeiculoResponse getAll();
+    List<VeiculoResponse> getAll();
 
 }

@@ -4,8 +4,10 @@ import com.rlti.autoescola.frota.application.api.VeiculoIdResponse;
 import com.rlti.autoescola.frota.application.api.VeiculoRequest;
 import com.rlti.autoescola.frota.domain.Veiculo;
 
+import java.util.List;
+
 public interface VeiculoService {
     VeiculoIdResponse saveVeiculo(VeiculoRequest request);
     Veiculo getByPlaca(String placa);
-    Veiculo getAll();
+    List<Veiculo> getAll();
 }

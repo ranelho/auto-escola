@@ -10,6 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -40,5 +41,13 @@ public class VeiculoInfraRepository implements VeiculoRepository {
                 );
         log.info("[finaliza] VeiculoInfraRepository - getByPlaca");
         return veiculo;
+    }
+
+    @Override
+    public List<Veiculo> getAll() {
+        log.info("[inicia] VeiculoInfraRepository - getAll");
+        List<Veiculo> list = veiculoSpringDataJPARepository.findAll();
+        log.info("[finaliza] VeiculoInfraRepository - getAll");
+        return list;
     }
 }

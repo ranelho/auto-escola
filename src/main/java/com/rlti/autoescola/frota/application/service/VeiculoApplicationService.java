@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Log4j2
 @Service
@@ -32,7 +34,10 @@ public class VeiculoApplicationService implements VeiculoService {
     }
 
     @Override
-    public Veiculo getAll() {
-        return null;
+    public List<Veiculo> getAll() {
+        log.info("[inicia] VeiculoApplicationService - getAll");
+        List<Veiculo> veiculo = veiculoRepository.getAll();
+        log.info("[finaliza] VeiculoApplicationService - getAll");
+        return veiculo;
     }
 }

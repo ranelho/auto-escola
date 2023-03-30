@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @Log4j2
@@ -29,10 +31,10 @@ public class VeiculoRestController implements VeiculoApi {
     }
 
     @Override
-    public VeiculoResponse getAll() {
+    public List<VeiculoResponse> getAll() {
         log.info("[inicia] FrotaRestController - getAll");
-        Veiculo veiculo = veiculoService.getAll();
+        List<Veiculo> veiculo = veiculoService.getAll();
         log.info("[finaliza] FrotaRestController - getAll");
-        return null;
+        return VeiculoResponse.converte(veiculo);
     }
 }
