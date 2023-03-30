@@ -25,6 +25,6 @@ public class VeiculoRestController implements VeiculoApi {
         log.info("[inicia] FrotaRestController - getByPlaca");
         Veiculo veiculo = veiculoService.getByPlaca(placa);
         log.info("[finaliza] FrotaRestController - getByPlaca");
-        return null;
+        return new VeiculoResponse(veiculo);
     }
 }

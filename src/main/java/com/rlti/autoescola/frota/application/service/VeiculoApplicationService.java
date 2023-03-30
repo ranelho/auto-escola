@@ -28,6 +28,6 @@ public class VeiculoApplicationService implements VeiculoService {
         log.info("[inicia] VeiculoApplicationService - getByPlaca");
         Veiculo veiculo = veiculoRepository.getByPlaca(placa);
         log.info("[finaliza] VeiculoApplicationService - getByPlaca");
-        return null;
+        return veiculo;
     }
 }
