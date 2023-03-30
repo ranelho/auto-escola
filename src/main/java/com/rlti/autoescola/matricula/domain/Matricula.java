@@ -2,6 +2,7 @@ package com.rlti.autoescola.matricula.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.cliente.domain.Cliente;
+import com.rlti.autoescola.laudo.domain.Laudo;
 import com.rlti.autoescola.servico.domain.Servico;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,8 +36,6 @@ public class Matricula {
     private LocalDate dataMatricula;
     private Double valorEntrada;
     private int desconto;
-
     private int quantidadeParcelas;
-
     private String observacao;
 }
