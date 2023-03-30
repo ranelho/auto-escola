@@ -1,11 +1,14 @@
 package com.rlti.autoescola.frota.domain;
 
 import com.rlti.autoescola.frota.application.api.VeiculoRequest;
+import com.rlti.autoescola.matricula.domain.placa.Placa;
+import com.rlti.autoescola.matricula.domain.placa.TipoPlaca;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
@@ -17,8 +20,8 @@ public class Veiculo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idVeiculo;
-    @NotNull
     @Column(unique = true)
+    @NotBlank
     private String placa;
     private String marca;
     private String modelo;
