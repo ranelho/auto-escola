@@ -1,4 +1,4 @@
-package com.rlti.autoescola.financeiro.domain;
+package com.rlti.autoescola.pagamento.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.matricula.domain.Matricula;
@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Getter
 @Entity
-public class Financeiro {
+public class Pagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idFinanceiro;
