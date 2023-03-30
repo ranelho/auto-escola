@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/v1/frota")
-public interface FrotaApi {
+@RequestMapping("/v1/veiculo")
+public interface VeiculoApi {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
