@@ -30,4 +30,9 @@ public class VeiculoApplicationService implements VeiculoService {
         log.info("[finaliza] VeiculoApplicationService - getByPlaca");
         return veiculo;
     }
+
+    @Override
+    public Veiculo getAll() {
+        return null;
+    }
 }

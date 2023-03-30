@@ -7,4 +7,5 @@ import com.rlti.autoescola.frota.domain.Veiculo;
 public interface VeiculoService {
     VeiculoIdResponse saveVeiculo(VeiculoRequest request);
     Veiculo getByPlaca(String placa);
+    Veiculo getAll();
 }
