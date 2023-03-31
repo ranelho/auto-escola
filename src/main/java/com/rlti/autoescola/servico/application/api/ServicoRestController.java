@@ -16,6 +16,6 @@ public class ServicoRestController implements ServicoApi {
         log.info("[inicia] ServicoRestController - saveFrota");
         ServicoIdResponse idResponse = servicoService.saveFrota(request);
         log.info("[finaliza] ServicoRestController - saveFrota");
-        return null;
+        return idResponse;
     }
 }
