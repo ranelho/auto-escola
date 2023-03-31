@@ -37,4 +37,10 @@ public class VeiculoRestController implements VeiculoApi {
         log.info("[finaliza] FrotaRestController - getAll");
         return VeiculoResponse.converte(veiculo);
     }
+
+    @Override
+    public void alteraVeiculo(String placa, VeiculoRequest request) {
+        log.info("[inicia] FrotaRestController - alteraVeiculo");
+        log.info("[finaliza] FrotaRestController - alteraVeiculo");
+    }
 }

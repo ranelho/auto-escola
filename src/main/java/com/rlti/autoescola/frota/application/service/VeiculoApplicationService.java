@@ -40,4 +40,6 @@ public class VeiculoApplicationService implements VeiculoService {
         log.info("[finaliza] VeiculoApplicationService - getAll");
         return veiculo;
     }
+
+
 }

@@ -22,4 +22,7 @@ public interface VeiculoApi {
     @ResponseStatus(code = HttpStatus.OK)
     List<VeiculoResponse> getAll();
 
+    @PutMapping("/{placa}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void alteraVeiculo(@PathVariable String placa, @Valid @RequestBody VeiculoRequest request);
 }
