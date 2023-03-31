@@ -1,4 +1,4 @@
-# Sistema de Gestão de Serviços e Equipamentos
+# Sistema de controle de matriculas de Auto Escola
 
 ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
 ![GitHub repo size](https://img.shields.io/github/repo-size/iuricode/README-template?style=for-the-badge)
@@ -28,7 +28,7 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 
 # Autores
 
-| [<img src="perfil2.jpg" width=105><br><sub>Ranelho Lacerda</sub>](https://github.com/ranelho) | [<img src="john.jpeg" width=115><br><sub>Jonh Everton</sub>](https://github.com/JohnEverton-Dev) | [<img src="matheus.png" width=115><br><sub>Matheus Prata</sub>](https://github.com/matheusprata) |
+| [<img src="perfil2.jpg" width=115><br><sub>Ranelho Lacerda</sub>](https://github.com/ranelho) | [<img src="john.jpeg" width=115><br><sub>Jonh Everton</sub>](https://github.com/JohnEverton-Dev) | [<img src="matheus.png" width=115><br><sub>Matheus Prata</sub>](https://github.com/matheusprata) |
 |:---------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
 
-[⬆ Voltar ao topo](https://github.com/ranelho/gestao-servicos)<br>
+[⬆ Voltar ao topo](https://github.com/ranelho/auto-escola)<br>
