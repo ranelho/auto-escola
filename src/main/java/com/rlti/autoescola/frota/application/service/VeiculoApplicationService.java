@@ -50,5 +50,11 @@ public class VeiculoApplicationService implements VeiculoService {
         log.info("[finaliza] VeiculoApplicationService - alteraVeiculo");
     }
 
-
+    @Override
+    public void deletaVeiculo(String placa) {
+        log.info("[inicia] VeiculoApplicationService - alteraVeiculo");
+        Veiculo veiculo = veiculoRepository.getByPlaca(placa.toUpperCase());
+        veiculoRepository.deleta(veiculo.getIdVeiculo());
+        log.info("[finaliza] VeiculoApplicationService - alteraVeiculo");
+    }
 }

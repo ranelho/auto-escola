@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Repository
@@ -50,4 +51,13 @@ public class VeiculoInfraRepository implements VeiculoRepository {
         log.info("[finaliza] VeiculoInfraRepository - getAll");
         return list;
     }
+
+    @Override
+    public void deleta(UUID idVeiculo) {
+        log.info("[inicia] VeiculoInfraRepository - deleta");
+        veiculoSpringDataJPARepository.deleteById(idVeiculo);
+        log.info("[finaliza] VeiculoInfraRepository - deleta");
+    }
+
+
 }
