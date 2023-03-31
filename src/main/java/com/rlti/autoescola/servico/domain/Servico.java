@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -18,11 +19,10 @@ public class Servico {
     private UUID idServico;
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
-    private double valorServico;
+    private BigDecimal valorServico;
 
     public Servico(ServicoRequest request) {
         this.categoria = request.getCategoria();
         this.valorServico = request.getValorServico();
     }
-
 }
