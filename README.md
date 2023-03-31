@@ -13,7 +13,6 @@
 - ``Spring Boot``
 - ``PostgreSQL``
 - ``InteliJ IDEA``
-- ``JWT``
 - ``Swagger``
 
 ### Ajustes e melhorias
