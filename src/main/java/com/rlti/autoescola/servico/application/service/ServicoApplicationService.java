@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 @Log4j2
@@ -23,5 +25,13 @@ public class ServicoApplicationService implements ServicoService {
                 .builder()
                 .idServico(servico.getIdServico())
                 .build();
+    }
+
+    @Override
+    public Servico getById(UUID idServico) {
+        log.info("[inicia] ServicoApplicationService - getById");
+        Servico servico = servicoRepository.getById(idServico);
+        log.info("[finaliza] ServicoApplicationService - getById");
+        return servico;
     }
 }
