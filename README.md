@@ -23,10 +23,12 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [ ] Empresa
   
 
-<img src="banco.png" width=800><br><sub>Banco de Dados</sub>
+<img src="Banco.png" width=800><br><sub>Banco de Dados</sub>
 
-## Autores
 
- [<img src="perfil2.jpg" width=115><br><sub>Ranelho Lacerda</sub>](https://github.com/ranelho) 
+# Autores
+
+| [<img src="perfil2.jpg" width=105><br><sub>Ranelho Lacerda</sub>](https://github.com/ranelho) | [<img src="john.jpeg" width=115><br><sub>Jonh Everton</sub>](https://github.com/JohnEverton-Dev) | [<img src="matheus.png" width=115><br><sub>Matheus Prata</sub>](https://github.com/matheusprata) |
+|:---------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
 
 [⬆ Voltar ao topo](https://github.com/ranelho/gestao-servicos)<br>
