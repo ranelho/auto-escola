@@ -35,4 +35,12 @@ public class Veiculo {
         this.ano = request.getAno();
         this.tipo = request.getTipo();
     }
+
+    public void altera(VeiculoRequest request) {
+        this.placa = request.getPlaca().toUpperCase();
+        this.marca = request.getMarca().toUpperCase();
+        this.modelo = request.getModelo().toUpperCase();
+        this.ano = request.getAno();
+        this.tipo = request.getTipo();
+    }
 }

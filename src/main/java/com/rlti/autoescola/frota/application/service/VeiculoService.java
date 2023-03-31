@@ -10,4 +10,5 @@ public interface VeiculoService {
     VeiculoIdResponse saveVeiculo(VeiculoRequest request);
     Veiculo getByPlaca(String placa);
     List<Veiculo> getAll();
+    void alteraVeiculo(String placa, VeiculoRequest request);
 }

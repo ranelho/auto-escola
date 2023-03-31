@@ -41,5 +41,14 @@ public class VeiculoApplicationService implements VeiculoService {
         return veiculo;
     }
 
+    @Override
+    public void alteraVeiculo(String placa, VeiculoRequest request) {
+        log.info("[inicia] VeiculoApplicationService - alteraVeiculo");
+        Veiculo veiculo = veiculoRepository.getByPlaca(placa);
+        veiculo.altera(request);
+        veiculoRepository.salva(veiculo);
+        log.info("[finaliza] VeiculoApplicationService - alteraVeiculo");
+    }
+
 
 }
