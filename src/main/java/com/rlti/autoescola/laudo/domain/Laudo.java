@@ -1,9 +1,7 @@
 package com.rlti.autoescola.laudo.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.matricula.domain.Matricula;
-import com.rlti.autoescola.servico.domain.Servico;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,12 +19,11 @@ public class Laudo {
     @GeneratedValue( strategy = GenerationType.AUTO)
     private UUID idLaudo;
     private LocalDate dataEmissao;
-    private LocalDate validade;    /* 1 ANO APOS A DATA DE EMISSÃO */
+    private LocalDate validade;    /* 1 ANO APÓS A DATA DE EMISSÃO */
     private String renach;         /* BA512150325 */
 
     @OneToOne
-    @JoinColumn(name = "servico_id")
+    @JoinColumn(name = "matricula_id")
     @JsonIgnore
-    private Servico servico;
-
+    private Matricula matricula;
 }
