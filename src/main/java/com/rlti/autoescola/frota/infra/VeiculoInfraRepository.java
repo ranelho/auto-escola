@@ -5,7 +5,6 @@ import com.rlti.autoescola.frota.domain.Veiculo;
 import com.rlti.autoescola.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.apache.catalina.Store;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
@@ -58,6 +57,4 @@ public class VeiculoInfraRepository implements VeiculoRepository {
         veiculoSpringDataJPARepository.deleteById(idVeiculo);
         log.info("[finaliza] VeiculoInfraRepository - deleta");
     }
-
-
 }

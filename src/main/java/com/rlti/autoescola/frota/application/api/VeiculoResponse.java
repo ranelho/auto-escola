@@ -4,7 +4,6 @@ import com.rlti.autoescola.frota.domain.Veiculo;
 import lombok.Value;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Value
 public class VeiculoResponse {
@@ -24,6 +23,6 @@ public class VeiculoResponse {
         return veiculos
                 .stream()
                 .map(VeiculoResponse::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 }
