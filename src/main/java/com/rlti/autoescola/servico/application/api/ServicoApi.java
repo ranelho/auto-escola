@@ -22,4 +22,8 @@ public interface ServicoApi {
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
     List<ServicoResponse> getAll();
+
+    @PutMapping("/{idServico}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void alteraServico(@PathVariable UUID idServico, @Valid @RequestBody ServicoRequest request);
 }

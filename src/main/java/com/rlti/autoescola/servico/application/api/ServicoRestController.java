@@ -38,4 +38,11 @@ public class ServicoRestController implements ServicoApi {
         log.info("[finaliza] ServicoRestController - getAll");
         return ServicoResponse.converte(servicos);
     }
+
+    @Override
+    public void alteraServico(UUID idServico, ServicoRequest request) {
+        log.info("[inicia] ServicoRestController - alteraServico");
+        servicoService.alteraServico(idServico, request);
+        log.info("[finaliza] ServicoRestController - alteraServico");
+    }
 }
