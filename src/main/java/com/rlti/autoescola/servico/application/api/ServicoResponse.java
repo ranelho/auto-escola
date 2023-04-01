@@ -4,6 +4,7 @@ import com.rlti.autoescola.servico.domain.Servico;
 import lombok.Value;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Value
 public class ServicoResponse {
@@ -15,4 +16,10 @@ public class ServicoResponse {
         this.valorServico = servico.getValorServico();
     }
 
+    public static List<ServicoResponse> converte(List<Servico> servicos) {
+        return servicos
+                .stream()
+                .map(ServicoResponse::new)
+                .toList();
+    }
 }
