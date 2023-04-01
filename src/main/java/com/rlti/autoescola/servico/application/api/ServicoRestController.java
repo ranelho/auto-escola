@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -28,5 +29,13 @@ public class ServicoRestController implements ServicoApi {
         Servico servico = servicoService.getById(idServico);
         log.info("[finaliza] ServicoRestController - saveFrota");
         return new ServicoResponse(servico);
+    }
+
+    @Override
+    public List<ServicoResponse> getAll() {
+        log.info("[inicia] ServicoRestController - getAll");
+        List<Servico> servicos = servicoService.getAll();
+        log.info("[finaliza] ServicoRestController - getAll");
+        return ServicoResponse.converte(servicos);
     }
 }
