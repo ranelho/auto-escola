@@ -5,10 +5,9 @@ server:
 spring:
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://ep-billowing-boat-825920.us-east-2.aws.neon.tech/neondb?user=ranelho.dev&password=1lRfcDXpgmI8
-   # url: jdbc:postgresql://localhost:5432/auto-escola
-   # username: postgres
-   # password: 852456
+    url: jdbc:postgresql://localhost:5432/auto-escola
+    username: postgres
+    password: 852456
   jpa:
     generate-ddl: true
     properties:
