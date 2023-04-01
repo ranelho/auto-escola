@@ -14,4 +14,5 @@ public class ServicoResponse {
         this.categoria = servico.getCategoria().toString();
         this.valorServico = servico.getValorServico();
     }
+
 }
