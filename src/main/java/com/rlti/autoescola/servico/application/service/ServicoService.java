@@ -12,4 +12,5 @@ public interface ServicoService {
     Servico getById(UUID idServico);
     List<Servico> getAll();
     void alteraServico(UUID idServico, ServicoRequest request);
+    void deletaServico(UUID idServico);
 }
