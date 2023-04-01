@@ -9,4 +9,5 @@ public interface ServicoRepository {
     Servico salva(Servico servico);
     Servico getById(UUID idServico);
     List<Servico> getAll();
+    void delete(UUID idServico);
 }

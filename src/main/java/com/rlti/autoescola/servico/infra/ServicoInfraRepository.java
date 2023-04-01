@@ -45,4 +45,11 @@ public class ServicoInfraRepository implements ServicoRepository {
         log.info("[finaliza] ServicoInfraRepository - getAll");
         return servicos;
     }
+
+    @Override
+    public void delete(UUID idServico) {
+        log.info("[inicia] ServicoInfraRepository - getAll");
+        servicoSpringDataInfraRepository.deleteById(idServico);
+        log.info("[finaliza] ServicoInfraRepository - getAll");
+    }
 }
