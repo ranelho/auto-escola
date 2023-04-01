@@ -11,4 +11,5 @@ public interface ServicoService {
     ServicoIdResponse saveFrota(ServicoRequest request);
     Servico getById(UUID idServico);
     List<Servico> getAll();
+    void alteraServico(UUID idServico, ServicoRequest request);
 }

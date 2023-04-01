@@ -43,4 +43,13 @@ public class ServicoApplicationService implements ServicoService {
         log.info("[finaliza] ServicoApplicationService - getAll");
         return servicos;
     }
+
+    @Override
+    public void alteraServico(UUID idServico, ServicoRequest request) {
+        log.info("[inicia] ServicoApplicationService - alteraServico");
+        Servico servico = servicoRepository.getById(idServico);
+        servico.altera(request);
+        servicoRepository.salva(servico);
+        log.info("[finaliza] ServicoApplicationService - alteraServico");
+    }
 }

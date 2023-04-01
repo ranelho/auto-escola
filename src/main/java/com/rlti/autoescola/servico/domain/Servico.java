@@ -25,4 +25,9 @@ public class Servico {
         this.categoria = request.getCategoria();
         this.valorServico = request.getValorServico();
     }
+
+    public void altera(ServicoRequest request) {
+        this.categoria = request.getCategoria();
+        this.valorServico = request.getValorServico();
+    }
 }
