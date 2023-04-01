@@ -45,4 +45,11 @@ public class ServicoRestController implements ServicoApi {
         servicoService.alteraServico(idServico, request);
         log.info("[finaliza] ServicoRestController - alteraServico");
     }
+
+    @Override
+    public void deleteServico(UUID idServico) {
+        log.info("[inicia] ServicoRestController - deleteServico");
+        servicoService.deletaServico(idServico);
+        log.info("[finaliza] ServicoRestController - deleteServico");
+    }
 }

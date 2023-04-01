@@ -26,4 +26,8 @@ public interface ServicoApi {
     @PutMapping("/{idServico}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void alteraServico(@PathVariable UUID idServico, @Valid @RequestBody ServicoRequest request);
+
+    @DeleteMapping("/{idServico}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void deleteServico(@PathVariable UUID idServico);
 }
