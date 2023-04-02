@@ -25,7 +25,8 @@ public class ClienteInfraRepository implements ClienteRepository {
             log.info("[finaliza] ClienteInfraRepository - salva");
             return cliente;
         }catch (DataIntegrityViolationException e) {
-            throw APIException.build(HttpStatus.BAD_REQUEST, "Cliente já cadastrado, id: " + cliente.getIdCliente());
+            throw APIException.build(HttpStatus.BAD_REQUEST,
+                    "Cliente já cadastrado, id: " + cliente.getIdCliente());
         }
     }
 }
