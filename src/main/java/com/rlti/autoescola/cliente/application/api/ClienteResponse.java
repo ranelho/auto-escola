@@ -9,14 +9,14 @@ import java.util.UUID;
 
 @Value
 public class ClienteResponse {
-    private UUID idCliente;
-    private String cpf;
-    private String firstName;
-    private String lastName;
-    private LocalDate dataNascimento;
-    private String naturalidade;
-    private String nacionalidade;
-    private EstadoCivil estadoCivil;
+    private final UUID idCliente;
+    private final String cpf;
+    private final String firstName;
+    private final String lastName;
+    private final LocalDate dataNascimento;
+    private final String naturalidade;
+    private final String nacionalidade;
+    private final EstadoCivil estadoCivil;
 
     public ClienteResponse(Cliente cliente) {
         this.idCliente = cliente.getIdCliente();

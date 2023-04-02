@@ -1,10 +1,12 @@
 package com.rlti.autoescola.cliente.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.rlti.autoescola.cliente.application.api.ClienteRequest;
 import com.rlti.autoescola.cliente.domain.groups.ClienteGroupSequenceProvider;
 import com.rlti.autoescola.contato.domain.Contato;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
@@ -27,20 +29,17 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idCliente;
     @CPF
+    @Column(unique = true)
     private String cpf;
-    @NotNull
     private String firstName;
-    @NotBlank
     private String lastName;
-    @NotBlank
     private LocalDate dataNascimento;
     private String naturalidade;
     private String nacionalidade;
     @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;
     @Enumerated(EnumType.STRING)
-    private TipoPessoa tipoPessoa = TipoPessoa.FISICA;
-
+    private TipoPessoa tipoPessoa;
 
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
     @JsonIgnore
@@ -49,4 +48,15 @@ public class Cliente {
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
     @JsonIgnore
     List<Matricula> matriculas;
+
+    public Cliente(ClienteRequest clienteRequest) {
+        this.cpf = clienteRequest.getCpf();
+        this.firstName = clienteRequest.getFirstName();
+        this.lastName = clienteRequest.getLastName();
+        this.dataNascimento = clienteRequest.getDataNascimento();
+        this.naturalidade = clienteRequest.getNaturalidade();
+        this.nacionalidade = clienteRequest.getNacionalidade();
+        this.estadoCivil = clienteRequest.getEstadoCivil();
+        this.tipoPessoa = TipoPessoa.FISICA;
+    }
 }
