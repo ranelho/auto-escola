@@ -3,24 +3,20 @@ package com.rlti.autoescola.cliente.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.cliente.application.api.ClienteRequest;
 import com.rlti.autoescola.cliente.domain.groups.ClienteGroupSequenceProvider;
+import com.rlti.autoescola.cliente.domain.groups.PessoaFisica;
 import com.rlti.autoescola.contato.domain.Contato;
 import com.rlti.autoescola.matricula.domain.Matricula;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 import org.hibernate.validator.group.GroupSequenceProvider;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-@AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Entity
 @GroupSequenceProvider(value = ClienteGroupSequenceProvider.class)
@@ -28,7 +24,7 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idCliente;
-    @CPF
+    @CPF(groups = PessoaFisica.class)
     @Column(unique = true)
     private String cpf;
     private String firstName;
@@ -39,8 +35,7 @@ public class Cliente {
     @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;
     @Enumerated(EnumType.STRING)
-    private TipoPessoa tipoPessoa;
-    //APAGAR
+    private TipoPessoa tipoPessoa = TipoPessoa.FISICA;
 
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
     @JsonIgnore
@@ -58,6 +53,5 @@ public class Cliente {
         this.naturalidade = clienteRequest.getNaturalidade();
         this.nacionalidade = clienteRequest.getNacionalidade();
         this.estadoCivil = clienteRequest.getEstadoCivil();
-        this.tipoPessoa = TipoPessoa.FISICA;
     }
 }
