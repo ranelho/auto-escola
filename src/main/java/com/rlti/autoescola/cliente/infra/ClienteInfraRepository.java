@@ -21,17 +21,11 @@ public class ClienteInfraRepository implements ClienteRepository {
     public Cliente salva(Cliente cliente) {
         log.info("[inicia] ClienteInfraRepository - salva");
         try{
-<<<<<<< HEAD
-            Cliente novoCliente = clienteSpringDataJPARepository.save(cliente);
-            log.info("[finaliza] ClienteRepositoryDB - salva");
-            return novoCliente;
-=======
             clienteSpringDataJPARepository.save(cliente);
             log.info("[finaliza] ClienteInfraRepository - salva");
             return cliente;
->>>>>>> c6942f576049c08c83150ecdfe01a27e538fd700
         }catch (DataIntegrityViolationException e) {
-            throw APIException.build(HttpStatus.BAD_REQUEST, "Cliente já cadastrado", e);
+            throw APIException.build(HttpStatus.BAD_REQUEST, "Cliente já cadastrado, id: " + cliente.getIdCliente());
         }
     }
 }
