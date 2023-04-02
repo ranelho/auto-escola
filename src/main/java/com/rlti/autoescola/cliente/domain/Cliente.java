@@ -6,7 +6,13 @@ import com.rlti.autoescola.cliente.domain.groups.ClienteGroupSequenceProvider;
 import com.rlti.autoescola.cliente.domain.groups.PessoaFisica;
 import com.rlti.autoescola.contato.domain.Contato;
 import com.rlti.autoescola.matricula.domain.Matricula;
+<<<<<<< HEAD
 import lombok.*;
+=======
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+>>>>>>> c6942f576049c08c83150ecdfe01a27e538fd700
 import org.hibernate.validator.constraints.br.CPF;
 import org.hibernate.validator.group.GroupSequenceProvider;
 
@@ -24,9 +30,16 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idCliente;
+<<<<<<< HEAD
+=======
+    @Enumerated(EnumType.STRING)
+    private TipoPessoa tipoPessoa = TipoPessoa.FISICA;
+    @NotBlank(message = "Cpf Obrigatório!")
+>>>>>>> c6942f576049c08c83150ecdfe01a27e538fd700
     @CPF(groups = PessoaFisica.class)
     @Column(unique = true)
     private String cpf;
+    @NotNull(message = "Nome é Obrigatório!")
     private String firstName;
     private String lastName;
     private LocalDate dataNascimento;
@@ -34,8 +47,11 @@ public class Cliente {
     private String nacionalidade;
     @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;
+<<<<<<< HEAD
     @Enumerated(EnumType.STRING)
     private TipoPessoa tipoPessoa = TipoPessoa.FISICA;
+=======
+>>>>>>> c6942f576049c08c83150ecdfe01a27e538fd700
 
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
     @JsonIgnore
@@ -46,12 +62,16 @@ public class Cliente {
     List<Matricula> matriculas;
 
     public Cliente(ClienteRequest clienteRequest) {
+        this.tipoPessoa = getTipoPessoa();
         this.cpf = clienteRequest.getCpf();
         this.firstName = clienteRequest.getFirstName();
         this.lastName = clienteRequest.getLastName();
         this.dataNascimento = clienteRequest.getDataNascimento();
         this.naturalidade = clienteRequest.getNaturalidade();
         this.nacionalidade = clienteRequest.getNacionalidade();
+<<<<<<< HEAD
         this.estadoCivil = clienteRequest.getEstadoCivil();
+=======
+>>>>>>> c6942f576049c08c83150ecdfe01a27e538fd700
     }
 }
