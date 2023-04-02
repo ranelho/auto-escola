@@ -40,6 +40,7 @@ public class Cliente {
     private EstadoCivil estadoCivil;
     @Enumerated(EnumType.STRING)
     private TipoPessoa tipoPessoa;
+    //APAGAR
 
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
     @JsonIgnore
