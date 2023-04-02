@@ -14,7 +14,6 @@ public class ClienteResponse {
     private final String firstName;
     private final String lastName;
     private final LocalDate dataNascimento;
-    private final String celular;
     private final String naturalidade;
     private final String nacionalidade;
     private final EstadoCivil estadoCivil;
@@ -25,7 +24,6 @@ public class ClienteResponse {
         this.firstName = cliente.getFirstName();
         this.lastName = cliente.getLastName();
         this.dataNascimento = cliente.getDataNascimento();
-        this.celular = cliente.getCelular();
         this.naturalidade = cliente.getNaturalidade();
         this.nacionalidade = cliente.getNacionalidade();
         this.estadoCivil = cliente.getEstadoCivil();

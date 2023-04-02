@@ -15,7 +15,6 @@ public class ClienteListResponse {
     private final String cpf;
     private final String firstName;
     private final String lastName;
-    private final String celular;
 
     public static List<ClienteListResponse> converte(List<Cliente>clientes){
         return clientes.stream()
@@ -27,6 +26,5 @@ public class ClienteListResponse {
         this.cpf = cliente.getCpf();
         this.firstName = cliente.getFirstName();
         this.lastName = cliente.getLastName();
-        this.celular = cliente.getCelular();
     }
 }

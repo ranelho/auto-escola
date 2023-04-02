@@ -2,6 +2,7 @@ package com.rlti.autoescola.cliente.application.service;
 
 import com.rlti.autoescola.cliente.application.api.ClienteListResponse;
 import com.rlti.autoescola.cliente.application.api.ClienteResponse;
+import com.rlti.autoescola.cliente.application.api.EditaClienteRequest;
 import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.cliente.application.api.ClienteRequest;
@@ -42,12 +43,19 @@ public class ClienteApplicationService implements ClienteService {
         log.info("[finaliza] ClienteApplicationService - buscaTodosClientes");
         return ClienteListResponse.converte(clientes);
     }
-
     @Override
     public void deletaClientePorId(UUID idCliente) {
         log.info("[inicia] ClienteApplicationService - deletaClientePorId");
         Cliente cliente = clienteRepository.buscaClientePorId(idCliente);
         clienteRepository.deletaCliente(cliente);
         log.info("[finaliza] ClienteApplicationService - deletaClientePorId");
+    }
+    @Override
+    public void editaCliente(UUID idCliente, EditaClienteRequest editaClienteRequest) {
+        log.info("[inicia] ClienteApplicationService - editaCliente");
+        Cliente cliente = clienteRepository.buscaClientePorId(idCliente);
+        cliente.altera(editaClienteRequest);
+        clienteRepository.salva(cliente);
+        log.info("[finaliza] ClienteApplicationService - editaCliente");
     }
 }

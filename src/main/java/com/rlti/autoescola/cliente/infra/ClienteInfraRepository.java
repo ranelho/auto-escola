@@ -35,7 +35,7 @@ public class ClienteInfraRepository implements ClienteRepository {
     public Cliente buscaClientePorId(UUID idCliente) {
         log.info("[inicia] ClienteInfraRepository - buscaClientePorId");
         Cliente cliente = clienteSpringDataJPARepository.findById(idCliente)
-                .orElseThrow(() ->APIException.build(HttpStatus.BAD_REQUEST,
+                .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,
                         "Cliente não encontrado!"));
         log.info("[finaliza] ClienteInfraRepository - buscaClientePorId");
         return cliente;
@@ -47,7 +47,6 @@ public class ClienteInfraRepository implements ClienteRepository {
         log.info("[finaliza] ClienteInfraRepository - buscaTodosClientes");
         return todosClientes;
     }
-
     @Override
     public void deletaCliente(Cliente cliente) {
         log.info("[inicia] ClienteInfraRepository - deletaCliente");

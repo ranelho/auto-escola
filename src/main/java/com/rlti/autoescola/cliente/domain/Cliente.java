@@ -2,6 +2,7 @@ package com.rlti.autoescola.cliente.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.cliente.application.api.ClienteRequest;
+import com.rlti.autoescola.cliente.application.api.EditaClienteRequest;
 import com.rlti.autoescola.cliente.domain.groups.ClienteGroupSequenceProvider;
 import com.rlti.autoescola.cliente.domain.groups.PessoaFisica;
 import com.rlti.autoescola.contato.domain.Contato;
@@ -59,9 +60,17 @@ public class Cliente {
         this.firstName = clienteRequest.getFirstName();
         this.lastName = clienteRequest.getLastName();
         this.dataNascimento = clienteRequest.getDataNascimento();
-        this.celular = clienteRequest.getCelular();
         this.naturalidade = clienteRequest.getNaturalidade();
         this.nacionalidade = clienteRequest.getNacionalidade();
         this.estadoCivil = clienteRequest.getEstadoCivil();
+    }
+
+    public void altera(EditaClienteRequest editaClienteRequest) {
+        this.firstName = editaClienteRequest.getFirstName();
+        this.lastName = editaClienteRequest.getLastName();
+        this.dataNascimento = editaClienteRequest.getDataNascimento();
+        this.naturalidade = editaClienteRequest.getNaturalidade();
+        this.nacionalidade = editaClienteRequest.getNacionalidade();
+        this.estadoCivil = editaClienteRequest.getEstadoCivil();
     }
 }

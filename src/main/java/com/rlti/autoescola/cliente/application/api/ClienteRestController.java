@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,12 +39,18 @@ public class ClienteRestController implements ClienteAPI {
         log.info("[finaliza] ClienteRestController - buscaTodosClientes");
         return clientes;
     }
-
     @Override
     public void deletaClientePorId(UUID idCliente) {
         log.info("[inicia] ClienteRestController - deletaClientePorId");
         log.info("[idCliente] {}", idCliente);
         clienteService.deletaClientePorId(idCliente);
         log.info("[finaliza] ClienteRestController - deletaClientePorId");
+    }
+    @Override
+    public void editaCliente(UUID idCliente, @Valid EditaClienteRequest editaClienteRequest) {
+        log.info("[inicia] ClienteRestController - editaCliente");
+        clienteService.editaCliente(idCliente, editaClienteRequest);
+        log.info("[idCliente] {}", idCliente);
+        log.info("[finaliza] ClienteRestController - editaCliente");
     }
 }
