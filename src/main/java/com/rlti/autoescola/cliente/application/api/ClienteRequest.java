@@ -15,6 +15,7 @@ public class ClienteRequest {
     private String firstName;
     private String lastName;
     private LocalDate dataNascimento;
+    private String celular;
     private String naturalidade;
     private String nacionalidade;
     private EstadoCivil estadoCivil;

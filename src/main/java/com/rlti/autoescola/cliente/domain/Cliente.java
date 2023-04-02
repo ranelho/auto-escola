@@ -31,14 +31,15 @@ public class Cliente {
     private UUID idCliente;
     @Enumerated(EnumType.STRING)
     private TipoPessoa tipoPessoa = TipoPessoa.FISICA;
-    @NotBlank(message = "Cpf Obrigatório!")
+    @NotBlank(message = "Campo Obrigatório!")
     @CPF(groups = PessoaFisica.class)
     @Column(unique = true)
     private String cpf;
-    @NotNull(message = "Nome é Obrigatório!")
+    @NotNull(message = "Campo Obrigatório!")
     private String firstName;
     private String lastName;
     private LocalDate dataNascimento;
+    private String celular;
     private String naturalidade;
     private String nacionalidade;
     @Enumerated(EnumType.STRING)
@@ -58,6 +59,7 @@ public class Cliente {
         this.firstName = clienteRequest.getFirstName();
         this.lastName = clienteRequest.getLastName();
         this.dataNascimento = clienteRequest.getDataNascimento();
+        this.celular = clienteRequest.getCelular();
         this.naturalidade = clienteRequest.getNaturalidade();
         this.nacionalidade = clienteRequest.getNacionalidade();
         this.estadoCivil = clienteRequest.getEstadoCivil();
