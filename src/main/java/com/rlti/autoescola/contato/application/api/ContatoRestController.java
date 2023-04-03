@@ -12,7 +12,7 @@ import java.util.UUID;
 public class ContatoRestController implements ContatoApi {
 
     @Override
-    public ContatoResponse postContato(String cpf, ContatoRequest contatoRequest) {
+    public ContatoResponse postContato(UUID idCliente, ContatoRequest contatoRequest) {
         return null;
     }
 }
