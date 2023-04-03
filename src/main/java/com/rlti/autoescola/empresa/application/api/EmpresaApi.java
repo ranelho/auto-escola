@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/v1/empresa")
@@ -12,7 +13,7 @@ public interface EmpresaApi {
     @ResponseStatus(code = HttpStatus.CREATED)
     EmpresaResponse postEmpresa(@Valid @RequestBody EmpresaRequest empresaRequest);
 
-    /*@GetMapping
+    @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
-    List<EmpresaListResponse> getEmpresas();*/
+    List<EmpresaListResponse> getEmpresas();
 }

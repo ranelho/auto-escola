@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @Log4j2
 @RequiredArgsConstructor
@@ -17,5 +19,13 @@ public class EmpresaController implements EmpresaApi{
         EmpresaResponse empresaCriada = empresaService.criaEmpresa(empresaRequest);
         log.info("[finaliza] EmpresaController - postEmpresa");
         return empresaCriada;
+    }
+
+    @Override
+    public List<EmpresaListResponse> getEmpresas() {
+        log.info("[inicia] EmpresaController - getEmpresas");
+        List<EmpresaListResponse> empresas = empresaService.buscaTodosClientes();
+        log.info("[finaliza] EmpresaController - getEmpresas");
+        return empresas;
     }
 }
