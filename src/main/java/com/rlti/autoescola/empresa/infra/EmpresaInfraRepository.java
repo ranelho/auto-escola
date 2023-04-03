@@ -2,11 +2,14 @@ package com.rlti.autoescola.empresa.infra;
 
 import com.rlti.autoescola.empresa.application.repository.EmpresaRepository;
 import com.rlti.autoescola.empresa.domain.Empresa;
+import com.rlti.autoescola.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 @Log4j2
@@ -28,4 +31,14 @@ public class EmpresaInfraRepository implements EmpresaRepository {
         log.info("[finaliza] EmpresaInfraRepository - buscaTodasEmpresas");
         return todasEmpresas;
     }
+
+    @Override
+    public Empresa buscaEmpresaAtravesId(UUID idEmpresa) {
+        log.info("[inicia] EmpresaInfraRepository - buscaEmpresaAtravesId");
+        Empresa empresa = empresaSpringDataJPARepository.findById(idEmpresa)
+                .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Empresa não encontrado"));
+        log.info("[finaliza] EmpresaInfraRepository - buscaEmpresaAtravesId");
+        return empresa;
+    }
+
 }

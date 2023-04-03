@@ -1,6 +1,7 @@
 package com.rlti.autoescola.empresa.application.service;
 
 
+import com.rlti.autoescola.empresa.application.api.EmpresaDetalhadoResponse;
 import com.rlti.autoescola.empresa.application.api.EmpresaListResponse;
 import com.rlti.autoescola.empresa.application.api.EmpresaResponse;
 import com.rlti.autoescola.empresa.domain.Empresa;
@@ -11,6 +12,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Log4j2
@@ -33,4 +35,14 @@ public class EmpresaApplicationService implements EmpresaService{
         log.info("[finaliza] EmpresaApplicationService - buscaTodosClientes");
         return EmpresaListResponse.converte(clientes);
     }
+
+    @Override
+    public EmpresaDetalhadoResponse buscaEmpresaAtravesId(UUID idEmpresa) {
+        log.info("[inicia] EmpresaApplicationService - buscaEmpresaAtravesId");
+        Empresa empresa = empresaRepository.buscaEmpresaAtravesId(idEmpresa);
+        log.info("[finaliza] EmpresaApplicationService - buscaEmpresaAtravesId");
+        return new EmpresaDetalhadoResponse(empresa);
+    }
+
+
 }
