@@ -2,6 +2,7 @@ package com.rlti.autoescola.frota.manutencao.application.service;
 
 import com.rlti.autoescola.frota.manutencao.application.api.ManutencaoIdResponse;
 import com.rlti.autoescola.frota.manutencao.application.api.ManutencaoRequest;
+import com.rlti.autoescola.frota.manutencao.application.api.VeiculoManutencaoResponse;
 import com.rlti.autoescola.frota.manutencao.application.repository.ManutencaoRepository;
 import com.rlti.autoescola.frota.manutencao.Manutencao;
 import com.rlti.autoescola.frota.veiculo.application.repository.VeiculoRepository;
@@ -22,7 +23,15 @@ public class ManutencaoApplicationService implements ManutencaoService {
         log.info("[inicia] ManutencaoApplicationService - novaManutencao");
         Veiculo veiculo = veiculoRepository.getByPlaca(placa);
         Manutencao manutencao = manutencaoRepository.salva(new Manutencao(veiculo, request));
-        log.info("[inicia] ManutencaoApplicationService - novaManutencao");
+        log.info("[finaliza] ManutencaoApplicationService - novaManutencao");
         return ManutencaoIdResponse.builder().idManutencao(manutencao.getIdManutencao()).build();
+    }
+
+    @Override
+    public VeiculoManutencaoResponse getManutencoesVeiculo(String placa) {
+        log.info("[inicia] ManutencaoApplicationService - getManutencoesVeiculo");
+        Veiculo veiculo = veiculoRepository.getByPlaca(placa);
+        log.info("[finaliza] ManutencaoApplicationService - getManutencoesVeiculo");
+        return new VeiculoManutencaoResponse(veiculo);
     }
 }

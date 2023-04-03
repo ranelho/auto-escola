@@ -12,4 +12,8 @@ public interface ManutencaoApi {
     @PostMapping("/{placa}")
     @ResponseStatus(code = HttpStatus.CREATED)
     ManutencaoIdResponse novaManutencao(@PathVariable String placa, @Valid @RequestBody ManutencaoRequest request);
+
+    @GetMapping("/veiculo/{placa}")
+    @ResponseStatus(code = HttpStatus.OK)
+    VeiculoManutencaoResponse getManutencoesVeiculo(@PathVariable String placa);
 }

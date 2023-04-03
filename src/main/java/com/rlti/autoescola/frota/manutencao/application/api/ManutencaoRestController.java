@@ -18,4 +18,12 @@ public class ManutencaoRestController implements ManutencaoApi {
         log.info("[finaliza] ManutencaoRestController - novaManutencao");
         return idResponse;
     }
+
+    @Override
+    public VeiculoManutencaoResponse getManutencoesVeiculo(String placa) {
+        log.info("[inicia] ManutencaoRestController - novaManutencao");
+        VeiculoManutencaoResponse response = manutencaoService.getManutencoesVeiculo(placa);
+        log.info("[finaliza] ManutencaoRestController - novaManutencao");
+        return response;
+    }
 }
