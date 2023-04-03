@@ -1,4 +1,4 @@
-package com.rlti.autoescola.frota.domain.Manutencao;
+package com.rlti.autoescola.frota.manutencao;
 
 public enum TipoManutencao {
     ABASTECIMENTO, IPVA, SEGURO, MECANICA
