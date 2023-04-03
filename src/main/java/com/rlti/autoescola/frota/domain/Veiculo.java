@@ -1,6 +1,9 @@
 package com.rlti.autoescola.frota.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.frota.application.api.VeiculoRequest;
+import com.rlti.autoescola.frota.domain.Manutencao.Manutencao;
+import com.rlti.autoescola.matricula.domain.Matricula;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +11,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -27,6 +31,10 @@ public class Veiculo {
     private String ano;
     @Enumerated(EnumType.STRING)
     private Tipo tipo;
+
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "veiculo")
+    @JsonIgnore
+    List<Manutencao> manutencoes;
 
     public Veiculo(VeiculoRequest request) {
         this.placa = request.getPlaca().toUpperCase();
