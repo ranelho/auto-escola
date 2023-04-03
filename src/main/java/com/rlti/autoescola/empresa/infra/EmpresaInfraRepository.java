@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @Log4j2
 @RequiredArgsConstructor
@@ -17,5 +19,13 @@ public class EmpresaInfraRepository implements EmpresaRepository {
         empresaSpringDataJPARepository.save(empresa);
         log.info("[finaliza] EmpresaInfraRepository - salva");
         return empresa;
+    }
+
+    @Override
+    public List<Empresa> buscaTodasEmpresas() {
+        log.info("[inicia] EmpresaInfraRepository - buscaTodasEmpresas");
+        List<Empresa> todasEmpresas = empresaSpringDataJPARepository.findAll();
+        log.info("[finaliza] EmpresaInfraRepository - buscaTodasEmpresas");
+        return todasEmpresas;
     }
 }
