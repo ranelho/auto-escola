@@ -1,6 +1,7 @@
 package com.rlti.autoescola.empresa.domain;
 
 import com.rlti.autoescola.cliente.domain.TipoPessoa;
+import com.rlti.autoescola.empresa.domain.application.api.EmpresaRequest;
 import com.rlti.autoescola.empresa.domain.groups.EmpresaGroupSequenceProvider;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,19 +34,37 @@ public class Empresa {
     @Enumerated(EnumType.STRING)
     private TipoPessoa tipoPessoa = TipoPessoa.JURIDICA;
     @NotBlank
-    String nomeAdministrador;
+    private String nomeAdministrador;
     @NotBlank
-    String inscricaoMunicipal;
+    private String inscricaoMunicipal;
     @NotBlank
-    String areaAtuacao;
+    private String areaAtuacao;
     @NotNull
-    LocalDate dataAbertura;
+    private LocalDate dataAbertura;
     @NotBlank
     @Email
-    String email;
-    String telefone;
+    private String email;
+    private String telefone;
     @NotNull
-    String enderecoComercial;
+    private String enderecoComercial;
     @NotNull
-    Boolean aceitaTermos;
+    private Boolean aceitaTermos;
+
+    public Empresa(EmpresaRequest empresaRequest) {
+    }
+
+    public EmpresaListResponse(EmpresaRequest empresaRequest) {
+        this.idEmpresa = empresaRequest.getIdEmpresa();
+        this.razaoSocial = empresaRequest.getRazaoSocial();
+        this.nomeFantasia = nomeFantasia;
+        this.tipoPessoa = tipoPessoa;
+        this.nomeAdministrador = nomeAdministrador;
+        this.inscricaoMunicipal = inscricaoMunicipal;
+        this.areaAtuacao = areaAtuacao;
+        this.dataAbertura = dataAbertura;
+        this.email = email;
+        this.telefone = telefone;
+        this.enderecoComercial = enderecoComercial;
+        this.aceitaTermos = aceitaTermos;
+    }
 }

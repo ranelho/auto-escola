@@ -10,9 +10,7 @@ import java.time.LocalDate;
 
 @Value
 public class EmpresaRequest {
-
-    @NotBlank
-    String razaoSocial;
+    @NotBlank String razaoSocial;
     @NotBlank
     String nomeFantasia;
     @NotNull(message = "Tipo pessoa é obrigatório")
