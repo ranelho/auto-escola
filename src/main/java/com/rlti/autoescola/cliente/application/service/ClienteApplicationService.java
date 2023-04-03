@@ -62,7 +62,6 @@ public class ClienteApplicationService implements ClienteService {
         clienteRepository.salva(cliente);
         log.info("[finaliza] ClienteApplicationService - editaCliente");
     }
-
     @Override
     public ClienteResponse buscaClientePorCPF(String cpf) {
         log.info("[inicia] ClienteApplicationService - buscaClientePorCPF");
