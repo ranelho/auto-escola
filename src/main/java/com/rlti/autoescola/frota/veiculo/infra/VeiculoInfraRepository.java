@@ -1,7 +1,7 @@
-package com.rlti.autoescola.frota.infra;
+package com.rlti.autoescola.frota.veiculo.infra;
 
-import com.rlti.autoescola.frota.application.repository.VeiculoRepository;
-import com.rlti.autoescola.frota.domain.Veiculo;
+import com.rlti.autoescola.frota.veiculo.application.repository.VeiculoRepository;
+import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 import com.rlti.autoescola.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

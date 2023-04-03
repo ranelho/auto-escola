@@ -1,6 +1,6 @@
-package com.rlti.autoescola.frota.application.api;
+package com.rlti.autoescola.frota.veiculo.application.api;
 
-import com.rlti.autoescola.frota.domain.Veiculo;
+import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 import lombok.Value;
 
 import java.util.List;

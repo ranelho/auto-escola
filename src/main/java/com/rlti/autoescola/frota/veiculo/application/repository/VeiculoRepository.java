@@ -1,6 +1,6 @@
-package com.rlti.autoescola.frota.application.repository;
+package com.rlti.autoescola.frota.veiculo.application.repository;
 
-import com.rlti.autoescola.frota.domain.Veiculo;
+import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 
 import java.util.List;
 import java.util.UUID;

@@ -1,9 +1,9 @@
-package com.rlti.autoescola.frota.application.service;
+package com.rlti.autoescola.frota.veiculo.application.service;
 
-import com.rlti.autoescola.frota.application.api.VeiculoIdResponse;
-import com.rlti.autoescola.frota.application.api.VeiculoRequest;
-import com.rlti.autoescola.frota.application.repository.VeiculoRepository;
-import com.rlti.autoescola.frota.domain.Veiculo;
+import com.rlti.autoescola.frota.veiculo.application.api.VeiculoIdResponse;
+import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
+import com.rlti.autoescola.frota.veiculo.application.api.VeiculoRequest;
+import com.rlti.autoescola.frota.veiculo.application.repository.VeiculoRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;

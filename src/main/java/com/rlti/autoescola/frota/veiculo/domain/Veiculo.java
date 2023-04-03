@@ -1,9 +1,8 @@
-package com.rlti.autoescola.frota.domain;
+package com.rlti.autoescola.frota.veiculo.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.rlti.autoescola.frota.application.api.VeiculoRequest;
-import com.rlti.autoescola.frota.domain.Manutencao.Manutencao;
-import com.rlti.autoescola.matricula.domain.Matricula;
+import com.rlti.autoescola.frota.veiculo.application.api.VeiculoRequest;
+import com.rlti.autoescola.frota.manutencao.Manutencao;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

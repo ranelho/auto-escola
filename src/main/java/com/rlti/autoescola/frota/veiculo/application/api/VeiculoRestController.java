@@ -1,12 +1,13 @@
-package com.rlti.autoescola.frota.application.api;
+package com.rlti.autoescola.frota.veiculo.application.api;
 
-import com.rlti.autoescola.frota.application.service.VeiculoService;
-import com.rlti.autoescola.frota.domain.Veiculo;
+import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
+import com.rlti.autoescola.frota.veiculo.application.service.VeiculoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+
 
 @RestController
 @RequiredArgsConstructor

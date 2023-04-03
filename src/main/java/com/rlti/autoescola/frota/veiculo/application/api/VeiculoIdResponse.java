@@ -1,4 +1,4 @@
-package com.rlti.autoescola.frota.application.api;
+package com.rlti.autoescola.frota.veiculo.application.api;
 
 import lombok.Builder;
 import lombok.Value;

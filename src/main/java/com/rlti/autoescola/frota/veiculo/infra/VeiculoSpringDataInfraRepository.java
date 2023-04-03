@@ -1,6 +1,6 @@
-package com.rlti.autoescola.frota.infra;
+package com.rlti.autoescola.frota.veiculo.infra;
 
-import com.rlti.autoescola.frota.domain.Veiculo;
+import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
