@@ -8,6 +8,7 @@ import javax.validation.constraints.Pattern;
 public class ContatoRequest {
     @Pattern(regexp = "^\\(\\d{2}\\)\\d{4,5}\\-\\d{4}$", message = "Telefone inválido")
     String telefone;
+    String email;
     String cep;
     String endereco;
     String cidade;

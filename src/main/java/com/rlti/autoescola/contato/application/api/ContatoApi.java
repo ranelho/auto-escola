@@ -12,5 +12,5 @@ public interface ContatoApi {
 
     @PostMapping("/{idCliente}")
     @ResponseStatus(code = HttpStatus.CREATED)
-    ContatoResponse postContato(@PathVariable UUID idCliente, @Valid @RequestBody ContatoRequest contatoRequest);
+    ContatoResponse criaContato(@PathVariable UUID idCliente, @Valid @RequestBody ContatoRequest contatoRequest);
 }

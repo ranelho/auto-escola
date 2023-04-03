@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -17,6 +18,8 @@ public class Contato {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idContato;
+    @Email
+    private String email;
     private String telefone;
     private String cep;
     private String endereco;

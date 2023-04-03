@@ -10,6 +10,7 @@ public class ContatoResponse {
     Cliente cliente;
     UUID idContato;
     String telefone;
+    String email;
     String cep;
     String endereco;
     String cidade;
