@@ -7,6 +7,5 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface ClienteSpringDataJPARepository extends JpaRepository<Cliente, UUID>{
-    Optional<Object> findByIdCliente(UUID idCliente);
     Optional<Cliente> findByCpf(String cpf);
 }
