@@ -24,7 +24,7 @@ public class Empresa {
     @CNPJ
     private String cnpj;
     private String razaoSocial;
-    private String nomeFantazia;
+    private String nomeFantasia;
     @Enumerated(EnumType.STRING)
     private TipoPessoa tipoPessoa = TipoPessoa.JURIDICA;
 }
