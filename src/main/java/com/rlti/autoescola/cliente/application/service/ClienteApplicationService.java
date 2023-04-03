@@ -6,10 +6,14 @@ import com.rlti.autoescola.cliente.application.api.EditaClienteRequest;
 import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.cliente.application.api.ClienteRequest;
+import com.rlti.autoescola.cliente.domain.ValidadorCPF;
 import com.rlti.autoescola.cliente.infra.ClienteInfraRepository;
+import com.rlti.autoescola.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.UUID;
@@ -57,5 +61,16 @@ public class ClienteApplicationService implements ClienteService {
         cliente.altera(editaClienteRequest);
         clienteRepository.salva(cliente);
         log.info("[finaliza] ClienteApplicationService - editaCliente");
+    }
+
+    @Override
+    public ClienteResponse buscaClientePorCPF(String cpf) {
+        log.info("[inicia] ClienteApplicationService - buscaClientePorCPF");
+        if (!ValidadorCPF.validarCPF(cpf)) {
+            throw APIException.build(HttpStatus.BAD_REQUEST,"CPF Inválido!");
+        }
+        Cliente cliente = clienteRepository.buscaClientePorCPF(cpf);
+        log.info("[finaliza] ClienteApplicationService - buscaClientePorCPF");
+        return new ClienteResponse(cliente);
     }
 }

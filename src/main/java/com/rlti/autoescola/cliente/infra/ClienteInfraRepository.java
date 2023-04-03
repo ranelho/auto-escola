@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -52,5 +53,14 @@ public class ClienteInfraRepository implements ClienteRepository {
         log.info("[inicia] ClienteInfraRepository - deletaCliente");
         clienteSpringDataJPARepository.delete(cliente);
         log.info("[finaliza] ClienteInfraRepository - deletaCliente");
+    }
+    @Override
+    public Cliente buscaClientePorCPF(String cpf) {
+        log.info("[inicia] ClienteInfraRepository - buscaClientePorCPF");
+        Optional<Cliente> clienteOptional = clienteSpringDataJPARepository.findByCpf(cpf);
+        Cliente cliente = clienteOptional.orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,
+                "Cliente não encontrado!"));
+        log.info("[finaliza] ClienteInfraRepository - buscaClientePorCPF");
+        return cliente;
     }
 }

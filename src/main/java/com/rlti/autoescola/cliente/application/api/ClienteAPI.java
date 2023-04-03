@@ -1,5 +1,6 @@
 package com.rlti.autoescola.cliente.application.api;
 
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,10 @@ public interface ClienteAPI {
     @GetMapping(value = "/{idCliente}")
     @ResponseStatus(code = HttpStatus.OK)
     ClienteResponse buscaClientePorId(@PathVariable UUID idCliente);
+
+    @GetMapping(value = "/cpf/{cpf}")
+    @ResponseStatus(code = HttpStatus.OK)
+    ClienteResponse buscaClientePorCPF(@PathVariable String cpf);
 
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)

@@ -13,7 +13,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Log4j2
 public class ClienteRestController implements ClienteAPI {
-
     private final ClienteService clienteService;
 
     @Override
@@ -31,6 +30,13 @@ public class ClienteRestController implements ClienteAPI {
         ClienteResponse buscaCliente = clienteService.buscaClientePorId(idCliente);
         log.info("[finaliza] ClienteRestController - buscaClientePorId");
         return buscaCliente;
+    }
+    @Override
+    public ClienteResponse buscaClientePorCPF(String cpf) {
+        log.info("[inicia] ClienteRestController - buscaClientePorCPF");
+        ClienteResponse buscaCPF = clienteService.buscaClientePorCPF(cpf);
+        log.info("[finaliza] ClienteRestController - buscaClientePorCPF");
+        return buscaCPF;
     }
     @Override
     public List<ClienteListResponse> visualizaTodosClientes() {

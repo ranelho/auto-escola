@@ -14,4 +14,5 @@ public interface ClienteService {
     List<ClienteListResponse> buscaTodosClientes();
     void deletaClientePorId(UUID idCliente);
     void editaCliente(UUID idCliente, EditaClienteRequest editaClienteRequest);
+    ClienteResponse buscaClientePorCPF(String cpf);
 }
