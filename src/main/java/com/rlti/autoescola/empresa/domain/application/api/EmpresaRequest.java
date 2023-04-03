@@ -1,24 +1,24 @@
 package com.rlti.autoescola.empresa.domain.application.api;
 
+import com.rlti.autoescola.cliente.domain.TipoPessoa;
 import lombok.Value;
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.br.CNPJ;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Value
 public class EmpresaRequest {
 
-    UUID idEmpresa;
     @NotBlank
-    String nomeCompletoEmpresa;
+    String razaoSocial;
+    @NotBlank
+    String nomeFantasia;
+    @NotNull(message = "Tipo pessoa é obrigatório")
+    TipoPessoa tipoPessoa;
     @NotBlank
     String nomeAdministrador;
-    @CNPJ
-    String cnpj;
     @NotBlank
     String inscricaoMunicipal;
     @NotBlank
