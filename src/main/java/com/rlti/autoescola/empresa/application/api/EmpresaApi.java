@@ -1,11 +1,9 @@
-package com.rlti.autoescola.empresa.domain.application.api;
+package com.rlti.autoescola.empresa.application.api;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/v1/empresa")

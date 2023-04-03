@@ -1,7 +1,8 @@
-package com.rlti.autoescola.empresa.domain.application.api;
+package com.rlti.autoescola.empresa.application.api;
 
-import com.rlti.autoescola.cliente.domain.TipoPessoa;
+import com.rlti.autoescola.empresa.domain.TipoPessoa;
 import lombok.Value;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -13,8 +14,9 @@ public class EmpresaRequest {
     @NotBlank String razaoSocial;
     @NotBlank
     String nomeFantasia;
-    @NotNull(message = "Tipo pessoa é obrigatório")
-    TipoPessoa tipoPessoa;
+    @NotBlank
+    @CNPJ
+    String cnpj;
     @NotBlank
     String nomeAdministrador;
     @NotBlank
