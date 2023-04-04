@@ -19,7 +19,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class EmpresaApplicationService implements EmpresaService{
     private final EmpresaRepository empresaRepository;
-
     @Override
     public EmpresaResponse criaEmpresa(EmpresaRequest empresaRequest) {
         log.info("[inicia] EmpresaApplicationService - criaEmpresa");
@@ -27,7 +26,6 @@ public class EmpresaApplicationService implements EmpresaService{
         log.info("[finaliza] EmpresaApplicationService - criaEmpresa");
         return EmpresaResponse.builder().idEmpresa(empresa.getIdEmpresa()).build();
     }
-
     @Override
     public List<EmpresaListResponse> buscaTodosClientes() {
         log.info("[inicia] EmpresaApplicationService - buscaTodosClientes");
@@ -35,7 +33,6 @@ public class EmpresaApplicationService implements EmpresaService{
         log.info("[finaliza] EmpresaApplicationService - buscaTodosClientes");
         return EmpresaListResponse.converte(clientes);
     }
-
     @Override
     public EmpresaDetalhadoResponse buscaEmpresaAtravesId(UUID idEmpresa) {
         log.info("[inicia] EmpresaApplicationService - buscaEmpresaAtravesId");
@@ -44,7 +41,6 @@ public class EmpresaApplicationService implements EmpresaService{
         log.info("[finaliza] EmpresaApplicationService - buscaEmpresaAtravesId");
         return new EmpresaDetalhadoResponse(empresa);
     }
-
     @Override
     public void deletaEmpresaAtravesId(UUID idEmpresa) {
         log.info("[inicia] EmpresaApplicationService - deletaEmpresaAtravesId");
@@ -52,6 +48,4 @@ public class EmpresaApplicationService implements EmpresaService{
         empresaRepository.deletaEmpresa(empresa);
         log.info("[finaliza] EmpresaApplicationService - deletaEmpresaAtravesId");
     }
-
-
 }

@@ -7,10 +7,7 @@ import java.util.UUID;
 
 public interface EmpresaRepository {
     Empresa salva(Empresa empresa);
-
     List<Empresa> buscaTodasEmpresas();
-
     Empresa buscaEmpresaAtravesId(UUID idEmpresa);
-
     void deletaEmpresa(Empresa empresa);
 }

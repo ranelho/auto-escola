@@ -47,6 +47,5 @@ public class EmpresaListResponse {
         this.email = empresa.getEmail();
         this.telefone = empresa.getTelefone();
         this.enderecoComercial = empresa.getEnderecoComercial();
-
     }
 }

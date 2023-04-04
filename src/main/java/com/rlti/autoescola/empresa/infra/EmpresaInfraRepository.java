@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.UUID;
-
 @Repository
 @Log4j2
 @RequiredArgsConstructor
@@ -23,7 +22,6 @@ public class EmpresaInfraRepository implements EmpresaRepository {
         log.info("[finaliza] EmpresaInfraRepository - salva");
         return empresa;
     }
-
     @Override
     public List<Empresa> buscaTodasEmpresas() {
         log.info("[inicia] EmpresaInfraRepository - buscaTodasEmpresas");
@@ -31,7 +29,6 @@ public class EmpresaInfraRepository implements EmpresaRepository {
         log.info("[finaliza] EmpresaInfraRepository - buscaTodasEmpresas");
         return todasEmpresas;
     }
-
     @Override
     public Empresa buscaEmpresaAtravesId(UUID idEmpresa) {
         log.info("[inicia] EmpresaInfraRepository - buscaEmpresaAtravesId");
@@ -40,12 +37,10 @@ public class EmpresaInfraRepository implements EmpresaRepository {
         log.info("[finaliza] EmpresaInfraRepository - buscaEmpresaAtravesId");
         return empresa;
     }
-
     @Override
     public void deletaEmpresa(Empresa empresa) {
         log.info("[inicia] EmpresaInfraRepository - deletaEmpresa");
         empresaSpringDataJPARepository.delete(empresa);
         log.info("[finaliza] EmpresaInfraRepository - deletaEmpresa");
     }
-
 }
