@@ -39,9 +39,18 @@ public class EmpresaApplicationService implements EmpresaService{
     @Override
     public EmpresaDetalhadoResponse buscaEmpresaAtravesId(UUID idEmpresa) {
         log.info("[inicia] EmpresaApplicationService - buscaEmpresaAtravesId");
+        log.info("idEmpresa]", idEmpresa);
         Empresa empresa = empresaRepository.buscaEmpresaAtravesId(idEmpresa);
         log.info("[finaliza] EmpresaApplicationService - buscaEmpresaAtravesId");
         return new EmpresaDetalhadoResponse(empresa);
+    }
+
+    @Override
+    public void deletaEmpresaAtravesId(UUID idEmpresa) {
+        log.info("[inicia] EmpresaApplicationService - deletaEmpresaAtravesId");
+        Empresa empresa = empresaRepository.buscaEmpresaAtravesId(idEmpresa);
+        empresaRepository.deletaEmpresa(empresa);
+        log.info("[finaliza] EmpresaApplicationService - deletaEmpresaAtravesId");
     }
 
 

@@ -7,5 +7,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface EmpresaSpringDataJPARepository extends JpaRepository<Empresa, UUID> {
-   Optional<Empresa> findByIdEmpresa(UUID idEmpresa);
+    Optional<Empresa> findByIdEmpresa(UUID idEmpresa);
+    void delete(Empresa empresa);
 }

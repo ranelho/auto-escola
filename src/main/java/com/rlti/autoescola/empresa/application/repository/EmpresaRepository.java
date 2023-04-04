@@ -11,4 +11,6 @@ public interface EmpresaRepository {
     List<Empresa> buscaTodasEmpresas();
 
     Empresa buscaEmpresaAtravesId(UUID idEmpresa);
+
+    void deletaEmpresa(Empresa empresa);
 }
