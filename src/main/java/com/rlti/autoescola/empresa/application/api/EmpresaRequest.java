@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.br.CNPJ;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 
 @Value
@@ -15,6 +16,7 @@ public class EmpresaRequest {
     @NotBlank
     String nomeFantasia;
     @NotBlank
+    @Pattern(regexp = "(^\\d{2}\\x2E\\d{3}\\x2E\\d{3}/\\d{4}\\x2D\\d{2})$")
     String cnpj;
     @NotBlank
     String nomeAdministrador;

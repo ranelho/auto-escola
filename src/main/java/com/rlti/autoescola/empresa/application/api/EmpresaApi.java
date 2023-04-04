@@ -16,12 +16,12 @@ public interface EmpresaApi {
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
     List<EmpresaListResponse> getEmpresas();
-    @GetMapping(value = "/{idEmpresa}")
+    @GetMapping(value = "/empresa/{idEmpresa}")
     @ResponseStatus(code = HttpStatus.OK)
     EmpresaDetalhadoResponse getEmpresaAtravesId(@PathVariable UUID idEmpresa);
-    @GetMapping(value = "/{idCnpj}")
+    @GetMapping(value = "/{cnpj}")
     @ResponseStatus(code = HttpStatus.OK)
-    EmpresaDetalhadoResponse getEmpresaAtravesCnpj(@PathVariable UUID idCnpj);
+    EmpresaDetalhadoResponseCnpj getEmpresaAtravesCnpj(@PathVariable String cnpj);
     @DeleteMapping(value = "/{idEmpresa}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void deletaEmpresaAtravesId (@PathVariable UUID idEmpresa);

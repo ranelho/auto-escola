@@ -35,7 +35,6 @@ public class Empresa {
     @CNPJ(groups = PessoaJuridica.class)
     private String cnpj;
     @Enumerated(EnumType.STRING)
-    //@NotNull(message = "Tipo pessoa é obrigatório")
     TipoPessoa tipoPessoa = TipoPessoa.JURIDICA;
     @NotBlank
     private String nomeAdministrador;
@@ -56,14 +55,14 @@ public class Empresa {
     private Boolean aceitaTermos;
 
    public Empresa(EmpresaRequest empresaRequest) {
-        this.razaoSocial = empresaRequest.getRazaoSocial();
-        this.nomeFantasia = empresaRequest.getNomeFantasia();
+        this.razaoSocial = empresaRequest.getRazaoSocial().toUpperCase();
+        this.nomeFantasia = empresaRequest.getNomeFantasia().toUpperCase();
         this.cnpj = empresaRequest.getCnpj();
-        this.nomeAdministrador = empresaRequest.getNomeAdministrador();
+        this.nomeAdministrador = empresaRequest.getNomeAdministrador().toUpperCase();
         this.inscricaoMunicipal = empresaRequest.getInscricaoMunicipal();
-        this.areaAtuacao = empresaRequest.getAreaAtuacao();
+        this.areaAtuacao = empresaRequest.getAreaAtuacao().toUpperCase();
         this.dataAbertura = empresaRequest.getDataAbertura();
-        this.email = empresaRequest.getEmail();
+        this.email = empresaRequest.getEmail().toLowerCase();
         this.telefone = empresaRequest.getTelefone();
         this.enderecoComercial = empresaRequest.getEnderecoComercial();
         this.aceitaTermos = empresaRequest.getAceitaTermos();
