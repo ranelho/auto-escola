@@ -1,5 +1,6 @@
 package com.rlti.autoescola.frota.veiculo.infra;
 
+import com.rlti.autoescola.frota.manutencao.Manutencao;
 import com.rlti.autoescola.frota.veiculo.application.repository.VeiculoRepository;
 import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 import com.rlti.autoescola.handler.APIException;
