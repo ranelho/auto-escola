@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -43,4 +44,6 @@ public class Manutencao {
         this.valorManutencao = request.getValorManutencao();
         this.tipoManutencao = request.getTipoManutencao();
     }
+
+
 }
