@@ -3,11 +3,14 @@ package com.rlti.autoescola.frota.manutencao.infra;
 import com.rlti.autoescola.frota.manutencao.application.repository.ManutencaoRepository;
 import com.rlti.autoescola.frota.manutencao.Manutencao;
 import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
+import com.rlti.autoescola.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -30,4 +33,13 @@ public class ManutencaoInfraRepository implements ManutencaoRepository {
         return manutencoes;
     }
 
+    @Override
+    public Manutencao buscaPorId(Long idManutencao) {
+        log.info("[inicia] ManutencaoInfraRepository - buscaPorId");
+        Optional<Manutencao> optionalManutencao = manutencaoSpringDataJPARepository.findById(idManutencao);
+        Manutencao manutencao = optionalManutencao
+                .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST, "Manutenção não encontrado"));
+        log.info("[finaliza] ManutencaoInfraRepository - buscaPorId");
+        return manutencao;
+    }
 }

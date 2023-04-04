@@ -21,4 +21,8 @@ public interface ManutencaoApi {
     @GetMapping("/all/{placa}")
     @ResponseStatus(code = HttpStatus.OK)
     List<ManutencaoListResponse> buscaManutencoesVeiculo(@PathVariable String placa);
+
+    @GetMapping("{idManutencao}")
+    @ResponseStatus(code = HttpStatus.OK)
+    ManutencaoResponse buscaPorId(@PathVariable Long idManutencao);
 }

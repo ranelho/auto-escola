@@ -8,4 +8,5 @@ import java.util.List;
 public interface ManutencaoRepository {
     Manutencao salva(Manutencao manutencao);
     List<Manutencao> findAll(Veiculo veiculo);
+    Manutencao buscaPorId(Long idManutencao);
 }

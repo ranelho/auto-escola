@@ -33,7 +33,15 @@ public class ManutencaoRestController implements ManutencaoApi {
     public List<ManutencaoListResponse> buscaManutencoesVeiculo(String placa) {
         log.info("[inicia] ManutencaoRestController - buscaManutencoesVeiculo");
         List<ManutencaoListResponse> listResponses = manutencaoService.buscaManutencoesVeiculo(placa);
-        log.info("[inicia] ManutencaoRestController - buscaManutencoesVeiculo");
+        log.info("[finaliza] ManutencaoRestController - buscaManutencoesVeiculo");
         return listResponses;
+    }
+
+    @Override
+    public ManutencaoResponse buscaPorId(Long idManutencao) {
+        log.info("[inicia] ManutencaoRestController - buscaPorId");
+        ManutencaoResponse response = manutencaoService.buscaPorId(idManutencao);
+        log.info("[finaliza] ManutencaoRestController - buscaPorId");
+        return response;
     }
 }
