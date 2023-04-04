@@ -11,6 +11,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -27,5 +28,19 @@ public class ContatoApplicationService implements ContatoService {
         Contato contato = contatoRepository.salvaContato(new Contato(cliente, contatoRequest));
         log.info("[finaliza] ContatoApplicationService - criaNovoContato");
         return new ContatoResponse(contato);
+    }
+    @Override
+    public ContatoResponse buscaContatoPorId(UUID idContato) {
+        log.info("[inicia] ContatoApplicationService - buscaContatoPorId");
+        Contato contato = contatoRepository.buscaContatoPorId(idContato);
+        log.info("[finaliza] ContatoApplicationService - buscaContatoPorId");
+        return new ContatoResponse(contato);
+    }
+    @Override
+    public List<ContatoResponse> buscaContatosDoCliente(UUID idCliente) {
+        log.info("[inicia] ContatoApplicationService - buscaContatosDoCliente");
+        List<Contato> contatos = clienteRepository.buscaContatosDoCliente(idCliente);
+        log.info("[finaliza] ContatoApplicationService - buscaContatosDoCliente");
+        return null;
     }
 }

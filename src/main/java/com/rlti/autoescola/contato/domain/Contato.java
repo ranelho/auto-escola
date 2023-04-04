@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.Locale;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -34,12 +35,12 @@ public class Contato {
     private Cliente cliente;
 
     public Contato(Cliente cliente, ContatoRequest contatoRequest) {
-        this.email = contatoRequest.getEmail();
+        this.email = contatoRequest.getEmail().toLowerCase();
         this.telefone = contatoRequest.getTelefone();
         this.cep = contatoRequest.getCep();
-        this.endereco = contatoRequest.getEndereco();
-        this.cidade = contatoRequest.getCidade();
-        this.uf = contatoRequest.getUf();
+        this.endereco = contatoRequest.getEndereco().toUpperCase();
+        this.cidade = contatoRequest.getCidade().toUpperCase();
+        this.uf = contatoRequest.getUf().toUpperCase();
         this.cliente = cliente;
     }
 }
