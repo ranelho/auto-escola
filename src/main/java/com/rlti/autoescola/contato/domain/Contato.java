@@ -2,6 +2,7 @@ package com.rlti.autoescola.contato.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.cliente.domain.Cliente;
+import com.rlti.autoescola.contato.application.api.ContatoRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,8 +27,19 @@ public class Contato {
     private String cidade;
     private String uf;
 
+
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     @JsonIgnore
     private Cliente cliente;
+
+    public Contato(Cliente cliente, ContatoRequest contatoRequest) {
+        this.email = contatoRequest.getEmail();
+        this.telefone = contatoRequest.getTelefone();
+        this.cep = contatoRequest.getCep();
+        this.endereco = contatoRequest.getEndereco();
+        this.cidade = contatoRequest.getCidade();
+        this.uf = contatoRequest.getUf();
+        this.cliente = cliente;
+    }
 }
