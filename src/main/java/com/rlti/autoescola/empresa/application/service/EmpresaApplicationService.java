@@ -49,7 +49,7 @@ public class EmpresaApplicationService implements EmpresaService{
         log.info("[inicia] EmpresaApplicationService - buscaEmpresaAtravesCnpj");
         log.info("Cnpj]", cnpj);
         if(!ValidaCnpj.validarCnpj(cnpj)){
-            throw APIException.build(HttpStatus.BAD_REQUEST, "CNPJ Inválido!")
+            throw APIException.build(HttpStatus.BAD_REQUEST, "CNPJ Inválido!");
         }
         Empresa empresa = empresaRepository.buscaEmpresaAtravesCnpj(cnpj);
         log.info("[finaliza] EmpresaApplicationService - buscaEmpresaAtravesCnpj");
