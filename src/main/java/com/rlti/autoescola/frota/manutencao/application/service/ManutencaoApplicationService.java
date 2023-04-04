@@ -52,4 +52,13 @@ public class ManutencaoApplicationService implements ManutencaoService {
         log.info("[finaliza] ManutencaoApplicationService - buscaPorId");
         return new ManutencaoResponse(manutencao);
     }
+
+    @Override
+    public void alteraManutencao(Long idManutencao, ManutencaoRequest request) {
+        log.info("[inicia] ManutencaoApplicationService - alteraManutencao");
+        Manutencao manutencao = manutencaoRepository.buscaPorId(idManutencao);
+        manutencao.altera(request);
+        manutencaoRepository.salva(manutencao);
+        log.info("[finaliza] ManutencaoApplicationService - alteraManutencao");
+    }
 }

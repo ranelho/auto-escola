@@ -9,4 +9,5 @@ public interface ManutencaoService {
     VeiculoManutencaoResponse buscaManutencoes(String placa);
     List<ManutencaoListResponse> buscaManutencoesVeiculo(String placa);
     ManutencaoResponse buscaPorId(Long idManutencao);
+    void alteraManutencao(Long idManutencao, ManutencaoRequest request);
 }

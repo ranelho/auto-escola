@@ -25,4 +25,8 @@ public interface ManutencaoApi {
     @GetMapping("{idManutencao}")
     @ResponseStatus(code = HttpStatus.OK)
     ManutencaoResponse buscaPorId(@PathVariable Long idManutencao);
+
+    @PutMapping("{idManutencao}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void alteraManutencao(@PathVariable Long idManutencao, @Valid @RequestBody ManutencaoRequest request);
 }

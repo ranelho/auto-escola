@@ -37,4 +37,10 @@ public class Manutencao {
         this.tipoManutencao = request.getTipoManutencao();
         this.veiculo = veiculo;
     }
+
+    public void altera(ManutencaoRequest request) {
+        this.dataManutencao = request.getDataManutencao();
+        this.valorManutencao = request.getValorManutencao();
+        this.tipoManutencao = request.getTipoManutencao();
+    }
 }
