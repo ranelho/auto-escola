@@ -61,4 +61,11 @@ public class ManutencaoApplicationService implements ManutencaoService {
         manutencaoRepository.salva(manutencao);
         log.info("[finaliza] ManutencaoApplicationService - alteraManutencao");
     }
+
+    @Override
+    public void deletaManutencao(Long idManutencao) {
+        log.info("[inicia] ManutencaoApplicationService - deletaManutencao");
+        manutencaoRepository.deleta(manutencaoRepository.buscaPorId(idManutencao).getIdManutencao());
+        log.info("[finaliza] ManutencaoApplicationService - deletaManutencao");
+    }
 }

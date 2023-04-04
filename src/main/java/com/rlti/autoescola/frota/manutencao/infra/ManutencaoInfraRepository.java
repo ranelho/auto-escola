@@ -42,4 +42,11 @@ public class ManutencaoInfraRepository implements ManutencaoRepository {
         log.info("[finaliza] ManutencaoInfraRepository - buscaPorId");
         return manutencao;
     }
+
+    @Override
+    public void deleta(Long idManutencao) {
+        log.info("[inicia] ManutencaoInfraRepository - deleta");
+        manutencaoSpringDataJPARepository.deleteById(idManutencao);
+        log.info("[finaliza] ManutencaoInfraRepository - deleta");
+    }
 }

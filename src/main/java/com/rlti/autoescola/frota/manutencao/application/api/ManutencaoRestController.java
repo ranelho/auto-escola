@@ -51,4 +51,11 @@ public class ManutencaoRestController implements ManutencaoApi {
         manutencaoService.alteraManutencao(idManutencao, request);
         log.info("[finaliza] ManutencaoRestController - buscaPorId");
     }
+
+    @Override
+    public void deletaManutencao(Long idManutencao) {
+        log.info("[inicia] ManutencaoRestController - deletaManutencao");
+        manutencaoService.deletaManutencao(idManutencao);
+        log.info("[finaliza] ManutencaoRestController - deletaManutencao");
+    }
 }
