@@ -7,8 +7,11 @@ import com.rlti.autoescola.empresa.application.api.EmpresaResponse;
 import com.rlti.autoescola.empresa.domain.Empresa;
 import com.rlti.autoescola.empresa.application.api.EmpresaRequest;
 import com.rlti.autoescola.empresa.application.repository.EmpresaRepository;
+import com.rlti.autoescola.empresa.domain.ValidaCnpj;
+import com.rlti.autoescola.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,6 +42,17 @@ public class EmpresaApplicationService implements EmpresaService{
         log.info("idEmpresa]", idEmpresa);
         Empresa empresa = empresaRepository.buscaEmpresaAtravesId(idEmpresa);
         log.info("[finaliza] EmpresaApplicationService - buscaEmpresaAtravesId");
+        return new EmpresaDetalhadoResponse(empresa);
+    }
+    @Override
+    public EmpresaDetalhadoResponse buscaEmpresaAtravesCnpj(String cnpj) {
+        log.info("[inicia] EmpresaApplicationService - buscaEmpresaAtravesCnpj");
+        log.info("Cnpj]", cnpj);
+        if(!ValidaCnpj.validarCnpj(cnpj)){
+            throw APIException.build(HttpStatus.BAD_REQUEST, "CNPJ Inválido!")
+        }
+        Empresa empresa = empresaRepository.buscaEmpresaAtravesCnpj(cnpj);
+        log.info("[finaliza] EmpresaApplicationService - buscaEmpresaAtravesCnpj");
         return new EmpresaDetalhadoResponse(empresa);
     }
     @Override

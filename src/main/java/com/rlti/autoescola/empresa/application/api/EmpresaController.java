@@ -40,6 +40,15 @@ public class EmpresaController implements EmpresaApi{
     }
 
     @Override
+    public EmpresaDetalhadoResponse getEmpresaAtravesCnpj(UUID idCnpj) {
+        log.info("[inicia] EmpresaController - getEmpresaAtravesCnpj");
+        log.info("[idCnpj] {}", idCnpj);
+        EmpresaDetalhadoResponse empresaDetalhado = empresaService.buscaEmpresaAtravesId(idCnpj);
+        log.info("[finaliza] EmpresaController - getEmpresaAtravesCnpj");
+        return empresaDetalhado;
+    }
+
+    @Override
     public void deletaEmpresaAtravesId(UUID idEmpresa) {
         log.info("[inicia] EmpresaController - deletaEmpresaAtravesId");
         log.info("[IdEmpresa] {}", idEmpresa);

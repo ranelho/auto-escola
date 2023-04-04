@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 @Repository
 @Log4j2
@@ -37,6 +38,17 @@ public class EmpresaInfraRepository implements EmpresaRepository {
         log.info("[finaliza] EmpresaInfraRepository - buscaEmpresaAtravesId");
         return empresa;
     }
+
+    @Override
+    public Empresa buscaEmpresaAtravesCnpj(String cnpj) {
+        log.info("[inicia] EmpresaInfraRepository - buscaEmpresaAtravesCnpj");
+        Optional<Empresa> empresaOptional = empresaSpringDataJPARepository.findByCnpj(cnpj);
+        Empresa empresa = empresaOptional.orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,
+                "Empresa não encontrada!"));
+        log.info("[finaliza] EmpresaInfraRepository - buscaEmpresaAtravesCnpj");
+        return empresa;
+    }
+
     @Override
     public void deletaEmpresa(Empresa empresa) {
         log.info("[inicia] EmpresaInfraRepository - deletaEmpresa");

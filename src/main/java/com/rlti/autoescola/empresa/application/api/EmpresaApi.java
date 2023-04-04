@@ -19,6 +19,9 @@ public interface EmpresaApi {
     @GetMapping(value = "/{idEmpresa}")
     @ResponseStatus(code = HttpStatus.OK)
     EmpresaDetalhadoResponse getEmpresaAtravesId(@PathVariable UUID idEmpresa);
+    @GetMapping(value = "/{idCnpj}")
+    @ResponseStatus(code = HttpStatus.OK)
+    EmpresaDetalhadoResponse getEmpresaAtravesCnpj(@PathVariable UUID idCnpj);
     @DeleteMapping(value = "/{idEmpresa}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void deletaEmpresaAtravesId (@PathVariable UUID idEmpresa);
