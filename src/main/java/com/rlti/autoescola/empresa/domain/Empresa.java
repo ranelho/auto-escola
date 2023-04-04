@@ -35,7 +35,7 @@ public class Empresa {
     @CNPJ(groups = PessoaJuridica.class)
     private String cnpj;
     @Enumerated(EnumType.STRING)
-    @NotNull(message = "Tipo pessoa é obrigatório")
+    //@NotNull(message = "Tipo pessoa é obrigatório")
     TipoPessoa tipoPessoa = TipoPessoa.JURIDICA;
     @NotBlank
     private String nomeAdministrador;

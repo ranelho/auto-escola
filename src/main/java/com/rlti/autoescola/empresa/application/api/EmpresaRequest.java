@@ -15,7 +15,6 @@ public class EmpresaRequest {
     @NotBlank
     String nomeFantasia;
     @NotBlank
-    @CNPJ
     String cnpj;
     @NotBlank
     String nomeAdministrador;
