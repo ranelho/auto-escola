@@ -57,4 +57,13 @@ public class EmpresaApplicationService implements EmpresaService{
         empresaRepository.deletaEmpresa(empresa);
         log.info("[finaliza] EmpresaApplicationService - deletaEmpresaAtravesId");
     }
+
+    @Override
+    public void patchAlteraEmpresa(UUID idEmpresa, EmpresaAlteracaoRequest empresaAlteracaoRequest) {
+        log.info("[inicia] EmpresaApplicationService - patchAlteraEmpresa");
+        Empresa empresa = empresaRepository.buscaEmpresaAtravesId(idEmpresa);
+        empresa.altera(empresaAlteracaoRequest);
+        empresaRepository.salva(empresa);
+        log.info("[finaliza] EmpresaApplicationService - patchAlteraEmpresa");
+    }
 }

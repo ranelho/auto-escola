@@ -1,9 +1,6 @@
 package com.rlti.autoescola.empresa.application.api;
 
-import com.rlti.autoescola.empresa.domain.TipoPessoa;
 import lombok.Value;
-import org.hibernate.validator.constraints.br.CNPJ;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

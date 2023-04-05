@@ -1,11 +1,12 @@
 package com.rlti.autoescola.empresa.application.api;
 
+import lombok.Value;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
-
+@Value
 public class EmpresaAlteracaoRequest {
     @NotBlank
     String nomeFantasia;
