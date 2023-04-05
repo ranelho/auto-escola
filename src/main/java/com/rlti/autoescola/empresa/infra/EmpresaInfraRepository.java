@@ -8,8 +8,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
-
-
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -44,7 +42,6 @@ public class EmpresaInfraRepository implements EmpresaRepository {
         log.info("[finaliza] EmpresaInfraRepository - buscaEmpresaAtravesId");
         return empresa;
     }
-
     @Override
     public Empresa buscaEmpresaAtravesCnpj(String cnpj) {
         log.info("[inicia] EmpresaInfraRepository - buscaEmpresaAtravesCnpj");
