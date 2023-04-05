@@ -26,7 +26,7 @@ public interface EmpresaApi {
     @DeleteMapping(value = "/{idEmpresa}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void deletaEmpresaAtravesId (@PathVariable UUID idEmpresa);
-    @PatchMapping(value = "/{idCliente}")
+    @PatchMapping(value = "/{idEmpresa}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void patchAlteraEmpresa(@PathVariable UUID idEmpresa,
                             @Valid @RequestBody EmpresaAlteracaoRequest empresaAlteracaoRequest);

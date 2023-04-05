@@ -56,6 +56,8 @@ public class EmpresaController implements EmpresaApi{
 
     @Override
     public void patchAlteraEmpresa(UUID idEmpresa, EmpresaAlteracaoRequest empresaAlteracaoRequest) {
-
+        log.info("[inicia] EmpresaController - patchAlteraEmpresa");
+        empresaService.patchAlteraEmpresa(idEmpresa, empresaAlteracaoRequest);
+        log.info("[inicia] EmpresaController - patchAlteraEmpresa");
     }
 }

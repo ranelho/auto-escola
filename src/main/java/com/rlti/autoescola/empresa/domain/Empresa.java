@@ -1,5 +1,6 @@
 package com.rlti.autoescola.empresa.domain;
 
+import com.rlti.autoescola.empresa.application.api.EmpresaAlteracaoRequest;
 import com.rlti.autoescola.empresa.application.api.EmpresaRequest;
 import com.rlti.autoescola.empresa.domain.groups.EmpresaGroupSequenceProvider;
 import com.rlti.autoescola.empresa.domain.groups.PessoaJuridica;
@@ -67,4 +68,15 @@ public class Empresa {
         this.enderecoComercial = empresaRequest.getEnderecoComercial();
         this.aceitaTermos = empresaRequest.getAceitaTermos();
     }
+
+    public void altera(EmpresaAlteracaoRequest empresaAlteracaoRequest) {
+        this.nomeFantasia = empresaAlteracaoRequest.getNomeFantasia().toUpperCase();
+        this.nomeAdministrador = empresaAlteracaoRequest.getNomeAdministrador().toUpperCase();
+        this.areaAtuacao = empresaAlteracaoRequest.getAreaAtuacao().toUpperCase();
+        this.dataAbertura = empresaAlteracaoRequest.getDataAbertura();
+        this.email = empresaAlteracaoRequest.getEmail().toLowerCase();
+        this.telefone = empresaAlteracaoRequest.getTelefone();
+        this.enderecoComercial = empresaAlteracaoRequest.getEnderecoComercial();
+    }
+
 }
