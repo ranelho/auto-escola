@@ -1,8 +1,6 @@
 package com.rlti.autoescola.empresa.application.service;
 
-
 import com.rlti.autoescola.empresa.application.api.*;
-
 import java.util.List;
 import java.util.UUID;
 
