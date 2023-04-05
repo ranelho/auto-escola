@@ -5,6 +5,7 @@ import com.rlti.autoescola.empresa.domain.Empresa;
 import com.rlti.autoescola.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
@@ -20,7 +21,11 @@ public class EmpresaInfraRepository implements EmpresaRepository {
     @Override
     public Empresa salva(Empresa empresa) {
         log.info("[inicia] EmpresaInfraRepository - salva");
-        empresaSpringDataJPARepository.save(empresa);
+        try {
+            empresaSpringDataJPARepository.save(empresa);
+        } catch (DataIntegrityViolationException e) {
+            throw APIException.build(HttpStatus.BAD_REQUEST, "Existem dados duplicados", e);
+        }
         log.info("[finaliza] EmpresaInfraRepository - salva");
         return empresa;
     }
