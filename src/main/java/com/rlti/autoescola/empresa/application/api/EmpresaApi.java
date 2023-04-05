@@ -3,6 +3,7 @@ package com.rlti.autoescola.empresa.application.api;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
@@ -19,10 +20,14 @@ public interface EmpresaApi {
     @GetMapping(value = "/empresa/{idEmpresa}")
     @ResponseStatus(code = HttpStatus.OK)
     EmpresaDetalhadoResponse getEmpresaAtravesId(@PathVariable UUID idEmpresa);
-    @GetMapping(value = "/{cnpj}")
+    @GetMapping(value = "/cnpj")
     @ResponseStatus(code = HttpStatus.OK)
-    EmpresaDetalhadoResponseCnpj getEmpresaAtravesCnpj(@PathVariable String cnpj);
+    EmpresaDetalhadoResponseCnpj getEmpresaAtravesCnpj(@RequestParam String cnpj);
     @DeleteMapping(value = "/{idEmpresa}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void deletaEmpresaAtravesId (@PathVariable UUID idEmpresa);
+    @PatchMapping(value = "/{idCliente}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void patchAlteraEmpresa(@PathVariable UUID idEmpresa,
+                            @Valid @RequestBody EmpresaAlteracaoRequest empresaAlteracaoRequest);
 }

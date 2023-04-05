@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.UUID;
 
@@ -51,5 +52,10 @@ public class EmpresaController implements EmpresaApi{
         log.info("[IdEmpresa] {}", idEmpresa);
         empresaService.deletaEmpresaAtravesId(idEmpresa);
         log.info("[finaliza] EmpresaController - deletaEmpresaAtravesId");
+    }
+
+    @Override
+    public void patchAlteraEmpresa(UUID idEmpresa, EmpresaAlteracaoRequest empresaAlteracaoRequest) {
+
     }
 }
