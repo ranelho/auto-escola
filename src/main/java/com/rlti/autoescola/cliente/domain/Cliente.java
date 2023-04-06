@@ -33,14 +33,13 @@ public class Cliente {
     @Enumerated(EnumType.STRING)
     private TipoPessoa tipoPessoa = TipoPessoa.FISICA;
     @NotBlank(message = "Campo Obrigatório!")
-    @CPF(groups = PessoaFisica.class)
+    @CPF(groups = PessoaFisica.class, message = "CPF inválido!")
     @Column(unique = true)
     private String cpf;
     @NotNull(message = "Campo Obrigatório!")
     private String firstName;
     private String lastName;
     private LocalDate dataNascimento;
-    private String celular;
     private String naturalidade;
     private String nacionalidade;
     @Enumerated(EnumType.STRING)
