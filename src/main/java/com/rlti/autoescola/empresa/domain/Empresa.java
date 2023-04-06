@@ -77,5 +77,4 @@ public class Empresa {
         this.telefone = empresaAlteracaoRequest.getTelefone();
         this.enderecoComercial = empresaAlteracaoRequest.getEnderecoComercial();
     }
-
 }
