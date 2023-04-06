@@ -41,7 +41,13 @@ public class ContatoInfraRepository implements ContatoRepository {
     public List<Contato> buscaContatosDoCliente(Cliente cliente) {
         log.info("[inicia] ContatoInfraRepository - buscaContatosDoCliente");
         List<Contato> contatos = contatoSpringDataJPARepository.findAllByCliente(cliente);
-        log.info("[inicia] ContatoInfraRepository - buscaContatosDoCliente");
+        log.info("[finaliza] ContatoInfraRepository - buscaContatosDoCliente");
         return contatos;
+    }
+    @Override
+    public void deletaContato(Contato contato) {
+        log.info("[inicia] ContatoInfraRepository - deletaContato");
+        contatoSpringDataJPARepository.delete(contato);
+        log.info("[finaliza] ContatoInfraRepository - deletaContato");
     }
 }

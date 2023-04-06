@@ -10,4 +10,5 @@ public interface ContatoRepository {
     Contato salvaContato(Contato contato);
     Contato buscaContatoPorId(UUID idContato);
     List<Contato> buscaContatosDoCliente(Cliente cliente);
+    void deletaContato(Contato contato);
 }

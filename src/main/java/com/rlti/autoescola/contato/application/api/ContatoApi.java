@@ -23,4 +23,11 @@ public interface ContatoApi {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     List<ContatoResponse> visualizaContatosDoCliente(@PathVariable UUID idCliente);
 
+    @DeleteMapping("/{idContato}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void deletaContatoPorId(@PathVariable UUID idContato);
+
+    @PatchMapping("/{idContato}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void editaContato(@PathVariable UUID idContato, @Valid @RequestBody ContatoRequest contatoRequest);
 }

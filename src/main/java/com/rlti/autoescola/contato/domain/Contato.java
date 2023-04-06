@@ -43,4 +43,13 @@ public class Contato {
         this.uf = contatoRequest.getUf().toUpperCase();
         this.cliente = cliente;
     }
+    public void alteracontato(ContatoRequest contatoRequest) {
+        this.email = contatoRequest.getEmail().toLowerCase();
+        this.telefone = contatoRequest.getTelefone();
+        this.cep = contatoRequest.getCep();
+        this.endereco = contatoRequest.getEndereco().toUpperCase();
+        this.cidade = contatoRequest.getCidade().toUpperCase();
+        this.uf = contatoRequest.getUf().toUpperCase();
+        this.cliente = cliente;
+    }
 }

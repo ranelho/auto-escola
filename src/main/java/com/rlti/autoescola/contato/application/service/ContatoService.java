@@ -10,4 +10,6 @@ public interface ContatoService {
     ContatoResponse criaNovoContato(UUID idCliente, ContatoRequest contatoRequest);
     ContatoResponse buscaContatoPorId(UUID idContato);
     List<ContatoResponse> buscaContatosDoCliente(UUID idCliente);
+    void deletaContatoPorId(UUID idContato);
+    void editaContato(UUID idContato, ContatoRequest contatoRequest);
 }

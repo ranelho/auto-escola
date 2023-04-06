@@ -44,4 +44,19 @@ public class ContatoApplicationService implements ContatoService {
         log.info("[finaliza] ContatoApplicationService - buscaContatosDoCliente");
         return ContatoResponse.converte(contatos);
     }
+    @Override
+    public void deletaContatoPorId(UUID idContato) {
+        log.info("[inicia] ContatoApplicationService - deletaContatoPorId");
+        Contato contato = contatoRepository.buscaContatoPorId(idContato);
+        contatoRepository.deletaContato(contato);
+        log.info("[finaliza] ContatoApplicationService - deletaContatoPorId");
+    }
+    @Override
+    public void editaContato(UUID idContato, ContatoRequest contatoRequest) {
+        log.info("[inicia] ContatoApplicationService - editaContato");
+        Contato contato = contatoRepository.buscaContatoPorId(idContato);
+        contato.alteracontato(contatoRequest);
+        contatoRepository.salvaContato(contato);
+        log.info("[finaliza] ContatoApplicationService - editaContato");
+    }
 }

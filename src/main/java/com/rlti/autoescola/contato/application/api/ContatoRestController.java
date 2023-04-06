@@ -33,7 +33,20 @@ public class ContatoRestController implements ContatoApi {
     public List<ContatoResponse> visualizaContatosDoCliente(UUID idCliente) {
         log.info("[inicia] ContatoRestController - visualizaContatosDoCliente");
         List<ContatoResponse> contatoResponseList = contatoService.buscaContatosDoCliente(idCliente);
-        log.info("[inicia] ContatoRestController - visualizaContatosDoCliente");
+        log.info("[finaliza] ContatoRestController - visualizaContatosDoCliente");
         return contatoResponseList;
+    }
+    @Override
+    public void deletaContatoPorId(UUID idContato) {
+        log.info("[inicia] ContatoRestController - deletaContatoPorId");
+        log.info("[idContato] {}", idContato);
+        contatoService.deletaContatoPorId(idContato);
+        log.info("[finaliza] ContatoRestController - deletaContatoPorId");
+    }
+    @Override
+    public void editaContato(UUID idContato, ContatoRequest contatoRequest) {
+        log.info("[inicia] ContatoRestController - editaContato");
+        contatoService.editaContato(idContato, contatoRequest);
+        log.info("[finaliza] ContatoRestController - editaContato");
     }
 }
