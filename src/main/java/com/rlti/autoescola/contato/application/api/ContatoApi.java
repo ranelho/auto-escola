@@ -22,4 +22,5 @@ public interface ContatoApi {
     @GetMapping(value = "/cliente/{idCliente}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     List<ContatoResponse> visualizaContatosDoCliente(@PathVariable UUID idCliente);
+
 }

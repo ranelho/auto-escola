@@ -1,11 +1,14 @@
 package com.rlti.autoescola.contato.application.api;
 
+import com.rlti.autoescola.cliente.application.api.ClienteListResponse;
 import com.rlti.autoescola.cliente.application.api.ClienteResponse;
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.contato.domain.Contato;
 import lombok.Value;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Value
 public class ContatoResponse {
@@ -27,5 +30,10 @@ public class ContatoResponse {
         this.endereco = contato.getEndereco();
         this.cidade = contato.getCidade();
         this.uf = contato.getUf();
+    }
+    public static List<ContatoResponse> converte(List<Contato> contatos) {
+        return contatos.stream()
+                .map(ContatoResponse::new)
+                .collect((Collectors.toList()));
     }
 }

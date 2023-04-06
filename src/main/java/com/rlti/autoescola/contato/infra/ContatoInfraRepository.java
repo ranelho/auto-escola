@@ -1,5 +1,6 @@
 package com.rlti.autoescola.contato.infra;
 
+import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.cliente.infra.ClienteSpringDataJPARepository;
 import com.rlti.autoescola.contato.application.repository.ContatoRepository;
 import com.rlti.autoescola.contato.domain.Contato;
@@ -9,6 +10,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -34,5 +36,12 @@ public class ContatoInfraRepository implements ContatoRepository {
                 "Contato do Cliente não encontrado!"));
         log.info("[finaliza] ContatoInfraRepository - buscaContatoPorId");
         return contato;
+    }
+    @Override
+    public List<Contato> buscaContatosDoCliente(Cliente cliente) {
+        log.info("[inicia] ContatoInfraRepository - buscaContatosDoCliente");
+        List<Contato> contatos = contatoSpringDataJPARepository.findAllByCliente(cliente);
+        log.info("[inicia] ContatoInfraRepository - buscaContatosDoCliente");
+        return contatos;
     }
 }

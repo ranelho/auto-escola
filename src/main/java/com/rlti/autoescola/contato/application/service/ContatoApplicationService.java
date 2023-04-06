@@ -39,8 +39,9 @@ public class ContatoApplicationService implements ContatoService {
     @Override
     public List<ContatoResponse> buscaContatosDoCliente(UUID idCliente) {
         log.info("[inicia] ContatoApplicationService - buscaContatosDoCliente");
-        List<Contato> contatos = clienteRepository.buscaContatosDoCliente(idCliente);
+        Cliente cliente = clienteRepository.buscaClientePorId(idCliente);
+        List<Contato> contatos = contatoRepository.buscaContatosDoCliente(cliente);
         log.info("[finaliza] ContatoApplicationService - buscaContatosDoCliente");
-        return null;
+        return ContatoResponse.converte(contatos);
     }
 }
