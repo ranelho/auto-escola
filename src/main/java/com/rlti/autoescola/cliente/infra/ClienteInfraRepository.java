@@ -2,6 +2,7 @@ package com.rlti.autoescola.cliente.infra;
 
 import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.cliente.domain.Cliente;
+import com.rlti.autoescola.contato.domain.Contato;
 import com.rlti.autoescola.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
