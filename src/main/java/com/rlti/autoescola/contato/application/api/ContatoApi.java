@@ -20,7 +20,7 @@ public interface ContatoApi {
     ContatoResponse buscaContatoPorId(@PathVariable UUID idContato);
 
     @GetMapping(value = "/cliente/{idCliente}")
-    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    @ResponseStatus(code = HttpStatus.OK)
     List<ContatoResponse> visualizaContatosDoCliente(@PathVariable UUID idCliente);
 
     @DeleteMapping("/{idContato}")

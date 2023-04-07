@@ -1,7 +1,6 @@
 package com.rlti.autoescola.contato.infra;
 
 import com.rlti.autoescola.cliente.domain.Cliente;
-import com.rlti.autoescola.cliente.infra.ClienteSpringDataJPARepository;
 import com.rlti.autoescola.contato.application.repository.ContatoRepository;
 import com.rlti.autoescola.contato.domain.Contato;
 import com.rlti.autoescola.handler.APIException;
