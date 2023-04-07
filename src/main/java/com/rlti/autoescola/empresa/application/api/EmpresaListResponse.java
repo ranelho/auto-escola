@@ -16,8 +16,6 @@ public class EmpresaListResponse {
     UUID idEmpresa;
     String razaoSocial;
     String nomeFantasia;
-    @NotBlank
-    @CNPJ
     String cnpj;
     TipoPessoa tipoPessoa;
     String nomeAdministrador;

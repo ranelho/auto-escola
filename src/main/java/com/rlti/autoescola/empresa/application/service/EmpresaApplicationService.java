@@ -4,11 +4,9 @@ package com.rlti.autoescola.empresa.application.service;
 import com.rlti.autoescola.empresa.application.api.*;
 import com.rlti.autoescola.empresa.domain.Empresa;
 import com.rlti.autoescola.empresa.application.repository.EmpresaRepository;
-import com.rlti.autoescola.empresa.domain.ValidaCnpj;
-import com.rlti.autoescola.handler.APIException;
+import com.rlti.autoescola.handler.validacoes.ValidaCpfouCnpj;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,9 +41,7 @@ public class EmpresaApplicationService implements EmpresaService{
     @Override
     public EmpresaDetalhadoResponseCnpj buscaEmpresaAtravesCnpj(String cnpj) {
         log.info("[inicia] EmpresaApplicationService - buscaEmpresaAtravesCnpj");
-        if(!ValidaCnpj.validarCnpj(cnpj)){
-            throw APIException.build(HttpStatus.BAD_REQUEST, "CNPJ Inválido!");
-        }
+        ValidaCpfouCnpj.validateCpfOrCnpj(cnpj);
         Empresa empresa = empresaRepository.buscaEmpresaAtravesCnpj(cnpj);
         log.info("[finaliza] EmpresaApplicationService - buscaEmpresaAtravesCnpj");
         return new EmpresaDetalhadoResponseCnpj(empresa);

@@ -32,7 +32,7 @@ public class Empresa {
     private String nomeFantasia;
     @NotBlank
     @Column(unique = true)
-    @CNPJ(groups = PessoaJuridica.class)
+    @CNPJ(groups = PessoaJuridica.class, message = "CNPJ inválido!")
     private String cnpj;
     @Enumerated(EnumType.STRING)
     TipoPessoa tipoPessoa = TipoPessoa.JURIDICA;
@@ -77,5 +77,4 @@ public class Empresa {
         this.telefone = empresaAlteracaoRequest.getTelefone();
         this.enderecoComercial = empresaAlteracaoRequest.getEnderecoComercial();
     }
-
 }

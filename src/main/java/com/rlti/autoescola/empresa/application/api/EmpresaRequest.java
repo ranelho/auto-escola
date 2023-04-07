@@ -1,6 +1,9 @@
 package com.rlti.autoescola.empresa.application.api;
 
+import com.rlti.autoescola.empresa.domain.groups.PessoaJuridica;
 import lombok.Value;
+import org.hibernate.validator.constraints.br.CNPJ;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -14,6 +17,7 @@ public class EmpresaRequest {
     String nomeFantasia;
     @NotBlank
     @Pattern(regexp = "(^\\d{2}\\x2E\\d{3}\\x2E\\d{3}/\\d{4}\\x2D\\d{2})$")
+    @CNPJ(groups = PessoaJuridica.class, message = "CNPJ inválido!")
     String cnpj;
     @NotBlank
     String nomeAdministrador;
@@ -26,6 +30,7 @@ public class EmpresaRequest {
     @NotBlank
     @Email
     String email;
+    @Pattern(regexp = "^\\(\\d{2}\\)\\d{5}-\\d{4}$")
     String telefone;
     @NotNull
     String enderecoComercial;

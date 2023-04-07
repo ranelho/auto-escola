@@ -1,7 +1,5 @@
 package com.rlti.autoescola.contato.application.api;
 
-import com.rlti.autoescola.cliente.application.api.ClienteListResponse;
-import com.rlti.autoescola.cliente.application.api.ClienteResponse;
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.contato.domain.Contato;
 import lombok.Value;
