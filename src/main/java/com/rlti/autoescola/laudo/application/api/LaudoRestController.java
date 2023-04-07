@@ -20,4 +20,12 @@ public class LaudoRestController implements LaudoApi {
         log.info("[finaliza] - LaudoRestController - postLaudo");
         return idResponse;
     }
+
+    @Override
+    public LaudoResponse getLaudoByMatricula(UUID idMatricula) {
+        log.info("[inicia] - LaudoRestController - postLaudo");
+        LaudoResponse response = laudoService.getLaudoByMatricula(idMatricula);
+        log.info("[finaliza] - LaudoRestController - postLaudo");
+        return null;
+    }
 }
