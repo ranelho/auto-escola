@@ -1,7 +1,7 @@
 package com.rlti.autoescola.frota.manutencao.application.api;
 
-import com.rlti.autoescola.frota.manutencao.Manutencao;
-import com.rlti.autoescola.frota.manutencao.TipoManutencao;
+import com.rlti.autoescola.frota.manutencao.domain.Manutencao;
+import com.rlti.autoescola.frota.manutencao.domain.TipoManutencao;
 import lombok.Value;
 
 import java.math.BigDecimal;
