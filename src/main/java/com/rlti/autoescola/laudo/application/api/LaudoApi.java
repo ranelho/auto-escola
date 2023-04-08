@@ -14,11 +14,11 @@ public interface LaudoApi {
     @ResponseStatus(code = HttpStatus.ACCEPTED)
     LaudoIdResponse postLaudo(@PathVariable UUID idMatricula, @Valid @RequestBody LaudoRequest request);
 
-    @GetMapping("{idMatricula")
+    @GetMapping("{idMatricula}")
     @ResponseStatus(code = HttpStatus.OK)
     LaudoResponse getLaudoByMatricula(@PathVariable UUID idMatricula);
 
-    @PutMapping("ìdMatricula")
+    @PutMapping("{idMatricula}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void update(@PathVariable UUID idMatricula, @Valid @RequestBody LaudoRequest request);
 
