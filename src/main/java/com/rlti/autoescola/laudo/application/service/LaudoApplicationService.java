@@ -31,4 +31,18 @@ public class LaudoApplicationService implements LaudoService {
         log.info("[finaliza] LaudoApplicationService -  getLaudoByMatricula");
         return null;
     }
+
+    @Override
+    public void update(UUID idMatricula,LaudoRequest request) {
+        log.info("[inicia] LaudoApplicationService -  update");
+        log.info("[finaliza] LaudoApplicationService -  update");
+    }
+
+    @Override
+    public void deleta(Long idLaudo) {
+        log.info("[inicia] LaudoApplicationService -  deleta");
+        Laudo laudo = laudoRepository.getById(idLaudo);
+        laudoRepository.deleta(laudo.getIdLaudo());
+        log.info("[finaliza] LaudoApplicationService -  deleta");
+    }
 }

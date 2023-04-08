@@ -28,4 +28,18 @@ public class LaudoRestController implements LaudoApi {
         log.info("[finaliza] - LaudoRestController - postLaudo");
         return null;
     }
+
+    @Override
+    public void update(UUID idMatricula,LaudoRequest request) {
+        log.info("[inicia] - LaudoRestController - postLaudo");
+        laudoService.update(idMatricula,request);
+        log.info("[finaliza] - LaudoRestController - postLaudo");
+    }
+
+    @Override
+    public void deleta(Long idLaudo) {
+        log.info("[inicia] - LaudoRestController - postLaudo");
+        laudoService.deleta(idLaudo);
+        log.info("[finaliza] - LaudoRestController - postLaudo");
+    }
 }
