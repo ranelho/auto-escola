@@ -1,31 +1,18 @@
-package com.rlti.autoescola.orcamento.domain;
+package com.rlti.autoescola.orcamento.application.api;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import com.rlti.autoescola.servico.domain.Servico;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Value;
 
-import javax.persistence.*;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.validation.Valid;
 import java.time.LocalDate;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Entity
-public class orcamento {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idOrcamento;
-
-    @OneToOne
-    @JsonIgnore
+@Value
+public class OrcamentoRequest {
     private Cliente cliente;
-
-    @OneToOne
-    @JsonIgnore
     private Servico servico;
 
     @Enumerated(EnumType.STRING)
