@@ -7,6 +7,6 @@ import com.rlti.autoescola.laudo.application.api.LaudoResponse;
 import java.util.UUID;
 
 public interface LaudoService {
-    LaudoIdResponse postLadudo(UUID idMatricula, LaudoRequest request);
+    LaudoIdResponse postLaudo(UUID idMatricula, LaudoRequest request);
     LaudoResponse getLaudoByMatricula(UUID idMatricula);
 }

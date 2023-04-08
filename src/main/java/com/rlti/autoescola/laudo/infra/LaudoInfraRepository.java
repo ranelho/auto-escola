@@ -9,6 +9,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 @RequiredArgsConstructor
 @Log4j2
@@ -23,6 +25,16 @@ public class LaudoInfraRepository implements LaudoRepository {
         }catch (DataIntegrityViolationException e){
             throw APIException.build(HttpStatus.BAD_REQUEST, "RENACH já cadastrado", e);
         }
+        log.info("[finaliza] LaudoInfraRepository - salva");
+        return laudo;
+    }
+
+    @Override
+    public Laudo getById(Long idLaudo) {
+        log.info("[inicia] LaudoInfraRepository - salva");
+        Optional<Laudo> optionalLaudo = laudoSpringJPARespository.findById(idLaudo);
+        Laudo laudo = optionalLaudo
+                .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST, "Laudo não encontrado"));
         log.info("[finaliza] LaudoInfraRepository - salva");
         return laudo;
     }

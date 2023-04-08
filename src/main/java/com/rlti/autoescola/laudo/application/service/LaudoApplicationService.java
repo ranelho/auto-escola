@@ -2,6 +2,7 @@ package com.rlti.autoescola.laudo.application.service;
 
 import com.rlti.autoescola.laudo.application.api.LaudoIdResponse;
 import com.rlti.autoescola.laudo.application.api.LaudoRequest;
+import com.rlti.autoescola.laudo.application.api.LaudoResponse;
 import com.rlti.autoescola.laudo.application.repository.LaudoRepository;
 import com.rlti.autoescola.laudo.domain.Laudo;
 import lombok.RequiredArgsConstructor;
@@ -17,10 +18,17 @@ public class LaudoApplicationService implements LaudoService {
     private final LaudoRepository laudoRepository;
 
     @Override
-    public LaudoIdResponse postLadudo(UUID idMatricula, LaudoRequest request) {
+    public LaudoIdResponse postLaudo(UUID idMatricula, LaudoRequest request) {
         log.info("[inicia] LaudoApplicationService -  postLaudo");
         Laudo laudo = laudoRepository.salva(new Laudo(request));
         log.info("[finaliza] LaudoApplicationService -  postLaudo");
         return LaudoIdResponse.builder().idLaudo(laudo.getIdLaudo()).build();
+    }
+
+    @Override
+    public LaudoResponse getLaudoByMatricula(UUID idMatricula) {
+        log.info("[inicia] LaudoApplicationService -  getLaudoByMatricula");
+        log.info("[finaliza] LaudoApplicationService -  getLaudoByMatricula");
+        return null;
     }
 }
