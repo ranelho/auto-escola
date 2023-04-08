@@ -12,15 +12,15 @@ import java.time.LocalDate;
 
 @Value
 public class OrcamentoRequest {
-    private Cliente cliente;
-    private Servico servico;
+    //Cliente cliente;
+    //Servico servico;
 
     @Enumerated(EnumType.STRING)
-    private TipoPagamento tipoPagamento;
-    protected LocalDate dataOrcamento;
-    private Double valorEntrada;
-    private int desconto;
-    private int quantidadeParcelas;
-    private String observacao;
-    private LocalDate validade;
+    TipoPagamento tipoPagamento;
+    LocalDate dataOrcamento;
+    Double valorEntrada;
+    int desconto;
+    int quantidadeParcelas;
+    String observacao;
+    LocalDate validade;
 }
