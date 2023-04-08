@@ -40,16 +40,16 @@ public class ServicoRestController implements ServicoApi {
     }
 
     @Override
-    public void alteraServico(UUID idServico, ServicoRequest request) {
-        log.info("[inicia] ServicoRestController - alteraServico");
-        servicoService.alteraServico(idServico, request);
-        log.info("[finaliza] ServicoRestController - alteraServico");
-    }
-
-    @Override
     public void deleteServico(UUID idServico) {
         log.info("[inicia] ServicoRestController - deleteServico");
         servicoService.deletaServico(idServico);
         log.info("[finaliza] ServicoRestController - deleteServico");
+    }
+
+    @Override
+    public void updateServico(UUID idServico, ServicoUpdateRequest updateRequest) {
+        log.info("[inicia] ServicoRestController - updateServico");
+        servicoService.updateServico(idServico, updateRequest);
+        log.info("[finaliza] ServicoRestController - updateServico");
     }
 }
