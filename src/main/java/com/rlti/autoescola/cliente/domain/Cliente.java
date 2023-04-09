@@ -54,10 +54,6 @@ public class Cliente {
     @JsonIgnore
     List<Matricula> matriculas;
 
-    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
-    @JsonIgnore
-    List<Agenda> agenda;
-
     public Cliente(ClienteRequest clienteRequest) {
         this.tipoPessoa = getTipoPessoa();
         this.cpf = clienteRequest.getCpf();
