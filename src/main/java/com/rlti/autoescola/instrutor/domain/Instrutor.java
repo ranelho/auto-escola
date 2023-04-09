@@ -3,6 +3,7 @@ package com.rlti.autoescola.instrutor.domain;
 import com.rlti.autoescola.agenda.domain.Agenda;
 import com.rlti.autoescola.cliente.domain.groups.PessoaFisica;
 import com.rlti.autoescola.instrutor.application.api.InstrutorResquest;
+import com.rlti.autoescola.instrutor.application.api.InstrutorUpdateResquest;
 import com.rlti.autoescola.servico.domain.Categoria;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,5 +43,11 @@ public class Instrutor {
         this.cnh = resquest.getCnh();
         this.validadeCnh = resquest.getValidadeCnh();
         this.categoria = resquest.getCategoria();
+    }
+
+    public void update(InstrutorUpdateResquest updateRequest) {
+        this.nomeCompleto = updateRequest.getNomeCompleto().toUpperCase();
+        this.validadeCnh = updateRequest.getValidadeCnh();
+        this.categoria = updateRequest.getCategoria();
     }
 }

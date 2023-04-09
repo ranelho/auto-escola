@@ -25,7 +25,14 @@ public class InstrutorRestController implements InstrutorApi {
     public InstrutorResponse getInstrutor(UUID idInstrutor) {
         log.info("[inicia] InstrutorRestController -  getInstrutor");
         InstrutorResponse response = instrutorService.getInstrutor(idInstrutor);
-        log.info("[inicia] InstrutorRestController -  getInstrutor");
+        log.info("[finaliza] InstrutorRestController -  getInstrutor");
         return response;
+    }
+
+    @Override
+    public void update(UUID idInstrutor, InstrutorUpdateResquest updateRequest) {
+        log.info("[inicia] InstrutorRestController -  getInstrutor");
+        instrutorService.update(idInstrutor, updateRequest);
+        log.info("[finaliza] InstrutorRestController -  getInstrutor");
     }
 }

@@ -1,5 +1,6 @@
 package com.rlti.autoescola.instrutor.application.api;
 
+import lombok.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,5 +17,7 @@ public interface InstrutorApi {
     @ResponseStatus(code = HttpStatus.OK)
     InstrutorResponse getInstrutor(@PathVariable UUID idInstrutor);
 
-
+    @PatchMapping("/update/{idInstrutor}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void update(@PathVariable  UUID idInstrutor, @Valid @RequestBody InstrutorUpdateResquest updateRequest);
 }
