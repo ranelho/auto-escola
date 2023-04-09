@@ -2,6 +2,7 @@ package com.rlti.autoescola.instrutor.domain;
 
 import com.rlti.autoescola.agenda.domain.Agenda;
 import com.rlti.autoescola.cliente.domain.groups.PessoaFisica;
+import com.rlti.autoescola.instrutor.application.api.InstrutorResquest;
 import com.rlti.autoescola.servico.domain.Categoria;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,8 +25,9 @@ public class Instrutor {
     private String nomeCompleto;
     @NotBlank(message = "Campo Obrigatório!")
     @CPF(groups = PessoaFisica.class, message = "CPF inválido!")
-    @Column(unique = true)
+    @Column(unique = true, length = 14, updatable = false)
     private String cpf;
+    @Column(unique = true, length = 11, updatable = false)
     private String cnh;
     private LocalDate validadeCnh;
     @Enumerated(EnumType.STRING)
@@ -33,4 +35,12 @@ public class Instrutor {
 
     @OneToOne(mappedBy = "instrutor")
     private Agenda agenda;
+
+    public Instrutor(InstrutorResquest resquest) {
+        this.nomeCompleto = resquest.getNomeCompleto().toUpperCase();
+        this.cpf = resquest.getCpf();
+        this.cnh = resquest.getCnh();
+        this.validadeCnh = resquest.getValidadeCnh();
+        this.categoria = resquest.getCategoria();
+    }
 }

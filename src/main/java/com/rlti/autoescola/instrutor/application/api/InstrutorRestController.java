@@ -1,0 +1,21 @@
+package com.rlti.autoescola.instrutor.application.api;
+
+import com.rlti.autoescola.instrutor.application.service.InstrutorService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequiredArgsConstructor
+@Log4j2
+public class InstrutorRestController implements InstrutorApi {
+    private final InstrutorService instrutorService;
+
+    @Override
+    public InstrutorIdResponse post(InstrutorResquest resquest) {
+        log.info("[inicia] InstrutorRestController -  post");
+        InstrutorIdResponse idResponse = instrutorService.post(resquest);
+        log.info("[finaliza] InstrutorRestController -  post");
+        return idResponse;
+    }
+}
