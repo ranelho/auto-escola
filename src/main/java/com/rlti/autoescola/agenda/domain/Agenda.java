@@ -1,4 +1,4 @@
-package com.rlti.autoescola.aula.domain;
+package com.rlti.autoescola.agenda.domain;
 
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
@@ -15,10 +15,10 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @Getter
 @Entity
-public class Aula {
+public class Agenda {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idAula;
+    private Long idAgenda;
 
     @OneToOne
     @JoinColumn(name = "instrutor_id")

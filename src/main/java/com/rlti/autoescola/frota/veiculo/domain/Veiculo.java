@@ -1,7 +1,7 @@
 package com.rlti.autoescola.frota.veiculo.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.rlti.autoescola.aula.domain.Aula;
+import com.rlti.autoescola.agenda.domain.Agenda;
 import com.rlti.autoescola.frota.veiculo.application.api.VeiculoRequest;
 import com.rlti.autoescola.frota.manutencao.domain.Manutencao;
 import lombok.AllArgsConstructor;
@@ -37,7 +37,7 @@ public class Veiculo {
     List<Manutencao> manutencoes;
 
     @OneToOne(mappedBy = "veiculo")
-    private Aula aula;
+    private Agenda agenda;
 
     public Veiculo(VeiculoRequest request) {
         this.placa = request.getPlaca().toUpperCase();

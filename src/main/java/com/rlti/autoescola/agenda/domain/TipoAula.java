@@ -1,4 +1,4 @@
-package com.rlti.autoescola.aula.domain;
+package com.rlti.autoescola.agenda.domain;
 
 public enum TipoAula {
     TEORICA, PRATICA
