@@ -1,7 +1,7 @@
 package com.rlti.autoescola.cliente.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.rlti.autoescola.aula.domain.Aula;
+import com.rlti.autoescola.agenda.domain.Agenda;
 import com.rlti.autoescola.cliente.application.api.ClienteRequest;
 import com.rlti.autoescola.cliente.application.api.EditaClienteRequest;
 import com.rlti.autoescola.cliente.domain.groups.ClienteGroupSequenceProvider;
@@ -56,7 +56,7 @@ public class Cliente {
 
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
     @JsonIgnore
-    List<Aula> aulas;
+    List<Agenda> agenda;
 
     public Cliente(ClienteRequest clienteRequest) {
         this.tipoPessoa = getTipoPessoa();

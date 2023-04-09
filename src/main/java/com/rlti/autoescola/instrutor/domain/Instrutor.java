@@ -1,6 +1,6 @@
 package com.rlti.autoescola.instrutor.domain;
 
-import com.rlti.autoescola.aula.domain.Aula;
+import com.rlti.autoescola.agenda.domain.Agenda;
 import com.rlti.autoescola.cliente.domain.groups.PessoaFisica;
 import com.rlti.autoescola.servico.domain.Categoria;
 import lombok.AllArgsConstructor;
@@ -32,5 +32,5 @@ public class Instrutor {
     private Categoria categoria;
 
     @OneToOne(mappedBy = "instrutor")
-    private Aula aula;
+    private Agenda agenda;
 }
