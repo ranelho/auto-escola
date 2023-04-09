@@ -2,6 +2,9 @@ package com.rlti.autoescola.instrutor.application.repository;
 
 import com.rlti.autoescola.instrutor.domain.Instrutor;
 
+import java.util.UUID;
+
 public interface InstrutorRepository {
     Instrutor save(Instrutor instrutor);
+    Instrutor getInstrutor(UUID idInstrutor);
 }

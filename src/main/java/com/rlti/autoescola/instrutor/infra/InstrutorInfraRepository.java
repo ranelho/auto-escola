@@ -9,6 +9,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+import java.util.UUID;
+
 @Repository
 @RequiredArgsConstructor
 @Log4j2
@@ -24,6 +27,16 @@ public class InstrutorInfraRepository implements InstrutorRepository {
             throw APIException.build(HttpStatus.BAD_REQUEST, "Instrutor já cadastrado", e);
         }
         log.info("[finaliza] InstrutorInfraRepository - save ");
+        return instrutor;
+    }
+
+    @Override
+    public Instrutor getInstrutor(UUID idInstrutor) {
+        log.info("[inicia] InstrutorInfraRepository - getInstrutor ");
+        Optional<Instrutor> optionalInstrutor = instrutorSpringDataJPARepository.findById(idInstrutor);
+        Instrutor instrutor = optionalInstrutor
+                .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Instrutor não cadastrado!"));
+        log.info("[finaliza] InstrutorInfraRepository - getInstrutor ");
         return instrutor;
     }
 }

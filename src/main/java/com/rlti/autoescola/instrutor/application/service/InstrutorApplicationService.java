@@ -1,12 +1,15 @@
 package com.rlti.autoescola.instrutor.application.service;
 
 import com.rlti.autoescola.instrutor.application.api.InstrutorIdResponse;
+import com.rlti.autoescola.instrutor.application.api.InstrutorResponse;
 import com.rlti.autoescola.instrutor.application.api.InstrutorResquest;
 import com.rlti.autoescola.instrutor.application.repository.InstrutorRepository;
 import com.rlti.autoescola.instrutor.domain.Instrutor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -20,5 +23,13 @@ public class InstrutorApplicationService implements InstrutorService {
         Instrutor instrutor = instrutorRepository.save(new Instrutor(resquest));
         log.info("[finaliza] InstrutorApplicationService - post");
         return InstrutorIdResponse.builder().idInstrutor(instrutor.getIdInstrutor()).build();
+    }
+
+    @Override
+    public InstrutorResponse getInstrutor(UUID idInstrutor) {
+        log.info("[inicia] InstrutorApplicationService - getInstrutor");
+        Instrutor instrutor = instrutorRepository.getInstrutor(idInstrutor);
+        log.info("[finaliza] InstrutorApplicationService - getInstrutor");
+        return new InstrutorResponse(instrutor);
     }
 }
