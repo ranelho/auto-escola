@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -34,5 +35,13 @@ public class InstrutorRestController implements InstrutorApi {
         log.info("[inicia] InstrutorRestController -  getInstrutor");
         instrutorService.update(idInstrutor, updateRequest);
         log.info("[finaliza] InstrutorRestController -  getInstrutor");
+    }
+
+    @Override
+    public List<InstrutorResponse> getAllInstrutors() {
+        log.info("[inicia] InstrutorRestController -  getAllInstrutors");
+        List<InstrutorResponse> instrutores = instrutorService.getAllInstrutors();
+        log.info("[finaliza] InstrutorRestController -  getAllInstrutors");
+        return  instrutores;
     }
 }

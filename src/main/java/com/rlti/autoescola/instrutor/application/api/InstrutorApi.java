@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.UUID;
 
 @RequestMapping("/v1/instrutor")
@@ -20,4 +21,8 @@ public interface InstrutorApi {
     @PatchMapping("/update/{idInstrutor}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void update(@PathVariable  UUID idInstrutor, @Valid @RequestBody InstrutorUpdateResquest updateRequest);
+
+    @GetMapping("/all")
+    @ResponseStatus(code = HttpStatus.OK)
+    List<InstrutorResponse> getAllInstrutors();
 }

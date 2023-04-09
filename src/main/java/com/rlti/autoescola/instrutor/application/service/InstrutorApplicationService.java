@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -41,5 +42,13 @@ public class InstrutorApplicationService implements InstrutorService {
         instrutor.update(updateRequest);
         instrutorRepository.save(instrutor);
         log.info("[finaliza] InstrutorApplicationService - update");
+    }
+
+    @Override
+    public List<InstrutorResponse> getAllInstrutors() {
+        log.info("[inicia] InstrutorApplicationService - getAllInstrutors");
+        List<Instrutor> instrutors = instrutorRepository.getAllInstrutors();
+        log.info("[finaliza] InstrutorApplicationService - getAllInstrutors");
+        return InstrutorResponse.converte(instrutors);
     }
 }
