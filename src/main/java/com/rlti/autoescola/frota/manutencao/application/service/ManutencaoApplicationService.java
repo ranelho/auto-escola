@@ -2,7 +2,7 @@ package com.rlti.autoescola.frota.manutencao.application.service;
 
 import com.rlti.autoescola.frota.manutencao.application.api.*;
 import com.rlti.autoescola.frota.manutencao.application.repository.ManutencaoRepository;
-import com.rlti.autoescola.frota.manutencao.Manutencao;
+import com.rlti.autoescola.frota.manutencao.domain.Manutencao;
 import com.rlti.autoescola.frota.veiculo.application.repository.VeiculoRepository;
 import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 import lombok.RequiredArgsConstructor;

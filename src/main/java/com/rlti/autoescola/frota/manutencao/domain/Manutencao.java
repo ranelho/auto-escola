@@ -1,4 +1,4 @@
-package com.rlti.autoescola.frota.manutencao;
+package com.rlti.autoescola.frota.manutencao.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.frota.manutencao.application.api.ManutencaoRequest;
@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 
 
 @AllArgsConstructor

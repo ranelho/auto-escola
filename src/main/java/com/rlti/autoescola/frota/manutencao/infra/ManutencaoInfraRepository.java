@@ -1,7 +1,7 @@
 package com.rlti.autoescola.frota.manutencao.infra;
 
 import com.rlti.autoescola.frota.manutencao.application.repository.ManutencaoRepository;
-import com.rlti.autoescola.frota.manutencao.Manutencao;
+import com.rlti.autoescola.frota.manutencao.domain.Manutencao;
 import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 import com.rlti.autoescola.handler.APIException;
 import lombok.RequiredArgsConstructor;

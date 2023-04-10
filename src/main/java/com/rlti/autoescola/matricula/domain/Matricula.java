@@ -1,6 +1,7 @@
 package com.rlti.autoescola.matricula.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.rlti.autoescola.agenda.domain.Agenda;
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.laudo.domain.Laudo;
 import com.rlti.autoescola.pagamento.domain.Pagamento;
@@ -44,6 +45,10 @@ public class Matricula {
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "matricula")
     @JsonIgnore
     private List<Pagamento> pagamentos;
+
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "matricula")
+    @JsonIgnore
+    List<Agenda> agenda;
 
     @OneToOne
     @JsonIgnore

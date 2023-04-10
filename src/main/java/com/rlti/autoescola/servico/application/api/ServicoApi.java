@@ -23,11 +23,11 @@ public interface ServicoApi {
     @ResponseStatus(code = HttpStatus.OK)
     List<ServicoResponse> getAll();
 
-    @PutMapping("/{idServico}")
-    @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void alteraServico(@PathVariable UUID idServico, @Valid @RequestBody ServicoRequest request);
-
     @DeleteMapping("/{idServico}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void deleteServico(@PathVariable UUID idServico);
+
+    @PatchMapping("/update/{idServico}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void updateServico(@PathVariable UUID idServico, @Valid @RequestBody ServicoUpdateRequest updateRequest);
 }
