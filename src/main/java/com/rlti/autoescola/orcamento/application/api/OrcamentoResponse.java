@@ -4,10 +4,13 @@ import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import com.rlti.autoescola.orcamento.domain.Orcamento;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
 public class OrcamentoResponse {
+    String cpf;
+    String fistName;
     Long idOrcamento;
     TipoPagamento tipoPagamento;
     LocalDate dataOrcamento;
@@ -16,8 +19,11 @@ public class OrcamentoResponse {
     int quantidadeParcelas;
     String observacao;
     LocalDate validade;
+    BigDecimal valorFinal;
 
     public OrcamentoResponse(Orcamento orcamento) {
+        this.cpf = orcamento.getCliente().getCpf();
+        this.fistName = orcamento.getCliente().getFirstName();
         this.idOrcamento = orcamento.getIdOrcamento();
         this.tipoPagamento = orcamento.getTipoPagamento();
         this.dataOrcamento = orcamento.getDataOrcamento();
@@ -26,5 +32,6 @@ public class OrcamentoResponse {
         this.quantidadeParcelas = orcamento.getQuantidadeParcelas();
         this.observacao = orcamento.getObservacao();
         this.validade = orcamento.getValidade();
+        this.valorFinal = orcamento.getValorFinal();
     }
 }

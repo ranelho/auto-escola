@@ -5,8 +5,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.UUID;
-
 @RestController
 @RequiredArgsConstructor
 @Log4j2
@@ -19,5 +17,12 @@ public class OrcamentoRestController implements OrcamentoAPI {
         OrcamentoResponse orcamentoCriado = orcamentoService.criaNovoOrcamento(orcamentoRequest);
         log.info("[finaliza] OrcamentoRestController - criaOrcamento");
         return orcamentoCriado;
+    }
+    @Override
+    public OrcamentoResponse getOrcamentoById(Long idOrcamento) {
+        log.info("[inicia] OrcamentoRestController - getOrcamento");
+        OrcamentoResponse orcamentoResponse = orcamentoService.getOrcamentoById(idOrcamento);
+        log.info("[finaliza] OrcamentoRestController - getOrcamento");
+        return orcamentoResponse;
     }
 }

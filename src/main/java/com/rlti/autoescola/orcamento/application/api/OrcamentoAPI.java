@@ -14,5 +14,7 @@ public interface OrcamentoAPI {
     @ResponseStatus(code = HttpStatus.CREATED)
     OrcamentoResponse criaOrcamento(@Valid @RequestBody OrcamentoRequest orcamentoRequest);
 
-
+    @GetMapping(value = "/{idOrcamento}")
+    @ResponseStatus(code = HttpStatus.OK)
+    OrcamentoResponse getOrcamentoById(@PathVariable Long idOrcamento);
 }

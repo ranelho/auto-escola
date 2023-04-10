@@ -2,6 +2,7 @@ package com.rlti.autoescola.orcamento.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.cliente.domain.Cliente;
+import com.rlti.autoescola.handler.validacoes.CalcularDesconto;
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
 import com.rlti.autoescola.servico.domain.Servico;
@@ -10,6 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -37,6 +39,7 @@ public class Orcamento {
     private int quantidadeParcelas;
     private String observacao;
     private LocalDate validade;
+    private BigDecimal valorFinal;
 
     public Orcamento(Cliente cliente, Servico servico, OrcamentoRequest orcamentoRequest) {
         this.cliente = cliente;
@@ -48,5 +51,6 @@ public class Orcamento {
         this.quantidadeParcelas = orcamentoRequest.getQuantidadeParcelas();
         this.observacao = orcamentoRequest.getObservacao();
         this.validade = orcamentoRequest.getValidade();
+        this.valorFinal = CalcularDesconto.calcularValorFinal(orcamentoRequest.getDesconto(), servico.getValorServico());
     }
 }
