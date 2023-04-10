@@ -55,7 +55,8 @@ public class Orcamento {
         this.desconto = orcamentoRequest.getDesconto();
         this.quantidadeParcelas = orcamentoRequest.getQuantidadeParcelas();
         this.observacao = orcamentoRequest.getObservacao();
-        this.validade = orcamentoRequest.getValidade();
+        this.validade = orcamentoRequest.getDataOrcamento().plusDays(5);
         this.valorFinal = CalcularDesconto.calcularValorFinal(orcamentoRequest.getDesconto(), servico.getValorServico());
+        this.tipoServico = orcamentoRequest.getTipoServico();
     }
 }

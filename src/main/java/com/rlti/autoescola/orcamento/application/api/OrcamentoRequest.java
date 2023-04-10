@@ -17,6 +17,5 @@ public class OrcamentoRequest {
     int desconto;
     int quantidadeParcelas;
     String observacao;
-    LocalDate validade;
     TipoServico tipoServico;
 }
