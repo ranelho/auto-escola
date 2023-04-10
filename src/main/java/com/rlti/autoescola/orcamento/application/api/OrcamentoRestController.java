@@ -14,9 +14,9 @@ public class OrcamentoRestController implements OrcamentoAPI {
     private final OrcamentoService orcamentoService;
 
     @Override
-    public OrcamentoResponse criaOrcamento(UUID idCliente, UUID idServico, OrcamentoRequest orcamentoRequest) {
+    public OrcamentoResponse criaOrcamento(OrcamentoRequest orcamentoRequest) {
         log.info("[inicia] OrcamentoRestController - criaOrcamento");
-        OrcamentoResponse orcamentoCriado = orcamentoService.criaNovoOrcamento(idCliente, idServico, orcamentoRequest);
+        OrcamentoResponse orcamentoCriado = orcamentoService.criaNovoOrcamento(orcamentoRequest);
         log.info("[finaliza] OrcamentoRestController - criaOrcamento");
         return orcamentoCriado;
     }

@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface OrcamentoSpringDataJPARepository extends JpaRepository<Orcamento, UUID> {
+public interface OrcamentoSpringDataJPARepository extends JpaRepository<Orcamento, Long> {
 }

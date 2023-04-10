@@ -19,16 +19,16 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class OrcamentoApplicationService implements OrcamentoService {
     private final ClienteRepository clienteRepository;
-    private  final ServicoRepository servicoRepository;
+    private final ServicoRepository servicoRepository;
     private final OrcamentoRepository orcamentoRepository;
 
     @Override
-    public OrcamentoResponse criaNovoOrcamento(UUID idCliente, UUID idServico, OrcamentoRequest orcamentoRequest) {
+    public OrcamentoResponse criaNovoOrcamento(OrcamentoRequest orcamentoRequest) {
         log.info("[inicia] OrcamentoApplicationService - criaNovoOrcamento");
-        Cliente cliente = clienteRepository.buscaClientePorId(idCliente);
-        Servico servico = servicoRepository.getById(idServico);
-        Orcamento Orcamento = orcamentoRepository.salvaOrcamento(new Orcamento(cliente,servico, orcamentoRequest));
+        Cliente cliente = clienteRepository.buscaClientePorId(orcamentoRequest.getIdCliente());
+        Servico servico = servicoRepository.getById(orcamentoRequest.getIdServico());
+        Orcamento orcamento = orcamentoRepository.salvaOrcamento(new Orcamento(cliente,servico, orcamentoRequest));
         log.info("[finaliza] OrcamentoApplicationService - criaNovoOrcamento");
-        return null;
+        return new OrcamentoResponse(orcamento);
     }
 }

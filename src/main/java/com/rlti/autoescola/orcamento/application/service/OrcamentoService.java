@@ -6,5 +6,5 @@ import com.rlti.autoescola.orcamento.application.api.OrcamentoResponse;
 import java.util.UUID;
 
 public interface OrcamentoService {
-    OrcamentoResponse criaNovoOrcamento(UUID idCliente, UUID idServico, OrcamentoRequest orcamentoRequest);
+    OrcamentoResponse criaNovoOrcamento(OrcamentoRequest orcamentoRequest);
 }

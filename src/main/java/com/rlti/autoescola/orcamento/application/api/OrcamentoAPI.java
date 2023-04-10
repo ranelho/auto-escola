@@ -10,8 +10,9 @@ import java.util.UUID;
 @RequestMapping("/v1/orcamento")
 public interface OrcamentoAPI {
 
-    @PostMapping("/{idCliente},{idServico}")
+    @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    OrcamentoResponse criaOrcamento(@PathVariable UUID idCliente, UUID idServico, @Valid @RequestBody OrcamentoRequest orcamentoRequest);
-    
+    OrcamentoResponse criaOrcamento(@Valid @RequestBody OrcamentoRequest orcamentoRequest);
+
+
 }

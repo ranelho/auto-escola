@@ -2,12 +2,11 @@ package com.rlti.autoescola.orcamento.application.api;
 
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import com.rlti.autoescola.orcamento.domain.Orcamento;
-import lombok.Value;
+import lombok.Data;
 
-import javax.validation.Valid;
 import java.time.LocalDate;
 
-@Value
+@Data
 public class OrcamentoResponse {
     Long idOrcamento;
     TipoPagamento tipoPagamento;
