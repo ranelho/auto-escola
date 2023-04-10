@@ -12,19 +12,23 @@ public enum Categoria {
             case ADICAO_CATEGORIA:
                 switch (this) {
                     case A:
-                    case B:
-                        return true;
-                    case C:
-                        return tipoServico.isValidCategoria(Categoria.B);
-                    case D:
-                        return tipoServico.isValidCategoria(Categoria.B) || tipoServico.isValidCategoria(Categoria.C);
                     case E:
-                        return tipoServico.isValidCategoria(Categoria.D);
+                        return this == Categoria.ACC || this == Categoria.B || this == Categoria.C || this == Categoria.D || this == Categoria.E;
+                    case B:
+                        return this == Categoria.ACC || this == Categoria.B || this == Categoria.C || this == Categoria.E;
+                    case C:
+                        return this == Categoria.ACC || this == Categoria.B || this == Categoria.D || this == Categoria.E;
+                    case D:
+                        return this == Categoria.ACC || this == Categoria.B || this == Categoria.C || this == Categoria.D || this == Categoria.E;
                     default:
                         return false;
                 }
-            default:
+            case RENOVACAO:
                 return true;
+            case RECICLAGEM:
+                return true;
+            default:
+                return false;
         }
     }
 }

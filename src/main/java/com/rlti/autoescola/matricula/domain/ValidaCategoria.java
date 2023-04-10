@@ -5,7 +5,8 @@ import com.rlti.autoescola.servico.domain.Categoria;
 import org.springframework.http.HttpStatus;
 
 public class ValidaCategoria {
-    public static boolean validaCombinacao(TipoServico tipoServico, Categoria categoria) {
+
+    public static boolean isCombinationValid(TipoServico tipoServico, Categoria categoria) {
         if (tipoServico.isValidCategoria(categoria)) {
             return true;
         } else {
