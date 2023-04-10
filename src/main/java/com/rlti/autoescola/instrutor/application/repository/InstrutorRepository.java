@@ -9,4 +9,5 @@ public interface InstrutorRepository {
     Instrutor save(Instrutor instrutor);
     Instrutor getInstrutor(UUID idInstrutor);
     List<Instrutor> getAllInstrutors();
+    void delete(UUID idInstrutor);
 }

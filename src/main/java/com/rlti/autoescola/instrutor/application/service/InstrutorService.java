@@ -13,4 +13,5 @@ public interface InstrutorService {
     InstrutorResponse getInstrutor(UUID idInstrutor);
     void update(UUID idInstrutor, InstrutorUpdateResquest updateRequest);
     List<InstrutorResponse> getAllInstrutors();
+    void delete(UUID idInstrutor);
 }

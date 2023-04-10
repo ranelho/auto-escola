@@ -44,4 +44,11 @@ public class InstrutorRestController implements InstrutorApi {
         log.info("[finaliza] InstrutorRestController -  getAllInstrutors");
         return  instrutores;
     }
+
+    @Override
+    public void delete(UUID idInstrutor) {
+        log.info("[inicia] InstrutorRestController -  delete");
+        instrutorService.delete(idInstrutor);
+        log.info("[finaliza] InstrutorRestController -  delete");
+    }
 }

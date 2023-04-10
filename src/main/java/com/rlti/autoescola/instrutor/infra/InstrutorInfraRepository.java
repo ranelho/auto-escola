@@ -48,4 +48,11 @@ public class InstrutorInfraRepository implements InstrutorRepository {
         log.info("[finaliza] InstrutorInfraRepository - getAllInstrutors ");
         return instrutors;
     }
+
+    @Override
+    public void delete(UUID idInstrutor) {
+        log.info("[inicia] InstrutorInfraRepository - getAllInstrutors ");
+        instrutorSpringDataJPARepository.deleteById(idInstrutor);
+        log.info("[finaliza] InstrutorInfraRepository - getAllInstrutors ");
+    }
 }

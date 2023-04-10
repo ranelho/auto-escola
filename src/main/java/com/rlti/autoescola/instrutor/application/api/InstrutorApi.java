@@ -1,6 +1,5 @@
 package com.rlti.autoescola.instrutor.application.api;
 
-import lombok.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,4 +24,8 @@ public interface InstrutorApi {
     @GetMapping("/all")
     @ResponseStatus(code = HttpStatus.OK)
     List<InstrutorResponse> getAllInstrutors();
+
+    @DeleteMapping("/{idInstrutor}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void delete(@PathVariable UUID idInstrutor);
 }

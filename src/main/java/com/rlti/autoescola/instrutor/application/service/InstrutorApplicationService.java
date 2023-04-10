@@ -51,4 +51,12 @@ public class InstrutorApplicationService implements InstrutorService {
         log.info("[finaliza] InstrutorApplicationService - getAllInstrutors");
         return InstrutorResponse.converte(instrutors);
     }
+
+    @Override
+    public void delete(UUID idInstrutor) {
+        log.info("[inicia] InstrutorApplicationService - getAllInstrutors");
+        Instrutor instrutor = instrutorRepository.getInstrutor(idInstrutor);
+        instrutorRepository.delete(instrutor.getIdInstrutor());
+        log.info("[finaliza] InstrutorApplicationService - getAllInstrutors");
+    }
 }
