@@ -4,14 +4,15 @@ import com.rlti.autoescola.servico.domain.Categoria;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Data
 public class InstrutorUpdateResquest {
-    @NotBlank(message = "Campo Obrigatório!")
+    @NotNull(message = "Campo Obrigatório!")
     String nomeCompleto;
-    @NotBlank(message = "Campo Obrigatório!")
+    @NotNull(message = "Campo Obrigatório!")
     LocalDate validadeCnh;
-    @NotBlank(message = "Campo Obrigatório!")
+    @NotNull(message = "Campo Obrigatório!")
     Categoria categoria;
 }

@@ -13,7 +13,7 @@ public interface InstrutorApi {
     @ResponseStatus(code = HttpStatus.ACCEPTED)
     InstrutorIdResponse post(@Valid @RequestBody InstrutorResquest resquest);
 
-    @GetMapping("{idInstrutor")
+    @GetMapping("{idInstrutor}")
     @ResponseStatus(code = HttpStatus.OK)
     InstrutorResponse getInstrutor(@PathVariable UUID idInstrutor);
 
