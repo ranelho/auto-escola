@@ -2,6 +2,7 @@ package com.rlti.autoescola.orcamento.application.service;
 
 import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.cliente.domain.Cliente;
+import com.rlti.autoescola.matricula.domain.ValidaCategoria;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoResponse;
 import com.rlti.autoescola.orcamento.application.repository.OrcamentoRepository;
@@ -27,6 +28,7 @@ public class OrcamentoApplicationService implements OrcamentoService {
         log.info("[inicia] OrcamentoApplicationService - criaNovoOrcamento");
         Cliente cliente = clienteRepository.buscaClientePorId(orcamentoRequest.getIdCliente());
         Servico servico = servicoRepository.getById(orcamentoRequest.getIdServico());
+        ValidaCategoria.isCombinationValid(orcamentoRequest.getTipoServico(),servico.getCategoria());
         Orcamento orcamento = orcamentoRepository.salvaOrcamento(new Orcamento(cliente,servico, orcamentoRequest));
         log.info("[finaliza] OrcamentoApplicationService - criaNovoOrcamento");
         return new OrcamentoResponse(orcamento);

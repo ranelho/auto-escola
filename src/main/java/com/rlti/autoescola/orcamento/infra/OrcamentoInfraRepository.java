@@ -6,8 +6,12 @@ import com.rlti.autoescola.orcamento.domain.Orcamento;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Optional;
 
 @Repository
@@ -32,5 +36,14 @@ public class OrcamentoInfraRepository implements OrcamentoRepository {
                                 "Orçamento não encontrado!"));
         log.info("[finaliza] OrcamentoInfraRepository - getOrcamentoById");
         return (orcamento);
+    }
+
+    @Scheduled(fixedRate = 86400000) // Executa a cada 24 horas)
+    @Override
+    @Transactional
+    public void deleteOrcamentoExpirado() {
+        log.info("[inicia] OrcamentoInfraRepository - deleteOrcamentoExpirado");
+        orcamentoSpringDataJPARepository.deleteOrcamentoExpirado(LocalDate.now());
+        log.info("[finaliza] OrcamentoInfraRepository - deleteOrcamentoExpirado");
     }
 }

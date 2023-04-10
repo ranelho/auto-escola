@@ -1,6 +1,7 @@
 package com.rlti.autoescola.orcamento.application.api;
 
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
+import com.rlti.autoescola.matricula.domain.TipoServico;
 import lombok.Value;
 
 import java.time.LocalDate;
@@ -17,4 +18,5 @@ public class OrcamentoRequest {
     int quantidadeParcelas;
     String observacao;
     LocalDate validade;
+    TipoServico tipoServico;
 }

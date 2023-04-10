@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.handler.validacoes.CalcularDesconto;
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
+import com.rlti.autoescola.matricula.domain.TipoServico;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
 import com.rlti.autoescola.servico.domain.Servico;
 import lombok.AllArgsConstructor;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -40,6 +42,9 @@ public class Orcamento {
     private String observacao;
     private LocalDate validade;
     private BigDecimal valorFinal;
+
+    @Enumerated(EnumType.STRING)
+    private TipoServico tipoServico;
 
     public Orcamento(Cliente cliente, Servico servico, OrcamentoRequest orcamentoRequest) {
         this.cliente = cliente;
