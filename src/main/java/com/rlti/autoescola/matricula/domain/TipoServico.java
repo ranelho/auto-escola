@@ -14,14 +14,15 @@ public enum TipoServico {
         public boolean isValidCategoria(Categoria categoria) {
             switch (categoria) {
                 case A:
-                case E:
-                    return categoria == Categoria.ACC || categoria == Categoria.B || categoria == Categoria.C || categoria == Categoria.D || categoria == Categoria.E;
+                    return categoria == Categoria.A;
                 case B:
-                    return categoria == Categoria.ACC || categoria == Categoria.B || categoria == Categoria.C || categoria == Categoria.E;
+                    return categoria == Categoria.B;
                 case C:
-                    return categoria == Categoria.B || categoria == Categoria.D || categoria == Categoria.E;
+                    return categoria == Categoria.B;
                 case D:
-                    return categoria == Categoria.B || categoria == Categoria.C || categoria == Categoria.D || categoria == Categoria.E;
+                    return categoria == Categoria.D;
+                case E:
+                    return categoria == Categoria.E ;
                 default:
                     return false;
             }

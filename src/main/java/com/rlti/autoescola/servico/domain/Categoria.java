@@ -12,14 +12,15 @@ public enum Categoria {
             case ADICAO_CATEGORIA:
                 switch (this) {
                     case A:
+                        return this == Categoria.A;
                     case E:
-                        return this == Categoria.ACC || this == Categoria.B || this == Categoria.C || this == Categoria.D || this == Categoria.E;
+                        return this == Categoria.E;
                     case B:
-                        return this == Categoria.ACC || this == Categoria.B || this == Categoria.C || this == Categoria.E;
+                        return this == Categoria.B;
                     case C:
-                        return this == Categoria.ACC || this == Categoria.B || this == Categoria.D || this == Categoria.E;
+                        return this == Categoria.C;
                     case D:
-                        return this == Categoria.ACC || this == Categoria.B || this == Categoria.C || this == Categoria.D || this == Categoria.E;
+                        return this == Categoria.D;
                     default:
                         return false;
                 }
