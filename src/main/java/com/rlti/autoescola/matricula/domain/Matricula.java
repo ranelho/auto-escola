@@ -35,6 +35,8 @@ public class Matricula {
 
     @Enumerated(EnumType.STRING)
     private TipoPagamento tipoPagamento;
+    @Enumerated(EnumType.STRING)
+    private TipoServico tipoServico;
 
     private LocalDate dataMatricula;
     private Double valorEntrada;
