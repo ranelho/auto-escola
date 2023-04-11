@@ -6,12 +6,15 @@ import com.rlti.autoescola.cliente.application.api.EditaClienteRequest;
 import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.cliente.application.api.ClienteRequest;
+import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.handler.validacoes.ValidaCpfouCnpj;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -62,7 +65,8 @@ public class ClienteApplicationService implements ClienteService {
     public ClienteResponse buscaClientePorCPF(String cpf) {
         log.info("[inicia] ClienteApplicationService - buscaClientePorCPF");
         ValidaCpfouCnpj.validateCpfOrCnpj(cpf);
-        Cliente cliente = clienteRepository.buscaClientePorCPF(cpf);
+        Cliente cliente = clienteRepository.buscaClientePorCPF(cpf)
+                .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,"Cliente não encontrado!"));;
         log.info("[finaliza] ClienteApplicationService - buscaClientePorCPF");
         return new ClienteResponse(cliente);
     }
