@@ -33,5 +33,5 @@ public interface ClienteAPI {
 
     @PatchMapping("/{idCliente}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void editaCliente (@PathVariable UUID idCliente, @Valid @RequestBody EditaClienteRequest editaClienteRequest);
+    void editaCliente(@PathVariable UUID idCliente, @Valid @RequestBody EditaClienteRequest editaClienteRequest);
 }

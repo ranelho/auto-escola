@@ -5,6 +5,7 @@ import com.rlti.autoescola.servico.application.repository.ServicoRepository;
 import com.rlti.autoescola.servico.domain.Servico;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
@@ -21,7 +22,11 @@ public class ServicoInfraRepository implements ServicoRepository {
     @Override
     public Servico salva(Servico servico) {
         log.info("[inicia] ServicoInfraRepository - salva");
-        servicoSpringDataInfraRepository.save(servico);
+        try {
+            servicoSpringDataInfraRepository.save(servico);
+        }catch (DataIntegrityViolationException e){
+            throw APIException.build(HttpStatus.BAD_REQUEST, "Serviço já cadastrado", e);
+        }
         log.info("[finaliza] ServicoInfraRepository - salva");
         return servico;
     }
