@@ -1,7 +1,6 @@
 package com.rlti.autoescola.cliente.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.rlti.autoescola.agenda.domain.Agenda;
 import com.rlti.autoescola.cliente.application.api.ClienteRequest;
 import com.rlti.autoescola.cliente.application.api.EditaClienteRequest;
 import com.rlti.autoescola.cliente.domain.groups.ClienteGroupSequenceProvider;
@@ -38,8 +37,7 @@ public class Cliente {
     @Column(unique = true)
     private String cpf;
     @NotNull(message = "Campo Obrigatório!")
-    private String firstName;
-    private String lastName;
+    private String fullName;
     private LocalDate dataNascimento;
     private String naturalidade;
     private String nacionalidade;
@@ -57,20 +55,18 @@ public class Cliente {
     public Cliente(ClienteRequest clienteRequest) {
         this.tipoPessoa = getTipoPessoa();
         this.cpf = clienteRequest.getCpf();
-        this.firstName = clienteRequest.getFirstName();
-        this.lastName = clienteRequest.getLastName();
+        this.fullName = clienteRequest.getFullName().toUpperCase();
         this.dataNascimento = clienteRequest.getDataNascimento();
-        this.naturalidade = clienteRequest.getNaturalidade();
-        this.nacionalidade = clienteRequest.getNacionalidade();
+        this.naturalidade = clienteRequest.getNaturalidade().toUpperCase();
+        this.nacionalidade = clienteRequest.getNacionalidade().toUpperCase();
         this.estadoCivil = clienteRequest.getEstadoCivil();
     }
 
     public void altera(EditaClienteRequest editaClienteRequest) {
-        this.firstName = editaClienteRequest.getFirstName();
-        this.lastName = editaClienteRequest.getLastName();
+        this.fullName = editaClienteRequest.getFirstName().toUpperCase();
         this.dataNascimento = editaClienteRequest.getDataNascimento();
-        this.naturalidade = editaClienteRequest.getNaturalidade();
-        this.nacionalidade = editaClienteRequest.getNacionalidade();
+        this.naturalidade = editaClienteRequest.getNaturalidade().toUpperCase();
+        this.nacionalidade = editaClienteRequest.getNacionalidade().toUpperCase();
         this.estadoCivil = editaClienteRequest.getEstadoCivil();
     }
 }
