@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Data
 public class OrcamentoResponse {
     String cpf;
-    String fistName;
+    String fullName;
     Long idOrcamento;
     TipoPagamento tipoPagamento;
     LocalDate dataOrcamento;
@@ -23,7 +23,7 @@ public class OrcamentoResponse {
 
     public OrcamentoResponse(Orcamento orcamento) {
         this.cpf = orcamento.getCliente().getCpf();
-        this.fistName = orcamento.getCliente().getFirstName();
+        this.fullName = orcamento.getCliente().getFullName();
         this.idOrcamento = orcamento.getIdOrcamento();
         this.tipoPagamento = orcamento.getTipoPagamento();
         this.dataOrcamento = orcamento.getDataOrcamento();

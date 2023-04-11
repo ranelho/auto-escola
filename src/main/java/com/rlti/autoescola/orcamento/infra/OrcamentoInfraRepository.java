@@ -37,7 +37,6 @@ public class OrcamentoInfraRepository implements OrcamentoRepository {
         log.info("[finaliza] OrcamentoInfraRepository - getOrcamentoById");
         return (orcamento);
     }
-
     @Scheduled(fixedRate = 86400000) // Executa a cada 24 horas)
     @Override
     @Transactional
