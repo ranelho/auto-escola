@@ -1,5 +1,6 @@
 package com.rlti.autoescola.contato.application.api;
 
+import com.rlti.autoescola.cliente.application.api.ClienteContatosResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ public interface ContatoApi {
 
     @GetMapping(value = "/cliente/{idCliente}")
     @ResponseStatus(code = HttpStatus.OK)
-    List<ContatoResponse> visualizaContatosDoCliente(@PathVariable UUID idCliente);
+    ClienteContatosResponse visualizaContatosDoCliente(@PathVariable UUID idCliente);
 
     @DeleteMapping("/{idContato}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)

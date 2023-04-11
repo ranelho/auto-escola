@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
 
 @Value
 public class ClienteListResponse {
-    private final UUID idCliente;
-    private final String cpf;
-    private final String firstName;
+    UUID idCliente;
+    String cpf;
+    String fullName;
 
     public static List<ClienteListResponse> converte(List<Cliente>clientes){
         return clientes.stream()
@@ -21,6 +21,6 @@ public class ClienteListResponse {
     private ClienteListResponse(Cliente cliente){
         this.idCliente = cliente.getIdCliente();
         this.cpf = cliente.getCpf();
-        this.firstName = cliente.getFullName();
+        this.fullName = cliente.getFullName();
     }
 }
