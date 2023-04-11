@@ -2,7 +2,6 @@ package com.rlti.autoescola.orcamento.application.api;
 
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import com.rlti.autoescola.orcamento.domain.Orcamento;
-import com.rlti.autoescola.servico.application.api.ServicoRequest;
 import lombok.Data;
 
 import java.math.BigDecimal;

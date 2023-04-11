@@ -44,9 +44,9 @@ public class ContatoInfraRepository implements ContatoRepository {
         return contatos;
     }
     @Override
-    public void deletaContato(Contato contato) {
+    public void deletaContato(UUID idContato) {
         log.info("[inicia] ContatoInfraRepository - deletaContato");
-        contatoSpringDataJPARepository.delete(contato);
+        contatoSpringDataJPARepository.deleteById(idContato);
         log.info("[finaliza] ContatoInfraRepository - deletaContato");
     }
 

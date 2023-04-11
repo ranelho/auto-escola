@@ -48,8 +48,7 @@ public class ContatoApplicationService implements ContatoService {
     @Override
     public void deletaContatoPorId(UUID idContato) {
         log.info("[inicia] ContatoApplicationService - deletaContatoPorId");
-        Contato contato = contatoRepository.buscaContatoPorId(idContato);
-        contatoRepository.deletaContato(contato);
+        contatoRepository.deletaContato(contatoRepository.buscaContatoPorId(idContato).getIdContato());
         log.info("[finaliza] ContatoApplicationService - deletaContatoPorId");
     }
     @Override

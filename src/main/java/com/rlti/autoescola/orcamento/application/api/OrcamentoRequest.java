@@ -17,9 +17,9 @@ public class OrcamentoRequest {
     @NotBlank(message = "Campo Obrigatório!")
     @Pattern(regexp = "(^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$)")
     @CPF(groups = PessoaFisica.class, message = "CPF inválido!")
-    private String cpf;
+    String cpf;
     @NotNull(message = "Campo Obrigatório!")
-    private String fullName;
+    String fullName;
     @Pattern(regexp = "^\\(\\d{2}\\)\\d{4,5}\\-\\d{4}$", message = "Telefone inválido")
     String telefone;
     UUID idServico;

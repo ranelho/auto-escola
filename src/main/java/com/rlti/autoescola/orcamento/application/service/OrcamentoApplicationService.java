@@ -1,12 +1,7 @@
 package com.rlti.autoescola.orcamento.application.service;
 
-import com.rlti.autoescola.cliente.application.api.ClienteRequest;
-import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.cliente.application.service.ClienteService;
 import com.rlti.autoescola.cliente.domain.Cliente;
-import com.rlti.autoescola.contato.application.repository.ContatoRepository;
-import com.rlti.autoescola.contato.application.service.ContatoService;
-import com.rlti.autoescola.contato.domain.Contato;
 import com.rlti.autoescola.matricula.domain.ValidaCategoria;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoResponse;
@@ -17,9 +12,6 @@ import com.rlti.autoescola.servico.domain.Servico;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @Log4j2
