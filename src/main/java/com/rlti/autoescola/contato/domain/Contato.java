@@ -28,7 +28,6 @@ public class Contato {
     private String cidade;
     private String uf;
 
-
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     @JsonIgnore
@@ -42,6 +41,9 @@ public class Contato {
         this.cidade = contatoRequest.getCidade().toUpperCase();
         this.uf = contatoRequest.getUf().toUpperCase();
         this.cliente = cliente;
+    }
+    public Contato(String telefone) {
+        this.telefone = telefone;
     }
     public void alteracontato(ContatoRequest contatoRequest) {
         this.email = contatoRequest.getEmail().toLowerCase();

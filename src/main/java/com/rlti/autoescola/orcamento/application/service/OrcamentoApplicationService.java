@@ -1,7 +1,9 @@
 package com.rlti.autoescola.orcamento.application.service;
 
+import com.rlti.autoescola.cliente.application.api.ClienteRequest;
 import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.cliente.domain.Cliente;
+import com.rlti.autoescola.contato.domain.Contato;
 import com.rlti.autoescola.matricula.domain.ValidaCategoria;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoResponse;
@@ -13,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -22,16 +25,27 @@ public class OrcamentoApplicationService implements OrcamentoService {
     private final ClienteRepository clienteRepository;
     private final ServicoRepository servicoRepository;
     private final OrcamentoRepository orcamentoRepository;
+    Orcamento orcamento = new Orcamento();
 
     @Override
     public OrcamentoResponse criaNovoOrcamento(OrcamentoRequest orcamentoRequest) {
         log.info("[inicia] OrcamentoApplicationService - criaNovoOrcamento");
-        Cliente cliente = clienteRepository.buscaClientePorId(orcamentoRequest.getIdCliente());
+        Cliente cliente = clienteRepository.buscaClientePorCPF(orcamentoRequest.getCpf());
         Servico servico = servicoRepository.getById(orcamentoRequest.getIdServico());
         ValidaCategoria.isCombinationValid(orcamentoRequest.getTipoServico(),servico.getCategoria());
-        Orcamento orcamento = orcamentoRepository.salvaOrcamento(new Orcamento(cliente,servico, orcamentoRequest));
+        if (!cliente.getIdCliente().equals(null)){
+            Orcamento orcamento = orcamentoRepository.salvaOrcamento(new Orcamento(cliente,servico,orcamentoRequest));
+        } else {
+            Cliente novoCliente = clienteRepository.salva(new Cliente(orcamentoRequest));
+            Orcamento orcamento = orcamentoRepository.salvaOrcamento(new Orcamento(novoCliente,servico,orcamentoRequest));
+        }
         log.info("[finaliza] OrcamentoApplicationService - criaNovoOrcamento");
         return new OrcamentoResponse(orcamento);
+
+       /* Cliente cliente = clienteRepository.buscaClientePorId(orcamentoRequest.getIdCliente());
+        Servico servico = servicoRepository.getById(orcamentoRequest.getIdServico());
+        ValidaCategoria.isCombinationValid(orcamentoRequest.getTipoServico(),servico.getCategoria());
+        Orcamento orcamento = orcamentoRepository.salvaOrcamento(new Orcamento(cliente,servico, orcamentoRequest));*/
     }
     @Override
     public OrcamentoResponse getOrcamentoById(Long idOrcamento) {
