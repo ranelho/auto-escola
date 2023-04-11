@@ -12,20 +12,10 @@ public enum TipoServico {
     ADICAO_CATEGORIA {
         @Override
         public boolean isValidCategoria(Categoria categoria) {
-            switch (categoria) {
-                case A:
-                    return categoria == Categoria.A;
-                case B:
-                    return categoria == Categoria.B;
-                case C:
-                    return categoria == Categoria.B;
-                case D:
-                    return categoria == Categoria.D;
-                case E:
-                    return categoria == Categoria.E ;
-                default:
-                    return false;
-            }
+            return switch (categoria) {
+                case A, B, C, D, E -> true;
+                default -> false;
+            };
         }
     },
     RENOVACAO {
@@ -40,6 +30,5 @@ public enum TipoServico {
             return true;
         }
     };
-
     public abstract boolean isValidCategoria(Categoria categoria);
 }
