@@ -5,9 +5,9 @@ server:
 spring:
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/auto-escola
-    username: postgres
-    password: 852456
+    url: jdbc:postgresql://autoescola.postgres.uhserver.com:5432/autoescola
+    username: rlti
+    password: Dev@8524*
   jpa:
     generate-ddl: true
     properties:
