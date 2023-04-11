@@ -2,6 +2,7 @@ package com.rlti.autoescola.matricula.application.api;
 
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
 //import com.rlti.autoescola.matricula.domain.TipoServico;
+import com.rlti.autoescola.matricula.domain.TipoServico;
 import lombok.Value;
 
 import java.time.LocalDate;
@@ -17,5 +18,5 @@ public class MatriculaRequest {
     int desconto;
     int quantidadeParcelas;
     String observacao;
-    //TipoServico tipoServico;
+    TipoServico tipoServico;
 }
