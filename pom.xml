@@ -52,7 +52,7 @@
 			<artifactId>springdoc-openapi-ui</artifactId>
 			<version>${spring-doc.version}</version>
 		</dependency>
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>

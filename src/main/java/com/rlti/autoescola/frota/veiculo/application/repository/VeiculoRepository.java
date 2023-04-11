@@ -1,6 +1,5 @@
 package com.rlti.autoescola.frota.veiculo.application.repository;
 
-import com.rlti.autoescola.frota.manutencao.Manutencao;
 import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 
 import java.util.List;

@@ -11,8 +11,7 @@ import java.util.UUID;
 public class ClienteResponse {
     private final UUID idCliente;
     private final String cpf;
-    private final String firstName;
-    private final String lastName;
+    private final String fullName;
     private final LocalDate dataNascimento;
     private final String naturalidade;
     private final String nacionalidade;
@@ -21,8 +20,7 @@ public class ClienteResponse {
     public ClienteResponse(Cliente cliente) {
         this.idCliente = cliente.getIdCliente();
         this.cpf = cliente.getCpf();
-        this.firstName = cliente.getFirstName();
-        this.lastName = cliente.getLastName();
+        this.fullName = cliente.getFullName();
         this.dataNascimento = cliente.getDataNascimento();
         this.naturalidade = cliente.getNaturalidade();
         this.nacionalidade = cliente.getNacionalidade();

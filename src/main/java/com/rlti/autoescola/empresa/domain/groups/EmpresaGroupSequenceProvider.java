@@ -2,7 +2,6 @@ package com.rlti.autoescola.empresa.domain.groups;
 
 import com.rlti.autoescola.cliente.domain.groups.PessoaFisica;
 import com.rlti.autoescola.empresa.domain.Empresa;
-import com.rlti.autoescola.empresa.domain.groups.PessoaJuridica;
 import org.hibernate.validator.spi.group.DefaultGroupSequenceProvider;
 
 import java.util.ArrayList;

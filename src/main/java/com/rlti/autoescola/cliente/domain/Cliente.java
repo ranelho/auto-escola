@@ -33,14 +33,12 @@ public class Cliente {
     @Enumerated(EnumType.STRING)
     private TipoPessoa tipoPessoa = TipoPessoa.FISICA;
     @NotBlank(message = "Campo Obrigatório!")
-    @CPF(groups = PessoaFisica.class)
+    @CPF(groups = PessoaFisica.class, message = "CPF inválido!")
     @Column(unique = true)
     private String cpf;
     @NotNull(message = "Campo Obrigatório!")
-    private String firstName;
-    private String lastName;
+    private String fullName;
     private LocalDate dataNascimento;
-    private String celular;
     private String naturalidade;
     private String nacionalidade;
     @Enumerated(EnumType.STRING)
@@ -57,20 +55,18 @@ public class Cliente {
     public Cliente(ClienteRequest clienteRequest) {
         this.tipoPessoa = getTipoPessoa();
         this.cpf = clienteRequest.getCpf();
-        this.firstName = clienteRequest.getFirstName();
-        this.lastName = clienteRequest.getLastName();
+        this.fullName = clienteRequest.getFullName().toUpperCase();
         this.dataNascimento = clienteRequest.getDataNascimento();
-        this.naturalidade = clienteRequest.getNaturalidade();
-        this.nacionalidade = clienteRequest.getNacionalidade();
+        this.naturalidade = clienteRequest.getNaturalidade().toUpperCase();
+        this.nacionalidade = clienteRequest.getNacionalidade().toUpperCase();
         this.estadoCivil = clienteRequest.getEstadoCivil();
     }
 
     public void altera(EditaClienteRequest editaClienteRequest) {
-        this.firstName = editaClienteRequest.getFirstName();
-        this.lastName = editaClienteRequest.getLastName();
+        this.fullName = editaClienteRequest.getFirstName().toUpperCase();
         this.dataNascimento = editaClienteRequest.getDataNascimento();
-        this.naturalidade = editaClienteRequest.getNaturalidade();
-        this.nacionalidade = editaClienteRequest.getNacionalidade();
+        this.naturalidade = editaClienteRequest.getNaturalidade().toUpperCase();
+        this.nacionalidade = editaClienteRequest.getNacionalidade().toUpperCase();
         this.estadoCivil = editaClienteRequest.getEstadoCivil();
     }
 }
