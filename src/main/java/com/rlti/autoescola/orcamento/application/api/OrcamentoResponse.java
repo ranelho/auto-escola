@@ -2,6 +2,7 @@ package com.rlti.autoescola.orcamento.application.api;
 
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import com.rlti.autoescola.orcamento.domain.Orcamento;
+import com.rlti.autoescola.servico.application.api.ServicoRequest;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,9 +10,9 @@ import java.time.LocalDate;
 
 @Data
 public class OrcamentoResponse {
+    Long idOrcamento;
     String cpf;
     String fullName;
-    Long idOrcamento;
     TipoPagamento tipoPagamento;
     LocalDate dataOrcamento;
     Double valorEntrada;
@@ -22,9 +23,9 @@ public class OrcamentoResponse {
     BigDecimal valorFinal;
 
     public OrcamentoResponse(Orcamento orcamento) {
+        this.idOrcamento = orcamento.getIdOrcamento();
         this.cpf = orcamento.getCliente().getCpf();
         this.fullName = orcamento.getCliente().getFullName();
-        this.idOrcamento = orcamento.getIdOrcamento();
         this.tipoPagamento = orcamento.getTipoPagamento();
         this.dataOrcamento = orcamento.getDataOrcamento();
         this.valorEntrada = orcamento.getValorEntrada();

@@ -64,8 +64,7 @@ public class Cliente {
     }
     public Cliente(OrcamentoRequest orcamentoRequest) {
         this.cpf = orcamentoRequest.getCpf();
-        this.fullName = orcamentoRequest.getFullName();
-        this.contato = (List<Contato>) new Contato(orcamentoRequest.getTelefone());
+        this.fullName = orcamentoRequest.getFullName().toUpperCase();
     }
     public void altera(EditaClienteRequest editaClienteRequest) {
         this.fullName = editaClienteRequest.getFirstName().toUpperCase();

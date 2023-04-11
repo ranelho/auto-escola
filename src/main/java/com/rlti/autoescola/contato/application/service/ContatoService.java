@@ -1,7 +1,9 @@
 package com.rlti.autoescola.contato.application.service;
 
+import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.contato.application.api.ContatoRequest;
 import com.rlti.autoescola.contato.application.api.ContatoResponse;
+import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
 
 import java.util.List;
 import java.util.UUID;
@@ -12,4 +14,5 @@ public interface ContatoService {
     List<ContatoResponse> buscaContatosDoCliente(UUID idCliente);
     void deletaContatoPorId(UUID idContato);
     void editaContato(UUID idContato, ContatoRequest contatoRequest);
+    void verificaContato(Cliente cliente, OrcamentoRequest orcamentoRequest);
 }

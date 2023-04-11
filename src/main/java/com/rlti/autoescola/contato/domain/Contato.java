@@ -3,13 +3,13 @@ package com.rlti.autoescola.contato.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.contato.application.api.ContatoRequest;
+import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import java.util.Locale;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -42,10 +42,13 @@ public class Contato {
         this.uf = contatoRequest.getUf().toUpperCase();
         this.cliente = cliente;
     }
-    public Contato(String telefone) {
-        this.telefone = telefone;
+
+    public Contato(Cliente cliente, OrcamentoRequest orcamentoRequest) {
+        this.cliente = cliente;
+        this.telefone = orcamentoRequest.getTelefone();
     }
-    public void alteracontato(ContatoRequest contatoRequest) {
+
+    public void alteraContato(ContatoRequest contatoRequest) {
         this.email = contatoRequest.getEmail().toLowerCase();
         this.telefone = contatoRequest.getTelefone();
         this.cep = contatoRequest.getCep();
