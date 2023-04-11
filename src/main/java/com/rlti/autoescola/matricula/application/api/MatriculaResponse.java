@@ -17,7 +17,7 @@ public class MatriculaResponse {
     BigDecimal valorFinal;
     LocalDate dataMatricula;
     String cpf;
-    String fistName;
+    String fullName;
     Long idOrcamento;
     UUID idMatricula;
     String observacao;
@@ -31,7 +31,7 @@ public class MatriculaResponse {
         this.valorFinal = matricula.getValorFinal();
         this.dataMatricula = matricula.getDataMatricula();
         this.cpf = matricula.getCliente().getCpf();
-        this.fistName = matricula.getCliente().getFirstName();
+        this.fullName = matricula.getCliente().getFullName();
         this.idOrcamento = matricula.getIdOrcamento();
         this.idMatricula = matricula.getIdMatricula();
         this.observacao = matricula.getObservacao();
