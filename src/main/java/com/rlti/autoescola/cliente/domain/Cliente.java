@@ -7,6 +7,7 @@ import com.rlti.autoescola.cliente.domain.groups.ClienteGroupSequenceProvider;
 import com.rlti.autoescola.cliente.domain.groups.PessoaFisica;
 import com.rlti.autoescola.contato.domain.Contato;
 import com.rlti.autoescola.matricula.domain.Matricula;
+import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -61,7 +62,10 @@ public class Cliente {
         this.nacionalidade = clienteRequest.getNacionalidade().toUpperCase();
         this.estadoCivil = clienteRequest.getEstadoCivil();
     }
-
+    public Cliente(OrcamentoRequest orcamentoRequest) {
+        this.cpf = orcamentoRequest.getCpf();
+        this.fullName = orcamentoRequest.getFullName().toUpperCase();
+    }
     public void altera(EditaClienteRequest editaClienteRequest) {
         this.fullName = editaClienteRequest.getFirstName().toUpperCase();
         this.dataNascimento = editaClienteRequest.getDataNascimento();

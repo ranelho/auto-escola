@@ -1,17 +1,19 @@
 package com.rlti.autoescola.contato.application.service;
 
+import com.rlti.autoescola.cliente.application.api.ClienteContatosResponse;
 import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.contato.application.api.ContatoRequest;
 import com.rlti.autoescola.contato.application.api.ContatoResponse;
 import com.rlti.autoescola.contato.application.repository.ContatoRepository;
 import com.rlti.autoescola.contato.domain.Contato;
+import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -37,12 +39,11 @@ public class ContatoApplicationService implements ContatoService {
         return new ContatoResponse(contato);
     }
     @Override
-    public List<ContatoResponse> buscaContatosDoCliente(UUID idCliente) {
+    public ClienteContatosResponse buscaContatosDoCliente(UUID idCliente) {
         log.info("[inicia] ContatoApplicationService - buscaContatosDoCliente");
         Cliente cliente = clienteRepository.buscaClientePorId(idCliente);
-        List<Contato> contatos = contatoRepository.buscaContatosDoCliente(cliente);
         log.info("[finaliza] ContatoApplicationService - buscaContatosDoCliente");
-        return ContatoResponse.converte(contatos);
+        return new ClienteContatosResponse(cliente);
     }
     @Override
     public void deletaContatoPorId(UUID idContato) {
@@ -55,8 +56,20 @@ public class ContatoApplicationService implements ContatoService {
     public void editaContato(UUID idContato, ContatoRequest contatoRequest) {
         log.info("[inicia] ContatoApplicationService - editaContato");
         Contato contato = contatoRepository.buscaContatoPorId(idContato);
-        contato.alteracontato(contatoRequest);
+        contato.alteraContato(contatoRequest);
         contatoRepository.salvaContato(contato);
         log.info("[finaliza] ContatoApplicationService - editaContato");
+    }
+
+    @Override
+    public void verificaContato(Cliente cliente, OrcamentoRequest orcamentoRequest) {
+        log.info("[inicia] ContatoApplicationService - verificaContato");
+        //verifica se existe o telefone no sistema
+        Optional<Contato> contatos = contatoRepository.findTelefoneContato(orcamentoRequest.getTelefone());
+        //compara se o contado saldo pertence ao cliente, caso nao tenha cadastra para o cliente
+        if(contatos.isEmpty() || contatos.get().getCliente().getIdCliente() != cliente.getIdCliente()){
+            contatoRepository.salvaContato(new Contato(cliente, orcamentoRequest));
+        }
+        log.info("[finaliza] ContatoApplicationService - verificaContato");
     }
 }
