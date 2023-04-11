@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -34,12 +35,16 @@ public class Matricula {
 
     @Enumerated(EnumType.STRING)
     private TipoPagamento tipoPagamento;
-
-    private LocalDate dataMatricula;
     private Double valorEntrada;
     private int desconto;
     private int quantidadeParcelas;
+    private BigDecimal valorFinal;
+    private LocalDate dataMatricula;
+    private String cpf;
+    private String fistName;
+    private Long idOrcamento;
     private String observacao;
+
 
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "matricula")
     @JsonIgnore
