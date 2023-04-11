@@ -1,5 +1,6 @@
 package com.rlti.autoescola.contato.application.service;
 
+import com.rlti.autoescola.cliente.application.api.ClienteContatosResponse;
 import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.contato.application.api.ContatoRequest;
@@ -37,12 +38,11 @@ public class ContatoApplicationService implements ContatoService {
         return new ContatoResponse(contato);
     }
     @Override
-    public List<ContatoResponse> buscaContatosDoCliente(UUID idCliente) {
+    public ClienteContatosResponse buscaContatosDoCliente(UUID idCliente) {
         log.info("[inicia] ContatoApplicationService - buscaContatosDoCliente");
         Cliente cliente = clienteRepository.buscaClientePorId(idCliente);
-        List<Contato> contatos = contatoRepository.buscaContatosDoCliente(cliente);
         log.info("[finaliza] ContatoApplicationService - buscaContatosDoCliente");
-        return ContatoResponse.converte(contatos);
+        return new ClienteContatosResponse(cliente);
     }
     @Override
     public void deletaContatoPorId(UUID idContato) {
