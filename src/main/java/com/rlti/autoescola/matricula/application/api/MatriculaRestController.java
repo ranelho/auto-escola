@@ -6,10 +6,11 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
-@RequiredArgsConstructor
 @Log4j2
+@RequiredArgsConstructor
 public class MatriculaRestController implements MatriculaAPI{
     private final MatriculaService matriculaService;
 
@@ -29,4 +30,11 @@ public class MatriculaRestController implements MatriculaAPI{
         return matriculas;
     }
 
+    @Override
+    public MatriculaDetalhadoResponse getMatriculaAtravesId(UUID idMatricula) {
+        log.info("[inicia] MatriculaRestController - getMatriculaAtravesId");
+        MatriculaDetalhadoResponse matriculaDetalhadoResponse = matriculaService.matriculaAtravesId(idMatricula);
+        log.info("[finaliza] MatriculaRestController - getMatriculaAtravesId");
+        return matriculaDetalhadoResponse;
+    }
 }

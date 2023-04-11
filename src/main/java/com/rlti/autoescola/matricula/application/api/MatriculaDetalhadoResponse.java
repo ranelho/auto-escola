@@ -3,15 +3,12 @@ package com.rlti.autoescola.matricula.application.api;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import lombok.Value;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Value
-public class MatriculaListResponse {
+public class MatriculaDetalhadoResponse {
     UUID idMatricula;
     String cpf;
     TipoPagamento tipoPagamento;
@@ -23,13 +20,7 @@ public class MatriculaListResponse {
     String fullName;
     String observacao;
 
-    public static List<MatriculaListResponse> converte(List<Matricula>matriculas){
-        return matriculas.stream()
-                .map(MatriculaListResponse::new)
-                .collect(Collectors.toList());
-    }
-
-    public MatriculaListResponse(Matricula matricula) {
+    public MatriculaDetalhadoResponse(Matricula matricula) {
         this.idMatricula = matricula.getIdMatricula();
         this.cpf = matricula.getCliente().getCpf();
         this.tipoPagamento = matricula.getTipoPagamento();
