@@ -3,16 +3,13 @@ package com.rlti.autoescola.orcamento.application.api;
 import com.rlti.autoescola.cliente.domain.groups.PessoaFisica;
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import com.rlti.autoescola.matricula.domain.TipoServico;
-import lombok.Value;
+import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import java.time.LocalDate;
+import javax.validation.constraints.*;
 import java.util.UUID;
 
-@Value
+@Data
 public class OrcamentoRequest {
     @NotBlank(message = "Campo Obrigatório!")
     @Pattern(regexp = "(^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$)")
@@ -20,13 +17,14 @@ public class OrcamentoRequest {
     String cpf;
     @NotNull(message = "Campo Obrigatório!")
     String fullName;
-    @Pattern(regexp = "^\\(\\d{2}\\)\\d{4,5}\\-\\d{4}$", message = "Telefone inválido")
+    @Pattern(regexp = "^\\(\\d{2}\\)\\d{4,5}-\\d{4}$", message = "Telefone inválido")
     String telefone;
     UUID idServico;
     TipoPagamento tipoPagamento;
-    LocalDate dataOrcamento;
     Double valorEntrada;
     int desconto;
+    @Min(value = 1, message = "O valor mínimo é 1")
+    @Max(value = 12, message = "O valor máximo é 12")
     int quantidadeParcelas;
     String observacao;
     TipoServico tipoServico;

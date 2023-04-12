@@ -17,8 +17,8 @@ public class CalcularDesconto {
         if (valorServico.compareTo(BigDecimal.ZERO) <= 0) {
             throw APIException.build(HttpStatus.BAD_REQUEST,"O valor do serviço deve ser maior que zero");
         }
-        BigDecimal valorDescontado = valorServico.multiply(new BigDecimal(desconto)).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
-        BigDecimal valorFinal = valorServico.subtract(valorDescontado);
-        return valorFinal;
+        BigDecimal valorDescontado = valorServico.multiply(new BigDecimal(desconto)).divide(BigDecimal.valueOf(100),
+                2, RoundingMode.HALF_UP);
+        return valorServico.subtract(valorDescontado);
     }
 }

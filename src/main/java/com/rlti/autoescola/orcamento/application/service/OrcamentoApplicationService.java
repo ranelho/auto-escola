@@ -2,6 +2,7 @@ package com.rlti.autoescola.orcamento.application.service;
 
 import com.rlti.autoescola.cliente.application.service.ClienteService;
 import com.rlti.autoescola.cliente.domain.Cliente;
+import com.rlti.autoescola.handler.validacoes.ValidaParcelamento;
 import com.rlti.autoescola.matricula.domain.ValidaCategoria;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoResponse;
@@ -29,6 +30,7 @@ public class OrcamentoApplicationService implements OrcamentoService {
         // verifica se existe o serviço
         Servico servico = servicoRepository.getById(orcamentoRequest.getIdServico());
         //valida se a opcao de categoria e tipo de serviço é valida
+        ValidaParcelamento.validarTipoPagamentoETotalParcelas(orcamentoRequest.getTipoPagamento(), orcamentoRequest.getQuantidadeParcelas());
         ValidaCategoria.isCombinationValid(orcamentoRequest.getTipoServico(),servico.getCategoria());
         //cria o orçamento com os dados do cliente, serviço e dados do orçamento
         Orcamento orcamento = orcamentoRepository.salvaOrcamento(new Orcamento(cliente,servico,orcamentoRequest));
