@@ -2,9 +2,11 @@ package com.rlti.autoescola.matricula.application.service;
 
 import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.cliente.domain.Cliente;
+import com.rlti.autoescola.handler.validacoes.ValidaParcelamento;
 import com.rlti.autoescola.matricula.application.api.*;
 import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
 import com.rlti.autoescola.matricula.domain.Matricula;
+import com.rlti.autoescola.matricula.domain.ValidaCategoria;
 import com.rlti.autoescola.servico.application.repository.ServicoRepository;
 import com.rlti.autoescola.servico.domain.Servico;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +28,8 @@ public class MatriculaApplicationService implements MatriculaService{
         log.info("[inicia] MatriculaApplicationService - criaNovaMatricula");
         Cliente cliente = clienteRepository.buscaClientePorId(matriculaRequest.getIdCliente());
         Servico servico = servicoRepository.getById(matriculaRequest.getIdServico());
+        ValidaParcelamento.validarTipoPagamentoETotalParcelas(matriculaRequest.getTipoPagamento(), matriculaRequest.getQuantidadeParcelas());
+        ValidaCategoria.isCombinationValid(matriculaRequest.getTipoServico(),servico.getCategoria());
         Matricula matricula = matriculaRepository.salva(new Matricula(cliente, servico,matriculaRequest));
         log.info("[finaliza] MatriculaApplicationService - criaNovaMatricula");
         return MatriculaResponse

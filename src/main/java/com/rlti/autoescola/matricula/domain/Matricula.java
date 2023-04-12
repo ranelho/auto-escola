@@ -13,6 +13,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -45,6 +47,8 @@ public class Matricula {
     private TipoPagamento tipoPagamento;
     private Double valorEntrada;
     private int desconto;
+    @Min(value = 1, message = "O valor mínimo é 1")
+    @Max(value = 12, message = "O valor máximo é 12")
     private int quantidadeParcelas;
     private BigDecimal valorFinal;
     private LocalDate dataMatricula = LocalDate.now();
