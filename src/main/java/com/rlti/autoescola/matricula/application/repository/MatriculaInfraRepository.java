@@ -48,6 +48,3 @@ public class MatriculaInfraRepository implements MatriculaRepository {
         log.info("[finaliza] MatriculaInfraRepository - deletaMatricula");
     }
 }
-
-
-
