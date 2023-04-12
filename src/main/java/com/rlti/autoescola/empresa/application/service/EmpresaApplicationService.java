@@ -49,8 +49,7 @@ public class EmpresaApplicationService implements EmpresaService{
     @Override
     public void deletaEmpresaAtravesId(UUID idEmpresa) {
         log.info("[inicia] EmpresaApplicationService - deletaEmpresaAtravesId");
-        Empresa empresa = empresaRepository.buscaEmpresaAtravesId(idEmpresa);
-        empresaRepository.deletaEmpresa(empresa);
+        empresaRepository.deletaEmpresa(empresaRepository.buscaEmpresaAtravesId(idEmpresa).getIdEmpresa());
         log.info("[finaliza] EmpresaApplicationService - deletaEmpresaAtravesId");
     }
 

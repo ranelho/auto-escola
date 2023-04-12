@@ -9,20 +9,18 @@ import java.util.UUID;
 
 @Value
 public class ClienteResponse {
-    private final UUID idCliente;
-    private final String cpf;
-    private final String firstName;
-    private final String lastName;
-    private final LocalDate dataNascimento;
-    private final String naturalidade;
-    private final String nacionalidade;
-    private final EstadoCivil estadoCivil;
+    UUID idCliente;
+    String cpf;
+    String fullName;
+    LocalDate dataNascimento;
+    String naturalidade;
+    String nacionalidade;
+    EstadoCivil estadoCivil;
 
     public ClienteResponse(Cliente cliente) {
         this.idCliente = cliente.getIdCliente();
         this.cpf = cliente.getCpf();
-        this.firstName = cliente.getFirstName();
-        this.lastName = cliente.getLastName();
+        this.fullName = cliente.getFullName();
         this.dataNascimento = cliente.getDataNascimento();
         this.naturalidade = cliente.getNaturalidade();
         this.nacionalidade = cliente.getNacionalidade();

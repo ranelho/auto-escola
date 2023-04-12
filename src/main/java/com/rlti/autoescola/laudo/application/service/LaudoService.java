@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface LaudoService {
     LaudoIdResponse postLaudo(UUID idMatricula, LaudoRequest request);
-    LaudoResponse getLaudoByMatricula(UUID idMatricula);
-    void update(UUID idMatricula, LaudoRequest request);
+    LaudoResponse getLaudoById(Long idLaudo);
+    void update(Long idLaudo, LaudoRequest request);
     void deleta(Long idLaudo);
 }

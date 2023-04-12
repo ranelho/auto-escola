@@ -52,9 +52,9 @@ public class EmpresaInfraRepository implements EmpresaRepository {
         return empresa;
     }
     @Override
-    public void deletaEmpresa(Empresa empresa) {
+    public void deletaEmpresa(UUID idEmpresa) {
         log.info("[inicia] EmpresaInfraRepository - deletaEmpresa");
-        empresaSpringDataJPARepository.delete(empresa);
+        empresaSpringDataJPARepository.deleteById(idEmpresa);
         log.info("[finaliza] EmpresaInfraRepository - deletaEmpresa");
     }
 }

@@ -22,17 +22,17 @@ public class LaudoRestController implements LaudoApi {
     }
 
     @Override
-    public LaudoResponse getLaudoByMatricula(UUID idMatricula) {
+    public LaudoResponse getLaudoById(Long idLaudo) {
         log.info("[inicia] - LaudoRestController - postLaudo");
-        LaudoResponse response = laudoService.getLaudoByMatricula(idMatricula);
+        LaudoResponse response = laudoService.getLaudoById(idLaudo);
         log.info("[finaliza] - LaudoRestController - postLaudo");
-        return null;
+        return response;
     }
 
     @Override
-    public void update(UUID idMatricula,LaudoRequest request) {
+    public void update(Long idLaudo,LaudoRequest request) {
         log.info("[inicia] - LaudoRestController - postLaudo");
-        laudoService.update(idMatricula,request);
+        laudoService.update(idLaudo, request);
         log.info("[finaliza] - LaudoRestController - postLaudo");
     }
 
@@ -41,5 +41,10 @@ public class LaudoRestController implements LaudoApi {
         log.info("[inicia] - LaudoRestController - postLaudo");
         laudoService.deleta(idLaudo);
         log.info("[finaliza] - LaudoRestController - postLaudo");
+    }
+
+    @Override
+    public LaudoResponseMatricula getLaudoById(UUID idMatricula) {
+        return null;
     }
 }

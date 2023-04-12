@@ -17,8 +17,7 @@ public class ClienteRequest {
     @CPF(groups = PessoaFisica.class, message = "CPF inválido!")
     private String cpf;
     @NotNull(message = "Campo Obrigatório!")
-    private String firstName;
-    private String lastName;
+    private String fullName;
     private LocalDate dataNascimento;
     private String naturalidade;
     private String nacionalidade;

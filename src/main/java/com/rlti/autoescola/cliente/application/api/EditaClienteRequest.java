@@ -10,7 +10,6 @@ import java.time.LocalDate;
 public class EditaClienteRequest {
     @NotNull(message = "Campo Obrigatório!")
     private String firstName;
-    private String lastName;
     private LocalDate dataNascimento;
     private String naturalidade;
     private String nacionalidade;

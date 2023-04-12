@@ -23,12 +23,19 @@ public class Laudo {
     @Column(unique = true, updatable = true)
     private String renach;         /* BA512150325 */
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "matricula_id")
     @JsonIgnore
     private Matricula matricula;
 
-    public Laudo(LaudoRequest request) {
+    public Laudo(Matricula matricula, LaudoRequest request) {
+        this.matricula = matricula;
+        this.dataEmissao =  request.getDataEmissao();
+        this.validade = request.getDataEmissao().plusYears(1);
+        this.renach = request.getRenach().toUpperCase();
+    }
+
+    public void update(LaudoRequest request) {
         this.dataEmissao =  request.getDataEmissao();
         this.validade = request.getDataEmissao().plusYears(1);
         this.renach = request.getRenach().toUpperCase();

@@ -3,6 +3,7 @@ package com.rlti.autoescola.laudo.infra;
 import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.laudo.application.repository.LaudoRepository;
 import com.rlti.autoescola.laudo.domain.Laudo;
+import com.rlti.autoescola.matricula.domain.Matricula;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -30,19 +31,19 @@ public class LaudoInfraRepository implements LaudoRepository {
     }
 
     @Override
-    public Laudo getById(Long idLaudo) {
-        log.info("[inicia] LaudoInfraRepository - getById");
-        Optional<Laudo> optionalLaudo = laudoSpringJPARespository.findById(idLaudo);
-        Laudo laudo = optionalLaudo
-                .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST, "Laudo não encontrado"));
-        log.info("[finaliza] LaudoInfraRepository - getById");
-        return laudo;
-    }
-
-    @Override
     public void deleta(Long idLaudo) {
         log.info("[inicia] LaudoInfraRepository - deleta");
         laudoSpringJPARespository.deleteById(idLaudo);
         log.info("[finaliza] LaudoInfraRepository - deleta");
+    }
+
+    @Override
+    public Laudo getLaudoById(Long idLaudo) {
+        log.info("[inicia] LaudoInfraRepository - getLaudoById");
+        Optional<Laudo> optionalLaudo = laudoSpringJPARespository.findById(idLaudo);
+        Laudo laudo = optionalLaudo
+                .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST, "Laudo não encontrado"));
+        log.info("[finaliza] LaudoInfraRepository - getLaudoById");
+        return laudo;
     }
 }

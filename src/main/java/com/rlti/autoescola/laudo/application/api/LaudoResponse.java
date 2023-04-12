@@ -10,7 +10,7 @@ public class LaudoResponse {
     Long idLaudo;
     String renach;
     String cpf;
-    String firstName;
+    String fullName;
     LocalDate dataEmissao;
     LocalDate validade;
     String servico;
@@ -19,7 +19,7 @@ public class LaudoResponse {
         this.idLaudo = laudo.getIdLaudo();
         this.renach = laudo.getRenach();
         this.cpf = laudo.getMatricula().getCliente().getCpf();
-        this.firstName = laudo.getMatricula().getCliente().getFirstName();
+        this.fullName = laudo.getMatricula().getCliente().getFullName();
         this.dataEmissao = laudo.getDataEmissao();
         this.validade = laudo.getValidade();
         this.servico = laudo.getMatricula().getServico().getCategoria().toString();

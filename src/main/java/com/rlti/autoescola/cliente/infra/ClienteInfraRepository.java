@@ -2,7 +2,6 @@ package com.rlti.autoescola.cliente.infra;
 
 import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.cliente.domain.Cliente;
-import com.rlti.autoescola.contato.domain.Contato;
 import com.rlti.autoescola.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -57,12 +56,10 @@ public class ClienteInfraRepository implements ClienteRepository {
         log.info("[finaliza] ClienteInfraRepository - deletaCliente");
     }
     @Override
-    public Cliente buscaClientePorCPF(String cpf) {
+    public Optional<Cliente> buscaClientePorCPF(String cpf) {
         log.info("[inicia] ClienteInfraRepository - buscaClientePorCPF");
         Optional<Cliente> clienteOptional = clienteSpringDataJPARepository.findByCpf(cpf);
-        Cliente cliente = clienteOptional.orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,
-                "Cliente não encontrado!"));
         log.info("[finaliza] ClienteInfraRepository - buscaClientePorCPF");
-        return cliente;
+        return clienteOptional;
     }
 }

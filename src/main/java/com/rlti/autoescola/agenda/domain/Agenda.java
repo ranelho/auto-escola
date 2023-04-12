@@ -3,6 +3,7 @@ package com.rlti.autoescola.agenda.domain;
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 import com.rlti.autoescola.instrutor.domain.Instrutor;
+import com.rlti.autoescola.matricula.domain.Matricula;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,8 +26,8 @@ public class Agenda {
     private Instrutor instrutor;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
+    @JoinColumn(name = "matricula_id")
+    private Matricula matricula;
 
     @OneToOne
     @JoinColumn(name = "veiculo_id")
