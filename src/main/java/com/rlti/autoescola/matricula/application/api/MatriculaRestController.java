@@ -4,7 +4,7 @@ import com.rlti.autoescola.matricula.application.service.MatriculaService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
-
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,5 +43,12 @@ public class MatriculaRestController implements MatriculaAPI{
         log.info("[inicia] MatriculaRestController - deletaMatriculaAtravesId");
         matriculaService.deletaMatriculaAtravesId(idMatricula);
         log.info("[finaliza] MatriculaRestController - deletaMatriculaAtravesId");
+    }
+
+    @Override
+    public void patchAlteraMatricula(UUID idMatricula, @Valid MatriculaAlteracaoRequest matriculaAlteracaoRequest) {
+        log.info("[inicia] MatriculaRestController - patchAlteraMatricula");
+        matriculaService.patchAlteraMatricula(idMatricula, matriculaAlteracaoRequest);
+        log.info("[finaliza] MatriculaRestController - patchAlteraMatricula");
     }
 }

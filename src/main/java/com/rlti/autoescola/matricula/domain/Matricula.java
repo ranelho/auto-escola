@@ -3,6 +3,7 @@ package com.rlti.autoescola.matricula.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.laudo.domain.Laudo;
+import com.rlti.autoescola.matricula.application.api.MatriculaAlteracaoRequest;
 import com.rlti.autoescola.matricula.application.api.MatriculaRequest;
 import com.rlti.autoescola.orcamento.domain.Orcamento;
 import com.rlti.autoescola.pagamento.domain.Pagamento;
@@ -12,6 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -61,11 +63,18 @@ public class Matricula {
     public Matricula(Cliente cliente, Servico servico,  MatriculaRequest matriculaRequest) {
         this.cliente = cliente;
         this.servico = servico;
-        //this.orcamento = orcamento;
         this.tipoPagamento = matriculaRequest.getTipoPagamento();
         this.valorEntrada = matriculaRequest.getValorEntrada();
         this.desconto = matriculaRequest.getDesconto();
         this.quantidadeParcelas = matriculaRequest.getQuantidadeParcelas();
         this.observacao = matriculaRequest.getObservacao();
+    }
+
+    public void altera(MatriculaAlteracaoRequest matriculaAlteracaoRequest) {
+        this.tipoPagamento = matriculaAlteracaoRequest.getTipoPagamento();
+        this.valorEntrada = matriculaAlteracaoRequest.getValorEntrada();
+        this.desconto = matriculaAlteracaoRequest.getDesconto();
+        this.quantidadeParcelas = matriculaAlteracaoRequest.getQuantidadeParcelas();
+        this.observacao = matriculaAlteracaoRequest.getObservacao();
     }
 }

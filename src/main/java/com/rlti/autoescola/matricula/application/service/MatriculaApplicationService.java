@@ -2,10 +2,7 @@ package com.rlti.autoescola.matricula.application.service;
 
 import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.cliente.domain.Cliente;
-import com.rlti.autoescola.matricula.application.api.MatriculaDetalhadoResponse;
-import com.rlti.autoescola.matricula.application.api.MatriculaListResponse;
-import com.rlti.autoescola.matricula.application.api.MatriculaRequest;
-import com.rlti.autoescola.matricula.application.api.MatriculaResponse;
+import com.rlti.autoescola.matricula.application.api.*;
 import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.servico.application.repository.ServicoRepository;
@@ -59,5 +56,14 @@ public class MatriculaApplicationService implements MatriculaService{
         Matricula matricula = matriculaRepository.matriculaAtravesId(idMatricula);
         matriculaRepository.deletaMatricula(matricula);
         log.info("[finaliza] MatriculaApplicationService - deletaMatriculaAtravesId");
+    }
+
+    @Override
+    public void patchAlteraMatricula(UUID idMatricula, MatriculaAlteracaoRequest matriculaAlteracaoRequest) {
+        log.info("[inicia] MatriculaApplicationService - patchAlteraMatricula");
+        Matricula matricula = matriculaRepository.matriculaAtravesId(idMatricula);
+        matricula.altera(matriculaAlteracaoRequest);
+        matriculaRepository.salva(matricula);
+        log.info("[finaliza] MatriculaApplicationService - patchAlteraMatricula");
     }
 }
