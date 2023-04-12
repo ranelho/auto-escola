@@ -6,8 +6,12 @@ import com.rlti.autoescola.cliente.application.api.EditaClienteRequest;
 import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.cliente.application.api.ClienteRequest;
+import com.rlti.autoescola.contato.application.repository.ContatoRepository;
+import com.rlti.autoescola.contato.application.service.ContatoService;
+import com.rlti.autoescola.contato.domain.Contato;
 import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.handler.validacoes.ValidaCpfouCnpj;
+import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -23,11 +27,11 @@ import java.util.UUID;
 public class ClienteApplicationService implements ClienteService {
 
     private final ClienteRepository clienteRepository;
+    private final ContatoService contatoService;
 
     @Override
     public ClienteResponse criaNovoCliente(ClienteRequest clienteRequest) {
         log.info("[inicia] ClienteApplicationService - criaNovoCliente");
-        log.info("cpf - {}", clienteRequest.getCpf());
         Cliente cliente = clienteRepository.salva(new Cliente(clienteRequest));
         log.info("[finaliza] ClienteApplicationService - criaNovoCliente");
         return new ClienteResponse(cliente);
@@ -69,5 +73,18 @@ public class ClienteApplicationService implements ClienteService {
                 .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,"Cliente não encontrado!"));;
         log.info("[finaliza] ClienteApplicationService - buscaClientePorCPF");
         return new ClienteResponse(cliente);
+    }
+
+    @Override
+    public Cliente verificaCliente(OrcamentoRequest orcamentoRequest) {
+        log.info("[inicia] ClienteApplicationService - verificaCliente");
+        //busca no banco
+        Optional<Cliente> clienteOptional = clienteRepository.buscaClientePorCPF(orcamentoRequest.getCpf());
+        //caso cliente nao econtrado cria o cliente
+        Cliente cliente = clienteOptional.orElseGet(() -> clienteRepository.salva(new Cliente(orcamentoRequest)));
+        //chama verificação se existe um contato para o cliente
+        contatoService.verificaContato(cliente, orcamentoRequest);
+        log.info("[inicia] ClienteApplicationService - verificaCliente");
+        return cliente;
     }
 }

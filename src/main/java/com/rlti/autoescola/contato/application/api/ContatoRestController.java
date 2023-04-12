@@ -25,7 +25,6 @@ public class ContatoRestController implements ContatoApi {
     @Override
     public ContatoResponse buscaContatoPorId(UUID idContato) {
         log.info("[inicia] ContatoRestController - buscaContatoPorId");
-        log.info("[idContato] {}", idContato);
         ContatoResponse buscaContato = contatoService.buscaContatoPorId(idContato);
         log.info("[finaliza] ContatoRestController - buscaContatoPorId");
         return buscaContato;
@@ -40,7 +39,6 @@ public class ContatoRestController implements ContatoApi {
     @Override
     public void deletaContatoPorId(UUID idContato) {
         log.info("[inicia] ContatoRestController - deletaContatoPorId");
-        log.info("[idContato] {}", idContato);
         contatoService.deletaContatoPorId(idContato);
         log.info("[finaliza] ContatoRestController - deletaContatoPorId");
     }
