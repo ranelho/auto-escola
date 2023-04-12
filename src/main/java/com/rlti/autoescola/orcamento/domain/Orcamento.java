@@ -40,7 +40,7 @@ public class Orcamento {
     private Double valorEntrada;
     private int desconto;
     @Min(value = 1, message = "O valor mínimo é 1")
-    @Max(value = 20, message = "O valor máximo é 20")
+    @Max(value = 12, message = "O valor máximo é 12")
     private int quantidadeParcelas;
     private String observacao;
     private LocalDate validade = dataOrcamento.plusDays(5);
