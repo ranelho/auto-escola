@@ -2,6 +2,7 @@ package com.rlti.autoescola.matricula.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.cliente.domain.Cliente;
+import com.rlti.autoescola.handler.validacoes.CalcularDesconto;
 import com.rlti.autoescola.laudo.domain.Laudo;
 import com.rlti.autoescola.matricula.application.api.MatriculaAlteracaoRequest;
 import com.rlti.autoescola.matricula.application.api.MatriculaRequest;
@@ -11,9 +12,7 @@ import com.rlti.autoescola.servico.domain.Servico;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -51,7 +50,6 @@ public class Matricula {
     private LocalDate dataMatricula = LocalDate.now();
     private String observacao;
 
-
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "matricula")
     @JsonIgnore
     private List<Pagamento> pagamentos;
@@ -68,6 +66,7 @@ public class Matricula {
         this.desconto = matriculaRequest.getDesconto();
         this.quantidadeParcelas = matriculaRequest.getQuantidadeParcelas();
         this.observacao = matriculaRequest.getObservacao();
+        this.valorFinal = CalcularDesconto.calcularValorFinal(matriculaRequest.getDesconto(), servico.getValorServico());
     }
 
     public void altera(MatriculaAlteracaoRequest matriculaAlteracaoRequest) {

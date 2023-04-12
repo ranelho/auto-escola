@@ -3,7 +3,6 @@ package com.rlti.autoescola.matricula.application.api;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import lombok.Value;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
