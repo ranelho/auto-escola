@@ -23,7 +23,7 @@ public class Laudo {
     @Column(unique = true, updatable = true)
     private String renach;         /* BA512150325 */
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "matricula_id")
     @JsonIgnore
     private Matricula matricula;

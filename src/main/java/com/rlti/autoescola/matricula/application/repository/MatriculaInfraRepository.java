@@ -8,6 +8,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -35,7 +36,8 @@ public class MatriculaInfraRepository implements MatriculaRepository {
     @Override
     public Matricula matriculaAtravesId(UUID idMatricula) {
         log.info("[inicia] MatriculaInfraRepository - matriculaAtravesId");
-        Matricula matricula = matriculaSpringDataJPARepository.findById(idMatricula)
+        Optional<Matricula> matriculaOptional = matriculaSpringDataJPARepository.findById(idMatricula);
+        Matricula matricula = matriculaOptional
                 .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Matricula não encontrado!"));
         log.info("[finaliza] MatriculaInfraRepository - matriculaAtravesId");
         return matricula;

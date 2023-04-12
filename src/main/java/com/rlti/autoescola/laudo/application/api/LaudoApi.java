@@ -14,9 +14,9 @@ public interface LaudoApi {
     @ResponseStatus(code = HttpStatus.ACCEPTED)
     LaudoIdResponse postLaudo(@PathVariable UUID idMatricula, @Valid @RequestBody LaudoRequest request);
 
-    @GetMapping("{idMatricula}")
+    @GetMapping("{idLaudo}")
     @ResponseStatus(code = HttpStatus.OK)
-    LaudoResponse getLaudoByMatricula(@PathVariable UUID idMatricula);
+    LaudoResponse getLaudoById(@PathVariable Long idLaudo);
 
     @PutMapping("/update/{idLaudo}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
@@ -25,4 +25,8 @@ public interface LaudoApi {
     @DeleteMapping("{idLaudo}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void deleta(@PathVariable Long idLaudo);
+
+    @GetMapping("/matricula/{idMatricula}")
+    @ResponseStatus(code = HttpStatus.OK)
+    LaudoResponseMatricula getLaudoById(@PathVariable UUID idMatricula);
 }

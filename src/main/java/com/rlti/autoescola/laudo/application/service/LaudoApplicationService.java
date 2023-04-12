@@ -30,17 +30,17 @@ public class LaudoApplicationService implements LaudoService {
     }
 
     @Override
-    public LaudoResponse getLaudoByMatricula(UUID idMatricula) {
-        log.info("[inicia] LaudoApplicationService -  getLaudoByMatricula");
-        Laudo laudo = laudoRepository.getLaudoByMatricula(matriculaRepository.matriculaAtravesId(idMatricula));
-        log.info("[finaliza] LaudoApplicationService -  getLaudoByMatricula");
-        return null;
+    public LaudoResponse getLaudoById(Long idLaudo) {
+        log.info("[inicia] LaudoApplicationService -  getLaudoById");
+        Laudo laudo = laudoRepository.getLaudoById(idLaudo);
+        log.info("[finaliza] LaudoApplicationService -  getLaudoById");
+        return new LaudoResponse(laudo);
     }
 
     @Override
     public void update(Long idLaudo, LaudoRequest request) {
         log.info("[inicia] LaudoApplicationService -  update");
-        Laudo laudo = laudoRepository.getById(idLaudo);
+        Laudo laudo = laudoRepository.getLaudoById(idLaudo);
         laudo.update(request);
         laudoRepository.salva(laudo);
         log.info("[finaliza] LaudoApplicationService -  update");
@@ -49,7 +49,7 @@ public class LaudoApplicationService implements LaudoService {
     @Override
     public void deleta(Long idLaudo) {
         log.info("[inicia] LaudoApplicationService -  deleta");
-        Laudo laudo = laudoRepository.getById(idLaudo);
+        Laudo laudo = laudoRepository.getLaudoById(idLaudo);
         laudoRepository.deleta(laudo.getIdLaudo());
         log.info("[finaliza] LaudoApplicationService -  deleta");
     }
