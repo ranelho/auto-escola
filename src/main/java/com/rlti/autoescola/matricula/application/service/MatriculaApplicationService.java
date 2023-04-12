@@ -29,7 +29,7 @@ public class MatriculaApplicationService implements MatriculaService{
         log.info("[inicia] MatriculaApplicationService - criaNovaMatricula");
         Cliente cliente = clienteRepository.buscaClientePorId(matriculaRequest.getIdCliente());
         Servico servico = servicoRepository.getById(matriculaRequest.getIdServico());
-        Matricula matricula = matriculaRepository.salva(new Matricula(cliente, servico, matriculaRequest));
+        Matricula matricula = matriculaRepository.salva(new Matricula(cliente, servico,matriculaRequest));
         log.info("[finaliza] MatriculaApplicationService - criaNovaMatricula");
         return MatriculaResponse
                 .builder()
@@ -49,7 +49,15 @@ public class MatriculaApplicationService implements MatriculaService{
     public MatriculaDetalhadoResponse matriculaAtravesId(UUID idMatricula) {
         log.info("[inicia] MatriculaApplicationService - matriculaAtravesId");
         Matricula matricula = matriculaRepository.matriculaAtravesId(idMatricula);
-        log.info("[finaliza] ClienteApplicationService - matriculaAtravesId");
+        log.info("[finaliza] MatriculaApplicationService - matriculaAtravesId");
         return new MatriculaDetalhadoResponse(matricula);
+    }
+
+    @Override
+    public void deletaMatriculaAtravesId(UUID idMatricula) {
+        log.info("[inicia] MatriculaApplicationService - deletaMatriculaAtravesId");
+        Matricula matricula = matriculaRepository.matriculaAtravesId(idMatricula);
+        matriculaRepository.deletaMatricula(matricula);
+        log.info("[finaliza] MatriculaApplicationService - deletaMatriculaAtravesId");
     }
 }

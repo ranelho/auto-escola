@@ -11,4 +11,6 @@ public interface MatriculaRepository {
     List<Matricula> buscaTodasMatriculas();
 
     Matricula matriculaAtravesId(UUID idMatricula);
+
+    void deletaMatricula(Matricula matricula);
 }

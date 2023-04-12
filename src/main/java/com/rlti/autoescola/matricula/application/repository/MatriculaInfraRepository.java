@@ -5,6 +5,7 @@ import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.matricula.infra.MatriculaSpringDataJPARepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
@@ -12,14 +13,19 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-@RequiredArgsConstructor
 @Log4j2
+@RequiredArgsConstructor
 public class MatriculaInfraRepository implements MatriculaRepository {
     private final MatriculaSpringDataJPARepository matriculaSpringDataJPARepository;
 
     @Override
     public Matricula salva(Matricula matricula) {
         log.info("[inicia] MatriculaInfraRepository - salva");
+        /*try {
+            matriculaSpringDataJPARepository.save(matricula);
+        } catch (DataIntegrityViolationException e) {
+            throw APIException.build(HttpStatus.BAD_REQUEST, "Existem dados duplicados", e);
+        }*/
         matriculaSpringDataJPARepository.save(matricula);
         log.info("[finaliza] MatriculaInfraRepository - salva");
         return matricula;
@@ -41,4 +47,14 @@ public class MatriculaInfraRepository implements MatriculaRepository {
         log.info("[finaliza] MatriculaInfraRepository - matriculaAtravesId");
         return matricula;
     }
+
+    @Override
+    public void deletaMatricula(Matricula matricula) {
+        log.info("[inicia] MatriculaInfraRepository - deletaMatricula");
+        matriculaSpringDataJPARepository.delete(matricula);
+        log.info("[finaliza] MatriculaInfraRepository - deletaMatricula");
+    }
 }
+
+
+

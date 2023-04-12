@@ -37,4 +37,11 @@ public class MatriculaRestController implements MatriculaAPI{
         log.info("[finaliza] MatriculaRestController - getMatriculaAtravesId");
         return matriculaDetalhadoResponse;
     }
+
+    @Override
+    public void deletaMatriculaAtravesId(UUID idMatricula) {
+        log.info("[inicia] MatriculaRestController - deletaMatriculaAtravesId");
+        matriculaService.deletaMatriculaAtravesId(idMatricula);
+        log.info("[finaliza] MatriculaRestController - deletaMatriculaAtravesId");
+    }
 }

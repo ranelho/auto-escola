@@ -15,4 +15,6 @@ public interface MatriculaService {
     List<MatriculaListResponse> buscaTodasMatriculas();
 
     MatriculaDetalhadoResponse matriculaAtravesId(UUID idMatricula);
+
+    void deletaMatriculaAtravesId(UUID idMatricula);
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.laudo.domain.Laudo;
 import com.rlti.autoescola.matricula.application.api.MatriculaRequest;
+import com.rlti.autoescola.orcamento.domain.Orcamento;
 import com.rlti.autoescola.pagamento.domain.Pagamento;
 import com.rlti.autoescola.servico.domain.Servico;
 import lombok.AllArgsConstructor;
@@ -30,10 +31,10 @@ public class Matricula {
     @JsonIgnore
     private Cliente cliente;
 
-    //@ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "orcamento_id")
-    //@JsonIgnore
-    //private Orcamento orcamento;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "orcamento_id")
+    @JsonIgnore
+    private Orcamento orcamento;
 
     @OneToOne
     @JsonIgnore
@@ -60,6 +61,7 @@ public class Matricula {
     public Matricula(Cliente cliente, Servico servico,  MatriculaRequest matriculaRequest) {
         this.cliente = cliente;
         this.servico = servico;
+        //this.orcamento = orcamento;
         this.tipoPagamento = matriculaRequest.getTipoPagamento();
         this.valorEntrada = matriculaRequest.getValorEntrada();
         this.desconto = matriculaRequest.getDesconto();
