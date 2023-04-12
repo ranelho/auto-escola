@@ -3,6 +3,7 @@ package com.rlti.autoescola.laudo.infra;
 import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.laudo.application.repository.LaudoRepository;
 import com.rlti.autoescola.laudo.domain.Laudo;
+import com.rlti.autoescola.matricula.domain.Matricula;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -44,5 +45,15 @@ public class LaudoInfraRepository implements LaudoRepository {
         log.info("[inicia] LaudoInfraRepository - deleta");
         laudoSpringJPARespository.deleteById(idLaudo);
         log.info("[finaliza] LaudoInfraRepository - deleta");
+    }
+
+    @Override
+    public Laudo getLaudoByMatricula(Matricula matricula) {
+        log.info("[inicia] LaudoInfraRepository - getLaudoByMatricula");
+        Optional<Laudo> optionalLaudo = laudoSpringJPARespository.findByMatricula(matricula);
+        Laudo laudo = optionalLaudo
+                .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST, "Laudo não encontrado"));
+        log.info("[finaliza] LaudoInfraRepository - getLaudoByMatricula");
+        return laudo;
     }
 }

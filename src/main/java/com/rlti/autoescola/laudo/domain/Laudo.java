@@ -34,4 +34,10 @@ public class Laudo {
         this.validade = request.getDataEmissao().plusYears(1);
         this.renach = request.getRenach().toUpperCase();
     }
+
+    public void update(LaudoRequest request) {
+        this.dataEmissao =  request.getDataEmissao();
+        this.validade = request.getDataEmissao().plusYears(1);
+        this.renach = request.getRenach().toUpperCase();
+    }
 }
