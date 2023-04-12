@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -26,7 +27,7 @@ public interface LaudoApi {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void deleta(@PathVariable Long idLaudo);
 
-    @GetMapping("/matricula/{idMatricula}")
+    @GetMapping("/all-laudos-matricula/{idMatricula}")
     @ResponseStatus(code = HttpStatus.OK)
-    LaudoResponseMatricula getLaudoById(@PathVariable UUID idMatricula);
+    List<LaudoResponse> getLaudoByMatricula(@PathVariable UUID idMatricula);
 }

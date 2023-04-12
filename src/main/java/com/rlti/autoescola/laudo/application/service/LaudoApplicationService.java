@@ -1,8 +1,6 @@
 package com.rlti.autoescola.laudo.application.service;
 
-import com.rlti.autoescola.laudo.application.api.LaudoIdResponse;
-import com.rlti.autoescola.laudo.application.api.LaudoRequest;
-import com.rlti.autoescola.laudo.application.api.LaudoResponse;
+import com.rlti.autoescola.laudo.application.api.*;
 import com.rlti.autoescola.laudo.application.repository.LaudoRepository;
 import com.rlti.autoescola.laudo.domain.Laudo;
 import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
@@ -11,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -52,5 +51,14 @@ public class LaudoApplicationService implements LaudoService {
         Laudo laudo = laudoRepository.getLaudoById(idLaudo);
         laudoRepository.deleta(laudo.getIdLaudo());
         log.info("[finaliza] LaudoApplicationService -  deleta");
+    }
+
+    @Override
+    public List<LaudoResponse> getLaudoByMatricula(UUID idMatricula) {
+        log.info("[inicia] LaudoApplicationService -  deleta");
+        Matricula matricula = matriculaRepository.matriculaAtravesId(idMatricula);
+        List<Laudo> laudos = laudoRepository.getLaudosByMatricula(matricula);
+        log.info("[finaliza] LaudoApplicationService -  deleta");
+        return LaudoResponse.converte(laudos);
     }
 }

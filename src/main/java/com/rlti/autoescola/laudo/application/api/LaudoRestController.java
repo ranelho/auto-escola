@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -44,7 +45,10 @@ public class LaudoRestController implements LaudoApi {
     }
 
     @Override
-    public LaudoResponseMatricula getLaudoById(UUID idMatricula) {
-        return null;
+    public List<LaudoResponse> getLaudoByMatricula(UUID idMatricula) {
+        log.info("[inicia] - LaudoRestController - getLaudoById");
+        List<LaudoResponse> laudoResponseMatricula = laudoService.getLaudoByMatricula(idMatricula);
+        log.info("[finaliza] - LaudoRestController - getLaudoById");
+        return laudoResponseMatricula;
     }
 }

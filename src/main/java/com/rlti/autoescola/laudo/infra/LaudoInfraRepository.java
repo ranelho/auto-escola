@@ -10,6 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -45,5 +46,13 @@ public class LaudoInfraRepository implements LaudoRepository {
                 .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST, "Laudo não encontrado"));
         log.info("[finaliza] LaudoInfraRepository - getLaudoById");
         return laudo;
+    }
+
+    @Override
+    public List<Laudo> getLaudosByMatricula(Matricula matricula) {
+        log.info("[inicia] LaudoInfraRepository - getLaudosByMatricula");
+        List<Laudo> laudos = laudoSpringJPARespository.findByMatricula(matricula);
+        log.info("[finaliza] LaudoInfraRepository - getLaudosByMatricula");
+        return laudos;
     }
 }

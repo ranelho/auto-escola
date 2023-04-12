@@ -4,6 +4,8 @@ import com.rlti.autoescola.laudo.domain.Laudo;
 import lombok.Value;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Value
 public class LaudoResponse {
@@ -23,5 +25,11 @@ public class LaudoResponse {
         this.dataEmissao = laudo.getDataEmissao();
         this.validade = laudo.getValidade();
         this.servico = laudo.getMatricula().getServico().getCategoria().toString();
+    }
+
+    public static List<LaudoResponse> converte(List<Laudo> laudos) {
+        return laudos.stream()
+                .map(LaudoResponse::new)
+                .collect((Collectors.toList()));
     }
 }
