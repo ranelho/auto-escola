@@ -2,6 +2,7 @@ package com.rlti.autoescola.pagamento.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.matricula.domain.Matricula;
+import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,10 +18,10 @@ import java.time.LocalDate;
 public class Pagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idFinanceiro;
-    private Situacao situacao;
-    private LocalDate dataPagamento;
-    private String parcela;
+    private Long idPagamento;
+    private LocalDate dataPagamento = LocalDate.now();
+    @Enumerated(EnumType.STRING)
+    private TipoPagamento tipoPagamento;
     private BigDecimal valorPago;
 
     @ManyToOne

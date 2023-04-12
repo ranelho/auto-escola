@@ -31,6 +31,7 @@ public class MatriculaApplicationService implements MatriculaService{
         ValidaParcelamento.validarTipoPagamentoETotalParcelas(matriculaRequest.getTipoPagamento(), matriculaRequest.getQuantidadeParcelas());
         ValidaCategoria.isCombinationValid(matriculaRequest.getTipoServico(),servico.getCategoria());
         Matricula matricula = matriculaRepository.salva(new Matricula(cliente, servico,matriculaRequest));
+
         log.info("[finaliza] MatriculaApplicationService - criaNovaMatricula");
         return MatriculaResponse
                 .builder()
