@@ -2,6 +2,7 @@ package com.rlti.autoescola.servico.application.service;
 
 import com.rlti.autoescola.servico.application.api.ServicoIdResponse;
 import com.rlti.autoescola.servico.application.api.ServicoRequest;
+import com.rlti.autoescola.servico.application.api.ServicoUpdateRequest;
 import com.rlti.autoescola.servico.application.repository.ServicoRepository;
 import com.rlti.autoescola.servico.domain.Servico;
 import lombok.RequiredArgsConstructor;
@@ -45,18 +46,18 @@ public class ServicoApplicationService implements ServicoService {
     }
 
     @Override
-    public void alteraServico(UUID idServico, ServicoRequest request) {
-        log.info("[inicia] ServicoApplicationService - alteraServico");
-        Servico servico = servicoRepository.getById(idServico);
-        servico.altera(request);
-        servicoRepository.salva(servico);
-        log.info("[finaliza] ServicoApplicationService - alteraServico");
-    }
-
-    @Override
     public void deletaServico(UUID idServico) {
         log.info("[inicia] ServicoApplicationService - deletaServico");
         servicoRepository.delete(servicoRepository.getById(idServico).getIdServico());
+        log.info("[finaliza] ServicoApplicationService - deletaServico");
+    }
+
+    @Override
+    public void updateServico(UUID idServico, ServicoUpdateRequest updateRequest) {
+        log.info("[inicia] ServicoApplicationService - deletaServico");
+        Servico servico = servicoRepository.getById(idServico);
+        servico.altera(updateRequest);
+        servicoRepository.salva(servico);
         log.info("[finaliza] ServicoApplicationService - deletaServico");
     }
 }

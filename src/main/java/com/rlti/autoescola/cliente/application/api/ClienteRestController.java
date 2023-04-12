@@ -18,7 +18,6 @@ public class ClienteRestController implements ClienteAPI {
     @Override
     public ClienteResponse criaCliente(ClienteRequest clienteRequest) {
         log.info("[inicia] ClienteRestController - criaCliente");
-        log.info("cpf - {}", clienteRequest.getCpf());
         ClienteResponse clienteCriado = clienteService.criaNovoCliente(clienteRequest);
         log.info("[finaliza] ClienteRestController - criaCliente");
         return clienteCriado;
@@ -26,7 +25,6 @@ public class ClienteRestController implements ClienteAPI {
     @Override
     public ClienteResponse buscaClientePorId(UUID idCliente) {
         log.info("[inicia] ClienteRestController - buscaClientePorId");
-        log.info("[idCliente] {}", idCliente);
         ClienteResponse buscaCliente = clienteService.buscaClientePorId(idCliente);
         log.info("[finaliza] ClienteRestController - buscaClientePorId");
         return buscaCliente;
@@ -48,7 +46,6 @@ public class ClienteRestController implements ClienteAPI {
     @Override
     public void deletaClientePorId(UUID idCliente) {
         log.info("[inicia] ClienteRestController - deletaClientePorId");
-        log.info("[idCliente] {}", idCliente);
         clienteService.deletaClientePorId(idCliente);
         log.info("[finaliza] ClienteRestController - deletaClientePorId");
     }

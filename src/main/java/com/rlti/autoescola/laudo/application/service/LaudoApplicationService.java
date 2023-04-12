@@ -5,6 +5,8 @@ import com.rlti.autoescola.laudo.application.api.LaudoRequest;
 import com.rlti.autoescola.laudo.application.api.LaudoResponse;
 import com.rlti.autoescola.laudo.application.repository.LaudoRepository;
 import com.rlti.autoescola.laudo.domain.Laudo;
+import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
+import com.rlti.autoescola.matricula.domain.Matricula;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -16,11 +18,13 @@ import java.util.UUID;
 @Log4j2
 public class LaudoApplicationService implements LaudoService {
     private final LaudoRepository laudoRepository;
+    private final MatriculaRepository matriculaRepository;
 
     @Override
     public LaudoIdResponse postLaudo(UUID idMatricula, LaudoRequest request) {
         log.info("[inicia] LaudoApplicationService -  postLaudo");
-        Laudo laudo = laudoRepository.salva(new Laudo(request));
+        Matricula matricula = matriculaRepository.matriculaAtravesId(idMatricula);
+        Laudo laudo = laudoRepository.salva(new Laudo(matricula, request));
         log.info("[finaliza] LaudoApplicationService -  postLaudo");
         return LaudoIdResponse.builder().idLaudo(laudo.getIdLaudo()).build();
     }

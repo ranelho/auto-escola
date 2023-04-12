@@ -28,7 +28,8 @@ public class Laudo {
     @JsonIgnore
     private Matricula matricula;
 
-    public Laudo(LaudoRequest request) {
+    public Laudo(Matricula matricula, LaudoRequest request) {
+        this.matricula = matricula;
         this.dataEmissao =  request.getDataEmissao();
         this.validade = request.getDataEmissao().plusYears(1);
         this.renach = request.getRenach().toUpperCase();
