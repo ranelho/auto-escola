@@ -12,6 +12,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -35,12 +37,14 @@ public class Orcamento {
 
     @Enumerated(EnumType.STRING)
     private TipoPagamento tipoPagamento;
-    protected LocalDate dataOrcamento;
+    protected LocalDate dataOrcamento = LocalDate.now();
     private Double valorEntrada;
     private int desconto;
+    @Min(value = 1, message = "O valor mínimo é 1")
+    @Max(value = 20, message = "O valor máximo é 20")
     private int quantidadeParcelas;
     private String observacao;
-    private LocalDate validade;
+    private LocalDate validade = dataOrcamento.plusDays(5);
     private BigDecimal valorFinal;
 
     @Enumerated(EnumType.STRING)
@@ -50,12 +54,10 @@ public class Orcamento {
         this.cliente = cliente;
         this.servico = servico;
         this.tipoPagamento = orcamentoRequest.getTipoPagamento();
-        this.dataOrcamento = orcamentoRequest.getDataOrcamento();
         this.valorEntrada = orcamentoRequest.getValorEntrada();
         this.desconto = orcamentoRequest.getDesconto();
         this.quantidadeParcelas = orcamentoRequest.getQuantidadeParcelas();
         this.observacao = orcamentoRequest.getObservacao();
-        this.validade = orcamentoRequest.getDataOrcamento().plusDays(5);
         this.valorFinal = CalcularDesconto.calcularValorFinal(orcamentoRequest.getDesconto(), servico.getValorServico());
         this.tipoServico = orcamentoRequest.getTipoServico();
     }
