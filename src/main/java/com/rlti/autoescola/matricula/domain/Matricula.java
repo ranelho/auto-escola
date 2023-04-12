@@ -48,6 +48,8 @@ public class Matricula {
     private BigDecimal valorFinal;
     private LocalDate dataMatricula = LocalDate.now();
     private String observacao;
+    @Enumerated(EnumType.STRING)
+    private TipoServico tipoServico;
 
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "matricula")
     @JsonIgnore
@@ -66,6 +68,7 @@ public class Matricula {
         this.quantidadeParcelas = matriculaRequest.getQuantidadeParcelas();
         this.observacao = matriculaRequest.getObservacao();
         this.valorFinal = CalcularDesconto.calcularValorFinal(matriculaRequest.getDesconto(), servico.getValorServico());
+        this.tipoServico = matriculaRequest.getTipoServico();
     }
 
     public void altera(MatriculaAlteracaoRequest matriculaAlteracaoRequest) {
