@@ -34,11 +34,6 @@ public class Matricula {
     @JsonIgnore
     private Cliente cliente;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "orcamento_id")
-    @JsonIgnore
-    private Orcamento orcamento;
-
     @OneToOne
     @JsonIgnore
     private Servico servico;
@@ -58,9 +53,9 @@ public class Matricula {
     @JsonIgnore
     private List<Pagamento> pagamentos;
 
-    @OneToOne
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "matricula")
     @JsonIgnore
-    private Laudo laudo;
+    private List<Laudo> laudo;
 
     public Matricula(Cliente cliente, Servico servico,  MatriculaRequest matriculaRequest) {
         this.cliente = cliente;

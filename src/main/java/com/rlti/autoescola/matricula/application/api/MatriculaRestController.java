@@ -33,6 +33,7 @@ public class MatriculaRestController implements MatriculaAPI{
     @Override
     public MatriculaDetalhadoResponse getMatriculaAtravesId(UUID idMatricula) {
         log.info("[inicia] MatriculaRestController - getMatriculaAtravesId");
+        log.info("idMatricula {}", idMatricula);
         MatriculaDetalhadoResponse matriculaDetalhadoResponse = matriculaService.matriculaAtravesId(idMatricula);
         log.info("[finaliza] MatriculaRestController - getMatriculaAtravesId");
         return matriculaDetalhadoResponse;
