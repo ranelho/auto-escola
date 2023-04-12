@@ -22,8 +22,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Entity
 @GroupSequenceProvider(value = ClienteGroupSequenceProvider.class)

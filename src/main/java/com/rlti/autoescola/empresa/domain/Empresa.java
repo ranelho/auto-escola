@@ -18,16 +18,16 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
 @Getter
 @Entity
 @GroupSequenceProvider(value = EmpresaGroupSequenceProvider.class)
 public class Empresa {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID idEmpresa;
+     UUID idEmpresa;
     @NotBlank
-    private String razaoSocial;
+     String razaoSocial;
     @NotBlank
     private String nomeFantasia;
     @NotBlank
