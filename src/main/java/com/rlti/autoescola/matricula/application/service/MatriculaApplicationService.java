@@ -2,18 +2,21 @@ package com.rlti.autoescola.matricula.application.service;
 
 import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.cliente.domain.Cliente;
-import com.rlti.autoescola.handler.validacoes.ValidaParcelamento;
 import com.rlti.autoescola.matricula.application.api.*;
 import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
 import com.rlti.autoescola.matricula.domain.Matricula;
-import com.rlti.autoescola.matricula.domain.ValidaCategoria;
 import com.rlti.autoescola.servico.application.repository.ServicoRepository;
 import com.rlti.autoescola.servico.domain.Servico;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.UUID;
+
+import static com.rlti.autoescola.handler.validacoes.CalcularDesconto.validaEntrada;
+import static com.rlti.autoescola.handler.validacoes.ValidaParcelamento.validarTipoPagamentoETotalParcelas;
+import static com.rlti.autoescola.matricula.domain.ValidaCategoria.isCombinationValid;
 
 @Service
 @Log4j2
@@ -24,18 +27,16 @@ public class MatriculaApplicationService implements MatriculaService{
     private final ServicoRepository servicoRepository;
 
     @Override
-    public MatriculaResponse criaNovaMatricula(MatriculaRequest matriculaRequest) {
+    public MatriculaResponse criaNovaMatricula(MatriculaRequest request) {
         log.info("[inicia] MatriculaApplicationService - criaNovaMatricula");
-        Cliente cliente = clienteRepository.buscaClientePorId(matriculaRequest.getIdCliente());
-        Servico servico = servicoRepository.getById(matriculaRequest.getIdServico());
-        ValidaParcelamento.validarTipoPagamentoETotalParcelas(matriculaRequest.getTipoPagamento(), matriculaRequest.getQuantidadeParcelas());
-        ValidaCategoria.isCombinationValid(matriculaRequest.getTipoServico(),servico.getCategoria());
-        Matricula matricula = matriculaRepository.salva(new Matricula(cliente, servico,matriculaRequest));
+        Cliente cliente = clienteRepository.buscaClientePorId(request.getIdCliente());
+        Servico servico = servicoRepository.getById(request.getIdServico());
+        isCombinationValid(request.getTipoServico(),servico.getCategoria());
+        validarTipoPagamentoETotalParcelas(request.getTipoPagamento(), request.getQuantidadeParcelas());
+        validaEntrada(request.getValorEntrada(), servico.getValorServico(), request.getDesconto());
+        Matricula matricula = matriculaRepository.salva(new Matricula(cliente, servico,request));
         log.info("[finaliza] MatriculaApplicationService - criaNovaMatricula");
-        return MatriculaResponse
-                .builder()
-                .idMatricula(matricula.getIdMatricula())
-                .build();
+        return MatriculaResponse.builder().idMatricula(matricula.getIdMatricula()).build();
     }
 
     @Override

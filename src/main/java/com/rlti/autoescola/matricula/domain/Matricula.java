@@ -20,6 +20,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
+import static com.rlti.autoescola.handler.validacoes.CalcularDesconto.*;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -40,7 +42,7 @@ public class Matricula {
 
     @Enumerated(EnumType.STRING)
     private TipoPagamento tipoPagamento;
-    private Double valorEntrada;
+    private BigDecimal valorEntrada;
     private int desconto;
     @Min(value = 1, message = "O valor mínimo é 1")
     @Max(value = 12, message = "O valor máximo é 12")
@@ -66,8 +68,8 @@ public class Matricula {
         this.valorEntrada = matriculaRequest.getValorEntrada();
         this.desconto = matriculaRequest.getDesconto();
         this.quantidadeParcelas = matriculaRequest.getQuantidadeParcelas();
-        this.observacao = matriculaRequest.getObservacao();
-        this.valorFinal = CalcularDesconto.calcularValorFinal(matriculaRequest.getDesconto(), servico.getValorServico());
+        this.observacao = matriculaRequest.getObservacao().toUpperCase();
+        this.valorFinal = calcularValorFinal(matriculaRequest.getDesconto(), servico.getValorServico());
         this.tipoServico = matriculaRequest.getTipoServico();
     }
 
@@ -76,6 +78,6 @@ public class Matricula {
         this.valorEntrada = matriculaAlteracaoRequest.getValorEntrada();
         this.desconto = matriculaAlteracaoRequest.getDesconto();
         this.quantidadeParcelas = matriculaAlteracaoRequest.getQuantidadeParcelas();
-        this.observacao = matriculaAlteracaoRequest.getObservacao();
+        this.observacao = matriculaAlteracaoRequest.getObservacao().toUpperCase();
     }
 }

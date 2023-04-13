@@ -37,7 +37,7 @@ public class Orcamento {
     @Enumerated(EnumType.STRING)
     private TipoPagamento tipoPagamento;
     protected LocalDate dataOrcamento = LocalDate.now();
-    private Double valorEntrada;
+    private BigDecimal valorEntrada;
     private int desconto;
     @Min(value = 1, message = "O valor mínimo é 1")
     @Max(value = 12, message = "O valor máximo é 12")

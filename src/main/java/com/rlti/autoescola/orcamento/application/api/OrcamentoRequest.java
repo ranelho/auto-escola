@@ -7,6 +7,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.*;
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Data
@@ -21,7 +22,7 @@ public class OrcamentoRequest {
     String telefone;
     UUID idServico;
     TipoPagamento tipoPagamento;
-    Double valorEntrada;
+    BigDecimal valorEntrada;
     int desconto;
     @Min(value = 1, message = "O valor mínimo é 1")
     @Max(value = 12, message = "O valor máximo é 12")

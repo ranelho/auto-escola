@@ -14,7 +14,7 @@ public class OrcamentoResponse {
     String fullName;
     TipoPagamento tipoPagamento;
     LocalDate dataOrcamento;
-    Double valorEntrada;
+    BigDecimal valorEntrada;
     int desconto;
     int quantidadeParcelas;
     String observacao;

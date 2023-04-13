@@ -12,7 +12,7 @@ public class MatriculaDetalhadoResponse {
     UUID idMatricula;
     String cpf;
     TipoPagamento tipoPagamento;
-    Double valorEntrada;
+    BigDecimal valorEntrada;
     int desconto;
     int quantidadeParcelas;
     BigDecimal valorFinal;

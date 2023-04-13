@@ -14,6 +14,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import static com.rlti.autoescola.handler.validacoes.CalcularDesconto.validaEntrada;
+import static com.rlti.autoescola.handler.validacoes.ValidaParcelamento.*;
+import static com.rlti.autoescola.matricula.domain.ValidaCategoria.*;
+
 @Service
 @Log4j2
 @RequiredArgsConstructor
@@ -23,17 +27,18 @@ public class OrcamentoApplicationService implements OrcamentoService {
     private final OrcamentoRepository orcamentoRepository;
 
     @Override
-    public OrcamentoResponse criaNovoOrcamento(OrcamentoRequest orcamentoRequest) {
+    public OrcamentoResponse criaNovoOrcamento(OrcamentoRequest request) {
         log.info("[inicia] OrcamentoApplicationService - criaNovoOrcamento");
         // busca cliente e valida se existe ou nao, caso nao tenha cria
-        Cliente cliente = clienteService.verificaCliente(orcamentoRequest);
+        Cliente cliente = clienteService.verificaCliente(request);
         // verifica se existe o serviço
-        Servico servico = servicoRepository.getById(orcamentoRequest.getIdServico());
+        Servico servico = servicoRepository.getById(request.getIdServico());
         //valida se a opcao de categoria e tipo de serviço é valida
-        ValidaParcelamento.validarTipoPagamentoETotalParcelas(orcamentoRequest.getTipoPagamento(), orcamentoRequest.getQuantidadeParcelas());
-        ValidaCategoria.isCombinationValid(orcamentoRequest.getTipoServico(),servico.getCategoria());
+        isCombinationValid(request.getTipoServico(),servico.getCategoria());
+        validarTipoPagamentoETotalParcelas(request.getTipoPagamento(), request.getQuantidadeParcelas());
+        validaEntrada(request.getValorEntrada(), servico.getValorServico(), request.getDesconto());
         //cria o orçamento com os dados do cliente, serviço e dados do orçamento
-        Orcamento orcamento = orcamentoRepository.salvaOrcamento(new Orcamento(cliente,servico,orcamentoRequest));
+        Orcamento orcamento = orcamentoRepository.salvaOrcamento(new Orcamento(cliente,servico,request));
         log.info("[finaliza] OrcamentoApplicationService - criaNovoOrcamento");
         return new OrcamentoResponse(orcamento);
     }
