@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 
-import static com.rlti.autoescola.handler.validacoes.Validacoes.*;
+import static com.rlti.autoescola.matricula.domain.Validacoes.*;
 
 @Service
 @Log4j2
@@ -27,9 +27,9 @@ public class MatriculaApplicationService implements MatriculaService{
     @Override
     public MatriculaResponse criaNovaMatricula(MatriculaRequest matriculaRequest) {
         log.info("[inicia] MatriculaApplicationService - criaNovaMatricula");
-        Cliente cliente = clienteRepository.buscaClientePorId(matriculaRequest.getIdCliente());
         Servico servico = servicoRepository.getById(matriculaRequest.getIdServico());
         validaMatricula(matriculaRequest, servico);
+        Cliente cliente = clienteRepository.buscaClientePorId(matriculaRequest.getIdCliente());
         Matricula matricula = matriculaRepository.salva(new Matricula(cliente, servico,matriculaRequest));
         log.info("[finaliza] MatriculaApplicationService - criaNovaMatricula");
         return MatriculaResponse.builder().idMatricula(matricula.getIdMatricula()).build();

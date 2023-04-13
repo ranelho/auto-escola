@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
-import static com.rlti.autoescola.handler.validacoes.Validacoes.validaOrcamento;
+import static com.rlti.autoescola.matricula.domain.Validacoes.validaOrcamento;
 
 @Service
 @Log4j2
@@ -23,12 +23,12 @@ public class OrcamentoApplicationService implements OrcamentoService {
     private final OrcamentoRepository orcamentoRepository;
 
     @Override
-    public OrcamentoResponse criaNovoOrcamento(OrcamentoRequest request) {
+    public OrcamentoResponse criaNovoOrcamento(OrcamentoRequest orcamentoRequest) {
         log.info("[inicia] OrcamentoApplicationService - criaNovoOrcamento");
-        Cliente cliente = clienteService.verificaCliente(request);
-        Servico servico = servicoRepository.getById(request.getIdServico());
-        validaOrcamento(request, servico);
-        Orcamento orcamento = orcamentoRepository.salvaOrcamento(new Orcamento(cliente,servico,request));
+        Servico servico = servicoRepository.getById(orcamentoRequest.getIdServico());
+        validaOrcamento(orcamentoRequest, servico);
+        Cliente cliente = clienteService.verificaCliente(orcamentoRequest);
+        Orcamento orcamento = orcamentoRepository.salvaOrcamento(new Orcamento(cliente,servico,orcamentoRequest));
         log.info("[finaliza] OrcamentoApplicationService - criaNovoOrcamento");
         return new OrcamentoResponse(orcamento);
     }

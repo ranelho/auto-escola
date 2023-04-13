@@ -19,7 +19,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-import static com.rlti.autoescola.handler.validacoes.Validacoes.calcularValorFinal;
+import static com.rlti.autoescola.matricula.domain.Validacoes.calcularValorFinal;
 
 @AllArgsConstructor
 @NoArgsConstructor
