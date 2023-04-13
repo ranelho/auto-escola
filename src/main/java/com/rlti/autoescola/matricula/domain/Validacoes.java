@@ -2,8 +2,6 @@ package com.rlti.autoescola.matricula.domain;
 
 import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.matricula.application.api.MatriculaRequest;
-import com.rlti.autoescola.matricula.domain.TipoPagamento;
-import com.rlti.autoescola.matricula.domain.TipoServico;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
 import com.rlti.autoescola.servico.domain.Categoria;
 import com.rlti.autoescola.servico.domain.Servico;
@@ -32,21 +30,21 @@ public class Validacoes {
 
     private static void isCombinationValid(TipoServico tipoServico, Categoria categoria) {
         if (!tipoServico.isValidCategoria(categoria)) {
-            throw APIException.build(HttpStatus.BAD_REQUEST,"Categoria: "+ categoria +
-                    " não é compativel com o servico: " + tipoServico);
+            throw APIException
+                    .build(HttpStatus.BAD_REQUEST,"Categoria: "+ categoria + " não é compativel com o servico: " + tipoServico);
         }
     }
 
     public static void validarTipoPagamentoETotalParcelas(TipoPagamento tipoPagamento, int quantidadeParcelas) {
         if (tipoPagamento == TipoPagamento.DINHEIRO || tipoPagamento == TipoPagamento.DEBITO) {
             if (quantidadeParcelas != 1) {
-                throw APIException.build(HttpStatus.BAD_REQUEST,
-                        "Quantidade de parcelas inválida para o tipo de pagamento escolhido.");
+                throw APIException
+                        .build(HttpStatus.BAD_REQUEST,"Quantidade de parcelas inválida para o tipo de pagamento escolhido.");
             }
         } else if (tipoPagamento == TipoPagamento.CREDITO) {
             if (quantidadeParcelas < 1) {
-                throw APIException.build(HttpStatus.BAD_REQUEST,
-                        "Quantidade de parcelas inválida para o tipo de pagamento escolhido.");
+                throw APIException
+                        .build(HttpStatus.BAD_REQUEST,"Quantidade de parcelas inválida para o tipo de pagamento escolhido.");
             }
         }
     }
@@ -54,9 +52,9 @@ public class Validacoes {
     public  static void validaEntrada(BigDecimal valorEntrada, BigDecimal valorServico, int desconto){
         BigDecimal valorFinal = calcularValorFinal(desconto, valorServico);
         if(valorEntrada.compareTo(valorServico) > 0){
-            throw APIException.build(HttpStatus.BAD_REQUEST,"Valor entrada R$ :"+valorEntrada
-                    + " maior que o valor contratado, Valor Serviço R$: " + valorServico +
-                    " - desconto de " + desconto+"% igual a R$: " + valorFinal);
+            throw APIException
+                    .build(HttpStatus.BAD_REQUEST,"Valor entrada R$ :"+valorEntrada + " maior que o valor contratado, " +
+                            "Valor Serviço R$: " + valorServico + " - desconto de " + desconto+"% igual a R$: " + valorFinal);
         }
     }
 
