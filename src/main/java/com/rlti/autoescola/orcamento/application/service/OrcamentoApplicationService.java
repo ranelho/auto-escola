@@ -12,9 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
-import static com.rlti.autoescola.handler.validacoes.CalcularDesconto.validaEntrada;
-import static com.rlti.autoescola.handler.validacoes.ValidaParcelamento.validarTipoPagamentoETotalParcelas;
-import static com.rlti.autoescola.matricula.domain.ValidaCategoria.isCombinationValid;
+import static com.rlti.autoescola.handler.validacoes.Validacoes.validaOrcamento;
 
 @Service
 @Log4j2
@@ -27,15 +25,9 @@ public class OrcamentoApplicationService implements OrcamentoService {
     @Override
     public OrcamentoResponse criaNovoOrcamento(OrcamentoRequest request) {
         log.info("[inicia] OrcamentoApplicationService - criaNovoOrcamento");
-        // busca cliente e valida se existe ou nao, caso nao tenha cria
         Cliente cliente = clienteService.verificaCliente(request);
-        // verifica se existe o serviço
         Servico servico = servicoRepository.getById(request.getIdServico());
-        //valida se a opcao de categoria e tipo de serviço é valida
-        isCombinationValid(request.getTipoServico(),servico.getCategoria());
-        validarTipoPagamentoETotalParcelas(request.getTipoPagamento(), request.getQuantidadeParcelas());
-        validaEntrada(request.getValorEntrada(), servico.getValorServico(), request.getDesconto());
-        //cria o orçamento com os dados do cliente, serviço e dados do orçamento
+        validaOrcamento(request, servico);
         Orcamento orcamento = orcamentoRepository.salvaOrcamento(new Orcamento(cliente,servico,request));
         log.info("[finaliza] OrcamentoApplicationService - criaNovoOrcamento");
         return new OrcamentoResponse(orcamento);

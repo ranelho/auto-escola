@@ -14,9 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 
-import static com.rlti.autoescola.handler.validacoes.CalcularDesconto.validaEntrada;
-import static com.rlti.autoescola.handler.validacoes.ValidaParcelamento.validarTipoPagamentoETotalParcelas;
-import static com.rlti.autoescola.matricula.domain.ValidaCategoria.isCombinationValid;
+import static com.rlti.autoescola.handler.validacoes.Validacoes.*;
 
 @Service
 @Log4j2
@@ -27,14 +25,12 @@ public class MatriculaApplicationService implements MatriculaService{
     private final ServicoRepository servicoRepository;
 
     @Override
-    public MatriculaResponse criaNovaMatricula(MatriculaRequest request) {
+    public MatriculaResponse criaNovaMatricula(MatriculaRequest matriculaRequest) {
         log.info("[inicia] MatriculaApplicationService - criaNovaMatricula");
-        Cliente cliente = clienteRepository.buscaClientePorId(request.getIdCliente());
-        Servico servico = servicoRepository.getById(request.getIdServico());
-        isCombinationValid(request.getTipoServico(),servico.getCategoria());
-        validarTipoPagamentoETotalParcelas(request.getTipoPagamento(), request.getQuantidadeParcelas());
-        validaEntrada(request.getValorEntrada(), servico.getValorServico(), request.getDesconto());
-        Matricula matricula = matriculaRepository.salva(new Matricula(cliente, servico,request));
+        Cliente cliente = clienteRepository.buscaClientePorId(matriculaRequest.getIdCliente());
+        Servico servico = servicoRepository.getById(matriculaRequest.getIdServico());
+        validaMatricula(matriculaRequest, servico);
+        Matricula matricula = matriculaRepository.salva(new Matricula(cliente, servico,matriculaRequest));
         log.info("[finaliza] MatriculaApplicationService - criaNovaMatricula");
         return MatriculaResponse.builder().idMatricula(matricula.getIdMatricula()).build();
     }
