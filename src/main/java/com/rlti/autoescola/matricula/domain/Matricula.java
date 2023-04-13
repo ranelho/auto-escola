@@ -2,16 +2,15 @@ package com.rlti.autoescola.matricula.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.cliente.domain.Cliente;
-import com.rlti.autoescola.handler.validacoes.CalcularDesconto;
 import com.rlti.autoescola.laudo.domain.Laudo;
 import com.rlti.autoescola.matricula.application.api.MatriculaAlteracaoRequest;
 import com.rlti.autoescola.matricula.application.api.MatriculaRequest;
-import com.rlti.autoescola.orcamento.domain.Orcamento;
 import com.rlti.autoescola.pagamento.domain.Pagamento;
 import com.rlti.autoescola.servico.domain.Servico;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -20,7 +19,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-import static com.rlti.autoescola.handler.validacoes.CalcularDesconto.*;
+import static com.rlti.autoescola.handler.validacoes.CalcularDesconto.calcularValorFinal;
 
 @AllArgsConstructor
 @NoArgsConstructor

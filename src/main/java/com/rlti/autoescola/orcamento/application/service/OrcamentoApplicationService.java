@@ -2,8 +2,6 @@ package com.rlti.autoescola.orcamento.application.service;
 
 import com.rlti.autoescola.cliente.application.service.ClienteService;
 import com.rlti.autoescola.cliente.domain.Cliente;
-import com.rlti.autoescola.handler.validacoes.ValidaParcelamento;
-import com.rlti.autoescola.matricula.domain.ValidaCategoria;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoResponse;
 import com.rlti.autoescola.orcamento.application.repository.OrcamentoRepository;
@@ -15,8 +13,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import static com.rlti.autoescola.handler.validacoes.CalcularDesconto.validaEntrada;
-import static com.rlti.autoescola.handler.validacoes.ValidaParcelamento.*;
-import static com.rlti.autoescola.matricula.domain.ValidaCategoria.*;
+import static com.rlti.autoescola.handler.validacoes.ValidaParcelamento.validarTipoPagamentoETotalParcelas;
+import static com.rlti.autoescola.matricula.domain.ValidaCategoria.isCombinationValid;
 
 @Service
 @Log4j2
