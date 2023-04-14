@@ -1,9 +1,12 @@
 package com.rlti.autoescola.pagamento.appiclation.api;
 
+import com.rlti.autoescola.contato.application.api.ContatoResponse;
 import com.rlti.autoescola.pagamento.domain.Pagamento;
 import lombok.Value;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Value
 public class PagamentoResponse {
@@ -21,5 +24,11 @@ public class PagamentoResponse {
         this.servico = pagamento.getMatricula().getServico().getCategoria().toString();
         this.valorContratado = pagamento.getMatricula().getValorFinal();
         this.valorPago = pagamento.getValorPago();
+    }
+
+    public static List<PagamentoResponse> convert(List<Pagamento> pagamento) {
+        return pagamento.stream()
+                .map(PagamentoResponse::new)
+                .collect((Collectors.toList()));
     }
 }
