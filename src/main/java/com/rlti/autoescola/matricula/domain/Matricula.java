@@ -5,6 +5,7 @@ import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.laudo.domain.Laudo;
 import com.rlti.autoescola.matricula.application.api.request.MatriculaAlteracaoRequest;
 import com.rlti.autoescola.matricula.application.api.request.MatriculaRequest;
+import com.rlti.autoescola.orcamento.domain.Orcamento;
 import com.rlti.autoescola.pagamento.domain.Pagamento;
 import com.rlti.autoescola.servico.domain.Servico;
 import lombok.AllArgsConstructor;
@@ -72,6 +73,18 @@ public class Matricula {
         this.observacao = matriculaRequest.getObservacao().toUpperCase();
         this.valorFinal = calcularValorFinal(matriculaRequest.getDesconto(), servico.getValorServico());
         this.tipoServico = matriculaRequest.getTipoServico();
+    }
+
+    public Matricula(Orcamento orcamento) {
+        this.cliente = orcamento.getCliente();
+        this.servico = orcamento.getServico();
+        this.tipoPagamento = orcamento.getTipoPagamento();
+        this.valorEntrada = orcamento.getValorEntrada();
+        this.desconto = orcamento.getDesconto();
+        this.quantidadeParcelas = orcamento.getQuantidadeParcelas();
+        this.observacao = orcamento.getObservacao().toUpperCase();
+        this.valorFinal = orcamento.getValorFinal();
+        this.tipoServico = orcamento.getTipoServico();
     }
 
     public void altera(MatriculaAlteracaoRequest matriculaAlteracaoRequest) {

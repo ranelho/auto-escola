@@ -11,6 +11,8 @@ public interface MatriculaService {
 
     MatriculaIdResponse criaNovaMatricula(MatriculaRequest matriculaRequest);
 
+    MatriculaIdResponse criaNovaMatricula(String cpf);
+
     List<MatriculaListResponse> buscaTodasMatriculas();
 
     MatriculaDetalhadoResponse matriculaAtravesId(UUID idMatricula);
