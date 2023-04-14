@@ -1,4 +1,4 @@
-package com.rlti.autoescola.matricula.application.api;
+package com.rlti.autoescola.matricula.application.api.response;
 
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
@@ -20,6 +20,7 @@ public class MatriculaDetalhadoResponse {
     LocalDate dataMatricula;
     String fullName;
     String observacao;
+    String status;
 
     public MatriculaDetalhadoResponse(Matricula matricula) {
         this.idMatricula = matricula.getIdMatricula();
@@ -32,5 +33,6 @@ public class MatriculaDetalhadoResponse {
         this.dataMatricula = matricula.getDataMatricula();
         this.fullName = matricula.getCliente().getFullName();
         this.observacao = matricula.getObservacao();
+        this.status = matricula.getStatus().toString();
     }
 }
