@@ -7,8 +7,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
-import java.util.UUID;
+
 @Repository
 @Log4j2
 @RequiredArgsConstructor
@@ -21,5 +22,13 @@ public class PagamentoInfraRepository implements PagamentoRepository {
         List<Pagamento> pagamentos = pagamentoSpringDataJPARepository.findByMatricula(matricula);
         log.info("[finaliza] PagamentoInfraRepository - getPagamento");
         return pagamentos;
+    }
+
+    @Override
+    public BigDecimal totalPago(Matricula matricula) {
+        log.info("[inicia] PagamentoInfraRepository - somaPagamento");
+        BigDecimal totalPago = pagamentoSpringDataJPARepository.findSumValorPagoByMatricula(matricula);
+        log.info("[finaliza] PagamentoInfraRepository - somaPagamento");
+        return totalPago;
     }
 }
