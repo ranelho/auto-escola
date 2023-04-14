@@ -18,7 +18,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 
-import static com.rlti.autoescola.matricula.domain.Validacoes.*;
+import static com.rlti.autoescola.matricula.domain.Validacoes.validaAlteracaoMatricula;
+import static com.rlti.autoescola.matricula.domain.Validacoes.validaSolicitacao;
 
 @Service
 @Log4j2
@@ -64,10 +65,11 @@ public class MatriculaApplicationService implements MatriculaService{
     }
 
     @Override
-    public void patchAlteraMatricula(UUID idMatricula, MatriculaAlteracaoRequest matriculaAlteracaoRequest) {
+    public void patchAlteraMatricula(UUID idMatricula, MatriculaAlteracaoRequest request) {
         log.info("[inicia] MatriculaApplicationService - patchAlteraMatricula");
         Matricula matricula = matriculaRepository.matriculaAtravesId(idMatricula);
-        matricula.altera(matriculaAlteracaoRequest);
+        validaAlteracaoMatricula(matricula, request);
+        matricula.altera(request);
         matriculaRepository.salva(matricula);
         log.info("[finaliza] MatriculaApplicationService - patchAlteraMatricula");
     }

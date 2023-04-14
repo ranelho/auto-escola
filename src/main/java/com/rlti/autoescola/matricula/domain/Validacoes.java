@@ -1,24 +1,25 @@
 package com.rlti.autoescola.matricula.domain;
 
 import com.rlti.autoescola.handler.APIException;
+import com.rlti.autoescola.matricula.application.api.request.MatriculaAlteracaoRequest;
 import com.rlti.autoescola.matricula.application.api.request.SolicitacaoRequest;
 import com.rlti.autoescola.servico.domain.Categoria;
 import com.rlti.autoescola.servico.domain.Servico;
-import lombok.Data;
 import org.springframework.http.HttpStatus;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-@Data
 public class Validacoes {
-    private static final int DESCONTO_MAXIMO = 100;
-    private static final int DESCONTO_MINIMO = 0;
-
     public static void validaSolicitacao(SolicitacaoRequest request, Servico servico) {
         isCombinationValid(request.getTipoServico(),servico.getCategoria());
         validarTipoPagamentoETotalParcelas(request.getTipoPagamento(), request.getQuantidadeParcelas());
         validaEntrada(request.getValorEntrada(), servico.getValorServico(), request.getDesconto());
+    }
+
+    public static void validaAlteracaoMatricula(Matricula matricula, MatriculaAlteracaoRequest request) {
+        validarTipoPagamentoETotalParcelas(request.getTipoPagamento(), request.getQuantidadeParcelas());
+        validaEntrada(request.getValorEntrada(), matricula.getServico().getValorServico(), request.getDesconto());
     }
 
     private static void isCombinationValid(TipoServico tipoServico, Categoria categoria) {
@@ -52,6 +53,9 @@ public class Validacoes {
     }
 
     public static BigDecimal calcularValorFinal(int desconto, BigDecimal valorServico) {
+        final int DESCONTO_MAXIMO = 100;
+        final int DESCONTO_MINIMO = 0;
+
         if (desconto < DESCONTO_MINIMO || desconto > DESCONTO_MAXIMO) {
             throw APIException.build(HttpStatus.BAD_REQUEST,"O desconto deve ser um valor entre 0 e 100");
         }
