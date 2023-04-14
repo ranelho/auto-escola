@@ -3,8 +3,8 @@ package com.rlti.autoescola.matricula.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.laudo.domain.Laudo;
-import com.rlti.autoescola.matricula.application.api.MatriculaAlteracaoRequest;
-import com.rlti.autoescola.matricula.application.api.MatriculaRequest;
+import com.rlti.autoescola.matricula.application.api.request.MatriculaAlteracaoRequest;
+import com.rlti.autoescola.matricula.application.api.request.MatriculaRequest;
 import com.rlti.autoescola.pagamento.domain.Pagamento;
 import com.rlti.autoescola.servico.domain.Servico;
 import lombok.AllArgsConstructor;
@@ -51,6 +51,8 @@ public class Matricula {
     private String observacao;
     @Enumerated(EnumType.STRING)
     private TipoServico tipoServico;
+    @Enumerated(EnumType.STRING)
+    private Status status = Status.ATIVA;
 
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "matricula")
     @JsonIgnore
@@ -78,5 +80,6 @@ public class Matricula {
         this.desconto = matriculaAlteracaoRequest.getDesconto();
         this.quantidadeParcelas = matriculaAlteracaoRequest.getQuantidadeParcelas();
         this.observacao = matriculaAlteracaoRequest.getObservacao().toUpperCase();
+        this.status = matriculaAlteracaoRequest.getStatus();
     }
 }
