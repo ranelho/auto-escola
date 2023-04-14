@@ -74,10 +74,19 @@ public class MatriculaApplicationService implements MatriculaService{
 
     @Override
     public void finalizaMatricula(UUID idMatricula) {
-        log.info("[inicia] MatriculaApplicationService - patchAlteraMatricula");
+        log.info("[inicia] MatriculaApplicationService - finalizaMatricula");
         Matricula matricula = matriculaRepository.matriculaAtravesId(idMatricula);
         matricula.finalizaMatricula();
         matriculaRepository.salva(matricula);
-        log.info("[finaliza] MatriculaApplicationService - patchAlteraMatricula");
+        log.info("[finaliza] MatriculaApplicationService - finalizaMatricula");
+    }
+
+    @Override
+    public void ativaMatricula(UUID idMatricula) {
+        log.info("[inicia] MatriculaApplicationService - ativaMatricula");
+        Matricula matricula = matriculaRepository.matriculaAtravesId(idMatricula);
+        matricula.ativaMatricula();
+        matriculaRepository.salva(matricula);
+        log.info("[finaliza] MatriculaApplicationService - ativaMatricula");
     }
 }

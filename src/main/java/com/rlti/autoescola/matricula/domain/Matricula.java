@@ -85,4 +85,8 @@ public class Matricula {
     public void finalizaMatricula() {
         this.status = Status.INATIVA;
     }
+
+    public void ativaMatricula() {
+        this.status = Status.ATIVA;
+    }
 }

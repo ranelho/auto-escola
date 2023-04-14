@@ -16,4 +16,5 @@ public interface MatriculaService {
     void deletaMatriculaAtravesId(UUID idMatricula);
     void patchAlteraMatricula(UUID idMatricula, MatriculaAlteracaoRequest matriculaAlteracaoRequest);
     void finalizaMatricula(UUID idMatricula);
+    void ativaMatricula(UUID idMatricula);
 }
