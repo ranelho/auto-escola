@@ -80,6 +80,9 @@ public class Matricula {
         this.desconto = matriculaAlteracaoRequest.getDesconto();
         this.quantidadeParcelas = matriculaAlteracaoRequest.getQuantidadeParcelas();
         this.observacao = matriculaAlteracaoRequest.getObservacao().toUpperCase();
-        this.status = matriculaAlteracaoRequest.getStatus();
+    }
+
+    public void finalizaMatricula() {
+        this.status = Status.INATIVA;
     }
 }

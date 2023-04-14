@@ -1,4 +1,4 @@
-package com.rlti.autoescola.matricula.application.api;
+package com.rlti.autoescola.matricula.application.api.response;
 
 import lombok.Builder;
 import lombok.Value;
