@@ -1,6 +1,5 @@
 package com.rlti.autoescola.frota.manutencao.application.api;
 
-
 import com.rlti.autoescola.frota.manutencao.domain.TipoManutencao;
 import lombok.Value;
 

@@ -7,6 +7,6 @@ import java.util.UUID;
 
 @Value
 @Builder
-public class MatriculaResponse {
+public class MatriculaIdResponse {
     UUID idMatricula;
 }

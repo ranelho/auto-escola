@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Optional;
 
 @Repository
@@ -44,5 +43,23 @@ public class OrcamentoInfraRepository implements OrcamentoRepository {
         log.info("[inicia] OrcamentoInfraRepository - deleteOrcamentoExpirado");
         orcamentoSpringDataJPARepository.deleteOrcamentoExpirado(LocalDate.now());
         log.info("[finaliza] OrcamentoInfraRepository - deleteOrcamentoExpirado");
+    }
+
+    @Override
+    public void deleteById(Long idOrcamento) {
+        log.info("[inicia] OrcamentoInfraRepository - deleteById");
+        orcamentoSpringDataJPARepository.deleteById(idOrcamento);
+        log.info("[finaliza] OrcamentoInfraRepository - deleteById");
+    }
+
+    @Override
+    public Orcamento findByCpf(String cpf) {
+        log.info("[inicia] OrcamentoInfraRepository - deleteById");
+        Optional<Orcamento> optionalOrcamento = orcamentoSpringDataJPARepository.findByClienteCpf(cpf);
+        Orcamento orcamento = optionalOrcamento
+                .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,
+                        "Orçamento não encontrado!"));
+        log.info("[finaliza] OrcamentoInfraRepository - deleteById");
+        return orcamento;
     }
 }

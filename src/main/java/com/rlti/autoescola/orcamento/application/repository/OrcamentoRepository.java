@@ -6,4 +6,6 @@ public interface OrcamentoRepository {
     Orcamento salvaOrcamento(Orcamento orcamento);
     Orcamento getOrcamentoById(Long idOrcamento);
     void deleteOrcamentoExpirado();
+    void deleteById(Long idOrcamento);
+    Orcamento findByCpf(String cpf);
 }

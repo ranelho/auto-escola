@@ -2,7 +2,7 @@ package com.rlti.autoescola.orcamento.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.cliente.domain.Cliente;
-import com.rlti.autoescola.handler.validacoes.CalcularDesconto;
+import com.rlti.autoescola.matricula.domain.Validacoes;
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import com.rlti.autoescola.matricula.domain.TipoServico;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
@@ -37,7 +37,7 @@ public class Orcamento {
     @Enumerated(EnumType.STRING)
     private TipoPagamento tipoPagamento;
     protected LocalDate dataOrcamento = LocalDate.now();
-    private Double valorEntrada;
+    private BigDecimal valorEntrada;
     private int desconto;
     @Min(value = 1, message = "O valor mínimo é 1")
     @Max(value = 12, message = "O valor máximo é 12")
@@ -57,7 +57,7 @@ public class Orcamento {
         this.desconto = orcamentoRequest.getDesconto();
         this.quantidadeParcelas = orcamentoRequest.getQuantidadeParcelas();
         this.observacao = orcamentoRequest.getObservacao();
-        this.valorFinal = CalcularDesconto.calcularValorFinal(orcamentoRequest.getDesconto(), servico.getValorServico());
+        this.valorFinal = Validacoes.calcularValorFinal(orcamentoRequest.getDesconto(), servico.getValorServico());
         this.tipoServico = orcamentoRequest.getTipoServico();
     }
 }

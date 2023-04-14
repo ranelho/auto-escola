@@ -19,7 +19,19 @@
 
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
-- [ ] Empresa
+- [X] Empresa
+- [X] Cliente
+  - [X] Contato
+- [X] Frota
+  - [X] Veiculo
+  - [X] Manutenção
+- [X] Orçamento
+- [X] Matricula
+  - [ ] Pagamento
+  - [x] Laudo
+- [X] Serviço
+- [X] Instrutor
+- [ ] Validações
   
 
 <img src="Banco.png" width=800><br><sub>Banco de Dados</sub>
