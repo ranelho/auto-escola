@@ -3,6 +3,8 @@ package com.rlti.autoescola.matricula.application.service;
 import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.matricula.application.api.*;
+import com.rlti.autoescola.matricula.application.api.request.MatriculaAlteracaoRequest;
+import com.rlti.autoescola.matricula.application.api.request.MatriculaRequest;
 import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.servico.application.repository.ServicoRepository;
@@ -25,14 +27,14 @@ public class MatriculaApplicationService implements MatriculaService{
     private final ServicoRepository servicoRepository;
 
     @Override
-    public MatriculaResponse criaNovaMatricula(MatriculaRequest matriculaRequest) {
+    public MatriculaIdResponse criaNovaMatricula(MatriculaRequest matriculaRequest) {
         log.info("[inicia] MatriculaApplicationService - criaNovaMatricula");
         Servico servico = servicoRepository.getById(matriculaRequest.getIdServico());
-        validaMatricula(matriculaRequest, servico);
+        validaSolicitacao(matriculaRequest, servico);
         Cliente cliente = clienteRepository.buscaClientePorId(matriculaRequest.getIdCliente());
         Matricula matricula = matriculaRepository.salva(new Matricula(cliente, servico,matriculaRequest));
         log.info("[finaliza] MatriculaApplicationService - criaNovaMatricula");
-        return MatriculaResponse.builder().idMatricula(matricula.getIdMatricula()).build();
+        return MatriculaIdResponse.builder().idMatricula(matricula.getIdMatricula()).build();
     }
 
     @Override

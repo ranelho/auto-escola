@@ -1,8 +1,7 @@
 package com.rlti.autoescola.matricula.domain;
 
 import com.rlti.autoescola.handler.APIException;
-import com.rlti.autoescola.matricula.application.api.MatriculaRequest;
-import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
+import com.rlti.autoescola.matricula.application.api.request.SolicitacaoRequest;
 import com.rlti.autoescola.servico.domain.Categoria;
 import com.rlti.autoescola.servico.domain.Servico;
 import lombok.Data;
@@ -16,13 +15,7 @@ public class Validacoes {
     private static final int DESCONTO_MAXIMO = 100;
     private static final int DESCONTO_MINIMO = 0;
 
-    public static void validaMatricula(MatriculaRequest request, Servico servico) {
-        isCombinationValid(request.getTipoServico(),servico.getCategoria());
-        validarTipoPagamentoETotalParcelas(request.getTipoPagamento(), request.getQuantidadeParcelas());
-        validaEntrada(request.getValorEntrada(), servico.getValorServico(), request.getDesconto());
-    }
-
-    public static void validaOrcamento(OrcamentoRequest request, Servico servico) {
+    public static void validaSolicitacao(SolicitacaoRequest request, Servico servico) {
         isCombinationValid(request.getTipoServico(),servico.getCategoria());
         validarTipoPagamentoETotalParcelas(request.getTipoPagamento(), request.getQuantidadeParcelas());
         validaEntrada(request.getValorEntrada(), servico.getValorServico(), request.getDesconto());
