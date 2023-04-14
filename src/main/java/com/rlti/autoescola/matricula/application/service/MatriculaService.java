@@ -1,12 +1,15 @@
 package com.rlti.autoescola.matricula.application.service;
 
 import com.rlti.autoescola.matricula.application.api.*;
+import com.rlti.autoescola.matricula.application.api.request.MatriculaAlteracaoRequest;
+import com.rlti.autoescola.matricula.application.api.request.MatriculaRequest;
+
 import java.util.List;
 import java.util.UUID;
 
 public interface MatriculaService {
 
-    MatriculaResponse criaNovaMatricula(MatriculaRequest matriculaRequest);
+    MatriculaIdResponse criaNovaMatricula(MatriculaRequest matriculaRequest);
 
     List<MatriculaListResponse> buscaTodasMatriculas();
 

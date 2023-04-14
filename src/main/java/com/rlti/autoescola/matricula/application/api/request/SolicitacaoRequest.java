@@ -1,17 +1,16 @@
-package com.rlti.autoescola.matricula.application.api;
+package com.rlti.autoescola.matricula.application.api.request;
 
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import com.rlti.autoescola.matricula.domain.TipoServico;
-import lombok.Value;
+import lombok.Data;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-@Value
-public class MatriculaRequest {
-    UUID idCliente;
+@Data
+public class SolicitacaoRequest {
     UUID idServico;
     TipoPagamento tipoPagamento;
     BigDecimal valorEntrada;

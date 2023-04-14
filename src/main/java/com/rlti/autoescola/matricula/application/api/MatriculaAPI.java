@@ -1,5 +1,7 @@
 package com.rlti.autoescola.matricula.application.api;
 
+import com.rlti.autoescola.matricula.application.api.request.MatriculaAlteracaoRequest;
+import com.rlti.autoescola.matricula.application.api.request.MatriculaRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +22,7 @@ public interface MatriculaAPI {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    MatriculaResponse criaMatricula(@Valid @RequestBody MatriculaRequest matriculaRequest);
+    MatriculaIdResponse criaMatricula(@Valid @RequestBody MatriculaRequest matriculaRequest);
 
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)

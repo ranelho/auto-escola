@@ -1,5 +1,6 @@
-package com.rlti.autoescola.matricula.application.api;
+package com.rlti.autoescola.matricula.application.api.request;
 
+import com.rlti.autoescola.matricula.domain.Status;
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import lombok.Value;
 
@@ -12,4 +13,5 @@ public class MatriculaAlteracaoRequest {
     int desconto;
     int quantidadeParcelas;
     String observacao;
+    Status status;
 }
