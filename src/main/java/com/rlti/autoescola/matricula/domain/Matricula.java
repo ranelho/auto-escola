@@ -57,7 +57,6 @@ public class Matricula {
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "matricula")
     @JsonIgnore
     private List<Pagamento> pagamentos;
-
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "matricula")
     @JsonIgnore
     private List<Laudo> laudo;
@@ -86,7 +85,5 @@ public class Matricula {
         this.status = Status.INATIVA;
     }
 
-    public void ativaMatricula() {
-        this.status = Status.ATIVA;
-    }
+    public void ativaMatricula() { this.status = Status.ATIVA; }
 }

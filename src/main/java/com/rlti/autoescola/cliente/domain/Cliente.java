@@ -6,9 +6,9 @@ import com.rlti.autoescola.cliente.application.api.EditaClienteRequest;
 import com.rlti.autoescola.cliente.domain.groups.ClienteGroupSequenceProvider;
 import com.rlti.autoescola.cliente.domain.groups.PessoaFisica;
 import com.rlti.autoescola.contato.domain.Contato;
+import com.rlti.autoescola.exames.domain.Exame;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -48,10 +48,12 @@ public class Cliente {
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
     @JsonIgnore
     List<Contato> contato;
-
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
     @JsonIgnore
     List<Matricula> matriculas;
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
+    @JsonIgnore
+    List<Exame> exames;
 
     public Cliente(ClienteRequest clienteRequest) {
         this.tipoPessoa = getTipoPessoa();
