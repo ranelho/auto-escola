@@ -25,7 +25,7 @@ public class Validacoes {
     private static void isCombinationValid(TipoServico tipoServico, Categoria categoria) {
         if (!tipoServico.isValidCategoria(categoria)) {
             throw APIException
-                    .build(HttpStatus.BAD_REQUEST,"Categoria: "+ categoria + " não é compativel com o servico: " + tipoServico);
+                    .build(HttpStatus.BAD_REQUEST,"Categoria "+ categoria + " não é compativel para o servico " + tipoServico);
         }
     }
 
@@ -47,7 +47,7 @@ public class Validacoes {
         BigDecimal valorFinal = calcularValorFinal(desconto, valorServico);
         if(valorEntrada.compareTo(valorServico) > 0){
             throw APIException
-                    .build(HttpStatus.BAD_REQUEST,"Valor entrada R$ :"+valorEntrada + " maior que o valor contratado, " +
+                    .build(HttpStatus.BAD_REQUEST,"Valor entrada R$: "+valorEntrada + " maior que o valor contratado, " +
                             "Valor Serviço R$: " + valorServico + " - desconto de " + desconto+"% igual a R$: " + valorFinal);
         }
     }
