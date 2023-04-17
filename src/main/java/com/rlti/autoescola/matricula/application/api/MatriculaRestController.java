@@ -71,4 +71,11 @@ public class MatriculaRestController implements MatriculaAPI{
         matriculaService.ativaMatricula(idMatricula);
         log.info("[finaliza] MatriculaRestController - ativaMatricula");
     }
+
+    @Override
+    public void cancelaMatricula(UUID idMatricula) {
+        log.info("[inicia] MatriculaRestController - cancelaMatricula");
+        matriculaService.cancelaMatricula(idMatricula);
+        log.info("[finaliza] MatriculaRestController - cancelaMatricula");
+    }
 }

@@ -91,4 +91,13 @@ public class MatriculaApplicationService implements MatriculaService{
         matriculaRepository.salva(matricula);
         log.info("[finaliza] MatriculaApplicationService - ativaMatricula");
     }
+
+    @Override
+    public void cancelaMatricula(UUID idMatricula) {
+        log.info("[inicia] MatriculaApplicationService - cancelaMatricula");
+        Matricula matricula = matriculaRepository.matriculaAtravesId(idMatricula);
+        matricula.cancelaMatricula();
+        matriculaRepository.salva(matricula);
+        log.info("[finaliza] MatriculaApplicationService - cancelaMatricula");
+    }
 }

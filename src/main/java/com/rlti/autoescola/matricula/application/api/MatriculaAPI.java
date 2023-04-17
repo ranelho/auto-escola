@@ -43,4 +43,8 @@ public interface MatriculaAPI {
     @PatchMapping("/ativa-matricula/{idMatricula}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void ativaMatricula(@PathVariable UUID idMatricula);
+
+    @PatchMapping("/cancela-matricula/{idMatricula}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void cancelaMatricula(@PathVariable UUID idMatricula);
 }
