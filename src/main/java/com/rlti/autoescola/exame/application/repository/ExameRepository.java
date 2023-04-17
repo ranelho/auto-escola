@@ -4,4 +4,5 @@ import com.rlti.autoescola.exame.domain.Exame;
 
 public interface ExameRepository {
     Exame salva(Exame exame);
+    Exame buscaExamePorId(Long idExame);
 }

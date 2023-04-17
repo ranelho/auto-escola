@@ -4,6 +4,7 @@ import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.exame.application.api.ExameIdResponse;
 import com.rlti.autoescola.exame.application.api.ExameRequest;
+import com.rlti.autoescola.exame.application.api.ExameResponse;
 import com.rlti.autoescola.exame.application.repository.ExameRepository;
 import com.rlti.autoescola.exame.domain.Exame;
 import lombok.RequiredArgsConstructor;
@@ -26,5 +27,13 @@ public class ExameApplicationService implements ExameService {
         Exame exame = exameRepository.salva(new Exame(cliente, request));
         log.info("[finaliza] ExameApplicationService - cadastrar");
         return ExameIdResponse.builder().idExame(exame.getIdExame()).build();
+    }
+
+    @Override
+    public ExameResponse getExame(Long idExame) {
+        log.info("[inicia] ExameApplicationService - getExame");
+        Exame exame = exameRepository.buscaExamePorId(idExame);
+        log.info("[finaliza] ExameApplicationService - getExame");
+        return new ExameResponse(exame);
     }
 }

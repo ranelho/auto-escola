@@ -20,4 +20,12 @@ public class ExameRestController implements ExameApi {
         log.info("[finaliza] ExameRestController - cadastrar");
         return idResponse;
     }
+
+    @Override
+    public ExameResponse getExame(Long idExame) {
+        log.info("[inicia] ExameRestController - getExame");
+        ExameResponse response = exameService.getExame(idExame);
+        log.info("[finaliza] ExameRestController - getExame");
+        return response;
+    }
 }
