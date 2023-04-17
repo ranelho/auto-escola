@@ -11,4 +11,5 @@ public interface ExameService {
     ExameIdResponse cadastrar(UUID idCliente, ExameRequest request);
     ExameResponse getExame(Long idExame);
     List<ExameResponse> listar(UUID idCliente);
+    void deletar(Long idExame);
 }

@@ -46,4 +46,11 @@ public class ExameApplicationService implements ExameService {
         log.info("[finaliza] ExameApplicationService - listar");
         return ExameResponse.converte(exames);
     }
+
+    @Override
+    public void deletar(Long idExame) {
+        log.info("[inicia] ExameApplicationService - deletar");
+        exameRepository.deleta(exameRepository.buscaExamePorId(idExame).getIdExame());
+        log.info("[finaliza] ExameApplicationService - deletar");
+    }
 }

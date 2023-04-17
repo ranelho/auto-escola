@@ -44,4 +44,11 @@ public class ExameInfraRepository implements ExameRepository {
         log.info("[finaliza] ExameInfraRepository -  buscaExamesPorIdCliente");
         return exames;
     }
+
+    @Override
+    public void deleta(Long idExame) {
+        log.info("[inicia] ExameInfraRepository -  deleta");
+        exameSpringDataJPARepository.deleteById(idExame);
+        log.info("[finaliza] ExameInfraRepository -  deleta");
+    }
 }
