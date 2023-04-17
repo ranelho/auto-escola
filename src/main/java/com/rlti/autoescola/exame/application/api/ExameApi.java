@@ -22,10 +22,10 @@ public interface ExameApi {
     List<ExameResponse> listar(@PathVariable UUID idCliente);
 
     @DeleteMapping("/{idExame}")
-    @ResponseStatus(code = HttpStatus.OK)
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void deletar(@PathVariable Long idExame);
 
     @PutMapping("/{idExame}")
-    @ResponseStatus(code = HttpStatus.OK)
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void alterar(@PathVariable Long idExame, @Valid @RequestBody ExameRequest request);
 }
