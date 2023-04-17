@@ -20,4 +20,8 @@ public interface ExameApi {
     @GetMapping("/list/{idCliente}")
     @ResponseStatus(code = HttpStatus.OK)
     List<ExameResponse> listar(@PathVariable UUID idCliente);
+
+    @DeleteMapping("/{idExame}")
+    @ResponseStatus(code = HttpStatus.OK)
+    void deletar(@PathVariable Long idExame);
 }
