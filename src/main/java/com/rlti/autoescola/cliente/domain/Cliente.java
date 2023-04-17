@@ -6,7 +6,7 @@ import com.rlti.autoescola.cliente.application.api.EditaClienteRequest;
 import com.rlti.autoescola.cliente.domain.groups.ClienteGroupSequenceProvider;
 import com.rlti.autoescola.cliente.domain.groups.PessoaFisica;
 import com.rlti.autoescola.contato.domain.Contato;
-import com.rlti.autoescola.exames.domain.Exame;
+import com.rlti.autoescola.exame.domain.Exame;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
 import lombok.AllArgsConstructor;
