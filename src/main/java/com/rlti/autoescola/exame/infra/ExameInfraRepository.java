@@ -1,5 +1,6 @@
 package com.rlti.autoescola.exame.infra;
 
+import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.exame.application.repository.ExameRepository;
 import com.rlti.autoescola.exame.domain.Exame;
 import com.rlti.autoescola.handler.APIException;
@@ -8,7 +9,9 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 @RequiredArgsConstructor
@@ -30,6 +33,15 @@ public class ExameInfraRepository implements ExameRepository {
         Optional<Exame> optionalExame = exameSpringDataJPARepository.findById(idExame);
         Exame exame = optionalExame
                 .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST, "Exame não encontrado"));
+        log.info("[finaliza] ExameInfraRepository -  buscaExamePorId");
         return exame;
+    }
+
+    @Override
+    public List<Exame> buscaExamesPorIdCliente(Cliente cliente) {
+        log.info("[inicia] ExameInfraRepository -  buscaExamesPorIdCliente");
+        List<Exame> exames = exameSpringDataJPARepository.findByCliente(cliente);
+        log.info("[finaliza] ExameInfraRepository -  buscaExamesPorIdCliente");
+        return exames;
     }
 }

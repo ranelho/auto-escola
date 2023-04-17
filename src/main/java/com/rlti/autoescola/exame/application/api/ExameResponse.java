@@ -1,9 +1,12 @@
 package com.rlti.autoescola.exame.application.api;
 
 import com.rlti.autoescola.exame.domain.Exame;
+import com.rlti.autoescola.frota.manutencao.application.api.ManutencaoListResponse;
+import com.rlti.autoescola.frota.manutencao.domain.Manutencao;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 public class ExameResponse {
@@ -19,5 +22,11 @@ public class ExameResponse {
         this.dataExame = exame.getDataExame();
         this.resultado = exame.getResultado().toString();
         this.observacao = exame.getObservacao();
+    }
+    public static List<ExameResponse> converte(List<Exame> exames) {
+        return exames
+                .stream()
+                .map(ExameResponse::new)
+                .toList();
     }
 }

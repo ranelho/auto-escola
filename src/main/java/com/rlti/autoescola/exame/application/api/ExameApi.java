@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.UUID;
 
 @RequestMapping("/v1/exame")
@@ -15,4 +16,8 @@ public interface ExameApi {
     @GetMapping("/{idExame")
     @ResponseStatus(code = HttpStatus.OK)
     ExameResponse getExame(@PathVariable Long idExame);
+
+    @GetMapping("/list/{idCliente}")
+    @ResponseStatus(code = HttpStatus.OK)
+    List<ExameResponse> listar(@PathVariable UUID idCliente);
 }

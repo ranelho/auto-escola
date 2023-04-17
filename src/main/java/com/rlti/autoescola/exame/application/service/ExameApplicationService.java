@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -35,5 +36,14 @@ public class ExameApplicationService implements ExameService {
         Exame exame = exameRepository.buscaExamePorId(idExame);
         log.info("[finaliza] ExameApplicationService - getExame");
         return new ExameResponse(exame);
+    }
+
+    @Override
+    public List<ExameResponse> listar(UUID idCliente) {
+        log.info("[inicia] ExameApplicationService - listar");
+        Cliente cliente = clienteRepository.buscaClientePorId(idCliente);
+        List<Exame> exames = exameRepository.buscaExamesPorIdCliente(cliente);
+        log.info("[finaliza] ExameApplicationService - listar");
+        return ExameResponse.converte(exames);
     }
 }
