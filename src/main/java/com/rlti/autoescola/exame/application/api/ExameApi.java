@@ -13,7 +13,7 @@ public interface ExameApi {
     @ResponseStatus(code = HttpStatus.CREATED)
     ExameIdResponse cadastrar(@PathVariable UUID idCliente, @Valid @RequestBody ExameRequest request);
 
-    @GetMapping("/{idExame")
+    @GetMapping("/{idExame}")
     @ResponseStatus(code = HttpStatus.OK)
     ExameResponse getExame(@PathVariable Long idExame);
 
