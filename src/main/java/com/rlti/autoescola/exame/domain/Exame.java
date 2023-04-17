@@ -1,7 +1,8 @@
-package com.rlti.autoescola.exames.domain;
+package com.rlti.autoescola.exame.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.cliente.domain.Cliente;
+import com.rlti.autoescola.exame.application.api.ExameRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,4 +29,12 @@ public class Exame {
     @JoinColumn(name = "cliente_id")
     @JsonIgnore
     private Cliente cliente;
+
+    public Exame(Cliente cliente, ExameRequest request) {
+        this.cliente = cliente;
+        this.tipoExame = request.getTipoExame();
+        this.dataExame = request.getDataExame();
+        this.resultado = request.getResultado();
+        this.observacao = request.getObservacao();
+    }
 }
