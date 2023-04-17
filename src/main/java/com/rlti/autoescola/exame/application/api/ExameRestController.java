@@ -44,4 +44,11 @@ public class ExameRestController implements ExameApi {
         exameService.deletar(idExame);
         log.info("[finaliza] ExameRestController - deletar");
     }
+
+    @Override
+    public void alterar(Long idExame, ExameRequest request) {
+        log.info("[inicia] ExameRestController - alterar");
+        exameService.alterar(idExame, request);
+        log.info("[finaliza] ExameRestController - alterar");
+    }
 }

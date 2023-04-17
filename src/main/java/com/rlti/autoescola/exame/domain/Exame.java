@@ -37,4 +37,11 @@ public class Exame {
         this.resultado = request.getResultado();
         this.observacao = request.getObservacao();
     }
+
+    public void alterar(ExameRequest request) {
+        this.tipoExame = request.getTipoExame();
+        this.dataExame = request.getDataExame();
+        this.resultado = request.getResultado();
+        this.observacao = request.getObservacao();
+    }
 }

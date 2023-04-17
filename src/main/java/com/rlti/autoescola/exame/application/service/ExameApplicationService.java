@@ -53,4 +53,13 @@ public class ExameApplicationService implements ExameService {
         exameRepository.deleta(exameRepository.buscaExamePorId(idExame).getIdExame());
         log.info("[finaliza] ExameApplicationService - deletar");
     }
+
+    @Override
+    public void alterar(Long idExame, ExameRequest request) {
+        log.info("[inicia] ExameApplicationService - alterar");
+        Exame exame = exameRepository.buscaExamePorId(idExame);
+        exame.alterar(request);
+        exameRepository.salva(exame);
+        log.info("[finaliza] ExameApplicationService - alterar");
+    }
 }

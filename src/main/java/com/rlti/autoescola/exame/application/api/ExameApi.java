@@ -24,4 +24,8 @@ public interface ExameApi {
     @DeleteMapping("/{idExame}")
     @ResponseStatus(code = HttpStatus.OK)
     void deletar(@PathVariable Long idExame);
+
+    @PutMapping("/{idExame}")
+    @ResponseStatus(code = HttpStatus.OK)
+    void alterar(@PathVariable Long idExame, @Valid @RequestBody ExameRequest request);
 }
