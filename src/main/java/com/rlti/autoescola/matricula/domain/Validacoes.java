@@ -30,12 +30,13 @@ public class Validacoes {
     }
 
     public static void validarTipoPagamentoETotalParcelas(TipoPagamento tipoPagamento, int quantidadeParcelas) {
-        if (tipoPagamento == TipoPagamento.DINHEIRO || tipoPagamento == TipoPagamento.DEBITO) {
+        if (tipoPagamento == TipoPagamento.DINHEIRO || tipoPagamento == TipoPagamento.CARTAO_DEBITO ||
+                tipoPagamento == TipoPagamento.PIX || tipoPagamento == TipoPagamento.BOLETO) {
             if (quantidadeParcelas != 1) {
                 throw APIException
                         .build(HttpStatus.BAD_REQUEST,"Quantidade de parcelas inválida para o tipo de pagamento escolhido.");
             }
-        } else if (tipoPagamento == TipoPagamento.CREDITO) {
+        } else if (tipoPagamento == TipoPagamento.CARTAO_CREDITO) {
             if (quantidadeParcelas < 1) {
                 throw APIException
                         .build(HttpStatus.BAD_REQUEST,"Quantidade de parcelas inválida para o tipo de pagamento escolhido.");
