@@ -1,8 +1,11 @@
-package com.rlti.autoescola.matricula.domain;
+package com.rlti.autoescola.matricula.annotation.valid;
 
 import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.matricula.application.api.request.MatriculaAlteracaoRequest;
 import com.rlti.autoescola.matricula.application.api.request.SolicitacaoRequest;
+import com.rlti.autoescola.matricula.domain.Matricula;
+import com.rlti.autoescola.matricula.domain.TipoPagamento;
+import com.rlti.autoescola.matricula.domain.TipoServico;
 import com.rlti.autoescola.servico.domain.Categoria;
 import com.rlti.autoescola.servico.domain.Servico;
 import org.springframework.http.HttpStatus;

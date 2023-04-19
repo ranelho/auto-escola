@@ -2,7 +2,7 @@ package com.rlti.autoescola.orcamento.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.cliente.domain.Cliente;
-import com.rlti.autoescola.matricula.domain.Validacoes;
+import com.rlti.autoescola.matricula.annotation.valid.Validacoes;
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import com.rlti.autoescola.matricula.domain.TipoServico;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
