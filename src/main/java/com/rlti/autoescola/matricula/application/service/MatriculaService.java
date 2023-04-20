@@ -11,6 +11,7 @@ import java.util.UUID;
 
 public interface MatriculaService {
     MatriculaIdResponse criaNovaMatricula(MatriculaRequest matriculaRequest);
+    MatriculaIdResponse criaOrcamentoMatricula(String cpf);
     List<MatriculaListResponse> buscaTodasMatriculas();
     MatriculaDetalhadoResponse matriculaAtravesId(UUID idMatricula);
     void deletaMatriculaAtravesId(UUID idMatricula);

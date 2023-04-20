@@ -18,9 +18,9 @@ public interface ClienteAPI {
     @ResponseStatus(code = HttpStatus.OK)
     ClienteResponse buscaClientePorId(@PathVariable UUID idCliente);
 
-    @GetMapping(value = "/cpf/{cpf}")
+    @GetMapping(value = "/cpf")
     @ResponseStatus(code = HttpStatus.OK)
-    ClienteResponse buscaClientePorCPF(@PathVariable String cpf);
+    ClienteResponse buscaClientePorCPF(@RequestParam String cpf);
 
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)

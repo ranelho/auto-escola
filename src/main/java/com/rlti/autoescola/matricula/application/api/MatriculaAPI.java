@@ -19,6 +19,10 @@ public interface MatriculaAPI {
     @ResponseStatus(code = HttpStatus.CREATED)
     MatriculaIdResponse criaMatricula(@Valid @RequestBody MatriculaRequest matriculaRequest);
 
+    @PostMapping(value = "/orcamento")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    MatriculaIdResponse criaMatricula(@RequestParam String cpf);
+
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
     List<MatriculaListResponse> getTodasMatriculas();
