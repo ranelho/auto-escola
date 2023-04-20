@@ -13,4 +13,8 @@ public interface FotoApi {
     @PostMapping("{idCliente}")
     @ResponseStatus(code = HttpStatus.CREATED)
     void salvarFoto(@PathVariable UUID idCliente, @RequestParam("file") MultipartFile file) throws IOException;
+
+    @GetMapping("{idCliente}")
+    @ResponseStatus(code = HttpStatus.OK)
+    FotoResponse buscarFoto(@PathVariable UUID idCliente) throws IOException;
 }

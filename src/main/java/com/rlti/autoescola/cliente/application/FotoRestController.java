@@ -21,4 +21,12 @@ public class FotoRestController implements FotoApi {
         fotoService.salvarFoto(idCliente, file);
         log.info("[fim] FotoRestController - salvarFoto");
     }
+
+    @Override
+    public FotoResponse buscarFoto(UUID idCliente) throws IOException {
+        log.info("[inicia] FotoRestController - buscarFoto");
+        FotoResponse fotoResponse = fotoService.buscarFoto(idCliente);
+        log.info("[fim] FotoRestController - buscarFoto");
+        return fotoResponse;
+    }
 }

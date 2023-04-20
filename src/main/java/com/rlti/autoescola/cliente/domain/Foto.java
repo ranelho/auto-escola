@@ -1,5 +1,6 @@
 package com.rlti.autoescola.cliente.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,8 +23,10 @@ public class Foto {
     @Lob
     private byte[] imagem;
 
+
     @OneToOne
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "cliente_id", unique = true)
+    @JsonIgnore
     Cliente cliente;
 
     public Foto(Cliente cliente, MultipartFile file) throws IOException {
