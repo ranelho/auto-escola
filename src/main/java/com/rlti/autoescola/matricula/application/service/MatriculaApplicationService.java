@@ -31,6 +31,7 @@ public class MatriculaApplicationService implements MatriculaService{
     private final MatriculaRepository matriculaRepository;
     private final ServicoRepository servicoRepository;
     private final OrcamentoRepository orcamentoRepository;
+
     @Override
     public MatriculaIdResponse criaNovaMatricula(MatriculaRequest matriculaRequest) {
         log.info("[inicia] MatriculaApplicationService - criaNovaMatricula");
@@ -43,7 +44,7 @@ public class MatriculaApplicationService implements MatriculaService{
     }
 
     @Override
-    public MatriculaIdResponse criaNovaMatricula(String cpf) {
+    public MatriculaIdResponse criaOrcamentoMatricula(String cpf) {
         log.info("[inicia] MatriculaApplicationService - criaNovaMatricula-Orcamento");
         Orcamento orcamento = orcamentoRepository.findByCpf(cpf);
         Matricula matricula = matriculaRepository.salva(new Matricula(orcamento));

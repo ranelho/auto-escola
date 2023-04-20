@@ -30,7 +30,7 @@ public class MatriculaRestController implements MatriculaAPI{
     @Override
     public MatriculaIdResponse criaMatricula(String cpf) {
         log.info("[inicia] MatriculaRestController - criaMatricula-orcamento");
-        MatriculaIdResponse matriculaCriado = matriculaService.criaNovaMatricula(cpf);
+        MatriculaIdResponse matriculaCriado = matriculaService.criaOrcamentoMatricula(cpf);
         log.info("[finaliza] MatriculaRestController - criaMatricula-orcamento");
         return matriculaCriado;
     }
