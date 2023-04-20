@@ -1,4 +1,4 @@
-package com.rlti.autoescola.matricula.annotation.valid;
+package com.rlti.autoescola.matricula.annotation.constraints;
 
 import com.rlti.autoescola.matricula.annotation.ValidSolicitacaoRequest;
 import com.rlti.autoescola.matricula.application.api.request.SolicitacaoRequest;
@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class SolicitacaoRequestValidator implements ConstraintValidator<ValidSolicitacaoRequest, SolicitacaoRequest> {
+
     @Override
     public boolean isValid(SolicitacaoRequest request, ConstraintValidatorContext context) {
         BigDecimal valorEntrada = request.getValorEntrada();

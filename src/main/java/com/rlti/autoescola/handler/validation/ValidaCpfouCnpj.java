@@ -1,4 +1,4 @@
-package com.rlti.autoescola.handler.validacoes;
+package com.rlti.autoescola.handler.validation;
 
 import com.rlti.autoescola.handler.APIException;
 import org.springframework.http.HttpStatus;

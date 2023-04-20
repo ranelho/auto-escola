@@ -1,4 +1,4 @@
-package com.rlti.autoescola.matricula.annotation.valid;
+package com.rlti.autoescola.matricula.annotation.constraints;
 
 import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.matricula.application.api.request.MatriculaAlteracaoRequest;

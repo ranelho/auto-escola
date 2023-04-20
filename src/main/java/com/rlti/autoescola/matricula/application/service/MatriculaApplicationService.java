@@ -18,8 +18,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 
-import static com.rlti.autoescola.matricula.annotation.valid.Validacoes.validaAlteracaoMatricula;
-import static com.rlti.autoescola.matricula.annotation.valid.Validacoes.validaSolicitacao;
+import static com.rlti.autoescola.matricula.annotation.constraints.Validacoes.validaAlteracaoMatricula;
+import static com.rlti.autoescola.matricula.annotation.constraints.Validacoes.validaSolicitacao;
 
 @Service
 @Log4j2

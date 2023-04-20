@@ -1,4 +1,7 @@
-package com.rlti.autoescola.frota.veiculo.domain.placa;
+package com.rlti.autoescola.frota.veiculo.annotation.constraints;
+
+import com.rlti.autoescola.frota.veiculo.annotation.Placa;
+import com.rlti.autoescola.frota.veiculo.domain.placa.TipoPlaca;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

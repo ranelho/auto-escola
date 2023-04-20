@@ -4,7 +4,7 @@ package com.rlti.autoescola.empresa.application.service;
 import com.rlti.autoescola.empresa.application.api.*;
 import com.rlti.autoescola.empresa.domain.Empresa;
 import com.rlti.autoescola.empresa.application.repository.EmpresaRepository;
-import com.rlti.autoescola.handler.validacoes.ValidaCpfouCnpj;
+import com.rlti.autoescola.handler.validation.ValidaCpfouCnpj;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;

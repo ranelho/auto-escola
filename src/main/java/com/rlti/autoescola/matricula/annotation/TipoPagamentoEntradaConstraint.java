@@ -1,6 +1,6 @@
 package com.rlti.autoescola.matricula.annotation;
 
-import com.rlti.autoescola.matricula.annotation.valid.TipoPagamentoEntradaValidator;
+import com.rlti.autoescola.matricula.annotation.constraints.TipoPagamentoEntradaValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
