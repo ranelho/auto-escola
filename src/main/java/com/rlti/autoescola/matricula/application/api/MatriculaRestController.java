@@ -2,6 +2,9 @@ package com.rlti.autoescola.matricula.application.api;
 
 import com.rlti.autoescola.matricula.application.api.request.MatriculaAlteracaoRequest;
 import com.rlti.autoescola.matricula.application.api.request.MatriculaRequest;
+import com.rlti.autoescola.matricula.application.api.response.MatriculaDetalhadoResponse;
+import com.rlti.autoescola.matricula.application.api.response.MatriculaIdResponse;
+import com.rlti.autoescola.matricula.application.api.response.MatriculaListResponse;
 import com.rlti.autoescola.matricula.application.service.MatriculaService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -61,5 +64,26 @@ public class MatriculaRestController implements MatriculaAPI{
         log.info("[inicia] MatriculaRestController - patchAlteraMatricula");
         matriculaService.patchAlteraMatricula(idMatricula, matriculaAlteracaoRequest);
         log.info("[finaliza] MatriculaRestController - patchAlteraMatricula");
+    }
+
+    @Override
+    public void finalizaMatricula(UUID idMatricula) {
+        log.info("[inicia] MatriculaRestController - finalizaMatricula");
+        matriculaService.finalizaMatricula(idMatricula);
+        log.info("[finaliza] MatriculaRestController - finalizaMatricula");
+    }
+
+    @Override
+    public void ativaMatricula(UUID idMatricula) {
+        log.info("[inicia] MatriculaRestController - ativaMatricula");
+        matriculaService.ativaMatricula(idMatricula);
+        log.info("[finaliza] MatriculaRestController - ativaMatricula");
+    }
+
+    @Override
+    public void cancelaMatricula(UUID idMatricula) {
+        log.info("[inicia] MatriculaRestController - cancelaMatricula");
+        matriculaService.cancelaMatricula(idMatricula);
+        log.info("[finaliza] MatriculaRestController - cancelaMatricula");
     }
 }

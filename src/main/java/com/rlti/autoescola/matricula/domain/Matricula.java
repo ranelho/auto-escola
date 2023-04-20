@@ -20,7 +20,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-import static com.rlti.autoescola.matricula.domain.Validacoes.calcularValorFinal;
+import static com.rlti.autoescola.matricula.annotation.valid.Validacoes.calcularValorFinal;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -58,7 +58,6 @@ public class Matricula {
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "matricula")
     @JsonIgnore
     private List<Pagamento> pagamentos;
-
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "matricula")
     @JsonIgnore
     private List<Laudo> laudo;
@@ -93,6 +92,13 @@ public class Matricula {
         this.desconto = matriculaAlteracaoRequest.getDesconto();
         this.quantidadeParcelas = matriculaAlteracaoRequest.getQuantidadeParcelas();
         this.observacao = matriculaAlteracaoRequest.getObservacao().toUpperCase();
-        this.status = matriculaAlteracaoRequest.getStatus();
     }
+
+    public void finalizaMatricula() {
+        this.status = Status.INATIVA;
+    }
+
+    public void ativaMatricula() { this.status = Status.ATIVA; }
+
+    public void cancelaMatricula() { this.status = Status.CANCELADA; }
 }

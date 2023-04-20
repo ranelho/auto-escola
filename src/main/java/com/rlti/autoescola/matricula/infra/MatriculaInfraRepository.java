@@ -1,6 +1,7 @@
-package com.rlti.autoescola.matricula.application.repository;
+package com.rlti.autoescola.matricula.infra;
 
 import com.rlti.autoescola.handler.APIException;
+import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.matricula.infra.MatriculaSpringDataJPARepository;
 import lombok.RequiredArgsConstructor;
