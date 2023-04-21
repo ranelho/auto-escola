@@ -9,6 +9,8 @@ import com.rlti.autoescola.matricula.application.api.response.MatriculaIdRespons
 import com.rlti.autoescola.matricula.application.api.response.MatriculaListResponse;
 import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
 import com.rlti.autoescola.matricula.domain.Matricula;
+import com.rlti.autoescola.orcamento.application.repository.OrcamentoRepository;
+import com.rlti.autoescola.orcamento.domain.Orcamento;
 import com.rlti.autoescola.servico.application.repository.ServicoRepository;
 import com.rlti.autoescola.servico.domain.Servico;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +30,7 @@ public class MatriculaApplicationService implements MatriculaService{
     private final ClienteRepository clienteRepository;
     private final MatriculaRepository matriculaRepository;
     private final ServicoRepository servicoRepository;
+    private final OrcamentoRepository orcamentoRepository;
 
     @Override
     public MatriculaIdResponse criaNovaMatricula(MatriculaRequest matriculaRequest) {
@@ -37,6 +40,16 @@ public class MatriculaApplicationService implements MatriculaService{
         Cliente cliente = clienteRepository.buscaClientePorId(matriculaRequest.getIdCliente());
         Matricula matricula = matriculaRepository.salva(new Matricula(cliente, servico,matriculaRequest));
         log.info("[finaliza] MatriculaApplicationService - criaNovaMatricula");
+        return MatriculaIdResponse.builder().idMatricula(matricula.getIdMatricula()).build();
+    }
+
+    @Override
+    public MatriculaIdResponse criaOrcamentoMatricula(String cpf) {
+        log.info("[inicia] MatriculaApplicationService - criaNovaMatricula-Orcamento");
+        Orcamento orcamento = orcamentoRepository.findByCpf(cpf);
+        Matricula matricula = matriculaRepository.salva(new Matricula(orcamento));
+        orcamentoRepository.deleteById(orcamento.getIdOrcamento());
+        log.info("[finaliza] MatriculaApplicationService - criaNovaMatricula-Orcamento");
         return MatriculaIdResponse.builder().idMatricula(matricula.getIdMatricula()).build();
     }
 
