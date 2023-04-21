@@ -1,6 +1,7 @@
 package com.rlti.autoescola.cliente.application.api;
 
 import com.rlti.autoescola.cliente.application.service.ClienteService;
+import com.rlti.autoescola.cliente.application.service.ImagemService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @Log4j2
 public class ClienteRestController implements ClienteAPI {
     private final ClienteService clienteService;
+    private final ImagemService imagemService;
 
     @Override
     public ClienteResponse criaCliente(ClienteRequest clienteRequest) {
@@ -60,9 +62,9 @@ public class ClienteRestController implements ClienteAPI {
     }
 
     @Override
-    public void editaImagem(UUID idCliente, MultipartFile imagem) throws IOException {
+    public void novaImagem(UUID idCliente, MultipartFile imagem) throws IOException {
         log.info("[inicia] ClienteRestController - editaImagem");
-        clienteService.editaImagem(idCliente, imagem);
+        imagemService.novaImagem(idCliente, imagem);
         log.info("[finaliza] ClienteRestController - editaImagem");
     }
 }

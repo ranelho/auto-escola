@@ -59,10 +59,6 @@ public class Cliente {
     @JsonIgnore
     List<Exame> exames;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JsonIgnore
-    private Imagem imagem;
-
     public Cliente(ClienteRequest clienteRequest) {
         this.tipoPessoa = getTipoPessoa();
         this.cpf = clienteRequest.getCpf();
@@ -82,9 +78,5 @@ public class Cliente {
         this.naturalidade = editaClienteRequest.getNaturalidade().toUpperCase();
         this.nacionalidade = editaClienteRequest.getNacionalidade().toUpperCase();
         this.estadoCivil = editaClienteRequest.getEstadoCivil();
-    }
-
-    public void inserirImagem(byte[] bytes) {
-        this.imagem = new Imagem(bytes);
     }
 }

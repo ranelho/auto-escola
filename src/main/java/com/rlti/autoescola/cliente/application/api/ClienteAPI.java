@@ -38,6 +38,6 @@ public interface ClienteAPI {
 
     @PutMapping("/{idCliente}/imagem")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void editaImagem(@PathVariable UUID idCliente, @RequestParam("imagem") MultipartFile imagem) throws IOException;
+    void novaImagem(@PathVariable UUID idCliente, @RequestParam("imagem") MultipartFile imagem) throws IOException;
 
 }
