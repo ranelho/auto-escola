@@ -8,7 +8,7 @@ import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.cliente.application.api.ClienteRequest;
 import com.rlti.autoescola.contato.application.service.ContatoService;
 import com.rlti.autoescola.handler.APIException;
-import com.rlti.autoescola.handler.validation.ValidaCpfouCnpj;
+import com.rlti.autoescola.empresa.validation.ValidaCpfouCnpj;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

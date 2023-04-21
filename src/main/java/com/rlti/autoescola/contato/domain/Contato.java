@@ -48,7 +48,7 @@ public class Contato {
         this.telefone = orcamentoRequest.getTelefone();
     }
 
-    public void alteraContato(ContatoRequest contatoRequest) {
+    public void altera(ContatoRequest contatoRequest) {
         this.email = contatoRequest.getEmail().toLowerCase();
         this.telefone = contatoRequest.getTelefone();
         this.cep = contatoRequest.getCep();

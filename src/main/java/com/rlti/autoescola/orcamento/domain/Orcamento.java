@@ -2,7 +2,7 @@ package com.rlti.autoescola.orcamento.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.cliente.domain.Cliente;
-import com.rlti.autoescola.matricula.annotation.constraints.Validacoes;
+import com.rlti.autoescola.matricula.annotation.constraints.Valid;
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import com.rlti.autoescola.matricula.domain.TipoServico;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
@@ -57,7 +57,7 @@ public class Orcamento {
         this.desconto = orcamentoRequest.getDesconto();
         this.quantidadeParcelas = orcamentoRequest.getQuantidadeParcelas();
         this.observacao = orcamentoRequest.getObservacao();
-        this.valorFinal = Validacoes.calcularValorFinal(orcamentoRequest.getDesconto(), servico.getValorServico());
+        this.valorFinal = Valid.calcularValorFinal(orcamentoRequest.getDesconto(), servico.getValorServico());
         this.tipoServico = orcamentoRequest.getTipoServico();
     }
 }

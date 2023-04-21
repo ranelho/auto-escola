@@ -40,7 +40,7 @@ public class LaudoApplicationService implements LaudoService {
     public void update(Long idLaudo, LaudoRequest request) {
         log.info("[inicia] LaudoApplicationService -  update");
         Laudo laudo = laudoRepository.getLaudoById(idLaudo);
-        laudo.update(request);
+        laudo.altera(request);
         laudoRepository.salva(laudo);
         log.info("[finaliza] LaudoApplicationService -  update");
     }

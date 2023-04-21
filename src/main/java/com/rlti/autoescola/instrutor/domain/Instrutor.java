@@ -45,7 +45,7 @@ public class Instrutor {
         this.categoria = resquest.getCategoria();
     }
 
-    public void update(InstrutorUpdateResquest updateRequest) {
+    public void altera(InstrutorUpdateResquest updateRequest) {
         this.nomeCompleto = updateRequest.getNomeCompleto().toUpperCase();
         this.validadeCnh = updateRequest.getValidadeCnh();
         this.categoria = updateRequest.getCategoria();

@@ -13,7 +13,7 @@ import org.springframework.http.HttpStatus;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class Validacoes {
+public class Valid {
     public static void validaSolicitacao(SolicitacaoRequest request, Servico servico) {
         isCombinationValid(request.getTipoServico(),servico.getCategoria());
         validarTipoPagamentoETotalParcelas(request.getTipoPagamento(), request.getQuantidadeParcelas());
