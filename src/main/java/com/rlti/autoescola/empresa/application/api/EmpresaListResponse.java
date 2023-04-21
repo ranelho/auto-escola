@@ -1,11 +1,9 @@
 package com.rlti.autoescola.empresa.application.api;
 
-import com.rlti.autoescola.empresa.domain.TipoPessoa;
+import com.rlti.autoescola.cliente.domain.enums.TipoPessoa;
 import com.rlti.autoescola.empresa.domain.Empresa;
 import lombok.Value;
-import org.hibernate.validator.constraints.br.CNPJ;
 
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;

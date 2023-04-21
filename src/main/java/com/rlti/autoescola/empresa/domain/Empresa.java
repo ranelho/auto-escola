@@ -1,15 +1,16 @@
 package com.rlti.autoescola.empresa.domain;
 
+import com.rlti.autoescola.cliente.domain.enums.TipoPessoa;
 import com.rlti.autoescola.empresa.application.api.EmpresaAlteracaoRequest;
 import com.rlti.autoescola.empresa.application.api.EmpresaRequest;
 import com.rlti.autoescola.empresa.domain.groups.EmpresaGroupSequenceProvider;
 import com.rlti.autoescola.empresa.domain.groups.PessoaJuridica;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.group.GroupSequenceProvider;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

@@ -3,6 +3,8 @@ package com.rlti.autoescola.cliente.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.cliente.application.api.ClienteRequest;
 import com.rlti.autoescola.cliente.application.api.EditaClienteRequest;
+import com.rlti.autoescola.cliente.domain.enums.EstadoCivil;
+import com.rlti.autoescola.cliente.domain.enums.TipoPessoa;
 import com.rlti.autoescola.cliente.domain.groups.ClienteGroupSequenceProvider;
 import com.rlti.autoescola.cliente.domain.groups.PessoaFisica;
 import com.rlti.autoescola.contato.domain.Contato;
@@ -12,6 +14,7 @@ import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 import org.hibernate.validator.group.GroupSequenceProvider;
 
@@ -25,6 +28,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 @Entity
 @GroupSequenceProvider(value = ClienteGroupSequenceProvider.class)
 public class Cliente {
@@ -55,6 +59,10 @@ public class Cliente {
     @JsonIgnore
     List<Exame> exames;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Imagem imagem;
+
     public Cliente(ClienteRequest clienteRequest) {
         this.tipoPessoa = getTipoPessoa();
         this.cpf = clienteRequest.getCpf();
@@ -74,5 +82,9 @@ public class Cliente {
         this.naturalidade = editaClienteRequest.getNaturalidade().toUpperCase();
         this.nacionalidade = editaClienteRequest.getNacionalidade().toUpperCase();
         this.estadoCivil = editaClienteRequest.getEstadoCivil();
+    }
+
+    public void inserirImagem(byte[] bytes) {
+        this.imagem = new Imagem(bytes);
     }
 }

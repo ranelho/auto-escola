@@ -1,14 +1,15 @@
 package com.rlti.autoescola.cliente.application.service;
 
 import com.rlti.autoescola.cliente.application.api.ClienteListResponse;
+import com.rlti.autoescola.cliente.application.api.ClienteRequest;
 import com.rlti.autoescola.cliente.application.api.ClienteResponse;
 import com.rlti.autoescola.cliente.application.api.EditaClienteRequest;
 import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
+import com.rlti.autoescola.cliente.application.repository.ImagemRepository;
 import com.rlti.autoescola.cliente.domain.Cliente;
-import com.rlti.autoescola.cliente.application.api.ClienteRequest;
-import com.rlti.autoescola.contato.application.repository.ContatoRepository;
+import com.rlti.autoescola.cliente.domain.Imagem;
+import com.rlti.autoescola.cliente.infra.ClienteSpringDataJPARepository;
 import com.rlti.autoescola.contato.application.service.ContatoService;
-import com.rlti.autoescola.contato.domain.Contato;
 import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.handler.validacoes.ValidaCpfouCnpj;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
@@ -16,7 +17,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -25,9 +28,11 @@ import java.util.UUID;
 @Log4j2
 @RequiredArgsConstructor
 public class ClienteApplicationService implements ClienteService {
+    private final ClienteSpringDataJPARepository clienteSpringDataJPARepository;
 
     private final ClienteRepository clienteRepository;
     private final ContatoService contatoService;
+    private final ImagemRepository imagemRepository;
 
     @Override
     public ClienteResponse criaNovoCliente(ClienteRequest clienteRequest) {
@@ -86,5 +91,26 @@ public class ClienteApplicationService implements ClienteService {
         contatoService.verificaContato(cliente, orcamentoRequest);
         log.info("[inicia] ClienteApplicationService - verificaCliente");
         return cliente;
+    }
+
+    @Override
+    public void editaImagem(UUID idCliente, MultipartFile imagem) throws IOException {
+        log.info("[inicia] ClienteApplicationService - editaImagem");
+        Cliente cliente = clienteRepository.buscaClientePorId(idCliente);
+        if (cliente.getImagem() == null) {
+            cliente.inserirImagem(imagem.getBytes());
+            clienteSpringDataJPARepository.save(cliente);
+        }else{
+            atualizarImagemCliente(cliente, imagem);
+        }
+        log.info("[finaliza] ClienteApplicationService - editaImagem");
+    }
+
+    private void atualizarImagemCliente(Cliente cliente, MultipartFile imagem) throws IOException {
+        log.info("[inicia] ClienteApplicationService - atualizarImagemCliente");
+        Imagem imagemAtual = cliente.getImagem();
+        imagemAtual.altera(imagem.getBytes());
+        imagemRepository.salva(imagemAtual);
+        log.info("[finaliza] ClienteApplicationService - atualizarImagemCliente");
     }
 }

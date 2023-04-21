@@ -1,7 +1,7 @@
 package com.rlti.autoescola.cliente.application.api;
 
 import com.rlti.autoescola.cliente.domain.Cliente;
-import com.rlti.autoescola.cliente.domain.EstadoCivil;
+import com.rlti.autoescola.cliente.domain.enums.EstadoCivil;
 import lombok.Value;
 
 import java.time.LocalDate;
