@@ -31,5 +31,5 @@ public interface ManutencaoApi {
 
     @DeleteMapping("{idManutencao}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void deletaManutencao(@PathVariable Long idManutencao);
+    void deleteManutencao(@PathVariable Long idManutencao);
 }

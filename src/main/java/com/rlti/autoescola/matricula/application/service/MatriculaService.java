@@ -14,8 +14,8 @@ public interface MatriculaService {
     MatriculaIdResponse criaOrcamentoMatricula(String cpf);
     List<MatriculaListResponse> buscaTodasMatriculas();
     MatriculaDetalhadoResponse matriculaAtravesId(UUID idMatricula);
-    void deletaMatriculaAtravesId(UUID idMatricula);
-    void patchAlteraMatricula(UUID idMatricula, MatriculaAlteracaoRequest matriculaAlteracaoRequest);
+    void delete(UUID idMatricula);
+    void update(UUID idMatricula, MatriculaAlteracaoRequest matriculaAlteracaoRequest);
     void finalizaMatricula(UUID idMatricula);
     void ativaMatricula(UUID idMatricula);
     void cancelaMatricula(UUID idMatricula);

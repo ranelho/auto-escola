@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,10 +15,10 @@ public class EmpresaController implements EmpresaApi{
 
     private final EmpresaService empresaService;
     @Override
-    public EmpresaResponse postEmpresa(EmpresaRequest empresaRequest) {
-        log.info("[inicia] EmpresaController - postEmpresa");
+    public EmpresaResponse post(EmpresaRequest empresaRequest) {
+        log.info("[inicia] EmpresaController - post");
         EmpresaResponse empresaCriada = empresaService.criaEmpresa(empresaRequest);
-        log.info("[finaliza] EmpresaController - postEmpresa");
+        log.info("[finaliza] EmpresaController - post");
         return empresaCriada;
     }
 
@@ -32,32 +31,32 @@ public class EmpresaController implements EmpresaApi{
     }
 
     @Override
-    public EmpresaDetalhadoResponse getEmpresaAtravesId(UUID idEmpresa) {
-        log.info("[inicia] EmpresaController - getEmpresaAtravesId");
+    public EmpresaDetalhadoResponse getById(UUID idEmpresa) {
+        log.info("[inicia] EmpresaController - getById");
         EmpresaDetalhadoResponse empresaDetalhadoId = empresaService.buscaEmpresaAtravesId(idEmpresa);
-        log.info("[finaliza] EmpresaController - getEmpresaAtravesId");
+        log.info("[finaliza] EmpresaController - getById");
         return empresaDetalhadoId;
     }
 
     @Override
-    public EmpresaDetalhadoResponseCnpj getEmpresaAtravesCnpj(String cnpj) {
-        log.info("[inicia] EmpresaController - getEmpresaAtravesCnpj");
+    public EmpresaDetalhadoResponseCnpj getByCnpj(String cnpj) {
+        log.info("[inicia] EmpresaController - getByCnpj");
         EmpresaDetalhadoResponseCnpj empresaDetalhado = empresaService.buscaEmpresaAtravesCnpj(cnpj);
-        log.info("[finaliza] EmpresaController - getEmpresaAtravesCnpj");
+        log.info("[finaliza] EmpresaController - getByCnpj");
         return empresaDetalhado;
     }
     @Override
-    public void deletaEmpresaAtravesId(UUID idEmpresa) {
-        log.info("[inicia] EmpresaController - deletaEmpresaAtravesId");
+    public void delete(UUID idEmpresa) {
+        log.info("[inicia] EmpresaController - delete");
         log.info("[IdEmpresa] {}", idEmpresa);
-        empresaService.deletaEmpresaAtravesId(idEmpresa);
-        log.info("[finaliza] EmpresaController - deletaEmpresaAtravesId");
+        empresaService.delete(idEmpresa);
+        log.info("[finaliza] EmpresaController - delete");
     }
 
     @Override
-    public void patchAlteraEmpresa(UUID idEmpresa, EmpresaAlteracaoRequest empresaAlteracaoRequest) {
-        log.info("[inicia] EmpresaController - patchAlteraEmpresa");
-        empresaService.patchAlteraEmpresa(idEmpresa, empresaAlteracaoRequest);
-        log.info("[inicia] EmpresaController - patchAlteraEmpresa");
+    public void update(UUID idEmpresa, EmpresaAlteracaoRequest empresaAlteracaoRequest) {
+        log.info("[inicia] EmpresaController - update");
+        empresaService.update(idEmpresa, empresaAlteracaoRequest);
+        log.info("[inicia] EmpresaController - update");
     }
 }

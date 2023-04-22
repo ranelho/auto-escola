@@ -12,7 +12,7 @@ public interface ServicoApi {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    ServicoIdResponse saveFrota(@Valid @RequestBody ServicoRequest request);
+    ServicoIdResponse post(@Valid @RequestBody ServicoRequest request);
 
     @GetMapping("/{idServico}")
     @ResponseStatus(code = HttpStatus.OK)
@@ -24,9 +24,9 @@ public interface ServicoApi {
 
     @DeleteMapping("/{idServico}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void deleteServico(@PathVariable UUID idServico);
+    void delete(@PathVariable UUID idServico);
 
     @PatchMapping("/update/{idServico}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void updateServico(@PathVariable UUID idServico, @Valid @RequestBody ServicoUpdateRequest updateRequest);
+    void update(@PathVariable UUID idServico, @Valid @RequestBody ServicoUpdateRequest updateRequest);
 }

@@ -17,18 +17,18 @@ public class ServicoRestController implements ServicoApi {
     private final ServicoService servicoService;
 
     @Override
-    public ServicoIdResponse saveFrota(ServicoRequest request) {
-        log.info("[inicia] ServicoRestController - saveFrota");
-        ServicoIdResponse idResponse = servicoService.saveFrota(request);
-        log.info("[finaliza] ServicoRestController - saveFrota");
+    public ServicoIdResponse post(ServicoRequest request) {
+        log.info("[inicia] ServicoRestController - post");
+        ServicoIdResponse idResponse = servicoService.post(request);
+        log.info("[finaliza] ServicoRestController - post");
         return idResponse;
     }
 
     @Override
     public ServicoResponse getById(UUID idServico) {
-        log.info("[inicia] ServicoRestController - saveFrota");
+        log.info("[inicia] ServicoRestController - post");
         Servico servico = servicoService.getById(idServico);
-        log.info("[finaliza] ServicoRestController - saveFrota");
+        log.info("[finaliza] ServicoRestController - post");
         return new ServicoResponse(servico);
     }
 
@@ -41,17 +41,17 @@ public class ServicoRestController implements ServicoApi {
     }
 
     @Override
-    public void deleteServico(UUID idServico) {
-        log.info("[inicia] ServicoRestController - deleteServico");
-        servicoService.deletaServico(idServico);
-        log.info("[finaliza] ServicoRestController - deleteServico");
+    public void delete(UUID idServico) {
+        log.info("[inicia] ServicoRestController - delete");
+        servicoService.delete(idServico);
+        log.info("[finaliza] ServicoRestController - delete");
     }
 
     @Override
-    public void updateServico(UUID idServico, ServicoUpdateRequest updateRequest) {
-        log.info("[inicia] ServicoRestController - updateServico");
-        servicoService.updateServico(idServico, updateRequest);
-        log.info("[finaliza] ServicoRestController - updateServico");
+    public void update(UUID idServico, ServicoUpdateRequest updateRequest) {
+        log.info("[inicia] ServicoRestController - update");
+        servicoService.update(idServico, updateRequest);
+        log.info("[finaliza] ServicoRestController - update");
     }
 
 }

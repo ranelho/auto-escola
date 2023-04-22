@@ -10,9 +10,9 @@ import java.util.UUID;
 
 public interface ContatoService {
     ContatoResponse criaNovoContato(UUID idCliente, ContatoRequest contatoRequest);
-    ContatoResponse buscaContatoPorId(UUID idContato);
+    ContatoResponse findById(UUID idContato);
     ClienteContatosResponse buscaContatosDoCliente(UUID idCliente);
-    void deletaContatoPorId(UUID idContato);
-    void editaContato(UUID idContato, ContatoRequest contatoRequest);
+    void delete(UUID idContato);
+    void update(UUID idContato, ContatoRequest contatoRequest);
     void verificaContato(Cliente cliente, OrcamentoRequest orcamentoRequest);
 }

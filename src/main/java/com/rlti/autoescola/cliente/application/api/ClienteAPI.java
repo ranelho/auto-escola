@@ -13,27 +13,27 @@ import java.util.UUID;
 public interface ClienteAPI {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    ClienteResponse criaCliente(@Valid @RequestBody ClienteRequest clienteRequest);
+    ClienteResponse post(@Valid @RequestBody ClienteRequest clienteRequest);
 
     @GetMapping(value = "/{idCliente}")
     @ResponseStatus(code = HttpStatus.OK)
-    ClienteResponse buscaClientePorId(@PathVariable UUID idCliente);
+    ClienteResponse findById(@PathVariable UUID idCliente);
 
     @GetMapping(value = "/cpf")
     @ResponseStatus(code = HttpStatus.OK)
-    ClienteResponse buscaClientePorCPF(@RequestParam String cpf);
+    ClienteResponse findByCpf(@RequestParam String cpf);
 
     @GetMapping("/all")
     @ResponseStatus(code = HttpStatus.OK)
-    List<ClienteListResponse> visualizaTodosClientes();
+    List<ClienteListResponse> getAll();
 
     @DeleteMapping(value = "/{idCliente}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void deletaClientePorId(@PathVariable UUID idCliente);
+    void delete(@PathVariable UUID idCliente);
 
     @PatchMapping("/{idCliente}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void editaCliente(@PathVariable UUID idCliente, @Valid @RequestBody EditaClienteRequest editaClienteRequest);
+    void update(@PathVariable UUID idCliente, @Valid @RequestBody EditaClienteRequest editaClienteRequest);
 
     @PutMapping("/{idCliente}/imagem")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)

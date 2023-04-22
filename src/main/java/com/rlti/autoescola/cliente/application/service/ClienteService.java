@@ -12,10 +12,10 @@ import java.util.UUID;
 
 public interface ClienteService {
     ClienteResponse criaNovoCliente(ClienteRequest clienteRequest);
-    ClienteResponse buscaClientePorId(UUID idCliente);
+    ClienteResponse findById(UUID idCliente);
     List<ClienteListResponse> buscaTodosClientes();
-    void deletaClientePorId(UUID idCliente);
-    void editaCliente(UUID idCliente, EditaClienteRequest editaClienteRequest);
-    ClienteResponse buscaClientePorCPF(String cpf);
+    void delete(UUID idCliente);
+    void update(UUID idCliente, EditaClienteRequest editaClienteRequest);
+    ClienteResponse findByCpf(String cpf);
     Cliente verificaCliente(OrcamentoRequest orcamentoRequest);
 }

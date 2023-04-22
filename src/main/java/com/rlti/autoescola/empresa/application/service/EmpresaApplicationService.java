@@ -47,18 +47,18 @@ public class EmpresaApplicationService implements EmpresaService{
         return new EmpresaDetalhadoResponseCnpj(empresa);
     }
     @Override
-    public void deletaEmpresaAtravesId(UUID idEmpresa) {
-        log.info("[inicia] EmpresaApplicationService - deletaEmpresaAtravesId");
-        empresaRepository.deletaEmpresa(empresaRepository.buscaEmpresaAtravesId(idEmpresa).getIdEmpresa());
-        log.info("[finaliza] EmpresaApplicationService - deletaEmpresaAtravesId");
+    public void delete(UUID idEmpresa) {
+        log.info("[inicia] EmpresaApplicationService - delete");
+        empresaRepository.deleteEmpresa(empresaRepository.buscaEmpresaAtravesId(idEmpresa).getIdEmpresa());
+        log.info("[finaliza] EmpresaApplicationService - delete");
     }
 
     @Override
-    public void patchAlteraEmpresa(UUID idEmpresa, EmpresaAlteracaoRequest empresaAlteracaoRequest) {
-        log.info("[inicia] EmpresaApplicationService - patchAlteraEmpresa");
+    public void update(UUID idEmpresa, EmpresaAlteracaoRequest empresaAlteracaoRequest) {
+        log.info("[inicia] EmpresaApplicationService - update");
         Empresa empresa = empresaRepository.buscaEmpresaAtravesId(idEmpresa);
         empresa.altera(empresaAlteracaoRequest);
         empresaRepository.salva(empresa);
-        log.info("[finaliza] EmpresaApplicationService - patchAlteraEmpresa");
+        log.info("[finaliza] EmpresaApplicationService - update");
     }
 }

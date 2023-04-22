@@ -35,10 +35,10 @@ public class ClienteApplicationService implements ClienteService {
         return new ClienteResponse(cliente);
     }
     @Override
-    public ClienteResponse buscaClientePorId(UUID idCliente) {
-        log.info("[inicia] ClienteApplicationService - buscaClientePorId");
-        Cliente cliente = clienteRepository.buscaClientePorId(idCliente);
-        log.info("[finaliza] ClienteApplicationService - buscaClientePorId");
+    public ClienteResponse findById(UUID idCliente) {
+        log.info("[inicia] ClienteApplicationService - findById");
+        Cliente cliente = clienteRepository.findById(idCliente);
+        log.info("[finaliza] ClienteApplicationService - findById");
         return new ClienteResponse(cliente);
     }
     @Override
@@ -49,27 +49,27 @@ public class ClienteApplicationService implements ClienteService {
         return ClienteListResponse.converte(clientes);
     }
     @Override
-    public void deletaClientePorId(UUID idCliente) {
-        log.info("[inicia] ClienteApplicationService - deletaClientePorId");
-        Cliente cliente = clienteRepository.buscaClientePorId(idCliente);
-        clienteRepository.deletaCliente(cliente);
-        log.info("[finaliza] ClienteApplicationService - deletaClientePorId");
+    public void delete(UUID idCliente) {
+        log.info("[inicia] ClienteApplicationService - delete");
+        Cliente cliente = clienteRepository.findById(idCliente);
+        clienteRepository.deleteCliente(cliente);
+        log.info("[finaliza] ClienteApplicationService - delete");
     }
     @Override
-    public void editaCliente(UUID idCliente, EditaClienteRequest editaClienteRequest) {
-        log.info("[inicia] ClienteApplicationService - editaCliente");
-        Cliente cliente = clienteRepository.buscaClientePorId(idCliente);
+    public void update(UUID idCliente, EditaClienteRequest editaClienteRequest) {
+        log.info("[inicia] ClienteApplicationService - update");
+        Cliente cliente = clienteRepository.findById(idCliente);
         cliente.altera(editaClienteRequest);
         clienteRepository.salva(cliente);
-        log.info("[finaliza] ClienteApplicationService - editaCliente");
+        log.info("[finaliza] ClienteApplicationService - update");
     }
     @Override
-    public ClienteResponse buscaClientePorCPF(String cpf) {
-        log.info("[inicia] ClienteApplicationService - buscaClientePorCPF");
+    public ClienteResponse findByCpf(String cpf) {
+        log.info("[inicia] ClienteApplicationService - findByCpf");
         ValidaCpfouCnpj.validateCpfOrCnpj(cpf);
-        Cliente cliente = clienteRepository.buscaClientePorCPF(cpf)
+        Cliente cliente = clienteRepository.findByCpf(cpf)
                 .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,"Cliente não encontrado!"));;
-        log.info("[finaliza] ClienteApplicationService - buscaClientePorCPF");
+        log.info("[finaliza] ClienteApplicationService - findByCpf");
         return new ClienteResponse(cliente);
     }
 
@@ -77,7 +77,7 @@ public class ClienteApplicationService implements ClienteService {
     public Cliente verificaCliente(OrcamentoRequest orcamentoRequest) {
         log.info("[inicia] ClienteApplicationService - verificaCliente");
         //busca no banco
-        Optional<Cliente> clienteOptional = clienteRepository.buscaClientePorCPF(orcamentoRequest.getCpf());
+        Optional<Cliente> clienteOptional = clienteRepository.findByCpf(orcamentoRequest.getCpf());
         //caso cliente nao econtrado cria o cliente
         Cliente cliente = clienteOptional.orElseGet(() -> clienteRepository.salva(new Cliente(orcamentoRequest)));
         //chama verificação se existe um contato para o cliente

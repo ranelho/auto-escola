@@ -32,19 +32,19 @@ public class LaudoInfraRepository implements LaudoRepository {
     }
 
     @Override
-    public void deleta(Long idLaudo) {
-        log.info("[inicia] LaudoInfraRepository - deleta");
+    public void delete(Long idLaudo) {
+        log.info("[inicia] LaudoInfraRepository - delete");
         laudoSpringJPARespository.deleteById(idLaudo);
-        log.info("[finaliza] LaudoInfraRepository - deleta");
+        log.info("[finaliza] LaudoInfraRepository - delete");
     }
 
     @Override
-    public Laudo getLaudoById(Long idLaudo) {
-        log.info("[inicia] LaudoInfraRepository - getLaudoById");
+    public Laudo getById(Long idLaudo) {
+        log.info("[inicia] LaudoInfraRepository - getById");
         Optional<Laudo> optionalLaudo = laudoSpringJPARespository.findById(idLaudo);
         Laudo laudo = optionalLaudo
                 .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST, "Laudo não encontrado"));
-        log.info("[finaliza] LaudoInfraRepository - getLaudoById");
+        log.info("[finaliza] LaudoInfraRepository - getById");
         return laudo;
     }
 

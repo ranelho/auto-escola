@@ -16,10 +16,10 @@ public class VeiculoRestController implements VeiculoApi {
     private final VeiculoService veiculoService;
 
     @Override
-    public VeiculoIdResponse saveFrota(VeiculoRequest request) {
-        log.info("[inicia] FrotaRestController - saveFrota");
+    public VeiculoIdResponse post(VeiculoRequest request) {
+        log.info("[inicia] FrotaRestController - post");
         VeiculoIdResponse idResponse = veiculoService.saveVeiculo(request);
-        log.info("[finaliza] FrotaRestController - saveFrota");
+        log.info("[finaliza] FrotaRestController - post");
         return idResponse;
     }
 
@@ -49,7 +49,7 @@ public class VeiculoRestController implements VeiculoApi {
     @Override
     public void deleteVeiculo(String placa) {
         log.info("[inicia] FrotaRestController - deleteVeiculo");
-        veiculoService.deletaVeiculo(placa);
+        veiculoService.deleteVeiculo(placa);
         log.info("[finaliza] FrotaRestController - deleteVeiculo");
     }
 }

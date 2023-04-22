@@ -15,40 +15,40 @@ public class ExameRestController implements ExameApi {
     private final ExameService exameService;
 
     @Override
-    public ExameIdResponse cadastrar(UUID idCliente, ExameRequest request) {
-        log.info("[inicia] ExameRestController - cadastrar");
-        ExameIdResponse idResponse = exameService.cadastrar(idCliente, request);
-        log.info("[finaliza] ExameRestController - cadastrar");
+    public ExameIdResponse post(UUID idCliente, ExameRequest request) {
+        log.info("[inicia] ExameRestController - post");
+        ExameIdResponse idResponse = exameService.post(idCliente, request);
+        log.info("[finaliza] ExameRestController - post");
         return idResponse;
     }
 
     @Override
-    public ExameResponse getExame(Long idExame) {
-        log.info("[inicia] ExameRestController - getExame");
-        ExameResponse response = exameService.getExame(idExame);
-        log.info("[finaliza] ExameRestController - getExame");
+    public ExameResponse getById(Long idExame) {
+        log.info("[inicia] ExameRestController - getById");
+        ExameResponse response = exameService.getById(idExame);
+        log.info("[finaliza] ExameRestController - getById");
         return response;
     }
 
     @Override
-    public List<ExameResponse> listar(UUID idCliente) {
-        log.info("[inicia] ExameRestController - listar");
-        List<ExameResponse> response = exameService.listar(idCliente);
-        log.info("[finaliza] ExameRestController - listar");
+    public List<ExameResponse> getAll(UUID idCliente) {
+        log.info("[inicia] ExameRestController - getAll");
+        List<ExameResponse> response = exameService.getAll(idCliente);
+        log.info("[finaliza] ExameRestController - getAll");
         return response;
     }
 
     @Override
-    public void deletar(Long idExame) {
-        log.info("[inicia] ExameRestController - deletar");
-        exameService.deletar(idExame);
-        log.info("[finaliza] ExameRestController - deletar");
+    public void delete(Long idExame) {
+        log.info("[inicia] ExameRestController - delete");
+        exameService.delete(idExame);
+        log.info("[finaliza] ExameRestController - delete");
     }
 
     @Override
-    public void alterar(Long idExame, ExameRequest request) {
-        log.info("[inicia] ExameRestController - alterar");
-        exameService.alterar(idExame, request);
-        log.info("[finaliza] ExameRestController - alterar");
+    public void update(Long idExame, ExameRequest request) {
+        log.info("[inicia] ExameRestController - update");
+        exameService.update(idExame, request);
+        log.info("[finaliza] ExameRestController - update");
     }
 }

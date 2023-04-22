@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -16,36 +15,36 @@ public class ContatoRestController implements ContatoApi {
     private final ContatoService contatoService;
 
     @Override
-    public ContatoResponse criaContato(UUID idCliente, ContatoRequest contatoRequest) {
-        log.info("[inicia] ContatoRestController - criaContato");
+    public ContatoResponse post(UUID idCliente, ContatoRequest contatoRequest) {
+        log.info("[inicia] ContatoRestController - post");
         ContatoResponse contatoCriado = contatoService.criaNovoContato(idCliente, contatoRequest);
-        log.info("[finaliza] ContatoRestController - criaContato");
+        log.info("[finaliza] ContatoRestController - post");
         return contatoCriado;
     }
     @Override
-    public ContatoResponse buscaContatoPorId(UUID idContato) {
-        log.info("[inicia] ContatoRestController - buscaContatoPorId");
-        ContatoResponse buscaContato = contatoService.buscaContatoPorId(idContato);
-        log.info("[finaliza] ContatoRestController - buscaContatoPorId");
+    public ContatoResponse findById(UUID idContato) {
+        log.info("[inicia] ContatoRestController - findById");
+        ContatoResponse buscaContato = contatoService.findById(idContato);
+        log.info("[finaliza] ContatoRestController - findById");
         return buscaContato;
     }
     @Override
-    public ClienteContatosResponse visualizaContatosDoCliente(UUID idCliente) {
-        log.info("[inicia] ContatoRestController - visualizaContatosDoCliente");
+    public ClienteContatosResponse getAll(UUID idCliente) {
+        log.info("[inicia] ContatoRestController - getAll");
         ClienteContatosResponse response = contatoService.buscaContatosDoCliente(idCliente);
-        log.info("[finaliza] ContatoRestController - visualizaContatosDoCliente");
+        log.info("[finaliza] ContatoRestController - getAll");
         return response;
     }
     @Override
-    public void deletaContatoPorId(UUID idContato) {
-        log.info("[inicia] ContatoRestController - deletaContatoPorId");
-        contatoService.deletaContatoPorId(idContato);
-        log.info("[finaliza] ContatoRestController - deletaContatoPorId");
+    public void delete(UUID idContato) {
+        log.info("[inicia] ContatoRestController - delete");
+        contatoService.delete(idContato);
+        log.info("[finaliza] ContatoRestController - delete");
     }
     @Override
-    public void editaContato(UUID idContato, ContatoRequest contatoRequest) {
-        log.info("[inicia] ContatoRestController - editaContato");
-        contatoService.editaContato(idContato, contatoRequest);
-        log.info("[finaliza] ContatoRestController - editaContato");
+    public void update(UUID idContato, ContatoRequest contatoRequest) {
+        log.info("[inicia] ContatoRestController - update");
+        contatoService.update(idContato, contatoRequest);
+        log.info("[finaliza] ContatoRestController - update");
     }
 }

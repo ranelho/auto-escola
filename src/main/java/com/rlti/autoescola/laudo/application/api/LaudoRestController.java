@@ -15,40 +15,40 @@ public class LaudoRestController implements LaudoApi {
     private final LaudoService laudoService;
 
     @Override
-    public LaudoIdResponse postLaudo(UUID idMatricula, LaudoRequest request) {
-        log.info("[inicia] - LaudoRestController - postLaudo");
-        LaudoIdResponse idResponse = laudoService.postLaudo(idMatricula, request);
-        log.info("[finaliza] - LaudoRestController - postLaudo");
+    public LaudoIdResponse post(UUID idMatricula, LaudoRequest request) {
+        log.info("[inicia] - LaudoRestController - post");
+        LaudoIdResponse idResponse = laudoService.post(idMatricula, request);
+        log.info("[finaliza] - LaudoRestController - post");
         return idResponse;
     }
 
     @Override
-    public LaudoResponse getLaudoById(Long idLaudo) {
-        log.info("[inicia] - LaudoRestController - postLaudo");
-        LaudoResponse response = laudoService.getLaudoById(idLaudo);
-        log.info("[finaliza] - LaudoRestController - postLaudo");
+    public LaudoResponse getById(Long idLaudo) {
+        log.info("[inicia] - LaudoRestController - post");
+        LaudoResponse response = laudoService.getById(idLaudo);
+        log.info("[finaliza] - LaudoRestController - post");
         return response;
     }
 
     @Override
     public void update(Long idLaudo,LaudoRequest request) {
-        log.info("[inicia] - LaudoRestController - postLaudo");
+        log.info("[inicia] - LaudoRestController - post");
         laudoService.update(idLaudo, request);
-        log.info("[finaliza] - LaudoRestController - postLaudo");
+        log.info("[finaliza] - LaudoRestController - post");
     }
 
     @Override
-    public void deleta(Long idLaudo) {
-        log.info("[inicia] - LaudoRestController - postLaudo");
-        laudoService.deleta(idLaudo);
-        log.info("[finaliza] - LaudoRestController - postLaudo");
+    public void delete(Long idLaudo) {
+        log.info("[inicia] - LaudoRestController - post");
+        laudoService.delete(idLaudo);
+        log.info("[finaliza] - LaudoRestController - post");
     }
 
     @Override
-    public List<LaudoResponse> getLaudoByMatricula(UUID idMatricula) {
-        log.info("[inicia] - LaudoRestController - getLaudoById");
-        List<LaudoResponse> laudoResponseMatricula = laudoService.getLaudoByMatricula(idMatricula);
-        log.info("[finaliza] - LaudoRestController - getLaudoById");
+    public List<LaudoResponse> getByMatricula(UUID idMatricula) {
+        log.info("[inicia] - LaudoRestController - getById");
+        List<LaudoResponse> laudoResponseMatricula = laudoService.getByMatricula(idMatricula);
+        log.info("[finaliza] - LaudoRestController - getById");
         return laudoResponseMatricula;
     }
 }

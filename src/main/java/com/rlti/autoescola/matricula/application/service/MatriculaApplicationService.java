@@ -37,7 +37,7 @@ public class MatriculaApplicationService implements MatriculaService{
         log.info("[inicia] MatriculaApplicationService - criaNovaMatricula");
         Servico servico = servicoRepository.getById(matriculaRequest.getIdServico());
         validaSolicitacao(matriculaRequest, servico);
-        Cliente cliente = clienteRepository.buscaClientePorId(matriculaRequest.getIdCliente());
+        Cliente cliente = clienteRepository.findById(matriculaRequest.getIdCliente());
         Matricula matricula = matriculaRepository.salva(new Matricula(cliente, servico,matriculaRequest));
         log.info("[finaliza] MatriculaApplicationService - criaNovaMatricula");
         return MatriculaIdResponse.builder().idMatricula(matricula.getIdMatricula()).build();
@@ -70,21 +70,21 @@ public class MatriculaApplicationService implements MatriculaService{
     }
 
     @Override
-    public void deletaMatriculaAtravesId(UUID idMatricula) {
-        log.info("[inicia] MatriculaApplicationService - deletaMatriculaAtravesId");
+    public void delete(UUID idMatricula) {
+        log.info("[inicia] MatriculaApplicationService - delete");
         Matricula matricula = matriculaRepository.matriculaAtravesId(idMatricula);
-        matriculaRepository.deletaMatricula(matricula);
-        log.info("[finaliza] MatriculaApplicationService - deletaMatriculaAtravesId");
+        matriculaRepository.deleteMatricula(matricula);
+        log.info("[finaliza] MatriculaApplicationService - delete");
     }
 
     @Override
-    public void patchAlteraMatricula(UUID idMatricula, MatriculaAlteracaoRequest request) {
-        log.info("[inicia] MatriculaApplicationService - patchAlteraMatricula");
+    public void update(UUID idMatricula, MatriculaAlteracaoRequest request) {
+        log.info("[inicia] MatriculaApplicationService - update");
         Matricula matricula = matriculaRepository.matriculaAtravesId(idMatricula);
         validaAlteracaoMatricula(matricula, request);
         matricula.altera(request);
         matriculaRepository.salva(matricula);
-        log.info("[finaliza] MatriculaApplicationService - patchAlteraMatricula");
+        log.info("[finaliza] MatriculaApplicationService - update");
     }
 
     @Override

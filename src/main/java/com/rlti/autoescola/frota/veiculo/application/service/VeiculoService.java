@@ -11,5 +11,5 @@ public interface VeiculoService {
     Veiculo getByPlaca(String placa);
     List<Veiculo> getAll();
     void alteraVeiculo(String placa, VeiculoRequest request);
-    void deletaVeiculo(String placa);
+    void deleteVeiculo(String placa);
 }

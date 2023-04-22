@@ -9,5 +9,5 @@ public interface ManutencaoRepository {
     Manutencao salva(Manutencao manutencao);
     List<Manutencao> findAll(Veiculo veiculo);
     Manutencao buscaPorId(Long idManutencao);
-    void deleta(Long idManutencao);
+    void delete(Long idManutencao);
 }

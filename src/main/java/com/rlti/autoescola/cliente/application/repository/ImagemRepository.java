@@ -6,7 +6,7 @@ import com.rlti.autoescola.cliente.domain.Imagem;
 import java.util.Optional;
 
 public interface ImagemRepository {
-    void deleta(Long id);
+    void delete(Long id);
     Imagem salva(Imagem image);
     Optional<Imagem> findByCliente(Cliente cliente);
 }

@@ -46,9 +46,9 @@ public class ExameInfraRepository implements ExameRepository {
     }
 
     @Override
-    public void deleta(Long idExame) {
-        log.info("[inicia] ExameInfraRepository -  deleta");
+    public void delete(Long idExame) {
+        log.info("[inicia] ExameInfraRepository -  delete");
         exameSpringDataJPARepository.deleteById(idExame);
-        log.info("[finaliza] ExameInfraRepository -  deleta");
+        log.info("[finaliza] ExameInfraRepository -  delete");
     }
 }

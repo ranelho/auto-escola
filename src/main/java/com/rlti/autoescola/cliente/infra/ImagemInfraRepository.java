@@ -16,10 +16,10 @@ public class ImagemInfraRepository implements ImagemRepository {
     private final ImagemSpringDataJPARepository imagemSpringDataJPARepository;
 
     @Override
-    public void deleta(Long id) {
-        log.info("[inicia] ImagemInfraRepository - deleta");
+    public void delete(Long id) {
+        log.info("[inicia] ImagemInfraRepository - delete");
         imagemSpringDataJPARepository.deleteById(id);
-        log.info("[finaliza] ImagemInfraRepository - deleta");
+        log.info("[finaliza] ImagemInfraRepository - delete");
     }
 
     @Override

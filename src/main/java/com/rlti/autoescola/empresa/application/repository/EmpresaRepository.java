@@ -9,5 +9,5 @@ public interface EmpresaRepository {
     List<Empresa> buscaTodasEmpresas();
     Empresa buscaEmpresaAtravesId(UUID idEmpresa);
     Empresa buscaEmpresaAtravesCnpj(String cnpj);
-    void deletaEmpresa(UUID idEmpresa);
+    void deleteEmpresa(UUID idEmpresa);
 }

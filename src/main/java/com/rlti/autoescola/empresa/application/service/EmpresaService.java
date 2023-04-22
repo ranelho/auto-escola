@@ -9,6 +9,6 @@ public interface EmpresaService {
     List<EmpresaListResponse> buscaTodosClientes();
     EmpresaDetalhadoResponse buscaEmpresaAtravesId(UUID idEmpresa);
     EmpresaDetalhadoResponseCnpj buscaEmpresaAtravesCnpj(String cnpj);
-    void deletaEmpresaAtravesId(UUID idEmpresa);
-    void patchAlteraEmpresa(UUID idEmpresa, EmpresaAlteracaoRequest empresaAlteracaoRequest);
+    void delete(UUID idEmpresa);
+    void update(UUID idEmpresa, EmpresaAlteracaoRequest empresaAlteracaoRequest);
 }

@@ -27,13 +27,13 @@ public class OrcamentoInfraRepository implements OrcamentoRepository {
         return orcamentoCriado;
     }
     @Override
-    public Orcamento getOrcamentoById(Long idOrcamento) {
-        log.info("[inicia] OrcamentoInfraRepository - getOrcamentoById");
+    public Orcamento getById(Long idOrcamento) {
+        log.info("[inicia] OrcamentoInfraRepository - getById");
         Optional<Orcamento> optionalOrcamento = orcamentoSpringDataJPARepository.findById(idOrcamento);
         Orcamento orcamento = optionalOrcamento
                 .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,
                                 "Orçamento não encontrado!"));
-        log.info("[finaliza] OrcamentoInfraRepository - getOrcamentoById");
+        log.info("[finaliza] OrcamentoInfraRepository - getById");
         return (orcamento);
     }
     @Scheduled(fixedRate = 86400000) // Executa a cada 24 horas)

@@ -17,27 +17,27 @@ public interface MatriculaAPI {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    MatriculaIdResponse criaMatricula(@Valid @RequestBody MatriculaRequest matriculaRequest);
+    MatriculaIdResponse post(@Valid @RequestBody MatriculaRequest matriculaRequest);
 
     @PostMapping(value = "/orcamento")
     @ResponseStatus(code = HttpStatus.CREATED)
-    MatriculaIdResponse criaMatricula(@RequestParam String cpf);
+    MatriculaIdResponse post(@RequestParam String cpf);
 
     @GetMapping("/all")
     @ResponseStatus(code = HttpStatus.OK)
-    List<MatriculaListResponse> getTodasMatriculas();
+    List<MatriculaListResponse> getAll();
 
     @GetMapping(value = "/{idMatricula}")
     @ResponseStatus(code = HttpStatus.OK)
-    MatriculaDetalhadoResponse getMatriculaAtravesId(@PathVariable UUID idMatricula);
+    MatriculaDetalhadoResponse getById(@PathVariable UUID idMatricula);
 
     @DeleteMapping(value = "/{idMatricula}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void deletaMatriculaAtravesId(@PathVariable UUID idMatricula);
+    void delete(@PathVariable UUID idMatricula);
 
     @PatchMapping(value = "/{idMatricula}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void patchAlteraMatricula(@PathVariable UUID idMatricula,
+    void update(@PathVariable UUID idMatricula,
                               @Valid @RequestBody MatriculaAlteracaoRequest matriculaAlteracaoRequest);
 
     @PatchMapping("/finaliza-matricula/{idMatricula}")

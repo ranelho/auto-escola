@@ -34,10 +34,10 @@ public class OrcamentoApplicationService implements OrcamentoService {
     }
 
     @Override
-    public OrcamentoResponse getOrcamentoById(Long idOrcamento) {
-        log.info("[inicia] OrcamentoApplicationService - getOrcamentoById");
-        Orcamento orcamento = orcamentoRepository.getOrcamentoById(idOrcamento);
-        log.info("[finaliza] OrcamentoApplicationService - getOrcamentoById");
+    public OrcamentoResponse getById(Long idOrcamento) {
+        log.info("[inicia] OrcamentoApplicationService - getById");
+        Orcamento orcamento = orcamentoRepository.getById(idOrcamento);
+        log.info("[finaliza] OrcamentoApplicationService - getById");
         return new OrcamentoResponse(orcamento);
     }
 }

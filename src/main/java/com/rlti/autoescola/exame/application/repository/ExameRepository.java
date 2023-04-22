@@ -10,5 +10,5 @@ public interface ExameRepository {
     Exame salva(Exame exame);
     Exame buscaExamePorId(Long idExame);
     List<Exame> buscaExamesPorIdCliente(Cliente cliente);
-    void deleta(Long idExame);
+    void delete(Long idExame);
 }

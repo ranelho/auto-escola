@@ -11,21 +11,21 @@ import java.util.UUID;
 public interface ExameApi {
     @PostMapping("{idCliente}")
     @ResponseStatus(code = HttpStatus.CREATED)
-    ExameIdResponse cadastrar(@PathVariable UUID idCliente, @Valid @RequestBody ExameRequest request);
+    ExameIdResponse post(@PathVariable UUID idCliente, @Valid @RequestBody ExameRequest request);
 
     @GetMapping("/{idExame}")
     @ResponseStatus(code = HttpStatus.OK)
-    ExameResponse getExame(@PathVariable Long idExame);
+    ExameResponse getById(@PathVariable Long idExame);
 
     @GetMapping("/all/{idCliente}")
     @ResponseStatus(code = HttpStatus.OK)
-    List<ExameResponse> listar(@PathVariable UUID idCliente);
+    List<ExameResponse> getAll(@PathVariable UUID idCliente);
 
     @DeleteMapping("/{idExame}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void deletar(@PathVariable Long idExame);
+    void delete(@PathVariable Long idExame);
 
     @PutMapping("/{idExame}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void alterar(@PathVariable Long idExame, @Valid @RequestBody ExameRequest request);
+    void update(@PathVariable Long idExame, @Valid @RequestBody ExameRequest request);
 }

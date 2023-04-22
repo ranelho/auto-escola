@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ExameService {
-    ExameIdResponse cadastrar(UUID idCliente, ExameRequest request);
-    ExameResponse getExame(Long idExame);
-    List<ExameResponse> listar(UUID idCliente);
-    void deletar(Long idExame);
-    void alterar(Long idExame, ExameRequest request);
+    ExameIdResponse post(UUID idCliente, ExameRequest request);
+    ExameResponse getById(Long idExame);
+    List<ExameResponse> getAll(UUID idCliente);
+    void delete(Long idExame);
+    void update(Long idExame, ExameRequest request);
 }
