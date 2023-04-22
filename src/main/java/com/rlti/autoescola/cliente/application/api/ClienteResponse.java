@@ -1,7 +1,7 @@
 package com.rlti.autoescola.cliente.application.api;
 
 import com.rlti.autoescola.cliente.domain.Cliente;
-import com.rlti.autoescola.cliente.domain.EstadoCivil;
+import com.rlti.autoescola.cliente.domain.enums.EstadoCivil;
 import lombok.Value;
 
 import java.time.LocalDate;
@@ -16,6 +16,7 @@ public class ClienteResponse {
     String naturalidade;
     String nacionalidade;
     EstadoCivil estadoCivil;
+    byte[] imagem;
 
     public ClienteResponse(Cliente cliente) {
         this.idCliente = cliente.getIdCliente();
@@ -25,5 +26,6 @@ public class ClienteResponse {
         this.naturalidade = cliente.getNaturalidade();
         this.nacionalidade = cliente.getNacionalidade();
         this.estadoCivil = cliente.getEstadoCivil();
+        this.imagem = cliente.getImagem().getDados();
     }
 }

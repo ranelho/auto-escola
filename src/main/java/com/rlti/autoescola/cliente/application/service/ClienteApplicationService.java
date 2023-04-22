@@ -1,14 +1,14 @@
 package com.rlti.autoescola.cliente.application.service;
 
 import com.rlti.autoescola.cliente.application.api.ClienteListResponse;
+import com.rlti.autoescola.cliente.application.api.ClienteRequest;
 import com.rlti.autoescola.cliente.application.api.ClienteResponse;
 import com.rlti.autoescola.cliente.application.api.EditaClienteRequest;
 import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.cliente.domain.Cliente;
-import com.rlti.autoescola.cliente.application.api.ClienteRequest;
 import com.rlti.autoescola.contato.application.service.ContatoService;
-import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.empresa.validation.ValidaCpfouCnpj;
+import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

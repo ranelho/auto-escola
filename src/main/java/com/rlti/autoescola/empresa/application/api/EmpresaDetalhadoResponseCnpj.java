@@ -1,8 +1,9 @@
 package com.rlti.autoescola.empresa.application.api;
 
+import com.rlti.autoescola.cliente.domain.enums.TipoPessoa;
 import com.rlti.autoescola.empresa.domain.Empresa;
-import com.rlti.autoescola.empresa.domain.TipoPessoa;
 import lombok.Value;
+
 import java.time.LocalDate;
 import java.util.UUID;
 @Value
