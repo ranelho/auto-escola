@@ -11,25 +11,25 @@ public interface ManutencaoApi {
 
     @PostMapping("/{placa}")
     @ResponseStatus(code = HttpStatus.CREATED)
-    ManutencaoIdResponse novaManutencao(@PathVariable String placa, @Valid @RequestBody ManutencaoRequest request);
+    ManutencaoIdResponse post(@PathVariable String placa, @Valid @RequestBody ManutencaoRequest request);
 
     @GetMapping("/veiculo/{placa}")
     @ResponseStatus(code = HttpStatus.OK)
-    VeiculoManutencaoResponse buscaManutencoes(@PathVariable String placa);
+    VeiculoManutencaoResponse getByVeiculo(@PathVariable String placa);
 
     @GetMapping("/all/{placa}")
     @ResponseStatus(code = HttpStatus.OK)
-    List<ManutencaoListResponse> buscaManutencoesVeiculo(@PathVariable String placa);
+    List<ManutencaoListResponse> getByVeiculoVeiculo(@PathVariable String placa);
 
     @GetMapping("{idManutencao}")
     @ResponseStatus(code = HttpStatus.OK)
-    ManutencaoResponse buscaPorId(@PathVariable Long idManutencao);
+    ManutencaoResponse getById(@PathVariable Long idManutencao);
 
     @PutMapping("{idManutencao}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void alteraManutencao(@PathVariable Long idManutencao, @Valid @RequestBody ManutencaoRequest request);
+    void update(@PathVariable Long idManutencao, @Valid @RequestBody ManutencaoRequest request);
 
     @DeleteMapping("{idManutencao}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void deleteManutencao(@PathVariable Long idManutencao);
+    void delete(@PathVariable Long idManutencao);
 }

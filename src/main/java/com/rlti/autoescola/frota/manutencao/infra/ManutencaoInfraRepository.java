@@ -34,12 +34,12 @@ public class ManutencaoInfraRepository implements ManutencaoRepository {
     }
 
     @Override
-    public Manutencao buscaPorId(Long idManutencao) {
-        log.info("[inicia] ManutencaoInfraRepository - buscaPorId");
+    public Manutencao getById(Long idManutencao) {
+        log.info("[inicia] ManutencaoInfraRepository - getById");
         Optional<Manutencao> optionalManutencao = manutencaoSpringDataJPARepository.findById(idManutencao);
         Manutencao manutencao = optionalManutencao
                 .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST, "Manutenção não encontrado"));
-        log.info("[finaliza] ManutencaoInfraRepository - buscaPorId");
+        log.info("[finaliza] ManutencaoInfraRepository - getById");
         return manutencao;
     }
 

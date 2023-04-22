@@ -23,9 +23,9 @@ public interface VeiculoApi {
 
     @PutMapping("/{placa}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void alteraVeiculo(@PathVariable String placa, @Valid @RequestBody VeiculoRequest request);
+    void update(@PathVariable String placa, @Valid @RequestBody VeiculoRequest request);
 
     @DeleteMapping("/{placa}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void deleteVeiculo(@PathVariable String placa);
+    void delete(@PathVariable String placa);
 }

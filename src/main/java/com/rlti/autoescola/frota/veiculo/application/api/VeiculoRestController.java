@@ -40,16 +40,16 @@ public class VeiculoRestController implements VeiculoApi {
     }
 
     @Override
-    public void alteraVeiculo(String placa, VeiculoRequest request) {
-        log.info("[inicia] FrotaRestController - alteraVeiculo");
-        veiculoService.alteraVeiculo(placa, request);
-        log.info("[finaliza] FrotaRestController - alteraVeiculo");
+    public void update(String placa, VeiculoRequest request) {
+        log.info("[inicia] FrotaRestController - update");
+        veiculoService.update(placa, request);
+        log.info("[finaliza] FrotaRestController - update");
     }
 
     @Override
-    public void deleteVeiculo(String placa) {
-        log.info("[inicia] FrotaRestController - deleteVeiculo");
-        veiculoService.deleteVeiculo(placa);
-        log.info("[finaliza] FrotaRestController - deleteVeiculo");
+    public void delete(String placa) {
+        log.info("[inicia] FrotaRestController - delete");
+        veiculoService.delete(placa);
+        log.info("[finaliza] FrotaRestController - delete");
     }
 }
