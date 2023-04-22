@@ -5,10 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.UUID;
 
-@RestController
 @RequestMapping("v1/contato")
 public interface ContatoApi {
 
@@ -20,7 +18,7 @@ public interface ContatoApi {
     @ResponseStatus(code = HttpStatus.OK)
     ContatoResponse buscaContatoPorId(@PathVariable UUID idContato);
 
-    @GetMapping(value = "/cliente/{idCliente}")
+    @GetMapping(value = "/all-contatos-cliente/{idCliente}")
     @ResponseStatus(code = HttpStatus.OK)
     ClienteContatosResponse visualizaContatosDoCliente(@PathVariable UUID idCliente);
 

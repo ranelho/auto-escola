@@ -23,7 +23,7 @@ public interface MatriculaAPI {
     @ResponseStatus(code = HttpStatus.CREATED)
     MatriculaIdResponse criaMatricula(@RequestParam String cpf);
 
-    @GetMapping
+    @GetMapping("/all")
     @ResponseStatus(code = HttpStatus.OK)
     List<MatriculaListResponse> getTodasMatriculas();
 

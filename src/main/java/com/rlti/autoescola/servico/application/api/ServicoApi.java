@@ -7,7 +7,6 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
-@RestController
 @RequestMapping("/v1/servico")
 public interface ServicoApi {
 
@@ -19,7 +18,7 @@ public interface ServicoApi {
     @ResponseStatus(code = HttpStatus.OK)
     ServicoResponse getById(@PathVariable UUID idServico);
 
-    @GetMapping
+    @GetMapping("/all")
     @ResponseStatus(code = HttpStatus.OK)
     List<ServicoResponse> getAll();
 

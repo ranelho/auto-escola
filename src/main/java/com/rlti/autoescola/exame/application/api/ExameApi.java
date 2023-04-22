@@ -17,7 +17,7 @@ public interface ExameApi {
     @ResponseStatus(code = HttpStatus.OK)
     ExameResponse getExame(@PathVariable Long idExame);
 
-    @GetMapping("/list/{idCliente}")
+    @GetMapping("/all/{idCliente}")
     @ResponseStatus(code = HttpStatus.OK)
     List<ExameResponse> listar(@PathVariable UUID idCliente);
 

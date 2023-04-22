@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-@RestController
 @RequestMapping("/v1/cliente")
 public interface ClienteAPI {
     @PostMapping
@@ -24,7 +23,7 @@ public interface ClienteAPI {
     @ResponseStatus(code = HttpStatus.OK)
     ClienteResponse buscaClientePorCPF(@RequestParam String cpf);
 
-    @GetMapping
+    @GetMapping("/all")
     @ResponseStatus(code = HttpStatus.OK)
     List<ClienteListResponse> visualizaTodosClientes();
 
@@ -39,5 +38,4 @@ public interface ClienteAPI {
     @PutMapping("/{idCliente}/imagem")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void novaImagem(@PathVariable UUID idCliente, @RequestParam("imagem") MultipartFile imagem) throws IOException;
-
 }

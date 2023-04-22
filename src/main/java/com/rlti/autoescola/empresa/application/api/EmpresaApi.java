@@ -6,18 +6,17 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
-@RestController
 @RequestMapping("/v1/empresa")
 public interface EmpresaApi {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     EmpresaResponse postEmpresa(@Valid @RequestBody EmpresaRequest empresaRequest);
 
-    @GetMapping
+    @GetMapping("/all")
     @ResponseStatus(code = HttpStatus.OK)
     List<EmpresaListResponse> getEmpresas();
 
-    @GetMapping(value = "/empresa/{idEmpresa}")
+    @GetMapping(value = "/{idEmpresa}")
     @ResponseStatus(code = HttpStatus.OK)
     EmpresaDetalhadoResponse getEmpresaAtravesId(@PathVariable UUID idEmpresa);
 

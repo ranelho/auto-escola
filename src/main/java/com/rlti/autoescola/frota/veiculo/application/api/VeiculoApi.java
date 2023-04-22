@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController
 @RequestMapping("/v1/veiculo")
 public interface VeiculoApi {
 
@@ -18,7 +17,7 @@ public interface VeiculoApi {
     @ResponseStatus(code = HttpStatus.OK)
     VeiculoResponse getByPlaca(@PathVariable String placa);
 
-    @GetMapping
+    @GetMapping("/all")
     @ResponseStatus(code = HttpStatus.OK)
     List<VeiculoResponse> getAll();
 
