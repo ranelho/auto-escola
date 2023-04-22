@@ -58,6 +58,9 @@ public class Cliente {
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
     @JsonIgnore
     List<Exame> exames;
+    @OneToOne(mappedBy = "cliente")
+    @JsonIgnore
+    Imagem imagem;
 
     public Cliente(ClienteRequest clienteRequest) {
         this.tipoPessoa = getTipoPessoa();
