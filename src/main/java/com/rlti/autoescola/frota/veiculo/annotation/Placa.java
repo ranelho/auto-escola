@@ -1,5 +1,8 @@
-package com.rlti.autoescola.frota.veiculo.domain.placa;
+package com.rlti.autoescola.frota.veiculo.annotation;
 
+
+import com.rlti.autoescola.frota.veiculo.annotation.constraints.PlacaValidator;
+import com.rlti.autoescola.frota.veiculo.domain.placa.TipoPlaca;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

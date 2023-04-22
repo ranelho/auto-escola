@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -55,7 +54,7 @@ public class ContatoApplicationService implements ContatoService {
     public void editaContato(UUID idContato, ContatoRequest contatoRequest) {
         log.info("[inicia] ContatoApplicationService - editaContato");
         Contato contato = contatoRepository.buscaContatoPorId(idContato);
-        contato.alteraContato(contatoRequest);
+        contato.altera(contatoRequest);
         contatoRepository.salvaContato(contato);
         log.info("[finaliza] ContatoApplicationService - editaContato");
     }

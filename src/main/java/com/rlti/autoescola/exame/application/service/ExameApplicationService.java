@@ -58,7 +58,7 @@ public class ExameApplicationService implements ExameService {
     public void alterar(Long idExame, ExameRequest request) {
         log.info("[inicia] ExameApplicationService - alterar");
         Exame exame = exameRepository.buscaExamePorId(idExame);
-        exame.alterar(request);
+        exame.altera(request);
         exameRepository.salva(exame);
         log.info("[finaliza] ExameApplicationService - alterar");
     }
