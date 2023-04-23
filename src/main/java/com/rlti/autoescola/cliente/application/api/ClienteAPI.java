@@ -1,14 +1,15 @@
 package com.rlti.autoescola.cliente.application.api;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
-
+@Tag(name = "Cliente", description = "Cliente APIs")
 @RequestMapping("/v1/cliente")
 public interface ClienteAPI {
     @PostMapping

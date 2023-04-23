@@ -3,8 +3,8 @@ package com.rlti.autoescola.matricula.annotation.constraints;
 import com.rlti.autoescola.matricula.annotation.ValidSolicitacaoRequest;
 import com.rlti.autoescola.matricula.application.api.request.SolicitacaoRequest;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import java.math.BigDecimal;
 import java.util.Objects;
 

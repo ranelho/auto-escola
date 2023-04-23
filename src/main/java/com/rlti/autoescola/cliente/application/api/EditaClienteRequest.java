@@ -3,7 +3,7 @@ package com.rlti.autoescola.cliente.application.api;
 import com.rlti.autoescola.cliente.domain.enums.EstadoCivil;
 import lombok.Getter;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Getter
