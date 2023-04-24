@@ -35,4 +35,9 @@ public class Pagamento {
         this.valorPago = pagamentoRequest.getValorPago();
         this.matricula = matricula;
     }
+    public Pagamento(Matricula matricula, TipoPagamento tipoPagamentoEntrada) {
+        this.tipoPagamento = tipoPagamentoEntrada;
+        this.valorPago = matricula.getValorEntrada();
+        this.matricula = matricula;
+    }
 }

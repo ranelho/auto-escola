@@ -1,5 +1,6 @@
 package com.rlti.autoescola.pagamento.appiclation.repository;
 
+import com.rlti.autoescola.matricula.application.api.request.MatriculaRequest;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.pagamento.domain.Pagamento;
 
@@ -11,4 +12,4 @@ public interface PagamentoRepository {
     BigDecimal totalPago(Matricula matricula);
     Pagamento salva(Pagamento pagamento);
     Pagamento getById(Long idPagamento);
-}
+   }

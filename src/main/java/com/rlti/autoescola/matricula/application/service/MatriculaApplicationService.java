@@ -9,14 +9,19 @@ import com.rlti.autoescola.matricula.application.api.response.MatriculaIdRespons
 import com.rlti.autoescola.matricula.application.api.response.MatriculaListResponse;
 import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
 import com.rlti.autoescola.matricula.domain.Matricula;
+import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import com.rlti.autoescola.orcamento.application.repository.OrcamentoRepository;
 import com.rlti.autoescola.orcamento.domain.Orcamento;
+import com.rlti.autoescola.pagamento.appiclation.repository.PagamentoRepository;
+import com.rlti.autoescola.pagamento.appiclation.service.PagamentoService;
+import com.rlti.autoescola.pagamento.domain.Pagamento;
 import com.rlti.autoescola.servico.application.repository.ServicoRepository;
 import com.rlti.autoescola.servico.domain.Servico;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,6 +36,7 @@ public class MatriculaApplicationService implements MatriculaService{
     private final MatriculaRepository matriculaRepository;
     private final ServicoRepository servicoRepository;
     private final OrcamentoRepository orcamentoRepository;
+    private final PagamentoService pagamentoService;
 
     @Override
     public MatriculaIdResponse criaNovaMatricula(MatriculaRequest matriculaRequest) {
@@ -39,7 +45,9 @@ public class MatriculaApplicationService implements MatriculaService{
         validaSolicitacao(matriculaRequest, servico);
         Cliente cliente = clienteRepository.findById(matriculaRequest.getIdCliente());
         Matricula matricula = matriculaRepository.salva(new Matricula(cliente, servico,matriculaRequest));
-
+        if (matriculaRequest.getValorEntrada().compareTo(BigDecimal.ZERO)>0){
+            Pagamento pagamento = pagamentoService.entrada(matricula, TipoPagamento.valueOf(matriculaRequest.getTipoPagamentoEntrada()));
+        }
         log.info("[finaliza] MatriculaApplicationService - criaNovaMatricula");
         return MatriculaIdResponse.builder().idMatricula(matricula.getIdMatricula()).build();
     }

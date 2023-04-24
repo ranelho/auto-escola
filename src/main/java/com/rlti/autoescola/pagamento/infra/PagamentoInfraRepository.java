@@ -1,6 +1,7 @@
 package com.rlti.autoescola.pagamento.infra;
 
 import com.rlti.autoescola.handler.APIException;
+import com.rlti.autoescola.matricula.application.api.request.MatriculaRequest;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.pagamento.appiclation.repository.PagamentoRepository;
 import com.rlti.autoescola.pagamento.domain.Pagamento;

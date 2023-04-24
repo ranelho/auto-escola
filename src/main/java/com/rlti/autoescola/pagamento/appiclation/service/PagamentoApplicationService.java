@@ -3,6 +3,7 @@ package com.rlti.autoescola.pagamento.appiclation.service;
 import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
 import com.rlti.autoescola.matricula.domain.Matricula;
+import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import com.rlti.autoescola.pagamento.appiclation.api.PagamentoRequest;
 import com.rlti.autoescola.pagamento.appiclation.api.PagamentoResponse;
 import com.rlti.autoescola.pagamento.appiclation.repository.PagamentoRepository;
@@ -53,5 +54,13 @@ public class PagamentoApplicationService implements PagamentoService {
         Pagamento pagamento = pagamentoRepository.getById(idPagamento);
         log.info("[finaliza] PagamentoApplicationService - getById");
         return new PagamentoResponse(pagamento);
+    }
+
+    @Override
+    public Pagamento entrada(Matricula matricula, TipoPagamento tipoPagamentoEntrada) {
+        log.info("[inicia] PagamentoApplicationService - entrada");
+        Pagamento pagamento = pagamentoRepository.salva(new Pagamento(matricula, tipoPagamentoEntrada));
+        log.info("[finaliza] PagamentoApplicationService - entrada");
+        return pagamento;
     }
 }
