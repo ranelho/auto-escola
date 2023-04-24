@@ -19,53 +19,53 @@ public class ManutencaoApplicationService implements ManutencaoService {
     private final ManutencaoRepository manutencaoRepository;
 
     @Override
-    public ManutencaoIdResponse novaManutencao(String placa, ManutencaoRequest request) {
-        log.info("[inicia] ManutencaoApplicationService - novaManutencao");
+    public ManutencaoIdResponse post(String placa, ManutencaoRequest request) {
+        log.info("[inicia] ManutencaoApplicationService - post");
         Veiculo veiculo = veiculoRepository.getByPlaca(placa);
         Manutencao manutencao = manutencaoRepository.salva(new Manutencao(veiculo, request));
-        log.info("[finaliza] ManutencaoApplicationService - novaManutencao");
+        log.info("[finaliza] ManutencaoApplicationService - post");
         return ManutencaoIdResponse.builder().idManutencao(manutencao.getIdManutencao()).build();
     }
 
     @Override
-    public VeiculoManutencaoResponse buscaManutencoes(String placa) {
-        log.info("[inicia] ManutencaoApplicationService - buscaManutencoes");
+    public VeiculoManutencaoResponse getByVeiculo(String placa) {
+        log.info("[inicia] ManutencaoApplicationService - getByVeiculo");
         Veiculo veiculo = veiculoRepository.getByPlaca(placa);
-        log.info("[finaliza] ManutencaoApplicationService - buscaManutencoes");
+        log.info("[finaliza] ManutencaoApplicationService - getByVeiculo");
         return new VeiculoManutencaoResponse(veiculo);
     }
 
     @Override
-    public List<ManutencaoListResponse> buscaManutencoesVeiculo(String placa) {
-        log.info("[inicia] ManutencaoApplicationService - buscaManutencoesVeiculo");
+    public List<ManutencaoListResponse> getByVeiculoVeiculo(String placa) {
+        log.info("[inicia] ManutencaoApplicationService - getByVeiculoVeiculo");
         Veiculo veiculo = veiculoRepository.getByPlaca(placa);
         List<Manutencao> manutencoes = manutencaoRepository.findAll(veiculo);
-        log.info("[finaliza] ManutencaoApplicationService - buscaManutencoesVeiculo");
+        log.info("[finaliza] ManutencaoApplicationService - getByVeiculoVeiculo");
         return ManutencaoListResponse.converte(manutencoes);
 
     }
 
     @Override
-    public ManutencaoResponse buscaPorId(Long idManutencao) {
-        log.info("[inicia] ManutencaoApplicationService - buscaPorId");
-        Manutencao manutencao = manutencaoRepository.buscaPorId(idManutencao);
-        log.info("[finaliza] ManutencaoApplicationService - buscaPorId");
+    public ManutencaoResponse getById(Long idManutencao) {
+        log.info("[inicia] ManutencaoApplicationService - getById");
+        Manutencao manutencao = manutencaoRepository.getById(idManutencao);
+        log.info("[finaliza] ManutencaoApplicationService - getById");
         return new ManutencaoResponse(manutencao);
     }
 
     @Override
-    public void alteraManutencao(Long idManutencao, ManutencaoRequest request) {
-        log.info("[inicia] ManutencaoApplicationService - alteraManutencao");
-        Manutencao manutencao = manutencaoRepository.buscaPorId(idManutencao);
+    public void update(Long idManutencao, ManutencaoRequest request) {
+        log.info("[inicia] ManutencaoApplicationService - update");
+        Manutencao manutencao = manutencaoRepository.getById(idManutencao);
         manutencao.altera(request);
         manutencaoRepository.salva(manutencao);
-        log.info("[finaliza] ManutencaoApplicationService - alteraManutencao");
+        log.info("[finaliza] ManutencaoApplicationService - update");
     }
 
     @Override
-    public void deletaManutencao(Long idManutencao) {
-        log.info("[inicia] ManutencaoApplicationService - deletaManutencao");
-        manutencaoRepository.deleta(manutencaoRepository.buscaPorId(idManutencao).getIdManutencao());
-        log.info("[finaliza] ManutencaoApplicationService - deletaManutencao");
+    public void delete(Long idManutencao) {
+        log.info("[inicia] ManutencaoApplicationService - delete");
+        manutencaoRepository.delete(manutencaoRepository.getById(idManutencao).getIdManutencao());
+        log.info("[finaliza] ManutencaoApplicationService - delete");
     }
 }

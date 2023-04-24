@@ -8,8 +8,8 @@ import java.util.UUID;
 
 public interface ClienteRepository {
     Cliente salva(Cliente cliente);
-    Cliente buscaClientePorId(UUID idCliente);
+    Cliente findById(UUID idCliente);
     List<Cliente> buscaTodosClientes();
-    void deletaCliente(Cliente cliente);
-    Optional<Cliente> buscaClientePorCPF(String cpf);
+    void deleteCliente(Cliente cliente);
+    Optional<Cliente> findByCpf(String cpf);
 }

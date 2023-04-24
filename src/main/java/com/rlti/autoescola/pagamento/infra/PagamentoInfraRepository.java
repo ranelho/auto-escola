@@ -26,9 +26,25 @@ public class PagamentoInfraRepository implements PagamentoRepository {
 
     @Override
     public BigDecimal totalPago(Matricula matricula) {
-        log.info("[inicia] PagamentoInfraRepository - somaPagamento");
-        BigDecimal totalPago = pagamentoSpringDataJPARepository.findSumValorPagoByMatricula(matricula);
-        log.info("[finaliza] PagamentoInfraRepository - somaPagamento");
+        log.info("[inicia] PagamentoInfraRepository - totalPago");
+        List<Pagamento> pagamentos = pagamentoSpringDataJPARepository.findByMatricula(matricula);
+      /*  BigDecimal totalPago = BigDecimal.ZERO;
+        if (pagamentos != null && !pagamentos.isEmpty()) {
+            for (Pagamento pagamento : pagamentos) {
+                totalPago = totalPago.add(pagamento.getValorPago());
+            }
+        }*/
+        BigDecimal totalPago = pagamentos.stream()
+                .map(Pagamento::getValorPago)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        log.info("[finaliza] PagamentoInfraRepository - totalPago");
         return totalPago;
+    }
+    @Override
+    public Pagamento salva(Pagamento pagamento) {
+        log.info("[inicia] PagamentoInfraRepository - salva");
+        Pagamento pago = pagamentoSpringDataJPARepository.save(pagamento);
+        log.info("[inicia] PagamentoInfraRepository - salva");
+        return pago;
     }
 }

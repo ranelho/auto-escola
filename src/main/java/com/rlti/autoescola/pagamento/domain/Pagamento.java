@@ -3,6 +3,7 @@ package com.rlti.autoescola.pagamento.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
+import com.rlti.autoescola.pagamento.appiclation.api.PagamentoRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,4 +29,10 @@ public class Pagamento {
     @JoinColumn(name = "matricula_id")
     @JsonIgnore
     private Matricula matricula;
+
+    public Pagamento(PagamentoRequest pagamentoRequest, Matricula matricula) {
+        this.tipoPagamento = pagamentoRequest.getTipoPagamento();
+        this.valorPago = pagamentoRequest.getValorPago();
+        this.matricula = matricula;
+    }
 }

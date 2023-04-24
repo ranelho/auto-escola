@@ -8,7 +8,6 @@ import java.util.UUID;
 
 @Value
 public class PagamentoRequest {
-    UUID idMatricula;
     TipoPagamento tipoPagamento;
     BigDecimal valorPago;
 }

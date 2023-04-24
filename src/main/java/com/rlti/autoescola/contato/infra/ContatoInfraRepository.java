@@ -27,13 +27,13 @@ public class ContatoInfraRepository implements ContatoRepository {
         return contatoCriado;
     }
     @Override
-    public Contato buscaContatoPorId(UUID idContato) {
-        log.info("[inicia] ContatoInfraRepository - buscaContatoPorId");
+    public Contato findById(UUID idContato) {
+        log.info("[inicia] ContatoInfraRepository - findById");
         Optional<Contato> optionalContato = contatoSpringDataJPARepository.findById(idContato);
         Contato contato = optionalContato
                 .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,
                 "Contato do Cliente não encontrado!"));
-        log.info("[finaliza] ContatoInfraRepository - buscaContatoPorId");
+        log.info("[finaliza] ContatoInfraRepository - findById");
         return contato;
     }
     @Override
@@ -44,10 +44,10 @@ public class ContatoInfraRepository implements ContatoRepository {
         return contatos;
     }
     @Override
-    public void deletaContato(UUID idContato) {
-        log.info("[inicia] ContatoInfraRepository - deletaContato");
+    public void deleteContato(UUID idContato) {
+        log.info("[inicia] ContatoInfraRepository - deleteContato");
         contatoSpringDataJPARepository.deleteById(idContato);
-        log.info("[finaliza] ContatoInfraRepository - deletaContato");
+        log.info("[finaliza] ContatoInfraRepository - deleteContato");
     }
 
     @Override

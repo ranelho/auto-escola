@@ -1,14 +1,18 @@
 package com.rlti.autoescola.pagamento.appiclation.service;
 
+import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
 import com.rlti.autoescola.matricula.domain.Matricula;
+import com.rlti.autoescola.pagamento.appiclation.api.PagamentoRequest;
 import com.rlti.autoescola.pagamento.appiclation.api.PagamentoResponse;
 import com.rlti.autoescola.pagamento.appiclation.repository.PagamentoRepository;
 import com.rlti.autoescola.pagamento.domain.Pagamento;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,6 +23,22 @@ public class PagamentoApplicationService implements PagamentoService {
     private final PagamentoRepository pagamentoRepository;
     private final MatriculaRepository matriculaRepository;
 
+    @Override
+    public PagamentoResponse newPagamento(UUID idMatricula, PagamentoRequest pagamentoRequest) {
+        log.info("[inicia] PagamentoApplicationService - newPagamento");
+        Matricula matricula = matriculaRepository.matriculaAtravesId(idMatricula);
+        BigDecimal totalPago = pagamentoRepository.totalPago(matricula);
+        BigDecimal saldoAPagar = matricula.getValorFinal().subtract(totalPago);
+        if (pagamentoRequest.getValorPago().compareTo(saldoAPagar)<=0){
+            Pagamento pagamento = pagamentoRepository.salva(new Pagamento(pagamentoRequest, matricula));
+            log.info("[finaliza] PagamentoApplicationService - newPagamento");
+            return new PagamentoResponse(pagamento);
+        } else {
+            throw APIException.build(HttpStatus.BAD_REQUEST,
+                    "Pagamento maior que o serviço contratado." +
+                            " Valor a Pagar: " + saldoAPagar);
+        }
+    }
     @Override
     public List<PagamentoResponse> getPagamentoByMatricula(UUID idMatricula) {
         log.info("[inicia] PagamentoApplicationService - getPagamentoByMatricula");

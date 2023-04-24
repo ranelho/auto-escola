@@ -6,7 +6,8 @@ public enum TipoServico {
     PRIMEIRA_HABILITACAO {
         @Override
         public boolean isValidCategoria(Categoria categoria) {
-            return categoria == Categoria.ACC || categoria == Categoria.A || categoria == Categoria.B || categoria == Categoria.AB;
+            return categoria == Categoria.ACC || categoria == Categoria.A || categoria == Categoria.B
+                    || categoria == Categoria.AB;
         }
     },
     ADICAO_CATEGORIA {

@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -26,38 +25,38 @@ public class ContatoApplicationService implements ContatoService {
     @Override
     public ContatoResponse criaNovoContato(UUID idCliente, ContatoRequest contatoRequest) {
         log.info("[inicia] ContatoApplicationService - criaNovoContato");
-        Cliente cliente = clienteRepository.buscaClientePorId(idCliente);
+        Cliente cliente = clienteRepository.findById(idCliente);
         Contato contato = contatoRepository.salvaContato(new Contato(cliente, contatoRequest));
         log.info("[finaliza] ContatoApplicationService - criaNovoContato");
         return new ContatoResponse(contato);
     }
     @Override
-    public ContatoResponse buscaContatoPorId(UUID idContato) {
-        log.info("[inicia] ContatoApplicationService - buscaContatoPorId");
-        Contato contato = contatoRepository.buscaContatoPorId(idContato);
-        log.info("[finaliza] ContatoApplicationService - buscaContatoPorId");
+    public ContatoResponse findById(UUID idContato) {
+        log.info("[inicia] ContatoApplicationService - findById");
+        Contato contato = contatoRepository.findById(idContato);
+        log.info("[finaliza] ContatoApplicationService - findById");
         return new ContatoResponse(contato);
     }
     @Override
     public ClienteContatosResponse buscaContatosDoCliente(UUID idCliente) {
         log.info("[inicia] ContatoApplicationService - buscaContatosDoCliente");
-        Cliente cliente = clienteRepository.buscaClientePorId(idCliente);
+        Cliente cliente = clienteRepository.findById(idCliente);
         log.info("[finaliza] ContatoApplicationService - buscaContatosDoCliente");
         return new ClienteContatosResponse(cliente);
     }
     @Override
-    public void deletaContatoPorId(UUID idContato) {
-        log.info("[inicia] ContatoApplicationService - deletaContatoPorId");
-        contatoRepository.deletaContato(contatoRepository.buscaContatoPorId(idContato).getIdContato());
-        log.info("[finaliza] ContatoApplicationService - deletaContatoPorId");
+    public void delete(UUID idContato) {
+        log.info("[inicia] ContatoApplicationService - delete");
+        contatoRepository.deleteContato(contatoRepository.findById(idContato).getIdContato());
+        log.info("[finaliza] ContatoApplicationService - delete");
     }
     @Override
-    public void editaContato(UUID idContato, ContatoRequest contatoRequest) {
-        log.info("[inicia] ContatoApplicationService - editaContato");
-        Contato contato = contatoRepository.buscaContatoPorId(idContato);
-        contato.alteraContato(contatoRequest);
+    public void update(UUID idContato, ContatoRequest contatoRequest) {
+        log.info("[inicia] ContatoApplicationService - update");
+        Contato contato = contatoRepository.findById(idContato);
+        contato.altera(contatoRequest);
         contatoRepository.salvaContato(contato);
-        log.info("[finaliza] ContatoApplicationService - editaContato");
+        log.info("[finaliza] ContatoApplicationService - update");
     }
 
     @Override

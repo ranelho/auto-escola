@@ -4,7 +4,7 @@ import com.rlti.autoescola.orcamento.domain.Orcamento;
 
 public interface OrcamentoRepository {
     Orcamento salvaOrcamento(Orcamento orcamento);
-    Orcamento getOrcamentoById(Long idOrcamento);
+    Orcamento getById(Long idOrcamento);
     void deleteOrcamentoExpirado();
     void deleteById(Long idOrcamento);
     Orcamento findByCpf(String cpf);

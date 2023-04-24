@@ -1,4 +1,4 @@
-package com.rlti.autoescola.empresa.domain;
+package com.rlti.autoescola.cliente.domain.enums;
 
 
 import com.rlti.autoescola.cliente.domain.groups.PessoaFisica;

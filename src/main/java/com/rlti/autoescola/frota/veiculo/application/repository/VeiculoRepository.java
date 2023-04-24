@@ -9,5 +9,5 @@ public interface VeiculoRepository {
     Veiculo salva(Veiculo veiculo);
     Veiculo getByPlaca(String placa);
     List<Veiculo> getAll();
-    void deleta(UUID idVeiculo);
+    void delete(UUID idVeiculo);
 }

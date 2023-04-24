@@ -13,5 +13,5 @@ public interface MatriculaRepository {
 
     Matricula matriculaAtravesId(UUID idMatricula);
 
-    void deletaMatricula(Matricula matricula);
+    void deleteMatricula(Matricula matricula);
 }

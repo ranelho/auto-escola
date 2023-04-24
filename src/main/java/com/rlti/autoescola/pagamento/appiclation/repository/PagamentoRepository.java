@@ -9,4 +9,5 @@ import java.util.List;
 public interface PagamentoRepository {
     List<Pagamento> getPagamento(Matricula matricula);
     BigDecimal totalPago(Matricula matricula);
+    Pagamento salva(Pagamento pagamento);
 }

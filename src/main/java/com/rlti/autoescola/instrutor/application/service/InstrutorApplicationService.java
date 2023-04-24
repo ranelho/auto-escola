@@ -39,7 +39,7 @@ public class InstrutorApplicationService implements InstrutorService {
     public void update(UUID idInstrutor, InstrutorUpdateResquest updateRequest) {
         log.info("[inicia] InstrutorApplicationService - update");
         Instrutor instrutor = instrutorRepository.getInstrutor(idInstrutor);
-        instrutor.update(updateRequest);
+        instrutor.altera(updateRequest);
         instrutorRepository.save(instrutor);
         log.info("[finaliza] InstrutorApplicationService - update");
     }

@@ -33,13 +33,13 @@ public class ClienteInfraRepository implements ClienteRepository {
         }
     }
     @Override
-    public Cliente buscaClientePorId(UUID idCliente) {
-        log.info("[inicia] ClienteInfraRepository - buscaClientePorId");
+    public Cliente findById(UUID idCliente) {
+        log.info("[inicia] ClienteInfraRepository - findById");
         Optional<Cliente> optionalCliente = clienteSpringDataJPARepository.findById(idCliente);
         Cliente cliente = optionalCliente
                 .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,
                         "Cliente não encontrado!"));
-        log.info("[finaliza] ClienteInfraRepository - buscaClientePorId");
+        log.info("[finaliza] ClienteInfraRepository - findById");
         return cliente;
     }
     @Override
@@ -50,16 +50,16 @@ public class ClienteInfraRepository implements ClienteRepository {
         return todosClientes;
     }
     @Override
-    public void deletaCliente(Cliente cliente) {
-        log.info("[inicia] ClienteInfraRepository - deletaCliente");
+    public void deleteCliente(Cliente cliente) {
+        log.info("[inicia] ClienteInfraRepository - deleteCliente");
         clienteSpringDataJPARepository.delete(cliente);
-        log.info("[finaliza] ClienteInfraRepository - deletaCliente");
+        log.info("[finaliza] ClienteInfraRepository - deleteCliente");
     }
     @Override
-    public Optional<Cliente> buscaClientePorCPF(String cpf) {
-        log.info("[inicia] ClienteInfraRepository - buscaClientePorCPF");
+    public Optional<Cliente> findByCpf(String cpf) {
+        log.info("[inicia] ClienteInfraRepository - findByCpf");
         Optional<Cliente> clienteOptional = clienteSpringDataJPARepository.findByCpf(cpf);
-        log.info("[finaliza] ClienteInfraRepository - buscaClientePorCPF");
+        log.info("[finaliza] ClienteInfraRepository - findByCpf");
         return clienteOptional;
     }
 }

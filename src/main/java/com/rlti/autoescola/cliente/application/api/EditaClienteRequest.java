@@ -1,6 +1,6 @@
 package com.rlti.autoescola.cliente.application.api;
 
-import com.rlti.autoescola.cliente.domain.EstadoCivil;
+import com.rlti.autoescola.cliente.domain.enums.EstadoCivil;
 import lombok.Getter;
 
 import javax.validation.constraints.NotNull;

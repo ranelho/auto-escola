@@ -10,6 +10,6 @@ public interface VeiculoService {
     VeiculoIdResponse saveVeiculo(VeiculoRequest request);
     Veiculo getByPlaca(String placa);
     List<Veiculo> getAll();
-    void alteraVeiculo(String placa, VeiculoRequest request);
-    void deletaVeiculo(String placa);
+    void update(String placa, VeiculoRequest request);
+    void delete(String placa);
 }

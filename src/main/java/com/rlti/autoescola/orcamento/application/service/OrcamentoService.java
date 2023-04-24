@@ -5,5 +5,5 @@ import com.rlti.autoescola.orcamento.application.api.OrcamentoResponse;
 
 public interface OrcamentoService {
     OrcamentoResponse criaNovoOrcamento(OrcamentoRequest orcamentoRequest);
-    OrcamentoResponse getOrcamentoById(Long idOrcamento);
+    OrcamentoResponse getById(Long idOrcamento);
 }

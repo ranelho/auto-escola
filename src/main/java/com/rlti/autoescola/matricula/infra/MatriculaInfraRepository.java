@@ -45,9 +45,9 @@ public class MatriculaInfraRepository implements MatriculaRepository {
     }
 
     @Override
-    public void deletaMatricula(Matricula matricula) {
-        log.info("[inicia] MatriculaInfraRepository - deletaMatricula");
+    public void deleteMatricula(Matricula matricula) {
+        log.info("[inicia] MatriculaInfraRepository - deleteMatricula");
         matriculaSpringDataJPARepository.delete(matricula);
-        log.info("[finaliza] MatriculaInfraRepository - deletaMatricula");
+        log.info("[finaliza] MatriculaInfraRepository - deleteMatricula");
     }
 }

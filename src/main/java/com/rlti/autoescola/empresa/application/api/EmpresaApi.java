@@ -6,31 +6,30 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
-@RestController
 @RequestMapping("/v1/empresa")
 public interface EmpresaApi {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    EmpresaResponse postEmpresa(@Valid @RequestBody EmpresaRequest empresaRequest);
+    EmpresaResponse post(@Valid @RequestBody EmpresaRequest empresaRequest);
 
-    @GetMapping
+    @GetMapping("/all")
     @ResponseStatus(code = HttpStatus.OK)
     List<EmpresaListResponse> getEmpresas();
 
-    @GetMapping(value = "/empresa/{idEmpresa}")
+    @GetMapping(value = "/{idEmpresa}")
     @ResponseStatus(code = HttpStatus.OK)
-    EmpresaDetalhadoResponse getEmpresaAtravesId(@PathVariable UUID idEmpresa);
+    EmpresaDetalhadoResponse getById(@PathVariable UUID idEmpresa);
 
     @GetMapping(value = "/cnpj")
     @ResponseStatus(code = HttpStatus.OK)
-    EmpresaDetalhadoResponseCnpj getEmpresaAtravesCnpj(@RequestParam String cnpj);
+    EmpresaDetalhadoResponseCnpj getByCnpj(@RequestParam String cnpj);
 
     @DeleteMapping(value = "/{idEmpresa}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void deletaEmpresaAtravesId (@PathVariable UUID idEmpresa);
+    void delete (@PathVariable UUID idEmpresa);
 
     @PatchMapping(value = "/{idEmpresa}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void patchAlteraEmpresa(@PathVariable UUID idEmpresa,
+    void update(@PathVariable UUID idEmpresa,
                             @Valid @RequestBody EmpresaAlteracaoRequest empresaAlteracaoRequest);
 }
