@@ -18,7 +18,7 @@ public class PagamentoRestController implements PagamentoAPI {
     public PagamentoResponse post(UUID idMatricula, PagamentoRequest pagamentoRequest) {
         log.info("[inicia] PagamentoRestController - post");
         PagamentoResponse pagamentoResponse = pagamentoService.newPagamento(idMatricula, pagamentoRequest);
-        log.info("[inicia] PagamentoRestController - post");
+        log.info("[finaliza] PagamentoRestController - post");
         return pagamentoResponse;
     }
     @Override
@@ -27,5 +27,12 @@ public class PagamentoRestController implements PagamentoAPI {
         List<PagamentoResponse>  getPagamento = pagamentoService.getPagamentoByMatricula(idMatricula);
         log.info("[finaliza] PagamentoRestController - getPagamentoByMatricula");
         return getPagamento;
+    }
+    @Override
+    public PagamentoResponse getById(Long idPagamento) {
+        log.info("[inicia] PagamentoRestController - getById");
+        PagamentoResponse pagamentoResponse = pagamentoService.getById(idPagamento);
+        log.info("[finaliza] PagamentoRestController - getById");
+        return pagamentoResponse;
     }
 }

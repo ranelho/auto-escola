@@ -47,4 +47,11 @@ public class PagamentoApplicationService implements PagamentoService {
         log.info("[finaliza] PagamentoApplicationService - getPagamentoByMatricula");
         return PagamentoResponse.convert(pagamento);
     }
+    @Override
+    public PagamentoResponse getById(Long idPagamento) {
+        log.info("[inicia] PagamentoApplicationService - getById");
+        Pagamento pagamento = pagamentoRepository.getById(idPagamento);
+        log.info("[finaliza] PagamentoApplicationService - getById");
+        return new PagamentoResponse(pagamento);
+    }
 }

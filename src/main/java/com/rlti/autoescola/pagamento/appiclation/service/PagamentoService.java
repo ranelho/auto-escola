@@ -9,5 +9,5 @@ import java.util.UUID;
 public interface PagamentoService {
     PagamentoResponse newPagamento(UUID idMatricula, PagamentoRequest pagamentoRequest);
     List<PagamentoResponse> getPagamentoByMatricula(UUID idMatricula);
-
+    PagamentoResponse getById(Long idPagamento);
 }
