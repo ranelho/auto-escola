@@ -1,8 +1,8 @@
 package com.rlti.autoescola.pagamento.infra;
 
 import com.rlti.autoescola.handler.APIException;
-import com.rlti.autoescola.matricula.application.api.request.MatriculaRequest;
 import com.rlti.autoescola.matricula.domain.Matricula;
+import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import com.rlti.autoescola.pagamento.appiclation.repository.PagamentoRepository;
 import com.rlti.autoescola.pagamento.domain.Pagamento;
 import lombok.RequiredArgsConstructor;
@@ -66,6 +66,14 @@ public class PagamentoInfraRepository implements PagamentoRepository {
         log.info("[inicia] PagamentoInfraRepository - getAllData");
         List<Pagamento> pagamentos = pagamentoSpringDataJPARepository.findByDataPagamento(data);
         log.info("[finaliza] PagamentoInfraRepository - getAllData");
+        return pagamentos;
+    }
+
+    @Override
+    public List<Pagamento> getCategoriaAllData(TipoPagamento tipoPagamento, LocalDate data) {
+        log.info("[inicia] PagamentoInfraRepository - getCategoriaAllData");
+        List<Pagamento> pagamentos = pagamentoSpringDataJPARepository.findByTipoPagamentoAndDataPagamento(tipoPagamento,data);;
+        log.info("[finaliza] PagamentoInfraRepository - getCategoriaAllData");
         return pagamentos;
     }
 }

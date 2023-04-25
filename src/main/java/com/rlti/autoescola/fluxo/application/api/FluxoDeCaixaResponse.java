@@ -9,11 +9,11 @@ import java.util.stream.Collectors;
 
 @Value
 public class FluxoDeCaixaResponse {
+    List<PagamentoFluxoResponse> receitas;
+    List<ManutencaoFluxoResponse> despesas;
     BigDecimal totalReceitas;
     BigDecimal totalDespesas;
     BigDecimal saldo;
-    List<PagamentoFluxoResponse> receitas;
-    List<ManutencaoFluxoResponse> despesas;
 
     public FluxoDeCaixaResponse(Fluxo fluxo){
         this.receitas = fluxo.getPagamentos();

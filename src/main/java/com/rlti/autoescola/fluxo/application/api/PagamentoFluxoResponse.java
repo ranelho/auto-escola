@@ -10,13 +10,13 @@ import java.util.stream.Collectors;
 
 @Value
 public class PagamentoFluxoResponse {
-    String fullName;
+    String cliente;
     LocalDate dataPagamento;
     String servico;
     BigDecimal valorPago;
 
     public PagamentoFluxoResponse(Pagamento pagamento) {
-        this.fullName = pagamento.getMatricula().getCliente().getFullName();
+        this.cliente = pagamento.getMatricula().getCliente().getFullName();
         this.dataPagamento = pagamento.getDataPagamento();
         this.servico = pagamento.getMatricula().getServico().getCategoria().toString();
         this.valorPago = pagamento.getValorPago();

@@ -4,6 +4,7 @@ import com.rlti.autoescola.fluxo.application.api.ManutencaoFluxoResponse;
 import com.rlti.autoescola.fluxo.application.api.PagamentoFluxoResponse;
 import com.rlti.autoescola.frota.manutencao.application.api.ManutencaoResponse;
 import com.rlti.autoescola.frota.manutencao.domain.Manutencao;
+import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import com.rlti.autoescola.pagamento.appiclation.api.PagamentoResponse;
 import com.rlti.autoescola.pagamento.domain.Pagamento;
 import lombok.AllArgsConstructor;
@@ -22,6 +23,7 @@ public class Fluxo {
     private BigDecimal valorTotalReceitas;
     private BigDecimal valorTotalDespesas;
     private BigDecimal saldoGeral;
+    private TipoPagamento tipoPagamento;
 
     public Fluxo(List<Pagamento> pagamentos, List<Manutencao> manutencaos) {
         this.pagamentos = PagamentoFluxoResponse.convert(pagamentos);
@@ -29,6 +31,11 @@ public class Fluxo {
         this.valorTotalReceitas = somaReceita(pagamentos);
         this.valorTotalDespesas = somaDespesa(manutencaos);
         this.saldoGeral = valorTotalReceitas.subtract(valorTotalDespesas);
+    }
+
+    public Fluxo(TipoPagamento tipoPagamento, List<Pagamento> pagamentos) {
+        this.tipoPagamento = tipoPagamento;
+        this.valorTotalReceitas = somaReceita(pagamentos);
     }
 
     private BigDecimal somaDespesa(List<Manutencao> manutencaos) {
@@ -44,6 +51,4 @@ public class Fluxo {
                 .map(Pagamento::getValorPago)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
-
-
 }

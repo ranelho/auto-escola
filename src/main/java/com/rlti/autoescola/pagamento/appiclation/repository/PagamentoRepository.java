@@ -1,7 +1,7 @@
 package com.rlti.autoescola.pagamento.appiclation.repository;
 
-import com.rlti.autoescola.matricula.application.api.request.MatriculaRequest;
 import com.rlti.autoescola.matricula.domain.Matricula;
+import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import com.rlti.autoescola.pagamento.domain.Pagamento;
 
 import java.math.BigDecimal;
@@ -15,4 +15,5 @@ public interface PagamentoRepository {
     Pagamento getById(Long idPagamento);
     void delete(Long idPagamento);
     List<Pagamento> getAllData(LocalDate data);
+    List<Pagamento> getCategoriaAllData(TipoPagamento tipoPagamento, LocalDate data);
 }

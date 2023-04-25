@@ -1,18 +1,19 @@
 package com.rlti.autoescola.fluxo.application.service;
 
 import com.rlti.autoescola.fluxo.application.api.FluxoDeCaixaResponse;
+import com.rlti.autoescola.fluxo.application.api.ReceitaPagamentoResponse;
 import com.rlti.autoescola.fluxo.domain.Fluxo;
 import com.rlti.autoescola.frota.manutencao.application.repository.ManutencaoRepository;
-import com.rlti.autoescola.frota.manutencao.application.service.ManutencaoService;
 import com.rlti.autoescola.frota.manutencao.domain.Manutencao;
+import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import com.rlti.autoescola.pagamento.appiclation.repository.PagamentoRepository;
-import com.rlti.autoescola.pagamento.appiclation.service.PagamentoService;
 import com.rlti.autoescola.pagamento.domain.Pagamento;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,5 +31,19 @@ public class FluxoApplicationService implements FluxoService {
         Fluxo fluxo = new Fluxo(pagamentoList, manutencaoList);
         log.info("[finaliza] FluxoApplicationService - getFluxoDiario");
         return new FluxoDeCaixaResponse(fluxo);
+    }
+
+    @Override
+    public List<ReceitaPagamentoResponse> getReceitasPagamento(LocalDate data) {
+        log.info("[inicia] FluxoApplicationService - getReceitasPagamento");
+        List<Fluxo> fluxos = new ArrayList<>();
+        for (TipoPagamento tipoPagamento : TipoPagamento.values()) {
+            List<Pagamento> pagamentos = pagamentoRepository.getCategoriaAllData(tipoPagamento, data);
+            if(!pagamentos.isEmpty()) {
+                fluxos.add(new Fluxo(tipoPagamento, pagamentos));
+            }
+        }
+        log.info("[finaliza] FluxoApplicationService - getReceitasPagamento");
+        return ReceitaPagamentoResponse.converte(fluxos);
     }
 }
