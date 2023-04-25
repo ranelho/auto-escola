@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,5 +59,13 @@ public class PagamentoInfraRepository implements PagamentoRepository {
         log.info("[inicia] PagamentoInfraRepository - delete");
         pagamentoSpringDataJPARepository.deleteById(idPagamento);
         log.info("[inicia] PagamentoInfraRepository - delete");
+    }
+
+    @Override
+    public List<Pagamento> getAllData(LocalDate data) {
+        log.info("[inicia] PagamentoInfraRepository - getAllData");
+        List<Pagamento> pagamentos = pagamentoSpringDataJPARepository.findByDataPagamento(data);
+        log.info("[finaliza] PagamentoInfraRepository - getAllData");
+        return pagamentos;
     }
 }

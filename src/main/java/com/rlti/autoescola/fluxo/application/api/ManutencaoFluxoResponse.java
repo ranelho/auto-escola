@@ -1,4 +1,4 @@
-package com.rlti.autoescola.frota.manutencao.application.api;
+package com.rlti.autoescola.fluxo.application.api;
 
 import com.rlti.autoescola.frota.manutencao.domain.Manutencao;
 import com.rlti.autoescola.frota.manutencao.domain.TipoManutencao;
@@ -10,24 +10,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Value
-public class ManutencaoResponse {
-    Long idManutencao;
+public class ManutencaoFluxoResponse {
     String veiculo;
     LocalDate dataManutencao;
-    BigDecimal valorManutencao;
     TipoManutencao tipoManutencao;
+    BigDecimal valorManutencao;
 
-    public ManutencaoResponse(Manutencao manutencao) {
-        this.idManutencao = manutencao.getIdManutencao();
+    public ManutencaoFluxoResponse(Manutencao manutencao) {
         this.veiculo = manutencao.getVeiculo().getPlaca();
         this.dataManutencao = manutencao.getDataManutencao();
-        this.valorManutencao = manutencao.getValorManutencao();
         this.tipoManutencao = manutencao.getTipoManutencao();
+        this.valorManutencao = manutencao.getValorManutencao();
     }
 
-    public static List<ManutencaoResponse> convert(List<Manutencao> manutencao) {
+    public static List<ManutencaoFluxoResponse> convert(List<Manutencao> manutencao) {
         return manutencao.stream()
-                .map(ManutencaoResponse::new)
+                .map(ManutencaoFluxoResponse::new)
                 .collect((Collectors.toList()));
     }
 }

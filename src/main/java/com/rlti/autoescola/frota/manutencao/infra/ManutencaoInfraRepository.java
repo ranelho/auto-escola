@@ -9,6 +9,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,5 +49,13 @@ public class ManutencaoInfraRepository implements ManutencaoRepository {
         log.info("[inicia] ManutencaoInfraRepository - delete");
         manutencaoSpringDataJPARepository.deleteById(idManutencao);
         log.info("[finaliza] ManutencaoInfraRepository - delete");
+    }
+
+    @Override
+    public List<Manutencao> getAllData(LocalDate data) {
+        log.info("[inicia] ManutencaoInfraRepository - getAllData");
+        List<Manutencao> manutencaos = manutencaoSpringDataJPARepository.findByDataManutencao(data);
+        log.info("[finaliza] ManutencaoInfraRepository - delete");
+        return manutencaos;
     }
 }

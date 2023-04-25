@@ -6,6 +6,7 @@ import com.rlti.autoescola.pagamento.appiclation.api.PagamentoRequest;
 import com.rlti.autoescola.pagamento.appiclation.api.PagamentoResponse;
 import com.rlti.autoescola.pagamento.domain.Pagamento;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 

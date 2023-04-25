@@ -5,6 +5,7 @@ import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.pagamento.domain.Pagamento;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface PagamentoRepository {
@@ -13,4 +14,5 @@ public interface PagamentoRepository {
     Pagamento salva(Pagamento pagamento);
     Pagamento getById(Long idPagamento);
     void delete(Long idPagamento);
+    List<Pagamento> getAllData(LocalDate data);
 }
