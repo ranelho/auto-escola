@@ -3,8 +3,6 @@ package com.rlti.autoescola.agenda.application.api;
 import com.rlti.autoescola.agenda.domain.Agenda;
 import com.rlti.autoescola.agenda.domain.HorarioAula;
 import com.rlti.autoescola.agenda.domain.TipoAula;
-import com.rlti.autoescola.instrutor.domain.Instrutor;
-import com.rlti.autoescola.matricula.domain.Matricula;
 import lombok.Value;
 
 import java.time.LocalDate;

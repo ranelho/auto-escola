@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.UUID;
 
 @RequestMapping("/v1/agenda")
 public interface AgendaAPI{
@@ -11,5 +12,9 @@ public interface AgendaAPI{
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     AgendaIdResponse post(@Valid @RequestBody AgendaRequest agendaRequest);
+
+    @GetMapping("{idAgenda}")
+    @ResponseStatus(code = HttpStatus.OK)
+    AgendaResponse findById(@PathVariable Long idAgenda);
 
 }

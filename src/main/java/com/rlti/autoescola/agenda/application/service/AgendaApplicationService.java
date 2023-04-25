@@ -15,6 +15,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 @Log4j2
@@ -33,6 +35,14 @@ public class AgendaApplicationService implements AgendaService {
         Agenda agenda = agendaRepository.save(new Agenda(instrutor, matricula, veiculo, agendaRequest));
         log.info("[finaliza] - AgendaApplicationService - post");
         return AgendaIdResponse.builder().idAgenda(agenda.getIdAgenda()).build();
+    }
+
+    @Override
+    public AgendaResponse findById(Long idAgenda) {
+        log.info("[inicia] - AgendaApplicationService - getAgenda");
+        Agenda agenda = agendaRepository.findById(idAgenda);
+        log.info("[finaliza] - AgendaApplicationService - getAgenda");
+        return new AgendaResponse(agenda);
     }
 
 }
