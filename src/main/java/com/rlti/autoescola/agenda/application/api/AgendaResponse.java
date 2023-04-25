@@ -1,32 +1,23 @@
 package com.rlti.autoescola.agenda.application.api;
 
 import com.rlti.autoescola.agenda.domain.Agenda;
+import com.rlti.autoescola.agenda.domain.HorarioAula;
 import com.rlti.autoescola.agenda.domain.TipoAula;
+import com.rlti.autoescola.instrutor.domain.Instrutor;
+import com.rlti.autoescola.matricula.domain.Matricula;
 import lombok.Value;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.UUID;
 
 @Value
 public class AgendaResponse {
-    Long idAgenda;
     LocalDate data;
-    LocalTime horario;
+    HorarioAula horarioAula;
     TipoAula tipoAula;
-    UUID idInstrutor;
-    UUID idMatricula;
-    UUID idVeiculo;
 
     public AgendaResponse(Agenda agenda) {
-        this.idAgenda = agenda.getIdAgenda();
         this.data = agenda.getData();
-        this.horario = agenda.getHorario();
+        this.horarioAula = agenda.getHorarioAula();
         this.tipoAula = agenda.getTipoAula();
-        this.idInstrutor = agenda.getInstrutor().getIdInstrutor();
-        this.idMatricula = agenda.getMatricula().getIdMatricula();
-        this.idVeiculo = agenda.getVeiculo().getIdVeiculo();
     }
-
-
 }

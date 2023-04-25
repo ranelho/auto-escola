@@ -1,10 +1,16 @@
 package com.rlti.autoescola.agenda.infra;
 
+import com.rlti.autoescola.agenda.application.api.AgendaResponse;
 import com.rlti.autoescola.agenda.application.repository.AgendaRepository;
 import com.rlti.autoescola.agenda.domain.Agenda;
+import com.rlti.autoescola.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 @RequiredArgsConstructor
@@ -12,7 +18,7 @@ import org.springframework.stereotype.Repository;
 public class AgendaInfraRepository implements AgendaRepository {
     private final AgendaSpringDataJPARepository agendaSpringDataJPARepository;
 
-    @Override
+   @Override
     public Agenda save(Agenda agenda) {
         log.info("[inicia] - AgendaInfraRepository - post");
         agendaSpringDataJPARepository.save(agenda);
