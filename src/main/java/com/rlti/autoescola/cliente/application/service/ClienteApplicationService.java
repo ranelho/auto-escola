@@ -76,11 +76,8 @@ public class ClienteApplicationService implements ClienteService {
     @Override
     public Cliente verificaCliente(OrcamentoRequest orcamentoRequest) {
         log.info("[inicia] ClienteApplicationService - verificaCliente");
-        //busca no banco
         Optional<Cliente> clienteOptional = clienteRepository.findByCpf(orcamentoRequest.getCpf());
-        //caso cliente nao econtrado cria o cliente
         Cliente cliente = clienteOptional.orElseGet(() -> clienteRepository.salva(new Cliente(orcamentoRequest)));
-        //chama verificação se existe um contato para o cliente
         contatoService.verificaContato(cliente, orcamentoRequest);
         log.info("[inicia] ClienteApplicationService - verificaCliente");
         return cliente;
