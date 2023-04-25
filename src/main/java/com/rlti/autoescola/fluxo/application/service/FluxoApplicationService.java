@@ -28,7 +28,8 @@ public class FluxoApplicationService implements FluxoService {
         log.info("[inicia] FluxoApplicationService - getFluxoDiario");
         List<Pagamento> pagamentoList = pagamentoRepository.getAllData(data);
         List<Manutencao> manutencaoList = manutencaoRepository.getAllData(data);
-        Fluxo fluxo = new Fluxo(pagamentoList, manutencaoList);
+        List<ReceitaPagamentoResponse> receitaPagamentoResponseList = getReceitasPagamento(data);
+        Fluxo fluxo = new Fluxo(pagamentoList, manutencaoList,  receitaPagamentoResponseList);
         log.info("[finaliza] FluxoApplicationService - getFluxoDiario");
         return new FluxoDeCaixaResponse(fluxo);
     }
@@ -39,7 +40,7 @@ public class FluxoApplicationService implements FluxoService {
         List<Fluxo> fluxos = new ArrayList<>();
         for (TipoPagamento tipoPagamento : TipoPagamento.values()) {
             List<Pagamento> pagamentos = pagamentoRepository.getCategoriaAllData(tipoPagamento, data);
-            if(!pagamentos.isEmpty()) {
+            if(pagamentos != null && !pagamentos.isEmpty()) {
                 fluxos.add(new Fluxo(tipoPagamento, pagamentos));
             }
         }

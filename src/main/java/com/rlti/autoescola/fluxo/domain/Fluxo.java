@@ -2,6 +2,7 @@ package com.rlti.autoescola.fluxo.domain;
 
 import com.rlti.autoescola.fluxo.application.api.ManutencaoFluxoResponse;
 import com.rlti.autoescola.fluxo.application.api.PagamentoFluxoResponse;
+import com.rlti.autoescola.fluxo.application.api.ReceitaPagamentoResponse;
 import com.rlti.autoescola.frota.manutencao.application.api.ManutencaoResponse;
 import com.rlti.autoescola.frota.manutencao.domain.Manutencao;
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
@@ -24,6 +25,7 @@ public class Fluxo {
     private BigDecimal valorTotalDespesas;
     private BigDecimal saldoGeral;
     private TipoPagamento tipoPagamento;
+    List<ReceitaPagamentoResponse> receitaPagamentoResponseList;
 
     public Fluxo(List<Pagamento> pagamentos, List<Manutencao> manutencaos) {
         this.pagamentos = PagamentoFluxoResponse.convert(pagamentos);
@@ -36,6 +38,15 @@ public class Fluxo {
     public Fluxo(TipoPagamento tipoPagamento, List<Pagamento> pagamentos) {
         this.tipoPagamento = tipoPagamento;
         this.valorTotalReceitas = somaReceita(pagamentos);
+    }
+
+    public Fluxo(List<Pagamento> pagamentos, List<Manutencao> manutencaos, List<ReceitaPagamentoResponse> receitaPagamentoResponseList) {
+        this.pagamentos = PagamentoFluxoResponse.convert(pagamentos);
+        this.manutencoes = ManutencaoFluxoResponse.convert(manutencaos);
+        this.valorTotalReceitas = somaReceita(pagamentos);
+        this.valorTotalDespesas = somaDespesa(manutencaos);
+        this.saldoGeral = valorTotalReceitas.subtract(valorTotalDespesas);
+        this.receitaPagamentoResponseList = receitaPagamentoResponseList;
     }
 
     private BigDecimal somaDespesa(List<Manutencao> manutencaos) {
