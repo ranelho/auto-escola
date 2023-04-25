@@ -36,8 +36,7 @@ public class PagamentoApplicationService implements PagamentoService {
             return new PagamentoResponse(pagamento);
         } else {
             throw APIException.build(HttpStatus.BAD_REQUEST,
-                    "Pagamento maior que o serviço contratado." +
-                            " Valor a Pagar: " + saldoAPagar);
+                    "Pagamento maior que o serviço contratado. Valor a Pagar R$: " + saldoAPagar);
         }
     }
     @Override
