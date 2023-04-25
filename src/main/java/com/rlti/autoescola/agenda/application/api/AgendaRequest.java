@@ -12,15 +12,10 @@ import java.util.UUID;
 
 @Value
 public class AgendaRequest {
-    Long idAgenda;
-    UUID idMatricula;
-    String fullName;//matricula
-    String cpf;//matricula
-    String observacao;//matricula
-    String status;//matricula
-    String placa;//veiculo
-    String marca;//veiculo
-    TipoAula tipoAula;//agenda
     LocalDate data;//agenda
     LocalTime horario;//agenda
+    TipoAula tipoAula;//agenda
+    UUID idInstrutor;
+    UUID idMatricula;
+    UUID idVeiculo;
 }

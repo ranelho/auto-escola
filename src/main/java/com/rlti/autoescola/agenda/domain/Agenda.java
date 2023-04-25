@@ -1,8 +1,10 @@
 package com.rlti.autoescola.agenda.domain;
 
+import com.rlti.autoescola.agenda.application.api.AgendaRequest;
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 import com.rlti.autoescola.instrutor.domain.Instrutor;
+import com.rlti.autoescola.laudo.application.api.LaudoRequest;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,4 +39,13 @@ public class Agenda {
     private TipoAula tipoAula;
     private LocalDate data;
     private LocalTime horario;
+
+    public Agenda(Instrutor instrutor, Matricula matricula, Veiculo veiculo, AgendaRequest request) {
+        this.matricula = matricula;
+        this.instrutor = instrutor;
+        this.veiculo = veiculo;
+        this.tipoAula =  request.getTipoAula();
+        this.data = request.getData();
+        this.horario = request.getHorario();
+    }
 }

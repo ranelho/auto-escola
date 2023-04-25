@@ -11,22 +11,22 @@ import java.util.UUID;
 @Value
 public class AgendaResponse {
     Long idAgenda;
+    LocalDate data;
+    LocalTime horario;
+    TipoAula tipoAula;
+    UUID idInstrutor;
     UUID idMatricula;
-    String fullName;//matricula
-    String cpf;//matricula
-    String observacao;//matricula
-    String status;//matricula
-    String placa;//veiculo
-    String marca;//veiculo
-    TipoAula tipoAula;//agenda
-    LocalDate data;//agenda
-    LocalTime horario;//agenda
+    UUID idVeiculo;
 
-    public AgendaResponse(Agenda agenda){
+    public AgendaResponse(Agenda agenda) {
         this.idAgenda = agenda.getIdAgenda();
+        this.data = agenda.getData();
+        this.horario = agenda.getHorario();
+        this.tipoAula = agenda.getTipoAula();
+        this.idInstrutor = agenda.getInstrutor().getIdInstrutor();
         this.idMatricula = agenda.getMatricula().getIdMatricula();
-        //this.fullName = agenda.getCliente().getFullName();
-        //this.cpf = agenda.getCliente().getCpf();
-
+        this.idVeiculo = agenda.getVeiculo().getIdVeiculo();
     }
+
+
 }
