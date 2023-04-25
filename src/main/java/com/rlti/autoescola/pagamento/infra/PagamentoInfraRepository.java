@@ -53,4 +53,10 @@ public class PagamentoInfraRepository implements PagamentoRepository {
         log.info("[finaliza] PagamentoInfraRepository - getById");
         return pagamento;
     }
+    @Override
+    public void delete(Long idPagamento) {
+        log.info("[inicia] PagamentoInfraRepository - delete");
+        pagamentoSpringDataJPARepository.deleteById(idPagamento);
+        log.info("[inicia] PagamentoInfraRepository - delete");
+    }
 }

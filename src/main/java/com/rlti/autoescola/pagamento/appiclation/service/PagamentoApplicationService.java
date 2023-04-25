@@ -55,12 +55,17 @@ public class PagamentoApplicationService implements PagamentoService {
         log.info("[finaliza] PagamentoApplicationService - getById");
         return new PagamentoResponse(pagamento);
     }
-
     @Override
     public Pagamento entrada(Matricula matricula, TipoPagamento tipoPagamentoEntrada) {
         log.info("[inicia] PagamentoApplicationService - entrada");
         Pagamento pagamento = pagamentoRepository.salva(new Pagamento(matricula, tipoPagamentoEntrada));
         log.info("[finaliza] PagamentoApplicationService - entrada");
         return pagamento;
+    }
+    @Override
+    public void deleteById(Long idPagamento) {
+        log.info("[inicia] PagamentoApplicationService - deleteById");
+        pagamentoRepository.delete(pagamentoRepository.getById(idPagamento).getIdPagamento());
+        log.info("[finaliza] PagamentoApplicationService - deleteById");
     }
 }

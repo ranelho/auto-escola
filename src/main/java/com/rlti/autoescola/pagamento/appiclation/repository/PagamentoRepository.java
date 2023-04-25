@@ -12,4 +12,5 @@ public interface PagamentoRepository {
     BigDecimal totalPago(Matricula matricula);
     Pagamento salva(Pagamento pagamento);
     Pagamento getById(Long idPagamento);
-   }
+    void delete(Long idPagamento);
+}

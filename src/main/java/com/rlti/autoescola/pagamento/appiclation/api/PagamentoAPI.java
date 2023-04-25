@@ -21,4 +21,8 @@ public interface PagamentoAPI {
     @GetMapping("/{idPagamento}")
     @ResponseStatus(code = HttpStatus.OK)
     PagamentoResponse getById(@PathVariable Long idPagamento);
+
+    @DeleteMapping("/{idPagamento}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void delete(@PathVariable Long idPagamento);
 }

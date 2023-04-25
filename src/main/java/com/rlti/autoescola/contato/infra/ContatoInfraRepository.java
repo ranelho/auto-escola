@@ -49,7 +49,6 @@ public class ContatoInfraRepository implements ContatoRepository {
         contatoSpringDataJPARepository.deleteById(idContato);
         log.info("[finaliza] ContatoInfraRepository - deleteContato");
     }
-
     @Override
     public Optional<Contato> findTelefoneContato(String telefone) {
         log.info("[inicia] ContatoInfraRepository - findTelefoneContato");

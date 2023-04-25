@@ -35,4 +35,10 @@ public class PagamentoRestController implements PagamentoAPI {
         log.info("[finaliza] PagamentoRestController - getById");
         return pagamentoResponse;
     }
+    @Override
+    public void delete(Long idPagamento) {
+        log.info("[inicia] PagamentoRestController - delete");
+        pagamentoService.deleteById(idPagamento);
+        log.info("[finaliza] PagamentoRestController - delete");
+    }
 }

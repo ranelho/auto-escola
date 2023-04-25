@@ -14,4 +14,5 @@ public interface PagamentoService {
     List<PagamentoResponse> getPagamentoByMatricula(UUID idMatricula);
     PagamentoResponse getById(Long idPagamento);
     Pagamento entrada(Matricula matricula, TipoPagamento tipoPagamentoEntrada);
+    void deleteById(Long idPagamento);
 }
