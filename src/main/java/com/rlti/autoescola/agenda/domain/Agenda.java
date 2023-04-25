@@ -38,14 +38,15 @@ public class Agenda {
     @Enumerated(EnumType.STRING)
     private TipoAula tipoAula;
     private LocalDate data;
-    private LocalTime horario;
+    private HorarioAula horarioAula;
 
     public Agenda(Instrutor instrutor, Matricula matricula, Veiculo veiculo, AgendaRequest request) {
-        this.matricula = matricula;
         this.instrutor = instrutor;
+        this.matricula = matricula;
         this.veiculo = veiculo;
+
         this.tipoAula =  request.getTipoAula();
         this.data = request.getData();
-        this.horario = request.getHorario();
+        this.horarioAula = request.getHorarioAula();
     }
 }
