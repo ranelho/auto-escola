@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.10</version>
+		<version>3.0.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.rl-ti</groupId>
@@ -15,7 +15,6 @@
 	<description>Auto Escola</description>
 	<properties>
 		<java.version>17</java.version>
-		<spring-doc.version>1.6.15</spring-doc.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -49,8 +48,8 @@
 
 		<dependency>
 			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>${spring-doc.version}</version>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.0.3</version>
 		</dependency>
 	</dependencies>
 

@@ -2,8 +2,8 @@ package com.rlti.autoescola.contato.application.api;
 
 import lombok.Value;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
 
 @Value
 public class ContatoRequest {

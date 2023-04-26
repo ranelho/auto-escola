@@ -19,12 +19,12 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 public class Fluxo {
-    List<PagamentoFluxoResponse> pagamentos;
-    List<ManutencaoFluxoResponse> manutencoes;
     private BigDecimal valorTotalReceitas;
     private BigDecimal valorTotalDespesas;
     private BigDecimal saldoGeral;
     private TipoPagamento tipoPagamento;
+    List<PagamentoFluxoResponse> pagamentos;
+    List<ManutencaoFluxoResponse> manutencoes;
     List<ReceitaPagamentoResponse> receitaPagamentoResponseList;
 
     public Fluxo(List<Pagamento> pagamentos, List<Manutencao> manutencaos) {
