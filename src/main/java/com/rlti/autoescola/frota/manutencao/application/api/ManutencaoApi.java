@@ -3,7 +3,7 @@ package com.rlti.autoescola.frota.manutencao.application.api;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RequestMapping("/v1/manutencao")

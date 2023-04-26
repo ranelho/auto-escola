@@ -1,6 +1,5 @@
 package com.rlti.autoescola.pagamento.appiclation.repository;
 
-import com.rlti.autoescola.matricula.application.api.request.MatriculaRequest;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.pagamento.domain.Pagamento;
 
