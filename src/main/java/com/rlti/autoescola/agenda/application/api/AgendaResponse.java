@@ -5,6 +5,7 @@ import com.rlti.autoescola.agenda.domain.HorarioAula;
 import com.rlti.autoescola.agenda.domain.TipoAula;
 import lombok.Value;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -13,6 +14,7 @@ public class AgendaResponse {
     Long idAgenda;
     LocalDate data;
     HorarioAula horarioAula;
+    BigDecimal horaAulaRealizada;
     TipoAula tipoAula;
     UUID idInstrutor;
     UUID idMatricula;
@@ -22,6 +24,7 @@ public class AgendaResponse {
         this.idAgenda = agenda.getIdAgenda();
         this.data = agenda.getData();
         this.horarioAula = agenda.getHorarioAula();
+        this.horaAulaRealizada = agenda.getHoraAulaRealizada();
         this.tipoAula = agenda.getTipoAula();
         this.idInstrutor = agenda.getInstrutor().getIdInstrutor();
         this.idMatricula = agenda.getMatricula().getIdMatricula();

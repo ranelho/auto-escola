@@ -1,6 +1,7 @@
 package com.rlti.autoescola.agenda.application.service;
 
 import com.rlti.autoescola.agenda.application.api.AgendaIdResponse;
+import com.rlti.autoescola.agenda.application.api.AgendaListResponse;
 import com.rlti.autoescola.agenda.application.api.AgendaRequest;
 import com.rlti.autoescola.agenda.application.api.AgendaResponse;
 import com.rlti.autoescola.agenda.application.repository.AgendaRepository;
@@ -15,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -38,11 +39,19 @@ public class AgendaApplicationService implements AgendaService {
     }
 
     @Override
-    public AgendaResponse findById(Long idAgenda) {
+    public AgendaResponse getByIdAgenda(Long idAgenda) {
         log.info("[inicia] - AgendaApplicationService - getAgenda");
-        Agenda agenda = agendaRepository.findById(idAgenda);
+        Agenda agenda = agendaRepository.getByIdAgenda(idAgenda);
         log.info("[finaliza] - AgendaApplicationService - getAgenda");
         return new AgendaResponse(agenda);
+    }
+
+    @Override
+    public List<AgendaListResponse> buscaAgendamentos() {
+        log.info("[inicia] - AgendaApplicationService - buscaAgendaMatricula");
+        List<Agenda> agendas = agendaRepository.buscaAgendamentos();
+        log.info("[finaliza] - AgendaApplicationService - buscaAgendaMatricula");
+        return AgendaListResponse.converte(agendas);
     }
 
 }

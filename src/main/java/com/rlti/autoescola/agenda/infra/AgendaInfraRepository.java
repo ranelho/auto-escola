@@ -1,6 +1,5 @@
 package com.rlti.autoescola.agenda.infra;
 
-import com.rlti.autoescola.agenda.application.api.AgendaResponse;
 import com.rlti.autoescola.agenda.application.repository.AgendaRepository;
 import com.rlti.autoescola.agenda.domain.Agenda;
 import com.rlti.autoescola.handler.APIException;
@@ -9,8 +8,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Repository
 @RequiredArgsConstructor
@@ -27,12 +26,20 @@ public class AgendaInfraRepository implements AgendaRepository {
     }
 
     @Override
-    public Agenda findById(Long idAgenda) {
+    public Agenda getByIdAgenda(Long idAgenda) {
         log.info("[inicia] - AgendaInfraRepository - getAgenda");
         Optional<Agenda> optionalAgenda = agendaSpringDataJPARepository.findById(idAgenda);
         Agenda agenda = optionalAgenda
                 .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Agenda não cadastrada!"));
         log.info("[finaliza] - AgendaInfraRepository - getAgenda");
         return agenda;
+    }
+
+    @Override
+    public List<Agenda> buscaAgendamentos() {
+        log.info("[inicia] - AgendaInfraRepository - buscaAgendamentos");
+        List<Agenda> agendamentos = agendaSpringDataJPARepository.findAll();
+        log.info("[finaliza] - AgendaInfraRepository - buscaAgendamentos");
+        return agendamentos;
     }
 }
