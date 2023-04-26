@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @RestController
@@ -21,6 +22,14 @@ public class AgendaRestController implements AgendaAPI {
     }
 
     @Override
+    public List<AgendaListResponse> getAll() {
+        log.info("[inicia] AgendaRestController - findByIdMatricula");
+        List<AgendaListResponse> agendas = agendaService.buscaAgendamentos();
+        log.info("[inicia] AgendaRestController - findByIdMatricula");
+        return agendas;
+    }
+
+    @Override
     public AgendaResponse getByIdAgenda(Long idAgenda) {
         log.info("[inicia] - AgendaRestController - findByIdAgenda");
         AgendaResponse buscaAgenda = agendaService.getByIdAgenda(idAgenda);
@@ -29,10 +38,10 @@ public class AgendaRestController implements AgendaAPI {
     }
 
     @Override
-    public List<AgendaListResponse> getAll() {
-        log.info("[inicia] AgendaRestController - findByIdMatricula");
-        List<AgendaListResponse> agendas = agendaService.buscaAgendamentos();
-        log.info("[inicia] AgendaRestController - findByIdMatricula");
-        return agendas;
+    public List<AgendaListResponse> getByIdInstrutor(UUID idInstrutor) {
+        log.info("[inicia] - AgendaRestController - getByIdInstrutor");
+        List<AgendaListResponse> buscaAgendaInstrutor = agendaService.getByIdInstrutor(idInstrutor);
+        log.info("[finaliza] - AgendaRestController - getByIdInstrutor");
+        return buscaAgendaInstrutor;
     }
 }

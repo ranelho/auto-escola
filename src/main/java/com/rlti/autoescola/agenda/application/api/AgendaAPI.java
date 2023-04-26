@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 @RequestMapping("/v1/agenda")
 public interface AgendaAPI{
@@ -13,11 +14,15 @@ public interface AgendaAPI{
     @ResponseStatus(code = HttpStatus.CREATED)
     AgendaIdResponse post(@Valid @RequestBody AgendaRequest agendaRequest);
 
+    @GetMapping("/all")
+    @ResponseStatus(code = HttpStatus.OK)
+    List<AgendaListResponse> getAll();
+
     @GetMapping("{idAgenda}")
     @ResponseStatus(code = HttpStatus.OK)
     AgendaResponse getByIdAgenda(@PathVariable Long idAgenda);
 
-    @GetMapping("/all")
+    @GetMapping("/Instrutor/{idInstrutor}")
     @ResponseStatus(code = HttpStatus.OK)
-    List<AgendaListResponse> getAll();
+    List<AgendaListResponse> getByIdInstrutor(@PathVariable UUID idInstrutor);
 }
