@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import lombok.extern.log4j.Log4j2;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 @RestControllerAdvice
 @Log4j2
@@ -39,5 +40,12 @@ public class RestResponseEntityExceptionHandler {
 			errors.put(fieldName, errorMessage);
 		});
 		return errors;
+	}
+
+	@ExceptionHandler(MaxUploadSizeExceededException.class)
+	public ResponseEntity<ErrorResponse> handleMaxUploadSizeExceededException(MaxUploadSizeExceededException ex) {
+		String mensagem = "O tamanho do arquivo enviado excede o limite permitido de 1 MB.";
+		ErrorResponse erro = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), mensagem);
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
 	}
 }
