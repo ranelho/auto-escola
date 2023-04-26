@@ -1,6 +1,5 @@
 package com.rlti.autoescola.agenda.domain;
 
-import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 import com.rlti.autoescola.instrutor.domain.Instrutor;
 import com.rlti.autoescola.matricula.domain.Matricula;
