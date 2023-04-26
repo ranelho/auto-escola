@@ -22,7 +22,11 @@ public interface AgendaAPI{
     @ResponseStatus(code = HttpStatus.OK)
     AgendaResponse getByIdAgenda(@PathVariable Long idAgenda);
 
-    @GetMapping("/Instrutor/{idInstrutor}")
+    @GetMapping("/instrutor/{idInstrutor}")
     @ResponseStatus(code = HttpStatus.OK)
     List<AgendaListResponse> getByIdInstrutor(@PathVariable UUID idInstrutor);
+
+    @GetMapping("/matricula/{idMatricula}")
+    @ResponseStatus(code = HttpStatus.OK)
+    List<AgendaListResponse> getByIdMatricula(@PathVariable UUID idMatricula);
 }

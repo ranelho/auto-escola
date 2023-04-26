@@ -44,4 +44,12 @@ public class AgendaRestController implements AgendaAPI {
         log.info("[finaliza] - AgendaRestController - getByIdInstrutor");
         return buscaAgendaInstrutor;
     }
+
+    @Override
+    public List<AgendaListResponse> getByIdMatricula(UUID idMatricula) {
+        log.info("[inicia] - AgendaRestController - getByIdMatricula");
+        List<AgendaListResponse> buscaAgendaMatricula = agendaService.getByIdMatricula(idMatricula);
+        log.info("[finaliza] - AgendaRestController - getByIdMatricula");
+        return buscaAgendaMatricula;
+    }
 }
