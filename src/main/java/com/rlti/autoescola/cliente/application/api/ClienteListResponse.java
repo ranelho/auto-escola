@@ -22,5 +22,6 @@ public class ClienteListResponse {
         this.idCliente = cliente.getIdCliente();
         this.cpf = cliente.getCpf();
         this.fullName = cliente.getFullName();
+
     }
 }

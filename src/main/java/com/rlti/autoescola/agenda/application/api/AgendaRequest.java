@@ -3,7 +3,7 @@ package com.rlti.autoescola.agenda.application.api;
 import com.rlti.autoescola.agenda.domain.HorarioAula;
 import com.rlti.autoescola.agenda.domain.TipoAula;
 import lombok.Value;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
