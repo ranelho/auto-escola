@@ -13,4 +13,5 @@ public interface AgendaService {
     List<AgendaListResponse> buscaAgendamentos();
     AgendaResponse getByIdAgenda(Long idAgenda);
     List<AgendaListResponse> getByIdInstrutor(UUID idInstrutor);
+    List<AgendaListResponse> getByIdMatricula(UUID idMatricula);
 }

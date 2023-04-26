@@ -63,4 +63,13 @@ public class AgendaApplicationService implements AgendaService {
         return AgendaListResponse.converte(agendas);
     }
 
+    @Override
+    public List<AgendaListResponse> getByIdMatricula(UUID idMatricula) {
+        log.info("[inicia] - AgendaApplicationService - getByIdMatricula");
+        Matricula matricula = matriculaRepository.matriculaAtravesId(idMatricula);
+        List<Agenda> agendas = agendaRepository.getAgendaByIdMatricula(matricula);
+        log.info("[finaliza] - AgendaApplicationService - getByIdMatricula");
+        return AgendaListResponse.converte(agendas);
+    }
+
 }
