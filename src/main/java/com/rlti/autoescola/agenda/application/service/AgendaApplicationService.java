@@ -17,6 +17,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -39,18 +40,26 @@ public class AgendaApplicationService implements AgendaService {
     }
 
     @Override
-    public AgendaResponse getByIdAgenda(Long idAgenda) {
-        log.info("[inicia] - AgendaApplicationService - getAgenda");
-        Agenda agenda = agendaRepository.getByIdAgenda(idAgenda);
-        log.info("[finaliza] - AgendaApplicationService - getAgenda");
-        return new AgendaResponse(agenda);
-    }
-
-    @Override
     public List<AgendaListResponse> buscaAgendamentos() {
         log.info("[inicia] - AgendaApplicationService - buscaAgendaMatricula");
         List<Agenda> agendas = agendaRepository.buscaAgendamentos();
         log.info("[finaliza] - AgendaApplicationService - buscaAgendaMatricula");
+        return AgendaListResponse.converte(agendas);
+    }
+
+    @Override
+    public AgendaResponse getByIdAgenda(Long idAgenda) {
+        log.info("[inicia] - AgendaApplicationService - getByIdAgenda");
+        Agenda agenda = agendaRepository.getByIdAgenda(idAgenda);
+        log.info("[finaliza] - AgendaApplicationService - getByIdAgenda");
+        return new AgendaResponse(agenda);
+    }
+
+    public List<AgendaListResponse> getByIdInstrutor(UUID idInstrutor) {
+        log.info("[inicia] - AgendaApplicationService - getByIdInstrutor");
+        Instrutor instrutor = instrutorRepository.getInstrutor(idInstrutor);
+        List<Agenda> agendas = agendaRepository.getAgendaByIdInstrutor(instrutor);
+        log.info("[finaliza] - AgendaApplicationService - getByIdInstrutor");
         return AgendaListResponse.converte(agendas);
     }
 

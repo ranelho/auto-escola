@@ -3,6 +3,7 @@ package com.rlti.autoescola.agenda.infra;
 import com.rlti.autoescola.agenda.application.repository.AgendaRepository;
 import com.rlti.autoescola.agenda.domain.Agenda;
 import com.rlti.autoescola.handler.APIException;
+import com.rlti.autoescola.instrutor.domain.Instrutor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 @RequiredArgsConstructor
@@ -26,9 +28,17 @@ public class AgendaInfraRepository implements AgendaRepository {
     }
 
     @Override
+    public List<Agenda> buscaAgendamentos() {
+        log.info("[inicia] - AgendaInfraRepository - buscaAgendamentos");
+        List<Agenda> agendamentos = agendaSpringDataJPARepository.findAll();
+        log.info("[finaliza] - AgendaInfraRepository - buscaAgendamentos");
+        return agendamentos;
+    }
+
+    @Override
     public Agenda getByIdAgenda(Long idAgenda) {
         log.info("[inicia] - AgendaInfraRepository - getAgenda");
-        Optional<Agenda> optionalAgenda = agendaSpringDataJPARepository.findById(idAgenda);
+        Optional<Agenda> optionalAgenda = agendaSpringDataJPARepository.findByIdAgenda(idAgenda);
         Agenda agenda = optionalAgenda
                 .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Agenda não cadastrada!"));
         log.info("[finaliza] - AgendaInfraRepository - getAgenda");
@@ -36,10 +46,10 @@ public class AgendaInfraRepository implements AgendaRepository {
     }
 
     @Override
-    public List<Agenda> buscaAgendamentos() {
-        log.info("[inicia] - AgendaInfraRepository - buscaAgendamentos");
-        List<Agenda> agendamentos = agendaSpringDataJPARepository.findAll();
-        log.info("[finaliza] - AgendaInfraRepository - buscaAgendamentos");
-        return agendamentos;
+    public List<Agenda> getAgendaByIdInstrutor(Instrutor instrutor) {
+        log.info("[inicia] - AgendaInfraRepository - getAgenda");
+        List<Agenda> agendas = agendaSpringDataJPARepository.findAgendaByInstrutor(instrutor);
+        log.info("[finaliza] - AgendaInfraRepository - getAgenda");
+        return agendas;
     }
 }

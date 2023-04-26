@@ -22,12 +22,12 @@ public class AgendaResponse {
 
     public AgendaResponse(Agenda agenda) {
         this.idAgenda = agenda.getIdAgenda();
+        this.idInstrutor = agenda.getInstrutor().getIdInstrutor();
+        this.idMatricula = agenda.getMatricula().getIdMatricula();
+        this.placa = agenda.getVeiculo().getPlaca();
         this.data = agenda.getData();
         this.horarioAula = agenda.getHorarioAula();
         this.horaAulaRealizada = agenda.getHoraAulaRealizada();
         this.tipoAula = agenda.getTipoAula();
-        this.idInstrutor = agenda.getInstrutor().getIdInstrutor();
-        this.idMatricula = agenda.getMatricula().getIdMatricula();
-        this.placa = agenda.getVeiculo().getPlaca();
     }
 }
