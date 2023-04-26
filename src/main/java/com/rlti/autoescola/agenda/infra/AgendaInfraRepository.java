@@ -4,6 +4,7 @@ import com.rlti.autoescola.agenda.application.repository.AgendaRepository;
 import com.rlti.autoescola.agenda.domain.Agenda;
 import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.instrutor.domain.Instrutor;
+import com.rlti.autoescola.matricula.domain.Matricula;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -49,6 +50,14 @@ public class AgendaInfraRepository implements AgendaRepository {
     public List<Agenda> getAgendaByIdInstrutor(Instrutor instrutor) {
         log.info("[inicia] - AgendaInfraRepository - getAgenda");
         List<Agenda> agendas = agendaSpringDataJPARepository.findAgendaByInstrutor(instrutor);
+        log.info("[finaliza] - AgendaInfraRepository - getAgenda");
+        return agendas;
+    }
+
+    @Override
+    public List<Agenda> getAgendaByIdMatricula(Matricula matricula) {
+        log.info("[inicia] - AgendaInfraRepository - getAgenda");
+        List<Agenda> agendas = agendaSpringDataJPARepository.findAgendaByMatricula(matricula);
         log.info("[finaliza] - AgendaInfraRepository - getAgenda");
         return agendas;
     }
