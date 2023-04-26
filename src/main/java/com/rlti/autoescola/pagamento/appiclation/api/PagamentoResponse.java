@@ -1,6 +1,5 @@
 package com.rlti.autoescola.pagamento.appiclation.api;
 
-import com.rlti.autoescola.contato.application.api.ContatoResponse;
 import com.rlti.autoescola.pagamento.domain.Pagamento;
 import lombok.Value;
 

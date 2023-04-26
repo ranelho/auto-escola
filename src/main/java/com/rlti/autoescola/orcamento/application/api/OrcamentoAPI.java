@@ -3,7 +3,7 @@ package com.rlti.autoescola.orcamento.application.api;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 @RequestMapping("/v1/orcamento")
 public interface OrcamentoAPI {

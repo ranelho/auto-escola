@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Repository
 public interface ImagemSpringDataJPARepository extends JpaRepository<Imagem, Long> {
     Optional<Imagem> findByCliente(Cliente cliente);
 }

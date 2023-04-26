@@ -3,8 +3,8 @@ package com.rlti.autoescola.frota.veiculo.annotation.constraints;
 import com.rlti.autoescola.frota.veiculo.annotation.Placa;
 import com.rlti.autoescola.frota.veiculo.domain.placa.TipoPlaca;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
