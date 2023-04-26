@@ -9,10 +9,10 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface PagamentoRepository {
-    List<Pagamento> getPagamento(Matricula matricula);
+    List<Pagamento> getAllPagamentoByMatricula(Matricula matricula);
     BigDecimal totalPago(Matricula matricula);
     Pagamento salva(Pagamento pagamento);
-    Pagamento getById(Long idPagamento);
+    Pagamento getOnePagamento(Long idPagamento);
     void delete(Long idPagamento);
     List<Pagamento> getAllData(LocalDate data);
     List<Pagamento> getCategoriaAllData(TipoPagamento tipoPagamento, LocalDate data);

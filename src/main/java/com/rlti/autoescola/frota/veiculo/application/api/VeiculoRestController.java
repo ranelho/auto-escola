@@ -16,7 +16,7 @@ public class VeiculoRestController implements VeiculoApi {
     private final VeiculoService veiculoService;
 
     @Override
-    public VeiculoIdResponse post(VeiculoRequest request) {
+    public VeiculoIdResponse saveVeiculo(VeiculoRequest request) {
         log.info("[inicia] FrotaRestController - post");
         VeiculoIdResponse idResponse = veiculoService.saveVeiculo(request);
         log.info("[finaliza] FrotaRestController - post");
@@ -24,15 +24,15 @@ public class VeiculoRestController implements VeiculoApi {
     }
 
     @Override
-    public VeiculoResponse getByPlaca(String placa) {
+    public VeiculoResponse getOneVeiculoByPlaca(String placa) {
         log.info("[inicia] FrotaRestController - getByPlaca");
-        Veiculo veiculo = veiculoService.getByPlaca(placa);
+        Veiculo veiculo = veiculoService.getOneVeiculoByPlaca(placa);
         log.info("[finaliza] FrotaRestController - getByPlaca");
         return new VeiculoResponse(veiculo);
     }
 
     @Override
-    public List<VeiculoResponse> getAll() {
+    public List<VeiculoResponse> getAllVeiculos() {
         log.info("[inicia] FrotaRestController - getAll");
         List<Veiculo> veiculo = veiculoService.getAll();
         log.info("[finaliza] FrotaRestController - getAll");
@@ -40,14 +40,14 @@ public class VeiculoRestController implements VeiculoApi {
     }
 
     @Override
-    public void update(String placa, VeiculoRequest request) {
+    public void updateVeiculo(String placa, VeiculoRequest request) {
         log.info("[inicia] FrotaRestController - update");
         veiculoService.update(placa, request);
         log.info("[finaliza] FrotaRestController - update");
     }
 
     @Override
-    public void delete(String placa) {
+    public void deleteVeiculo(String placa) {
         log.info("[inicia] FrotaRestController - delete");
         veiculoService.delete(placa);
         log.info("[finaliza] FrotaRestController - delete");

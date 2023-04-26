@@ -24,8 +24,8 @@ public class ExameApplicationService implements ExameService {
     @Override
     public ExameIdResponse saveExame(UUID idCliente, ExameRequest request) {
         log.info("[inicia] ExameApplicationService - post");
-        Cliente cliente = clienteRepository.findById(idCliente);
-        Exame exame = exameRepository.salva(new Exame(cliente, request));
+        Cliente cliente = clienteRepository.findOneCliente(idCliente);
+        Exame exame = exameRepository.saveExame(new Exame(cliente, request));
         log.info("[finaliza] ExameApplicationService - post");
         return ExameIdResponse.builder().idExame(exame.getIdExame()).build();
     }
@@ -33,7 +33,7 @@ public class ExameApplicationService implements ExameService {
     @Override
     public ExameResponse getOneExame(Long idExame) {
         log.info("[inicia] ExameApplicationService - getById");
-        Exame exame = exameRepository.buscaExamePorId(idExame);
+        Exame exame = exameRepository.getOneExame(idExame);
         log.info("[finaliza] ExameApplicationService - getById");
         return new ExameResponse(exame);
     }
@@ -41,8 +41,8 @@ public class ExameApplicationService implements ExameService {
     @Override
     public List<ExameResponse> getAllExames(UUID idCliente) {
         log.info("[inicia] ExameApplicationService - getAll");
-        Cliente cliente = clienteRepository.findById(idCliente);
-        List<Exame> exames = exameRepository.buscaExamesPorIdCliente(cliente);
+        Cliente cliente = clienteRepository.findOneCliente(idCliente);
+        List<Exame> exames = exameRepository.getAllExamesByCliente(cliente);
         log.info("[finaliza] ExameApplicationService - getAll");
         return ExameResponse.converte(exames);
     }
@@ -50,16 +50,16 @@ public class ExameApplicationService implements ExameService {
     @Override
     public void deleteExame(Long idExame) {
         log.info("[inicia] ExameApplicationService - delete");
-        exameRepository.delete(exameRepository.buscaExamePorId(idExame).getIdExame());
+        exameRepository.deleteExame(exameRepository.getOneExame(idExame).getIdExame());
         log.info("[finaliza] ExameApplicationService - delete");
     }
 
     @Override
     public void updateExame(Long idExame, ExameRequest request) {
         log.info("[inicia] ExameApplicationService - update");
-        Exame exame = exameRepository.buscaExamePorId(idExame);
+        Exame exame = exameRepository.getOneExame(idExame);
         exame.altera(request);
-        exameRepository.salva(exame);
+        exameRepository.saveExame(exame);
         log.info("[finaliza] ExameApplicationService - update");
     }
 }

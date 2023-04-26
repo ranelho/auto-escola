@@ -14,9 +14,9 @@ public class ManutencaoRestController implements ManutencaoApi {
     private final ManutencaoService manutencaoService;
 
     @Override
-    public ManutencaoIdResponse post(String placa, ManutencaoRequest request) {
+    public ManutencaoIdResponse saveManutencao(String placa, ManutencaoRequest request) {
         log.info("[inicia] ManutencaoRestController - post");
-        ManutencaoIdResponse idResponse = manutencaoService.post(placa,request);
+        ManutencaoIdResponse idResponse = manutencaoService.saveManutencao(placa,request);
         log.info("[finaliza] ManutencaoRestController - post");
         return idResponse;
     }
@@ -30,32 +30,32 @@ public class ManutencaoRestController implements ManutencaoApi {
     }
 
     @Override
-    public List<ManutencaoListResponse> getByVeiculoVeiculo(String placa) {
+    public List<ManutencaoListResponse> getManutencaoByVeiculo(String placa) {
         log.info("[inicia] ManutencaoRestController - getByVeiculoVeiculo");
-        List<ManutencaoListResponse> listResponses = manutencaoService.getByVeiculoVeiculo(placa);
+        List<ManutencaoListResponse> listResponses = manutencaoService.getManutencaoByVeiculo(placa);
         log.info("[finaliza] ManutencaoRestController - getByVeiculoVeiculo");
         return listResponses;
     }
 
     @Override
-    public ManutencaoResponse getById(Long idManutencao) {
+    public ManutencaoResponse getOneManutencao(Long idManutencao) {
         log.info("[inicia] ManutencaoRestController - getById");
-        ManutencaoResponse response = manutencaoService.getById(idManutencao);
+        ManutencaoResponse response = manutencaoService.getOneManutencao(idManutencao);
         log.info("[finaliza] ManutencaoRestController - getById");
         return response;
     }
 
     @Override
-    public void update(Long idManutencao, ManutencaoRequest request) {
+    public void updateManutencao(Long idManutencao, ManutencaoRequest request) {
         log.info("[inicia] ManutencaoRestController - getById");
-        manutencaoService.update(idManutencao, request);
+        manutencaoService.updateManutencao(idManutencao, request);
         log.info("[finaliza] ManutencaoRestController - getById");
     }
 
     @Override
-    public void delete(Long idManutencao) {
+    public void deleteManutencao(Long idManutencao) {
         log.info("[inicia] ManutencaoRestController - delete");
-        manutencaoService.delete(idManutencao);
+        manutencaoService.deleteManutencao(idManutencao);
         log.info("[finaliza] ManutencaoRestController - delete");
     }
 }

@@ -20,7 +20,7 @@ public class ExameInfraRepository implements ExameRepository {
     private final ExameSpringDataJPARepository exameSpringDataJPARepository;
 
     @Override
-    public Exame salva(Exame exame) {
+    public Exame saveExame(Exame exame) {
         log.info("[inicia] ExameInfraRepository -  salva");
         exameSpringDataJPARepository.save(exame);
         log.info("[finaliza] ExameInfraRepository -  salva");
@@ -28,7 +28,7 @@ public class ExameInfraRepository implements ExameRepository {
     }
 
     @Override
-    public Exame buscaExamePorId(Long idExame) {
+    public Exame getOneExame(Long idExame) {
         log.info("[inicia] ExameInfraRepository -  buscaExamePorId");
         Optional<Exame> optionalExame = exameSpringDataJPARepository.findById(idExame);
         Exame exame = optionalExame
@@ -38,7 +38,7 @@ public class ExameInfraRepository implements ExameRepository {
     }
 
     @Override
-    public List<Exame> buscaExamesPorIdCliente(Cliente cliente) {
+    public List<Exame> getAllExamesByCliente(Cliente cliente) {
         log.info("[inicia] ExameInfraRepository -  buscaExamesPorIdCliente");
         List<Exame> exames = exameSpringDataJPARepository.findByCliente(cliente);
         log.info("[finaliza] ExameInfraRepository -  buscaExamesPorIdCliente");
@@ -46,7 +46,7 @@ public class ExameInfraRepository implements ExameRepository {
     }
 
     @Override
-    public void delete(Long idExame) {
+    public void deleteExame(Long idExame) {
         log.info("[inicia] ExameInfraRepository -  delete");
         exameSpringDataJPARepository.deleteById(idExame);
         log.info("[finaliza] ExameInfraRepository -  delete");

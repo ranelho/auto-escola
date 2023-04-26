@@ -32,7 +32,7 @@ public class ServicoInfraRepository implements ServicoRepository {
     }
 
     @Override
-    public Servico getById(UUID idServico) {
+    public Servico getOneServico(UUID idServico) {
         log.info("[inicia] ServicoInfraRepository - getById");
         Optional<Servico> optionalServico = servicoSpringDataInfraRepository.findById(idServico);
         Servico servico = optionalServico
@@ -44,7 +44,7 @@ public class ServicoInfraRepository implements ServicoRepository {
     }
 
     @Override
-    public List<Servico> getAll() {
+    public List<Servico> getAllServicos() {
         log.info("[inicia] ServicoInfraRepository - getAll");
         List<Servico> servicos = servicoSpringDataInfraRepository.findAll();
         log.info("[finaliza] ServicoInfraRepository - getAll");
@@ -52,7 +52,7 @@ public class ServicoInfraRepository implements ServicoRepository {
     }
 
     @Override
-    public void delete(UUID idServico) {
+    public void deleteServico(UUID idServico) {
         log.info("[inicia] ServicoInfraRepository - getAll");
         servicoSpringDataInfraRepository.deleteById(idServico);
         log.info("[finaliza] ServicoInfraRepository - getAll");

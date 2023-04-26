@@ -9,5 +9,5 @@ public interface LaudoRepository {
     Laudo salva(Laudo laudo);
     void delete(Long idLaudo);
     Laudo getById(Long idLaudo);
-    List<Laudo> getLaudosByMatricula(Matricula Matricula);
+    List<Laudo> getAllLaudosByMatricula(Matricula Matricula);
 }

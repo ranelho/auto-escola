@@ -20,16 +20,16 @@ public class LaudoApplicationService implements LaudoService {
     private final MatriculaRepository matriculaRepository;
 
     @Override
-    public LaudoIdResponse post(UUID idMatricula, LaudoRequest request) {
+    public LaudoIdResponse saveLaudo(UUID idMatricula, LaudoRequest request) {
         log.info("[inicia] LaudoApplicationService -  post");
-        Matricula matricula = matriculaRepository.matriculaAtravesId(idMatricula);
+        Matricula matricula = matriculaRepository.getOneMatricula(idMatricula);
         Laudo laudo = laudoRepository.salva(new Laudo(matricula, request));
         log.info("[finaliza] LaudoApplicationService -  post");
         return LaudoIdResponse.builder().idLaudo(laudo.getIdLaudo()).build();
     }
 
     @Override
-    public LaudoResponse getById(Long idLaudo) {
+    public LaudoResponse getOneLaudo(Long idLaudo) {
         log.info("[inicia] LaudoApplicationService -  getById");
         Laudo laudo = laudoRepository.getById(idLaudo);
         log.info("[finaliza] LaudoApplicationService -  getById");
@@ -37,7 +37,7 @@ public class LaudoApplicationService implements LaudoService {
     }
 
     @Override
-    public void update(Long idLaudo, LaudoRequest request) {
+    public void updateLaudo(Long idLaudo, LaudoRequest request) {
         log.info("[inicia] LaudoApplicationService -  update");
         Laudo laudo = laudoRepository.getById(idLaudo);
         laudo.altera(request);
@@ -46,7 +46,7 @@ public class LaudoApplicationService implements LaudoService {
     }
 
     @Override
-    public void delete(Long idLaudo) {
+    public void deleteLaudo(Long idLaudo) {
         log.info("[inicia] LaudoApplicationService -  delete");
         Laudo laudo = laudoRepository.getById(idLaudo);
         laudoRepository.delete(laudo.getIdLaudo());
@@ -54,10 +54,10 @@ public class LaudoApplicationService implements LaudoService {
     }
 
     @Override
-    public List<LaudoResponse> getByMatricula(UUID idMatricula) {
+    public List<LaudoResponse> getAllLaudosByMatricula(UUID idMatricula) {
         log.info("[inicia] LaudoApplicationService -  delete");
-        Matricula matricula = matriculaRepository.matriculaAtravesId(idMatricula);
-        List<Laudo> laudos = laudoRepository.getLaudosByMatricula(matricula);
+        Matricula matricula = matriculaRepository.getOneMatricula(idMatricula);
+        List<Laudo> laudos = laudoRepository.getAllLaudosByMatricula(matricula);
         log.info("[finaliza] LaudoApplicationService -  delete");
         return LaudoResponse.converte(laudos);
     }

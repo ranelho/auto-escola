@@ -27,7 +27,7 @@ public class MatriculaInfraRepository implements MatriculaRepository {
     }
 
     @Override
-    public List<Matricula> buscaTodasMatriculas() {
+    public List<Matricula> getAllMatriculas() {
         log.info("[inicia] MatriculaInfraRepository - buscaTodasMatriculas");
         List<Matricula> todasMatriculas = matriculaSpringDataJPARepository.findAll();
         log.info("[finaliza] MatriculaInfraRepository - buscaTodasMatriculas");
@@ -35,7 +35,7 @@ public class MatriculaInfraRepository implements MatriculaRepository {
     }
 
     @Override
-    public Matricula matriculaAtravesId(UUID idMatricula) {
+    public Matricula getOneMatricula(UUID idMatricula) {
         log.info("[inicia] MatriculaInfraRepository - matriculaAtravesId");
         Optional<Matricula> matriculaOptional = matriculaSpringDataJPARepository.findById(idMatricula);
         Matricula matricula = matriculaOptional

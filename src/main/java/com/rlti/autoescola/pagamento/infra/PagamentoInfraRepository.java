@@ -22,7 +22,7 @@ public class PagamentoInfraRepository implements PagamentoRepository {
     private final PagamentoSpringDataJPARepository pagamentoSpringDataJPARepository;
 
     @Override
-    public List<Pagamento> getPagamento(Matricula matricula) {
+    public List<Pagamento> getAllPagamentoByMatricula(Matricula matricula) {
         log.info("[inicia] PagamentoInfraRepository - getPagamento");
         List<Pagamento> pagamentos = pagamentoSpringDataJPARepository.findByMatricula(matricula);
         log.info("[finaliza] PagamentoInfraRepository - getPagamento");
@@ -46,7 +46,7 @@ public class PagamentoInfraRepository implements PagamentoRepository {
         return pago;
     }
     @Override
-    public Pagamento getById(Long idPagamento) {
+    public Pagamento getOnePagamento(Long idPagamento) {
         log.info("[inicia] PagamentoInfraRepository - getById");
         Optional<Pagamento> optionalPagamento = pagamentoSpringDataJPARepository.findById(idPagamento);
         Pagamento pagamento = optionalPagamento

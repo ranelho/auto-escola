@@ -20,13 +20,13 @@ public class VeiculoApplicationService implements VeiculoService {
     @Override
     public VeiculoIdResponse saveVeiculo(VeiculoRequest request) {
         log.info("[inicia] VeiculoApplicationService - saveVeiculo");
-        Veiculo veiculo = veiculoRepository.salva(new Veiculo(request));
+        Veiculo veiculo = veiculoRepository.saveVeiculos(new Veiculo(request));
         log.info("[finaliza] VeiculoApplicationService - saveVeiculo");
         return VeiculoIdResponse.builder().idVeiculo(veiculo.getIdVeiculo()).build();
     }
 
     @Override
-    public Veiculo getByPlaca(String placa) {
+    public Veiculo getOneVeiculoByPlaca(String placa) {
         log.info("[inicia] VeiculoApplicationService - getByPlaca");
         Veiculo veiculo = veiculoRepository.getByPlaca(placa);
         log.info("[finaliza] VeiculoApplicationService - getByPlaca");
@@ -36,7 +36,7 @@ public class VeiculoApplicationService implements VeiculoService {
     @Override
     public List<Veiculo> getAll() {
         log.info("[inicia] VeiculoApplicationService - getAll");
-        List<Veiculo> veiculo = veiculoRepository.getAll();
+        List<Veiculo> veiculo = veiculoRepository.getAllVeiculo();
         log.info("[finaliza] VeiculoApplicationService - getAll");
         return veiculo;
     }
@@ -46,7 +46,7 @@ public class VeiculoApplicationService implements VeiculoService {
         log.info("[inicia] VeiculoApplicationService - update");
         Veiculo veiculo = veiculoRepository.getByPlaca(placa);
         veiculo.altera(request);
-        veiculoRepository.salva(veiculo);
+        veiculoRepository.saveVeiculos(veiculo);
         log.info("[finaliza] VeiculoApplicationService - update");
     }
 
@@ -54,7 +54,7 @@ public class VeiculoApplicationService implements VeiculoService {
     public void delete(String placa) {
         log.info("[inicia] VeiculoApplicationService - update");
         Veiculo veiculo = veiculoRepository.getByPlaca(placa.toUpperCase());
-        veiculoRepository.delete(veiculo.getIdVeiculo());
+        veiculoRepository.deleteVeiculo(veiculo.getIdVeiculo());
         log.info("[finaliza] VeiculoApplicationService - update");
     }
 }

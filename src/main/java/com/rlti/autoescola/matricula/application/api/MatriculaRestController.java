@@ -20,49 +20,49 @@ public class MatriculaRestController implements MatriculaAPI{
     private final MatriculaService matriculaService;
 
     @Override
-    public MatriculaIdResponse post(MatriculaRequest matriculaRequest) {
+    public MatriculaIdResponse saveMatricula(MatriculaRequest matriculaRequest) {
         log.info("[inicia] MatriculaRestController - post");
-        MatriculaIdResponse matriculaCriado = matriculaService.criaNovaMatricula(matriculaRequest);
+        MatriculaIdResponse matriculaCriado = matriculaService.saveMatricula(matriculaRequest);
         log.info("[finaliza] MatriculaRestController - post");
         return matriculaCriado;
     }
 
     @Override
-    public MatriculaIdResponse post(String cpf) {
+    public MatriculaIdResponse saveMatriculaByOrcamento(String cpf) {
         log.info("[inicia] MatriculaRestController - post-orcamento");
-        MatriculaIdResponse matriculaCriado = matriculaService.criaOrcamentoMatricula(cpf);
+        MatriculaIdResponse matriculaCriado = matriculaService.saveMatriculaByOrcamento(cpf);
         log.info("[finaliza] MatriculaRestController - post-orcamento");
         return matriculaCriado;
     }
 
     @Override
-    public List<MatriculaListResponse> getAll() {
+    public List<MatriculaListResponse> getAllMatriculas() {
         log.info("[inicia] MatriculaRestController - getAll");
-        List<MatriculaListResponse> matriculas = matriculaService.buscaTodasMatriculas();
+        List<MatriculaListResponse> matriculas = matriculaService.getAllMatriculas();
         log.info("[finaliza] MatriculaRestController - getAll");
         return matriculas;
     }
 
     @Override
-    public MatriculaDetalhadoResponse getById(UUID idMatricula) {
+    public MatriculaDetalhadoResponse getOneMatricula(UUID idMatricula) {
         log.info("[inicia] MatriculaRestController - getById");
         log.info("idMatricula {}", idMatricula);
-        MatriculaDetalhadoResponse matriculaDetalhadoResponse = matriculaService.matriculaAtravesId(idMatricula);
+        MatriculaDetalhadoResponse matriculaDetalhadoResponse = matriculaService.getOneMatricula(idMatricula);
         log.info("[finaliza] MatriculaRestController - getById");
         return matriculaDetalhadoResponse;
     }
 
     @Override
-    public void delete(UUID idMatricula) {
+    public void deleteMatricula(UUID idMatricula) {
         log.info("[inicia] MatriculaRestController - delete");
-        matriculaService.delete(idMatricula);
+        matriculaService.deleteMatricula(idMatricula);
         log.info("[finaliza] MatriculaRestController - delete");
     }
 
     @Override
-    public void update(UUID idMatricula, @Valid MatriculaAlteracaoRequest matriculaAlteracaoRequest) {
+    public void updateMatricula(UUID idMatricula, @Valid MatriculaAlteracaoRequest matriculaAlteracaoRequest) {
         log.info("[inicia] MatriculaRestController - update");
-        matriculaService.update(idMatricula, matriculaAlteracaoRequest);
+        matriculaService.updateMatricula(idMatricula, matriculaAlteracaoRequest);
         log.info("[finaliza] MatriculaRestController - update");
     }
 

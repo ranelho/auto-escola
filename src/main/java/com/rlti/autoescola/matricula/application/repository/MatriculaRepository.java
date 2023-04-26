@@ -3,15 +3,14 @@ package com.rlti.autoescola.matricula.application.repository;
 import com.rlti.autoescola.matricula.domain.Matricula;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public interface MatriculaRepository {
     Matricula salva(Matricula matricula);
 
-    List<Matricula> buscaTodasMatriculas();
+    List<Matricula> getAllMatriculas();
 
-    Matricula matriculaAtravesId(UUID idMatricula);
+    Matricula getOneMatricula(UUID idMatricula);
 
     void deleteMatricula(Matricula matricula);
 }

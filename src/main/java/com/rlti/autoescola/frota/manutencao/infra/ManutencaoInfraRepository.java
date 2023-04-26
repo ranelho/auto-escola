@@ -19,7 +19,7 @@ import java.util.Optional;
 public class ManutencaoInfraRepository implements ManutencaoRepository {
     private final ManutencaoSpringDataJPARepository manutencaoSpringDataJPARepository;
     @Override
-    public Manutencao salva(Manutencao manutencao) {
+    public Manutencao saveManutencao(Manutencao manutencao) {
         log.info("[inicia] ManutencaoInfraRepository - salva");
         manutencaoSpringDataJPARepository.save(manutencao);
         log.info("[finaliza] ManutencaoInfraRepository - salva");
@@ -27,7 +27,7 @@ public class ManutencaoInfraRepository implements ManutencaoRepository {
     }
 
     @Override
-    public List<Manutencao> findAll(Veiculo veiculo) {
+    public List<Manutencao> getAllManutencoes(Veiculo veiculo) {
         log.info("[inicia] ManutencaoInfraRepository - findAll");
         List<Manutencao> manutencoes = manutencaoSpringDataJPARepository.findAllByVeiculo(veiculo);
         log.info("[finaliza] ManutencaoInfraRepository - findAll");
@@ -35,7 +35,7 @@ public class ManutencaoInfraRepository implements ManutencaoRepository {
     }
 
     @Override
-    public Manutencao getById(Long idManutencao) {
+    public Manutencao getOneManutencao(Long idManutencao) {
         log.info("[inicia] ManutencaoInfraRepository - getById");
         Optional<Manutencao> optionalManutencao = manutencaoSpringDataJPARepository.findById(idManutencao);
         Manutencao manutencao = optionalManutencao
@@ -45,14 +45,14 @@ public class ManutencaoInfraRepository implements ManutencaoRepository {
     }
 
     @Override
-    public void delete(Long idManutencao) {
+    public void deleteManutencao(Long idManutencao) {
         log.info("[inicia] ManutencaoInfraRepository - delete");
         manutencaoSpringDataJPARepository.deleteById(idManutencao);
         log.info("[finaliza] ManutencaoInfraRepository - delete");
     }
 
     @Override
-    public List<Manutencao> getAllData(LocalDate data) {
+    public List<Manutencao> getAllManutencoesByData(LocalDate data) {
         log.info("[inicia] ManutencaoInfraRepository - getAllData");
         List<Manutencao> manutencaos = manutencaoSpringDataJPARepository.findByDataManutencao(data);
         log.info("[finaliza] ManutencaoInfraRepository - delete");

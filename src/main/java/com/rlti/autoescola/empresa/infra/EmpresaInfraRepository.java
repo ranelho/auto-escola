@@ -17,7 +17,7 @@ import java.util.UUID;
 public class EmpresaInfraRepository implements EmpresaRepository {
     private final EmpresaSpringDataJPARepository empresaSpringDataJPARepository;
     @Override
-    public Empresa salva(Empresa empresa) {
+    public Empresa saveEmpresa(Empresa empresa) {
         log.info("[inicia] EmpresaInfraRepository - salva");
         try {
             empresaSpringDataJPARepository.save(empresa);
@@ -43,7 +43,7 @@ public class EmpresaInfraRepository implements EmpresaRepository {
         return empresa;
     }
     @Override
-    public Empresa buscaEmpresaAtravesCnpj(String cnpj) {
+    public Empresa getAllEmpresaByCnpj(String cnpj) {
         log.info("[inicia] EmpresaInfraRepository - buscaEmpresaAtravesCnpj");
         Optional<Empresa> empresaOptional = empresaSpringDataJPARepository.findByCnpj(cnpj);
         Empresa empresa = empresaOptional.orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,

@@ -10,9 +10,9 @@ public interface OrcamentoAPI {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    OrcamentoResponse post(@Valid @RequestBody OrcamentoRequest orcamentoRequest);
+    OrcamentoResponse saveOrcamento(@Valid @RequestBody OrcamentoRequest orcamentoRequest);
 
     @GetMapping(value = "/{idOrcamento}")
     @ResponseStatus(code = HttpStatus.OK)
-    OrcamentoResponse getById(@PathVariable Long idOrcamento);
+    OrcamentoResponse getOneOrcamento(@PathVariable Long idOrcamento);
 }

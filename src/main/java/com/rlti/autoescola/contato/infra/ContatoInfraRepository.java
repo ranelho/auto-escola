@@ -27,7 +27,7 @@ public class ContatoInfraRepository implements ContatoRepository {
         return contatoCriado;
     }
     @Override
-    public Contato findById(UUID idContato) {
+    public Contato getOneContato(UUID idContato) {
         log.info("[inicia] ContatoInfraRepository - findById");
         Optional<Contato> optionalContato = contatoSpringDataJPARepository.findById(idContato);
         Contato contato = optionalContato
@@ -37,7 +37,7 @@ public class ContatoInfraRepository implements ContatoRepository {
         return contato;
     }
     @Override
-    public List<Contato> buscaContatosDoCliente(Cliente cliente) {
+    public List<Contato> getAllContatosByCliente(Cliente cliente) {
         log.info("[inicia] ContatoInfraRepository - buscaContatosDoCliente");
         List<Contato> contatos = contatoSpringDataJPARepository.findAllByCliente(cliente);
         log.info("[finaliza] ContatoInfraRepository - buscaContatosDoCliente");
@@ -50,7 +50,7 @@ public class ContatoInfraRepository implements ContatoRepository {
         log.info("[finaliza] ContatoInfraRepository - deleteContato");
     }
     @Override
-    public Optional<Contato> findTelefoneContato(String telefone) {
+    public Optional<Contato> getContatoByTelefone(String telefone) {
         log.info("[inicia] ContatoInfraRepository - findTelefoneContato");
         Optional<Contato> optionalContato = contatoSpringDataJPARepository.findByTelefone(telefone);
         log.info("[finaliza] ContatoInfraRepository - findTelefoneContato");

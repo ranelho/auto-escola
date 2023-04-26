@@ -27,7 +27,7 @@ public class FluxoApplicationService implements FluxoService {
     public FluxoDeCaixaResponse getFluxoDiario(LocalDate data) {
         log.info("[inicia] FluxoApplicationService - getFluxoDiario");
         List<Pagamento> pagamentoList = pagamentoRepository.getAllData(data);
-        List<Manutencao> manutencaoList = manutencaoRepository.getAllData(data);
+        List<Manutencao> manutencaoList = manutencaoRepository.getAllManutencoesByData(data);
         List<ReceitaPagamentoResponse> receitaPagamentoResponseList = getReceitasPagamento(data);
         Fluxo fluxo = new Fluxo(pagamentoList, manutencaoList,  receitaPagamentoResponseList);
         log.info("[finaliza] FluxoApplicationService - getFluxoDiario");

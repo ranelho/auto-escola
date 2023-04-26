@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ServicoService {
-    ServicoIdResponse post(ServicoRequest request);
-    Servico getById(UUID idServico);
-    List<Servico> getAll();
-    void delete(UUID idServico);
-    void update(UUID idServico, ServicoUpdateRequest updateRequest);
+    ServicoIdResponse saveServico(ServicoRequest request);
+    Servico getOneServico(UUID idServico);
+    List<Servico> getAllServicos();
+    void deleteServico(UUID idServico);
+    void updateServico(UUID idServico, ServicoUpdateRequest updateRequest);
 }

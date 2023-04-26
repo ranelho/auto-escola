@@ -19,7 +19,7 @@ public class ServicoApplicationService implements ServicoService {
     private final ServicoRepository servicoRepository;
 
     @Override
-    public ServicoIdResponse post(ServicoRequest request) {
+    public ServicoIdResponse saveServico(ServicoRequest request) {
         log.info("[inicia] ServicoApplicationService - post");
         Servico servico = servicoRepository.salva(new Servico(request));
         log.info("[finaliza] ServicoApplicationService - post");
@@ -30,32 +30,32 @@ public class ServicoApplicationService implements ServicoService {
     }
 
     @Override
-    public Servico getById(UUID idServico) {
+    public Servico getOneServico(UUID idServico) {
         log.info("[inicia] ServicoApplicationService - getById");
-        Servico servico = servicoRepository.getById(idServico);
+        Servico servico = servicoRepository.getOneServico(idServico);
         log.info("[finaliza] ServicoApplicationService - getById");
         return servico;
     }
 
     @Override
-    public List<Servico> getAll() {
+    public List<Servico> getAllServicos() {
         log.info("[inicia] ServicoApplicationService - getAll");
-        List<Servico> servicos = servicoRepository.getAll();
+        List<Servico> servicos = servicoRepository.getAllServicos();
         log.info("[finaliza] ServicoApplicationService - getAll");
         return servicos;
     }
 
     @Override
-    public void delete(UUID idServico) {
+    public void deleteServico(UUID idServico) {
         log.info("[inicia] ServicoApplicationService - delete");
-        servicoRepository.delete(servicoRepository.getById(idServico).getIdServico());
+        servicoRepository.deleteServico(servicoRepository.getOneServico(idServico).getIdServico());
         log.info("[finaliza] ServicoApplicationService - delete");
     }
 
     @Override
-    public void update(UUID idServico, ServicoUpdateRequest updateRequest) {
+    public void updateServico(UUID idServico, ServicoUpdateRequest updateRequest) {
         log.info("[inicia] ServicoApplicationService - delete");
-        Servico servico = servicoRepository.getById(idServico);
+        Servico servico = servicoRepository.getOneServico(idServico);
         servico.altera(updateRequest);
         servicoRepository.salva(servico);
         log.info("[finaliza] ServicoApplicationService - delete");

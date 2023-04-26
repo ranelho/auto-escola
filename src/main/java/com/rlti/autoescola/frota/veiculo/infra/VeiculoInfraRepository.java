@@ -20,7 +20,7 @@ public class VeiculoInfraRepository implements VeiculoRepository {
     private final VeiculoSpringDataInfraRepository veiculoSpringDataJPARepository;
 
     @Override
-    public Veiculo salva(Veiculo veiculo) {
+    public Veiculo saveVeiculos(Veiculo veiculo) {
         log.info("[inicia] VeiculoInfraRepository - salva");
         try {
             veiculoSpringDataJPARepository.save(veiculo);
@@ -44,7 +44,7 @@ public class VeiculoInfraRepository implements VeiculoRepository {
     }
 
     @Override
-    public List<Veiculo> getAll() {
+    public List<Veiculo> getAllVeiculo() {
         log.info("[inicia] VeiculoInfraRepository - getAll");
         List<Veiculo> list = veiculoSpringDataJPARepository.findAll();
         log.info("[finaliza] VeiculoInfraRepository - getAll");
@@ -52,7 +52,7 @@ public class VeiculoInfraRepository implements VeiculoRepository {
     }
 
     @Override
-    public void delete(UUID idVeiculo) {
+    public void deleteVeiculo(UUID idVeiculo) {
         log.info("[inicia] VeiculoInfraRepository - delete");
         veiculoSpringDataJPARepository.deleteById(idVeiculo);
         log.info("[finaliza] VeiculoInfraRepository - delete");

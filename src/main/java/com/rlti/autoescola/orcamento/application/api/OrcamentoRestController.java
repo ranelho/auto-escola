@@ -12,16 +12,16 @@ public class OrcamentoRestController implements OrcamentoAPI {
     private final OrcamentoService orcamentoService;
 
     @Override
-    public OrcamentoResponse post(OrcamentoRequest orcamentoRequest) {
+    public OrcamentoResponse saveOrcamento(OrcamentoRequest orcamentoRequest) {
         log.info("[inicia] OrcamentoRestController - criaOrcamento");
-        OrcamentoResponse orcamentoCriado = orcamentoService.criaNovoOrcamento(orcamentoRequest);
+        OrcamentoResponse orcamentoCriado = orcamentoService.saveOrcamento(orcamentoRequest);
         log.info("[finaliza] OrcamentoRestController - criaOrcamento");
         return orcamentoCriado;
     }
     @Override
-    public OrcamentoResponse getById(Long idOrcamento) {
+    public OrcamentoResponse getOneOrcamento(Long idOrcamento) {
         log.info("[inicia] OrcamentoRestController - getOrcamento");
-        OrcamentoResponse orcamentoResponse = orcamentoService.getById(idOrcamento);
+        OrcamentoResponse orcamentoResponse = orcamentoService.getOneOrcamento(idOrcamento);
         log.info("[finaliza] OrcamentoRestController - getOrcamento");
         return orcamentoResponse;
     }

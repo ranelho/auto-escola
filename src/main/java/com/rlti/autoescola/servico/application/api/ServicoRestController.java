@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,40 +16,40 @@ public class ServicoRestController implements ServicoApi {
     private final ServicoService servicoService;
 
     @Override
-    public ServicoIdResponse post(ServicoRequest request) {
+    public ServicoIdResponse saveServico(ServicoRequest request) {
         log.info("[inicia] ServicoRestController - post");
-        ServicoIdResponse idResponse = servicoService.post(request);
+        ServicoIdResponse idResponse = servicoService.saveServico(request);
         log.info("[finaliza] ServicoRestController - post");
         return idResponse;
     }
 
     @Override
-    public ServicoResponse getById(UUID idServico) {
+    public ServicoResponse getOneServico(UUID idServico) {
         log.info("[inicia] ServicoRestController - post");
-        Servico servico = servicoService.getById(idServico);
+        Servico servico = servicoService.getOneServico(idServico);
         log.info("[finaliza] ServicoRestController - post");
         return new ServicoResponse(servico);
     }
 
     @Override
-    public List<ServicoResponse> getAll() {
+    public List<ServicoResponse> getAllServicos() {
         log.info("[inicia] ServicoRestController - getAll");
-        List<Servico> servicos = servicoService.getAll();
+        List<Servico> servicos = servicoService.getAllServicos();
         log.info("[finaliza] ServicoRestController - getAll");
         return ServicoResponse.converte(servicos);
     }
 
     @Override
-    public void delete(UUID idServico) {
+    public void deleteServico(UUID idServico) {
         log.info("[inicia] ServicoRestController - delete");
-        servicoService.delete(idServico);
+        servicoService.deleteServico(idServico);
         log.info("[finaliza] ServicoRestController - delete");
     }
 
     @Override
-    public void update(UUID idServico, ServicoUpdateRequest updateRequest) {
+    public void updateServico(UUID idServico, ServicoUpdateRequest updateRequest) {
         log.info("[inicia] ServicoRestController - update");
-        servicoService.update(idServico, updateRequest);
+        servicoService.updateServico(idServico, updateRequest);
         log.info("[finaliza] ServicoRestController - update");
     }
 

@@ -23,9 +23,9 @@ public class OrcamentoApplicationService implements OrcamentoService {
     private final OrcamentoRepository orcamentoRepository;
 
     @Override
-    public OrcamentoResponse criaNovoOrcamento(OrcamentoRequest orcamentoRequest) {
+    public OrcamentoResponse saveOrcamento(OrcamentoRequest orcamentoRequest) {
         log.info("[inicia] OrcamentoApplicationService - criaNovoOrcamento");
-        Servico servico = servicoRepository.getById(orcamentoRequest.getIdServico());
+        Servico servico = servicoRepository.getOneServico(orcamentoRequest.getIdServico());
         validaSolicitacao(orcamentoRequest, servico);
         Cliente cliente = clienteService.verificaCliente(orcamentoRequest);
         Orcamento orcamento = orcamentoRepository.salvaOrcamento(new Orcamento(cliente,servico,orcamentoRequest));
@@ -34,7 +34,7 @@ public class OrcamentoApplicationService implements OrcamentoService {
     }
 
     @Override
-    public OrcamentoResponse getById(Long idOrcamento) {
+    public OrcamentoResponse getOneOrcamento(Long idOrcamento) {
         log.info("[inicia] OrcamentoApplicationService - getById");
         Orcamento orcamento = orcamentoRepository.getById(idOrcamento);
         log.info("[finaliza] OrcamentoApplicationService - getById");

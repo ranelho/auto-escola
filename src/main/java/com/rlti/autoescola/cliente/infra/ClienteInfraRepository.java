@@ -21,7 +21,7 @@ public class ClienteInfraRepository implements ClienteRepository {
     private final ClienteSpringDataJPARepository clienteSpringDataJPARepository;
 
     @Override
-    public Cliente save(Cliente cliente) {
+    public Cliente saveCliente(Cliente cliente) {
         log.info("[inicia] ClienteInfraRepository - salva");
         try{
             Cliente clienteCriado = clienteSpringDataJPARepository.save(cliente);
@@ -33,7 +33,7 @@ public class ClienteInfraRepository implements ClienteRepository {
         }
     }
     @Override
-    public Cliente findById(UUID idCliente) {
+    public Cliente findOneCliente(UUID idCliente) {
         log.info("[inicia] ClienteInfraRepository - findById");
         Optional<Cliente> optionalCliente = clienteSpringDataJPARepository.findById(idCliente);
         Cliente cliente = optionalCliente

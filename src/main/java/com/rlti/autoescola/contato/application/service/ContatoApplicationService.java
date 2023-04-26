@@ -25,7 +25,7 @@ public class ContatoApplicationService implements ContatoService {
     @Override
     public ContatoResponse saveContato(UUID idCliente, ContatoRequest contatoRequest) {
         log.info("[inicia] ContatoApplicationService - criaNovoContato");
-        Cliente cliente = clienteRepository.findById(idCliente);
+        Cliente cliente = clienteRepository.findOneCliente(idCliente);
         Contato contato = contatoRepository.saveContato(new Contato(cliente, contatoRequest));
         log.info("[finaliza] ContatoApplicationService - criaNovoContato");
         return new ContatoResponse(contato);
@@ -33,27 +33,27 @@ public class ContatoApplicationService implements ContatoService {
     @Override
     public ContatoResponse getOneContato(UUID idContato) {
         log.info("[inicia] ContatoApplicationService - findById");
-        Contato contato = contatoRepository.findById(idContato);
+        Contato contato = contatoRepository.getOneContato(idContato);
         log.info("[finaliza] ContatoApplicationService - findById");
         return new ContatoResponse(contato);
     }
     @Override
     public ClienteContatosResponse getAllContatosCliente(UUID idCliente) {
         log.info("[inicia] ContatoApplicationService - buscaContatosDoCliente");
-        Cliente cliente = clienteRepository.findById(idCliente);
+        Cliente cliente = clienteRepository.findOneCliente(idCliente);
         log.info("[finaliza] ContatoApplicationService - buscaContatosDoCliente");
         return new ClienteContatosResponse(cliente);
     }
     @Override
     public void deleteContato(UUID idContato) {
         log.info("[inicia] ContatoApplicationService - delete");
-        contatoRepository.deleteContato(contatoRepository.findById(idContato).getIdContato());
+        contatoRepository.deleteContato(contatoRepository.getOneContato(idContato).getIdContato());
         log.info("[finaliza] ContatoApplicationService - delete");
     }
     @Override
     public void updateContato(UUID idContato, ContatoRequest contatoRequest) {
         log.info("[inicia] ContatoApplicationService - update");
-        Contato contato = contatoRepository.findById(idContato);
+        Contato contato = contatoRepository.getOneContato(idContato);
         contato.altera(contatoRequest);
         contatoRepository.saveContato(contato);
         log.info("[finaliza] ContatoApplicationService - update");
@@ -62,7 +62,7 @@ public class ContatoApplicationService implements ContatoService {
     @Override
     public void verificaContato(Cliente cliente, OrcamentoRequest orcamentoRequest) {
         log.info("[inicia] ContatoApplicationService - verificaContato");
-        Optional<Contato> contatos = contatoRepository.findTelefoneContato(orcamentoRequest.getTelefone());
+        Optional<Contato> contatos = contatoRepository.getContatoByTelefone(orcamentoRequest.getTelefone());
         if(contatos.isEmpty() || contatos.get().getCliente().getIdCliente() != cliente.getIdCliente()){
             contatoRepository.saveContato(new Contato(cliente, orcamentoRequest));
         }

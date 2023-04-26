@@ -25,9 +25,9 @@ public class PagamentoApplicationService implements PagamentoService {
     private final MatriculaRepository matriculaRepository;
 
     @Override
-    public PagamentoResponse newPagamento(UUID idMatricula, PagamentoRequest pagamentoRequest) {
+    public PagamentoResponse savePagamento(UUID idMatricula, PagamentoRequest pagamentoRequest) {
         log.info("[inicia] PagamentoApplicationService - newPagamento");
-        Matricula matricula = matriculaRepository.matriculaAtravesId(idMatricula);
+        Matricula matricula = matriculaRepository.getOneMatricula(idMatricula);
         BigDecimal totalPago = pagamentoRepository.totalPago(matricula);
         BigDecimal saldoAPagar = matricula.getValorFinal().subtract(totalPago);
         if (pagamentoRequest.getValorPago().compareTo(saldoAPagar)<=0){
@@ -40,17 +40,17 @@ public class PagamentoApplicationService implements PagamentoService {
         }
     }
     @Override
-    public List<PagamentoResponse> getPagamentoByMatricula(UUID idMatricula) {
+    public List<PagamentoResponse> getAllPagamentoByMatricula(UUID idMatricula) {
         log.info("[inicia] PagamentoApplicationService - getPagamentoByMatricula");
-        Matricula matricula = matriculaRepository.matriculaAtravesId(idMatricula);
-        List<Pagamento> pagamento = pagamentoRepository.getPagamento(matricula);
+        Matricula matricula = matriculaRepository.getOneMatricula(idMatricula);
+        List<Pagamento> pagamento = pagamentoRepository.getAllPagamentoByMatricula(matricula);
         log.info("[finaliza] PagamentoApplicationService - getPagamentoByMatricula");
         return PagamentoResponse.convert(pagamento);
     }
     @Override
-    public PagamentoResponse getById(Long idPagamento) {
+    public PagamentoResponse getOnePagamento(Long idPagamento) {
         log.info("[inicia] PagamentoApplicationService - getById");
-        Pagamento pagamento = pagamentoRepository.getById(idPagamento);
+        Pagamento pagamento = pagamentoRepository.getOnePagamento(idPagamento);
         log.info("[finaliza] PagamentoApplicationService - getById");
         return new PagamentoResponse(pagamento);
     }
@@ -62,9 +62,9 @@ public class PagamentoApplicationService implements PagamentoService {
         return pagamento;
     }
     @Override
-    public void deleteById(Long idPagamento) {
+    public void deletePagamento(Long idPagamento) {
         log.info("[inicia] PagamentoApplicationService - deleteById");
-        pagamentoRepository.delete(pagamentoRepository.getById(idPagamento).getIdPagamento());
+        pagamentoRepository.delete(pagamentoRepository.getOnePagamento(idPagamento).getIdPagamento());
         log.info("[finaliza] PagamentoApplicationService - deleteById");
     }
 }

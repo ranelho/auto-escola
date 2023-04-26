@@ -15,39 +15,39 @@ public class LaudoRestController implements LaudoApi {
     private final LaudoService laudoService;
 
     @Override
-    public LaudoIdResponse post(UUID idMatricula, LaudoRequest request) {
+    public LaudoIdResponse saveLaudo(UUID idMatricula, LaudoRequest request) {
         log.info("[inicia] - LaudoRestController - post");
-        LaudoIdResponse idResponse = laudoService.post(idMatricula, request);
+        LaudoIdResponse idResponse = laudoService.saveLaudo(idMatricula, request);
         log.info("[finaliza] - LaudoRestController - post");
         return idResponse;
     }
 
     @Override
-    public LaudoResponse getById(Long idLaudo) {
+    public LaudoResponse getOneLaudo(Long idLaudo) {
         log.info("[inicia] - LaudoRestController - post");
-        LaudoResponse response = laudoService.getById(idLaudo);
+        LaudoResponse response = laudoService.getOneLaudo(idLaudo);
         log.info("[finaliza] - LaudoRestController - post");
         return response;
     }
 
     @Override
-    public void update(Long idLaudo,LaudoRequest request) {
+    public void updateLaudo(Long idLaudo, LaudoRequest request) {
         log.info("[inicia] - LaudoRestController - post");
-        laudoService.update(idLaudo, request);
+        laudoService.updateLaudo(idLaudo, request);
         log.info("[finaliza] - LaudoRestController - post");
     }
 
     @Override
-    public void delete(Long idLaudo) {
+    public void deleteLaudo(Long idLaudo) {
         log.info("[inicia] - LaudoRestController - post");
-        laudoService.delete(idLaudo);
+        laudoService.deleteLaudo(idLaudo);
         log.info("[finaliza] - LaudoRestController - post");
     }
 
     @Override
-    public List<LaudoResponse> getByMatricula(UUID idMatricula) {
+    public List<LaudoResponse> getAllLaudosByMatricula(UUID idMatricula) {
         log.info("[inicia] - LaudoRestController - getById");
-        List<LaudoResponse> laudoResponseMatricula = laudoService.getByMatricula(idMatricula);
+        List<LaudoResponse> laudoResponseMatricula = laudoService.getAllLaudosByMatricula(idMatricula);
         log.info("[finaliza] - LaudoRestController - getById");
         return laudoResponseMatricula;
     }

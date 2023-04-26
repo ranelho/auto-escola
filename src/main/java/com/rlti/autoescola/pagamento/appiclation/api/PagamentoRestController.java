@@ -15,30 +15,30 @@ public class PagamentoRestController implements PagamentoAPI {
     private final PagamentoService pagamentoService;
 
     @Override
-    public PagamentoResponse post(UUID idMatricula, PagamentoRequest pagamentoRequest) {
+    public PagamentoResponse savePagamento(UUID idMatricula, PagamentoRequest pagamentoRequest) {
         log.info("[inicia] PagamentoRestController - post");
-        PagamentoResponse pagamentoResponse = pagamentoService.newPagamento(idMatricula, pagamentoRequest);
+        PagamentoResponse pagamentoResponse = pagamentoService.savePagamento(idMatricula, pagamentoRequest);
         log.info("[finaliza] PagamentoRestController - post");
         return pagamentoResponse;
     }
     @Override
-    public List<PagamentoResponse> getByMatricula(UUID idMatricula) {
+    public List<PagamentoResponse> getAllPagamentoByMatricula(UUID idMatricula) {
         log.info("[inicia] PagamentoRestController - getPagamentoByMatricula");
-        List<PagamentoResponse>  getPagamento = pagamentoService.getPagamentoByMatricula(idMatricula);
+        List<PagamentoResponse>  getPagamento = pagamentoService.getAllPagamentoByMatricula(idMatricula);
         log.info("[finaliza] PagamentoRestController - getPagamentoByMatricula");
         return getPagamento;
     }
     @Override
-    public PagamentoResponse getById(Long idPagamento) {
+    public PagamentoResponse getOnePagamento(Long idPagamento) {
         log.info("[inicia] PagamentoRestController - getById");
-        PagamentoResponse pagamentoResponse = pagamentoService.getById(idPagamento);
+        PagamentoResponse pagamentoResponse = pagamentoService.getOnePagamento(idPagamento);
         log.info("[finaliza] PagamentoRestController - getById");
         return pagamentoResponse;
     }
     @Override
-    public void delete(Long idPagamento) {
+    public void deletePagamento(Long idPagamento) {
         log.info("[inicia] PagamentoRestController - delete");
-        pagamentoService.deleteById(idPagamento);
+        pagamentoService.deletePagamento(idPagamento);
         log.info("[finaliza] PagamentoRestController - delete");
     }
 }

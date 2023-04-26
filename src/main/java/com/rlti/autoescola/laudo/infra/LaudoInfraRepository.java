@@ -49,7 +49,7 @@ public class LaudoInfraRepository implements LaudoRepository {
     }
 
     @Override
-    public List<Laudo> getLaudosByMatricula(Matricula matricula) {
+    public List<Laudo> getAllLaudosByMatricula(Matricula matricula) {
         log.info("[inicia] LaudoInfraRepository - getLaudosByMatricula");
         List<Laudo> laudos = laudoSpringJPARespository.findByMatricula(matricula);
         log.info("[finaliza] LaudoInfraRepository - getLaudosByMatricula");

@@ -19,10 +19,10 @@ public class ManutencaoApplicationService implements ManutencaoService {
     private final ManutencaoRepository manutencaoRepository;
 
     @Override
-    public ManutencaoIdResponse post(String placa, ManutencaoRequest request) {
+    public ManutencaoIdResponse saveManutencao(String placa, ManutencaoRequest request) {
         log.info("[inicia] ManutencaoApplicationService - post");
         Veiculo veiculo = veiculoRepository.getByPlaca(placa);
-        Manutencao manutencao = manutencaoRepository.salva(new Manutencao(veiculo, request));
+        Manutencao manutencao = manutencaoRepository.saveManutencao(new Manutencao(veiculo, request));
         log.info("[finaliza] ManutencaoApplicationService - post");
         return ManutencaoIdResponse.builder().idManutencao(manutencao.getIdManutencao()).build();
     }
@@ -36,36 +36,36 @@ public class ManutencaoApplicationService implements ManutencaoService {
     }
 
     @Override
-    public List<ManutencaoListResponse> getByVeiculoVeiculo(String placa) {
+    public List<ManutencaoListResponse> getManutencaoByVeiculo(String placa) {
         log.info("[inicia] ManutencaoApplicationService - getByVeiculoVeiculo");
         Veiculo veiculo = veiculoRepository.getByPlaca(placa);
-        List<Manutencao> manutencoes = manutencaoRepository.findAll(veiculo);
+        List<Manutencao> manutencoes = manutencaoRepository.getAllManutencoes(veiculo);
         log.info("[finaliza] ManutencaoApplicationService - getByVeiculoVeiculo");
         return ManutencaoListResponse.converte(manutencoes);
 
     }
 
     @Override
-    public ManutencaoResponse getById(Long idManutencao) {
+    public ManutencaoResponse getOneManutencao(Long idManutencao) {
         log.info("[inicia] ManutencaoApplicationService - getById");
-        Manutencao manutencao = manutencaoRepository.getById(idManutencao);
+        Manutencao manutencao = manutencaoRepository.getOneManutencao(idManutencao);
         log.info("[finaliza] ManutencaoApplicationService - getById");
         return new ManutencaoResponse(manutencao);
     }
 
     @Override
-    public void update(Long idManutencao, ManutencaoRequest request) {
+    public void updateManutencao(Long idManutencao, ManutencaoRequest request) {
         log.info("[inicia] ManutencaoApplicationService - update");
-        Manutencao manutencao = manutencaoRepository.getById(idManutencao);
+        Manutencao manutencao = manutencaoRepository.getOneManutencao(idManutencao);
         manutencao.altera(request);
-        manutencaoRepository.salva(manutencao);
+        manutencaoRepository.saveManutencao(manutencao);
         log.info("[finaliza] ManutencaoApplicationService - update");
     }
 
     @Override
-    public void delete(Long idManutencao) {
+    public void deleteManutencao(Long idManutencao) {
         log.info("[inicia] ManutencaoApplicationService - delete");
-        manutencaoRepository.delete(manutencaoRepository.getById(idManutencao).getIdManutencao());
+        manutencaoRepository.deleteManutencao(manutencaoRepository.getOneManutencao(idManutencao).getIdManutencao());
         log.info("[finaliza] ManutencaoApplicationService - delete");
     }
 }

@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.UUID;
 
 public interface VeiculoRepository {
-    Veiculo salva(Veiculo veiculo);
+    Veiculo saveVeiculos(Veiculo veiculo);
     Veiculo getByPlaca(String placa);
-    List<Veiculo> getAll();
-    void delete(UUID idVeiculo);
+    List<Veiculo> getAllVeiculo();
+    void deleteVeiculo(UUID idVeiculo);
 }

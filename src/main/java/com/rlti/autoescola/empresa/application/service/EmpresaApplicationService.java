@@ -20,7 +20,7 @@ public class EmpresaApplicationService implements EmpresaService{
     @Override
     public EmpresaResponse saveEmpresa(EmpresaRequest empresaRequest) {
         log.info("[inicia] EmpresaApplicationService - criaEmpresa");
-        Empresa empresa = empresaRepository.salva(new Empresa(empresaRequest));
+        Empresa empresa = empresaRepository.saveEmpresa(new Empresa(empresaRequest));
         log.info("[finaliza] EmpresaApplicationService - criaEmpresa");
         return EmpresaResponse.builder().idEmpresa(empresa.getIdEmpresa()).build();
     }
@@ -42,7 +42,7 @@ public class EmpresaApplicationService implements EmpresaService{
     public EmpresaDetalhadoResponseCnpj getByCnpj(String cnpj) {
         log.info("[inicia] EmpresaApplicationService - buscaEmpresaAtravesCnpj");
         ValidaCpfouCnpj.validateCpfOrCnpj(cnpj);
-        Empresa empresa = empresaRepository.buscaEmpresaAtravesCnpj(cnpj);
+        Empresa empresa = empresaRepository.getAllEmpresaByCnpj(cnpj);
         log.info("[finaliza] EmpresaApplicationService - buscaEmpresaAtravesCnpj");
         return new EmpresaDetalhadoResponseCnpj(empresa);
     }
@@ -58,7 +58,7 @@ public class EmpresaApplicationService implements EmpresaService{
         log.info("[inicia] EmpresaApplicationService - update");
         Empresa empresa = empresaRepository.getOneEmpresa(idEmpresa);
         empresa.altera(empresaAlteracaoRequest);
-        empresaRepository.salva(empresa);
+        empresaRepository.saveEmpresa(empresa);
         log.info("[finaliza] EmpresaApplicationService - update");
     }
 }

@@ -7,9 +7,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface ManutencaoRepository {
-    Manutencao salva(Manutencao manutencao);
-    List<Manutencao> findAll(Veiculo veiculo);
-    Manutencao getById(Long idManutencao);
-    void delete(Long idManutencao);
-    List<Manutencao> getAllData(LocalDate data);
+    Manutencao saveManutencao(Manutencao manutencao);
+    List<Manutencao> getAllManutencoes(Veiculo veiculo);
+    Manutencao getOneManutencao(Long idManutencao);
+    void deleteManutencao(Long idManutencao);
+    List<Manutencao> getAllManutencoesByData(LocalDate data);
 }

@@ -9,8 +9,8 @@ import java.util.UUID;
 
 public interface ContatoRepository {
     Contato saveContato(Contato contato);
-    Contato findById(UUID idContato);
-    List<Contato> buscaContatosDoCliente(Cliente cliente);
+    Contato getOneContato(UUID idContato);
+    List<Contato> getAllContatosByCliente(Cliente cliente);
     void deleteContato(UUID idContato);
-    Optional<Contato> findTelefoneContato(String telefone);
+    Optional<Contato> getContatoByTelefone(String telefone);
 }
