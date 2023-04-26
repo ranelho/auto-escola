@@ -22,7 +22,7 @@ public class ExameApplicationService implements ExameService {
     private final ClienteRepository clienteRepository;
 
     @Override
-    public ExameIdResponse post(UUID idCliente, ExameRequest request) {
+    public ExameIdResponse saveExame(UUID idCliente, ExameRequest request) {
         log.info("[inicia] ExameApplicationService - post");
         Cliente cliente = clienteRepository.findById(idCliente);
         Exame exame = exameRepository.salva(new Exame(cliente, request));
@@ -31,7 +31,7 @@ public class ExameApplicationService implements ExameService {
     }
 
     @Override
-    public ExameResponse getById(Long idExame) {
+    public ExameResponse getOneExame(Long idExame) {
         log.info("[inicia] ExameApplicationService - getById");
         Exame exame = exameRepository.buscaExamePorId(idExame);
         log.info("[finaliza] ExameApplicationService - getById");
@@ -39,7 +39,7 @@ public class ExameApplicationService implements ExameService {
     }
 
     @Override
-    public List<ExameResponse> getAll(UUID idCliente) {
+    public List<ExameResponse> getAllExames(UUID idCliente) {
         log.info("[inicia] ExameApplicationService - getAll");
         Cliente cliente = clienteRepository.findById(idCliente);
         List<Exame> exames = exameRepository.buscaExamesPorIdCliente(cliente);
@@ -48,14 +48,14 @@ public class ExameApplicationService implements ExameService {
     }
 
     @Override
-    public void delete(Long idExame) {
+    public void deleteExame(Long idExame) {
         log.info("[inicia] ExameApplicationService - delete");
         exameRepository.delete(exameRepository.buscaExamePorId(idExame).getIdExame());
         log.info("[finaliza] ExameApplicationService - delete");
     }
 
     @Override
-    public void update(Long idExame, ExameRequest request) {
+    public void updateExame(Long idExame, ExameRequest request) {
         log.info("[inicia] ExameApplicationService - update");
         Exame exame = exameRepository.buscaExamePorId(idExame);
         exame.altera(request);

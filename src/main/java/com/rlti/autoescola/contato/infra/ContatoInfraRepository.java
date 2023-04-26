@@ -20,7 +20,7 @@ public class ContatoInfraRepository implements ContatoRepository {
     private final ContatoSpringDataJPARepository contatoSpringDataJPARepository;
 
     @Override
-    public Contato salvaContato(Contato contato) {
+    public Contato saveContato(Contato contato) {
         log.info("[inicia] ContatoInfraRepository - salvaContato");
         Contato contatoCriado = contatoSpringDataJPARepository.save(contato);
         log.info("[finaliza] ContatoInfraRepository - salvaContato");

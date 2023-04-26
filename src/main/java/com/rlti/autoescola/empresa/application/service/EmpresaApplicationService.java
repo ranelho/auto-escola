@@ -18,28 +18,28 @@ import java.util.UUID;
 public class EmpresaApplicationService implements EmpresaService{
     private final EmpresaRepository empresaRepository;
     @Override
-    public EmpresaResponse criaEmpresa(EmpresaRequest empresaRequest) {
+    public EmpresaResponse saveEmpresa(EmpresaRequest empresaRequest) {
         log.info("[inicia] EmpresaApplicationService - criaEmpresa");
         Empresa empresa = empresaRepository.salva(new Empresa(empresaRequest));
         log.info("[finaliza] EmpresaApplicationService - criaEmpresa");
         return EmpresaResponse.builder().idEmpresa(empresa.getIdEmpresa()).build();
     }
     @Override
-    public List<EmpresaListResponse> buscaTodosClientes() {
+    public List<EmpresaListResponse> getAllEmpresas() {
         log.info("[inicia] EmpresaApplicationService - buscaTodosClientes");
-        List<Empresa> clientes = empresaRepository.buscaTodasEmpresas();
+        List<Empresa> clientes = empresaRepository.getAllEmpresas();
         log.info("[finaliza] EmpresaApplicationService - buscaTodosClientes");
         return EmpresaListResponse.converte(clientes);
     }
     @Override
-    public EmpresaDetalhadoResponse buscaEmpresaAtravesId(UUID idEmpresa) {
+    public EmpresaDetalhadoResponse getOneEmpresa(UUID idEmpresa) {
         log.info("[inicia] EmpresaApplicationService - buscaEmpresaAtravesId");
-        Empresa empresa = empresaRepository.buscaEmpresaAtravesId(idEmpresa);
+        Empresa empresa = empresaRepository.getOneEmpresa(idEmpresa);
         log.info("[finaliza] EmpresaApplicationService - buscaEmpresaAtravesId");
         return new EmpresaDetalhadoResponse(empresa);
     }
     @Override
-    public EmpresaDetalhadoResponseCnpj buscaEmpresaAtravesCnpj(String cnpj) {
+    public EmpresaDetalhadoResponseCnpj getByCnpj(String cnpj) {
         log.info("[inicia] EmpresaApplicationService - buscaEmpresaAtravesCnpj");
         ValidaCpfouCnpj.validateCpfOrCnpj(cnpj);
         Empresa empresa = empresaRepository.buscaEmpresaAtravesCnpj(cnpj);
@@ -47,16 +47,16 @@ public class EmpresaApplicationService implements EmpresaService{
         return new EmpresaDetalhadoResponseCnpj(empresa);
     }
     @Override
-    public void delete(UUID idEmpresa) {
+    public void deleteEmpresa(UUID idEmpresa) {
         log.info("[inicia] EmpresaApplicationService - delete");
-        empresaRepository.deleteEmpresa(empresaRepository.buscaEmpresaAtravesId(idEmpresa).getIdEmpresa());
+        empresaRepository.deleteEmpresa(empresaRepository.getOneEmpresa(idEmpresa).getIdEmpresa());
         log.info("[finaliza] EmpresaApplicationService - delete");
     }
 
     @Override
-    public void update(UUID idEmpresa, EmpresaAlteracaoRequest empresaAlteracaoRequest) {
+    public void updateEmpresa(UUID idEmpresa, EmpresaAlteracaoRequest empresaAlteracaoRequest) {
         log.info("[inicia] EmpresaApplicationService - update");
-        Empresa empresa = empresaRepository.buscaEmpresaAtravesId(idEmpresa);
+        Empresa empresa = empresaRepository.getOneEmpresa(idEmpresa);
         empresa.altera(empresaAlteracaoRequest);
         empresaRepository.salva(empresa);
         log.info("[finaliza] EmpresaApplicationService - update");

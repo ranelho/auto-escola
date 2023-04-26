@@ -15,25 +15,25 @@ public class EmpresaController implements EmpresaApi{
 
     private final EmpresaService empresaService;
     @Override
-    public EmpresaResponse post(EmpresaRequest empresaRequest) {
+    public EmpresaResponse saveEmpresa(EmpresaRequest empresaRequest) {
         log.info("[inicia] EmpresaController - post");
-        EmpresaResponse empresaCriada = empresaService.criaEmpresa(empresaRequest);
+        EmpresaResponse empresaCriada = empresaService.saveEmpresa(empresaRequest);
         log.info("[finaliza] EmpresaController - post");
         return empresaCriada;
     }
 
     @Override
-    public List<EmpresaListResponse> getEmpresas() {
+    public List<EmpresaListResponse> getAllEmpresas() {
         log.info("[inicia] EmpresaController - getEmpresas");
-        List<EmpresaListResponse> empresas = empresaService.buscaTodosClientes();
+        List<EmpresaListResponse> empresas = empresaService.getAllEmpresas();
         log.info("[finaliza] EmpresaController - getEmpresas");
         return empresas;
     }
 
     @Override
-    public EmpresaDetalhadoResponse getById(UUID idEmpresa) {
+    public EmpresaDetalhadoResponse getOneEmpresa(UUID idEmpresa) {
         log.info("[inicia] EmpresaController - getById");
-        EmpresaDetalhadoResponse empresaDetalhadoId = empresaService.buscaEmpresaAtravesId(idEmpresa);
+        EmpresaDetalhadoResponse empresaDetalhadoId = empresaService.getOneEmpresa(idEmpresa);
         log.info("[finaliza] EmpresaController - getById");
         return empresaDetalhadoId;
     }
@@ -41,22 +41,22 @@ public class EmpresaController implements EmpresaApi{
     @Override
     public EmpresaDetalhadoResponseCnpj getByCnpj(String cnpj) {
         log.info("[inicia] EmpresaController - getByCnpj");
-        EmpresaDetalhadoResponseCnpj empresaDetalhado = empresaService.buscaEmpresaAtravesCnpj(cnpj);
+        EmpresaDetalhadoResponseCnpj empresaDetalhado = empresaService.getByCnpj(cnpj);
         log.info("[finaliza] EmpresaController - getByCnpj");
         return empresaDetalhado;
     }
     @Override
-    public void delete(UUID idEmpresa) {
+    public void deleteEmpresa(UUID idEmpresa) {
         log.info("[inicia] EmpresaController - delete");
         log.info("[IdEmpresa] {}", idEmpresa);
-        empresaService.delete(idEmpresa);
+        empresaService.deleteEmpresa(idEmpresa);
         log.info("[finaliza] EmpresaController - delete");
     }
 
     @Override
-    public void update(UUID idEmpresa, EmpresaAlteracaoRequest empresaAlteracaoRequest) {
+    public void updateEmpresa(UUID idEmpresa, EmpresaAlteracaoRequest empresaAlteracaoRequest) {
         log.info("[inicia] EmpresaController - update");
-        empresaService.update(idEmpresa, empresaAlteracaoRequest);
+        empresaService.updateEmpresa(idEmpresa, empresaAlteracaoRequest);
         log.info("[inicia] EmpresaController - update");
     }
 }

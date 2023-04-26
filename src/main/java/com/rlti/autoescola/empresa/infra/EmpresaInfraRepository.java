@@ -28,14 +28,14 @@ public class EmpresaInfraRepository implements EmpresaRepository {
         return empresa;
     }
     @Override
-    public List<Empresa> buscaTodasEmpresas() {
+    public List<Empresa> getAllEmpresas() {
         log.info("[inicia] EmpresaInfraRepository - buscaTodasEmpresas");
         List<Empresa> todasEmpresas = empresaSpringDataJPARepository.findAll();
         log.info("[finaliza] EmpresaInfraRepository - buscaTodasEmpresas");
         return todasEmpresas;
     }
     @Override
-    public Empresa buscaEmpresaAtravesId(UUID idEmpresa) {
+    public Empresa getOneEmpresa(UUID idEmpresa) {
         log.info("[inicia] EmpresaInfraRepository - buscaEmpresaAtravesId");
         Empresa empresa = empresaSpringDataJPARepository.findById(idEmpresa)
                 .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Empresa não encontrado"));

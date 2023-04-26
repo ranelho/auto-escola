@@ -21,7 +21,7 @@ public class ClienteInfraRepository implements ClienteRepository {
     private final ClienteSpringDataJPARepository clienteSpringDataJPARepository;
 
     @Override
-    public Cliente salva(Cliente cliente) {
+    public Cliente save(Cliente cliente) {
         log.info("[inicia] ClienteInfraRepository - salva");
         try{
             Cliente clienteCriado = clienteSpringDataJPARepository.save(cliente);
@@ -43,7 +43,7 @@ public class ClienteInfraRepository implements ClienteRepository {
         return cliente;
     }
     @Override
-    public List<Cliente> buscaTodosClientes() {
+    public List<Cliente> getAllClientes() {
         log.info("[inicia] ClienteInfraRepository - buscaTodosClientes");
         List<Cliente> todosClientes = clienteSpringDataJPARepository.findAll();
         log.info("[finaliza] ClienteInfraRepository - buscaTodosClientes");

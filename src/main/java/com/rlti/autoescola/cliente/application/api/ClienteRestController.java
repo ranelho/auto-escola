@@ -20,51 +20,51 @@ public class ClienteRestController implements ClienteAPI {
     private final ImagemService imagemService;
 
     @Override
-    public ClienteResponse post(ClienteRequest clienteRequest) {
+    public ClienteResponse saveCliente(ClienteRequest clienteRequest) {
         log.info("[inicia] ClienteRestController - post");
-        ClienteResponse clienteCriado = clienteService.criaNovoCliente(clienteRequest);
+        ClienteResponse clienteCriado = clienteService.saveCliente(clienteRequest);
         log.info("[finaliza] ClienteRestController - post");
         return clienteCriado;
     }
     @Override
-    public ClienteResponse findById(UUID idCliente) {
+    public ClienteResponse getOneCliente(UUID idCliente) {
         log.info("[inicia] ClienteRestController - findById");
-        ClienteResponse buscaCliente = clienteService.findById(idCliente);
+        ClienteResponse buscaCliente = clienteService.getOneCliente(idCliente);
         log.info("[finaliza] ClienteRestController - findById");
         return buscaCliente;
     }
     @Override
-    public ClienteResponse findByCpf(String cpf) {
+    public ClienteResponse getByCpf(String cpf) {
         log.info("[inicia] ClienteRestController - findByCpf");
-        ClienteResponse buscaCPF = clienteService.findByCpf(cpf);
+        ClienteResponse buscaCPF = clienteService.getByCpf(cpf);
         log.info("[finaliza] ClienteRestController - findByCpf");
         return buscaCPF;
     }
     @Override
-    public List<ClienteListResponse> getAll() {
+    public List<ClienteListResponse> getAllClientes() {
         log.info("[inicia] ClienteRestController - buscaTodosClientes");
-        List<ClienteListResponse> clientes = clienteService.buscaTodosClientes();
+        List<ClienteListResponse> clientes = clienteService.getAllClientes();
         log.info("[finaliza] ClienteRestController - buscaTodosClientes");
         return clientes;
     }
     @Override
-    public void delete(UUID idCliente) {
+    public void deleteCliente(UUID idCliente) {
         log.info("[inicia] ClienteRestController - delete");
-        clienteService.delete(idCliente);
+        clienteService.deleteCliente(idCliente);
         log.info("[finaliza] ClienteRestController - delete");
     }
     @Override
-    public void update(UUID idCliente, @Valid  EditaClienteRequest editaClienteRequest) {
+    public void updateCliente(UUID idCliente, @Valid  EditaClienteRequest editaClienteRequest) {
         log.info("[inicia] ClienteRestController - update");
-        clienteService.update(idCliente, editaClienteRequest);
+        clienteService.updateCliente(idCliente, editaClienteRequest);
         log.info("[idCliente] {}", idCliente);
         log.info("[finaliza] ClienteRestController - update");
     }
 
     @Override
-    public void novaImagem(UUID idCliente, MultipartFile imagem) throws IOException {
+    public void saveImagem(UUID idCliente, MultipartFile imagem) throws IOException {
         log.info("[inicia] ClienteRestController - editaImagem");
-        imagemService.novaImagem(idCliente, imagem);
+        imagemService.saveImagem(idCliente, imagem);
         log.info("[finaliza] ClienteRestController - editaImagem");
     }
 }

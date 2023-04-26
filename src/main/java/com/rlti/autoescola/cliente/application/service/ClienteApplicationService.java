@@ -28,43 +28,43 @@ public class ClienteApplicationService implements ClienteService {
     private final ContatoService contatoService;
 
     @Override
-    public ClienteResponse criaNovoCliente(ClienteRequest clienteRequest) {
+    public ClienteResponse saveCliente(ClienteRequest clienteRequest) {
         log.info("[inicia] ClienteApplicationService - criaNovoCliente");
-        Cliente cliente = clienteRepository.salva(new Cliente(clienteRequest));
+        Cliente cliente = clienteRepository.save(new Cliente(clienteRequest));
         log.info("[finaliza] ClienteApplicationService - criaNovoCliente");
         return new ClienteResponse(cliente);
     }
     @Override
-    public ClienteResponse findById(UUID idCliente) {
+    public ClienteResponse getOneCliente(UUID idCliente) {
         log.info("[inicia] ClienteApplicationService - findById");
         Cliente cliente = clienteRepository.findById(idCliente);
         log.info("[finaliza] ClienteApplicationService - findById");
         return new ClienteResponse(cliente);
     }
     @Override
-    public List<ClienteListResponse> buscaTodosClientes() {
+    public List<ClienteListResponse> getAllClientes() {
         log.info("[inicia] ClienteApplicationService - buscaTodosClientes");
-        List<Cliente> clientes = clienteRepository.buscaTodosClientes();
+        List<Cliente> clientes = clienteRepository.getAllClientes();
         log.info("[finaliza] ClienteApplicationService - buscaTodosClientes");
         return ClienteListResponse.converte(clientes);
     }
     @Override
-    public void delete(UUID idCliente) {
+    public void deleteCliente(UUID idCliente) {
         log.info("[inicia] ClienteApplicationService - delete");
         Cliente cliente = clienteRepository.findById(idCliente);
         clienteRepository.deleteCliente(cliente);
         log.info("[finaliza] ClienteApplicationService - delete");
     }
     @Override
-    public void update(UUID idCliente, EditaClienteRequest editaClienteRequest) {
+    public void updateCliente(UUID idCliente, EditaClienteRequest editaClienteRequest) {
         log.info("[inicia] ClienteApplicationService - update");
         Cliente cliente = clienteRepository.findById(idCliente);
         cliente.altera(editaClienteRequest);
-        clienteRepository.salva(cliente);
+        clienteRepository.save(cliente);
         log.info("[finaliza] ClienteApplicationService - update");
     }
     @Override
-    public ClienteResponse findByCpf(String cpf) {
+    public ClienteResponse getByCpf(String cpf) {
         log.info("[inicia] ClienteApplicationService - findByCpf");
         ValidaCpfouCnpj.validateCpfOrCnpj(cpf);
         Cliente cliente = clienteRepository.findByCpf(cpf)
@@ -77,7 +77,7 @@ public class ClienteApplicationService implements ClienteService {
     public Cliente verificaCliente(OrcamentoRequest orcamentoRequest) {
         log.info("[inicia] ClienteApplicationService - verificaCliente");
         Optional<Cliente> clienteOptional = clienteRepository.findByCpf(orcamentoRequest.getCpf());
-        Cliente cliente = clienteOptional.orElseGet(() -> clienteRepository.salva(new Cliente(orcamentoRequest)));
+        Cliente cliente = clienteOptional.orElseGet(() -> clienteRepository.save(new Cliente(orcamentoRequest)));
         contatoService.verificaContato(cliente, orcamentoRequest);
         log.info("[inicia] ClienteApplicationService - verificaCliente");
         return cliente;

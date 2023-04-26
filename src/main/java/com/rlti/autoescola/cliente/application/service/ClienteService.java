@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ClienteService {
-    ClienteResponse criaNovoCliente(ClienteRequest clienteRequest);
-    ClienteResponse findById(UUID idCliente);
-    List<ClienteListResponse> buscaTodosClientes();
-    void delete(UUID idCliente);
-    void update(UUID idCliente, EditaClienteRequest editaClienteRequest);
-    ClienteResponse findByCpf(String cpf);
+    ClienteResponse saveCliente(ClienteRequest clienteRequest);
+    ClienteResponse getOneCliente(UUID idCliente);
+    List<ClienteListResponse> getAllClientes();
+    void deleteCliente(UUID idCliente);
+    void updateCliente(UUID idCliente, EditaClienteRequest editaClienteRequest);
+    ClienteResponse getByCpf(String cpf);
     Cliente verificaCliente(OrcamentoRequest orcamentoRequest);
 }

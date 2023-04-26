@@ -9,10 +9,10 @@ import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
 import java.util.UUID;
 
 public interface ContatoService {
-    ContatoResponse criaNovoContato(UUID idCliente, ContatoRequest contatoRequest);
-    ContatoResponse findById(UUID idContato);
-    ClienteContatosResponse buscaContatosDoCliente(UUID idCliente);
-    void delete(UUID idContato);
-    void update(UUID idContato, ContatoRequest contatoRequest);
+    ContatoResponse saveContato(UUID idCliente, ContatoRequest contatoRequest);
+    ContatoResponse getOneContato(UUID idContato);
+    ClienteContatosResponse getAllContatosCliente(UUID idCliente);
+    void deleteContato(UUID idContato);
+    void updateContato(UUID idContato, ContatoRequest contatoRequest);
     void verificaContato(Cliente cliente, OrcamentoRequest orcamentoRequest);
 }

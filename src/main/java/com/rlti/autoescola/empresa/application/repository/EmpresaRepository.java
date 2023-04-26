@@ -6,8 +6,8 @@ import java.util.UUID;
 
 public interface EmpresaRepository {
     Empresa salva(Empresa empresa);
-    List<Empresa> buscaTodasEmpresas();
-    Empresa buscaEmpresaAtravesId(UUID idEmpresa);
+    List<Empresa> getAllEmpresas();
+    Empresa getOneEmpresa(UUID idEmpresa);
     Empresa buscaEmpresaAtravesCnpj(String cnpj);
     void deleteEmpresa(UUID idEmpresa);
 }
