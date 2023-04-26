@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class FluxoDeCaixaResponse {
     List<PagamentoFluxoResponse> receitas;
     List<ManutencaoFluxoResponse> despesas;
-    List<ReceitaPagamentoResponse> receitarPorTipoPagamento;
+    List<ReceitaPagamentoResponse> receitaPorTipoPagamento;
     BigDecimal totalReceitas;
     BigDecimal totalDespesas;
     BigDecimal saldo;
@@ -22,7 +22,7 @@ public class FluxoDeCaixaResponse {
         this.saldo = fluxo.getSaldoGeral();
         this.totalReceitas = fluxo.getValorTotalReceitas();
         this.totalDespesas = fluxo.getValorTotalDespesas();
-        this.receitarPorTipoPagamento = fluxo.getReceitaPagamentoResponseList();
+        this.receitaPorTipoPagamento = fluxo.getReceitaPagamentoResponseList();
     }
 
     public static List<FluxoDeCaixaResponse> converte(List<Fluxo> fluxo) {

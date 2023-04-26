@@ -17,7 +17,7 @@ public class ManutencaoFluxoResponse {
     BigDecimal valorManutencao;
 
     public ManutencaoFluxoResponse(Manutencao manutencao) {
-        this.veiculo = manutencao.getVeiculo().getPlaca();
+        this.veiculo = manutencao.getVeiculo().getTipo().toString() + " - " + manutencao.getVeiculo().getPlaca();
         this.dataManutencao = manutencao.getDataManutencao();
         this.tipoManutencao = manutencao.getTipoManutencao();
         this.valorManutencao = manutencao.getValorManutencao();
