@@ -4,14 +4,15 @@ import com.rlti.autoescola.agenda.domain.Agenda;
 import com.rlti.autoescola.cliente.domain.groups.PessoaFisica;
 import com.rlti.autoescola.instrutor.application.api.InstrutorResquest;
 import com.rlti.autoescola.instrutor.application.api.InstrutorUpdateResquest;
+import com.rlti.autoescola.matricula.domain.Status;
 import com.rlti.autoescola.servico.domain.Categoria;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -33,6 +34,8 @@ public class Instrutor {
     private LocalDate validadeCnh;
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
+    @Enumerated(EnumType.STRING)
+    private Status status = Status.ATIVO;
 
     @OneToOne(mappedBy = "instrutor")
     private Agenda agenda;
@@ -49,5 +52,9 @@ public class Instrutor {
         this.nomeCompleto = updateRequest.getNomeCompleto().toUpperCase();
         this.validadeCnh = updateRequest.getValidadeCnh();
         this.categoria = updateRequest.getCategoria();
+    }
+
+    public void inativa() {
+        this.status = Status.INATIVO;
     }
 }

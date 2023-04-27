@@ -3,9 +3,9 @@ package com.rlti.autoescola.orcamento.application.repository;
 import com.rlti.autoescola.orcamento.domain.Orcamento;
 
 public interface OrcamentoRepository {
-    Orcamento salvaOrcamento(Orcamento orcamento);
-    Orcamento getById(Long idOrcamento);
+    Orcamento saveOrcamento(Orcamento orcamento);
+    Orcamento getOneOrcamento(Long idOrcamento);
     void deleteOrcamentoExpirado();
-    void deleteById(Long idOrcamento);
-    Orcamento findByCpf(String cpf);
+    void deleteOrcamento(Long idOrcamento);
+    Orcamento getOneOrcamentoByCpf(String cpf);
 }

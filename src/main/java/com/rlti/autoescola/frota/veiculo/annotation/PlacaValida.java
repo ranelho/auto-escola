@@ -4,16 +4,16 @@ package com.rlti.autoescola.frota.veiculo.annotation;
 import com.rlti.autoescola.frota.veiculo.annotation.constraints.PlacaValidator;
 import com.rlti.autoescola.frota.veiculo.domain.placa.TipoPlaca;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.validation.Constraint;
-import javax.validation.Payload;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 import java.lang.annotation.*;
 
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = PlacaValidator.class)
-public @interface Placa {
+public @interface PlacaValida {
 
     String message() default "Placa inválida";
 
@@ -27,6 +27,6 @@ public @interface Placa {
     @Target({ElementType.FIELD})
     @Retention(RetentionPolicy.RUNTIME)
     @interface List {
-        Placa[] value();
+        PlacaValida[] value();
     }
 }

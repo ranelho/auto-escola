@@ -9,7 +9,7 @@ import com.rlti.autoescola.matricula.application.service.MatriculaService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
-import javax.validation.Valid;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -20,50 +20,50 @@ public class MatriculaRestController implements MatriculaAPI{
     private final MatriculaService matriculaService;
 
     @Override
-    public MatriculaIdResponse post(MatriculaRequest matriculaRequest) {
-        log.info("[inicia] MatriculaRestController - post");
-        MatriculaIdResponse matriculaCriado = matriculaService.criaNovaMatricula(matriculaRequest);
-        log.info("[finaliza] MatriculaRestController - post");
+    public MatriculaIdResponse saveMatricula(MatriculaRequest matriculaRequest) {
+        log.info("[inicia] MatriculaRestController - saveMatricula");
+        MatriculaIdResponse matriculaCriado = matriculaService.saveMatricula(matriculaRequest);
+        log.info("[finaliza] MatriculaRestController - saveMatricula");
         return matriculaCriado;
     }
 
     @Override
-    public MatriculaIdResponse post(String cpf) {
-        log.info("[inicia] MatriculaRestController - post-orcamento");
-        MatriculaIdResponse matriculaCriado = matriculaService.criaOrcamentoMatricula(cpf);
-        log.info("[finaliza] MatriculaRestController - post-orcamento");
+    public MatriculaIdResponse saveMatriculaByOrcamento(String cpf) {
+        log.info("[inicia] MatriculaRestController -saveMatriculaByOrcamento");
+        MatriculaIdResponse matriculaCriado = matriculaService.saveMatriculaByOrcamento(cpf);
+        log.info("[finaliza] MatriculaRestController - saveMatriculaByOrcamento");
         return matriculaCriado;
     }
 
     @Override
-    public List<MatriculaListResponse> getAll() {
-        log.info("[inicia] MatriculaRestController - getAll");
-        List<MatriculaListResponse> matriculas = matriculaService.buscaTodasMatriculas();
-        log.info("[finaliza] MatriculaRestController - getAll");
+    public List<MatriculaListResponse> getAllMatriculas() {
+        log.info("[inicia] MatriculaRestController - getAllMatriculas");
+        List<MatriculaListResponse> matriculas = matriculaService.getAllMatriculas();
+        log.info("[finaliza] MatriculaRestController - getAllMatriculas");
         return matriculas;
     }
 
     @Override
-    public MatriculaDetalhadoResponse getById(UUID idMatricula) {
-        log.info("[inicia] MatriculaRestController - getById");
+    public MatriculaDetalhadoResponse getOneMatricula(UUID idMatricula) {
+        log.info("[inicia] MatriculaRestController - getOneMatricula");
         log.info("idMatricula {}", idMatricula);
-        MatriculaDetalhadoResponse matriculaDetalhadoResponse = matriculaService.matriculaAtravesId(idMatricula);
-        log.info("[finaliza] MatriculaRestController - getById");
+        MatriculaDetalhadoResponse matriculaDetalhadoResponse = matriculaService.getOneMatricula(idMatricula);
+        log.info("[finaliza] MatriculaRestController - getOneMatricula");
         return matriculaDetalhadoResponse;
     }
 
     @Override
-    public void delete(UUID idMatricula) {
-        log.info("[inicia] MatriculaRestController - delete");
-        matriculaService.delete(idMatricula);
-        log.info("[finaliza] MatriculaRestController - delete");
+    public void deleteMatricula(UUID idMatricula) {
+        log.info("[inicia] MatriculaRestController - deleteMatricula");
+        matriculaService.deleteMatricula(idMatricula);
+        log.info("[finaliza] MatriculaRestController - deleteMatricula");
     }
 
     @Override
-    public void update(UUID idMatricula, @Valid MatriculaAlteracaoRequest matriculaAlteracaoRequest) {
-        log.info("[inicia] MatriculaRestController - update");
-        matriculaService.update(idMatricula, matriculaAlteracaoRequest);
-        log.info("[finaliza] MatriculaRestController - update");
+    public void updateMatricula(UUID idMatricula, MatriculaAlteracaoRequest matriculaAlteracaoRequest) {
+        log.info("[inicia] MatriculaRestController - updateMatricula");
+        matriculaService.updateMatricula(idMatricula, matriculaAlteracaoRequest);
+        log.info("[finaliza] MatriculaRestController - updateMatricula");
     }
 
     @Override

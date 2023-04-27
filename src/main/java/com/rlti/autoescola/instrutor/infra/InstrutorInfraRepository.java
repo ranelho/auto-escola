@@ -20,7 +20,7 @@ public class InstrutorInfraRepository implements InstrutorRepository {
     private final InstrutorSpringDataJPARepository instrutorSpringDataJPARepository;
 
     @Override
-    public Instrutor save(Instrutor instrutor) {
+    public Instrutor saveInstrutor(Instrutor instrutor) {
         log.info("[inicia] InstrutorInfraRepository - save ");
         try{
             instrutorSpringDataJPARepository.save(instrutor);
@@ -47,12 +47,5 @@ public class InstrutorInfraRepository implements InstrutorRepository {
         List<Instrutor> instrutors = instrutorSpringDataJPARepository.findAll();
         log.info("[finaliza] InstrutorInfraRepository - getAllInstrutors ");
         return instrutors;
-    }
-
-    @Override
-    public void delete(UUID idInstrutor) {
-        log.info("[inicia] InstrutorInfraRepository - getAllInstrutors ");
-        instrutorSpringDataJPARepository.deleteById(idInstrutor);
-        log.info("[finaliza] InstrutorInfraRepository - getAllInstrutors ");
     }
 }

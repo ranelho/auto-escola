@@ -8,8 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import javax.validation.constraints.Email;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import java.util.UUID;
 
 @AllArgsConstructor

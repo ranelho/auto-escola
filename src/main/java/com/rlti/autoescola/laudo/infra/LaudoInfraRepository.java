@@ -20,39 +20,39 @@ public class LaudoInfraRepository implements LaudoRepository {
     private final LaudoSpringJPARespository laudoSpringJPARespository;
 
     @Override
-    public Laudo salva(Laudo laudo) {
-        log.info("[inicia] LaudoInfraRepository - salva");
+    public Laudo saveLaudo(Laudo laudo) {
+        log.info("[inicia] LaudoInfraRepository - saveLaudo");
         try{
             laudoSpringJPARespository.save(laudo);
         }catch (DataIntegrityViolationException e){
             throw APIException.build(HttpStatus.BAD_REQUEST, "RENACH já cadastrado", e);
         }
-        log.info("[finaliza] LaudoInfraRepository - salva");
+        log.info("[finaliza] LaudoInfraRepository - saveLaudo");
         return laudo;
     }
 
     @Override
-    public void delete(Long idLaudo) {
-        log.info("[inicia] LaudoInfraRepository - delete");
+    public void deleteLaudo(Long idLaudo) {
+        log.info("[inicia] LaudoInfraRepository - deleteLaudo");
         laudoSpringJPARespository.deleteById(idLaudo);
-        log.info("[finaliza] LaudoInfraRepository - delete");
+        log.info("[finaliza] LaudoInfraRepository - deleteLaudo");
     }
 
     @Override
-    public Laudo getById(Long idLaudo) {
-        log.info("[inicia] LaudoInfraRepository - getById");
+    public Laudo getOneLaudo(Long idLaudo) {
+        log.info("[inicia] LaudoInfraRepository - getOneLaudo");
         Optional<Laudo> optionalLaudo = laudoSpringJPARespository.findById(idLaudo);
         Laudo laudo = optionalLaudo
                 .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST, "Laudo não encontrado"));
-        log.info("[finaliza] LaudoInfraRepository - getById");
+        log.info("[finaliza] LaudoInfraRepository - getOneLaudo");
         return laudo;
     }
 
     @Override
-    public List<Laudo> getLaudosByMatricula(Matricula matricula) {
-        log.info("[inicia] LaudoInfraRepository - getLaudosByMatricula");
+    public List<Laudo> getAllLaudosByMatricula(Matricula matricula) {
+        log.info("[inicia] LaudoInfraRepository - getAllLaudosByMatricula");
         List<Laudo> laudos = laudoSpringJPARespository.findByMatricula(matricula);
-        log.info("[finaliza] LaudoInfraRepository - getLaudosByMatricula");
+        log.info("[finaliza] LaudoInfraRepository - getAllLaudosByMatricula");
         return laudos;
     }
 }

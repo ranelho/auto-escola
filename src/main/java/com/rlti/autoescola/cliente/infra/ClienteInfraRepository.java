@@ -17,36 +17,34 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Log4j2
 public class ClienteInfraRepository implements ClienteRepository {
-
     private final ClienteSpringDataJPARepository clienteSpringDataJPARepository;
 
     @Override
-    public Cliente salva(Cliente cliente) {
-        log.info("[inicia] ClienteInfraRepository - salva");
+    public Cliente saveCliente(Cliente cliente) {
+        log.info("[inicia] ClienteInfraRepository - saveCliente");
         try{
             Cliente clienteCriado = clienteSpringDataJPARepository.save(cliente);
-            log.info("[finaliza] ClienteInfraRepository - salva");
+            log.info("[finaliza] ClienteInfraRepository - saveCliente");
             return clienteCriado;
         }catch (DataIntegrityViolationException e) {
-            throw APIException.build(HttpStatus.BAD_REQUEST,
-                    "Cliente já cadastrado, CPF: " + cliente.getCpf());
+            throw APIException.build(HttpStatus.BAD_REQUEST,"Cliente já cadastrado, CPF: " + cliente.getCpf());
         }
     }
     @Override
-    public Cliente findById(UUID idCliente) {
-        log.info("[inicia] ClienteInfraRepository - findById");
+    public Cliente findOneCliente(UUID idCliente) {
+        log.info("[inicia] ClienteInfraRepository - findOneCliente");
         Optional<Cliente> optionalCliente = clienteSpringDataJPARepository.findById(idCliente);
         Cliente cliente = optionalCliente
                 .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,
                         "Cliente não encontrado!"));
-        log.info("[finaliza] ClienteInfraRepository - findById");
+        log.info("[finaliza] ClienteInfraRepository - findOneCliente");
         return cliente;
     }
     @Override
-    public List<Cliente> buscaTodosClientes() {
-        log.info("[inicia] ClienteInfraRepository - buscaTodosClientes");
+    public List<Cliente> getAllClientes() {
+        log.info("[inicia] ClienteInfraRepository - getAllClientes");
         List<Cliente> todosClientes = clienteSpringDataJPARepository.findAll();
-        log.info("[finaliza] ClienteInfraRepository - buscaTodosClientes");
+        log.info("[finaliza] ClienteInfraRepository - getAllClientes");
         return todosClientes;
     }
     @Override

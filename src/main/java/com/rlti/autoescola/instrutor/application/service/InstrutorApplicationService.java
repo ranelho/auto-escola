@@ -20,9 +20,9 @@ public class InstrutorApplicationService implements InstrutorService {
     private final InstrutorRepository instrutorRepository;
 
     @Override
-    public InstrutorIdResponse post(InstrutorResquest resquest) {
+    public InstrutorIdResponse saveInstrutor(InstrutorResquest resquest) {
         log.info("[inicia] InstrutorApplicationService - post");
-        Instrutor instrutor = instrutorRepository.save(new Instrutor(resquest));
+        Instrutor instrutor = instrutorRepository.saveInstrutor(new Instrutor(resquest));
         log.info("[finaliza] InstrutorApplicationService - post");
         return InstrutorIdResponse.builder().idInstrutor(instrutor.getIdInstrutor()).build();
     }
@@ -40,7 +40,7 @@ public class InstrutorApplicationService implements InstrutorService {
         log.info("[inicia] InstrutorApplicationService - update");
         Instrutor instrutor = instrutorRepository.getInstrutor(idInstrutor);
         instrutor.altera(updateRequest);
-        instrutorRepository.save(instrutor);
+        instrutorRepository.saveInstrutor(instrutor);
         log.info("[finaliza] InstrutorApplicationService - update");
     }
 
@@ -53,10 +53,11 @@ public class InstrutorApplicationService implements InstrutorService {
     }
 
     @Override
-    public void delete(UUID idInstrutor) {
+    public void inativaInstrutor(UUID idInstrutor) {
         log.info("[inicia] InstrutorApplicationService - getAllInstrutors");
         Instrutor instrutor = instrutorRepository.getInstrutor(idInstrutor);
-        instrutorRepository.delete(instrutor.getIdInstrutor());
+        instrutor.inativa();
+        instrutorRepository.saveInstrutor(instrutor);
         log.info("[finaliza] InstrutorApplicationService - getAllInstrutors");
     }
 }

@@ -2,15 +2,16 @@ package com.rlti.autoescola.frota.veiculo.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.agenda.domain.Agenda;
-import com.rlti.autoescola.frota.veiculo.application.api.VeiculoRequest;
 import com.rlti.autoescola.frota.manutencao.domain.Manutencao;
+import com.rlti.autoescola.frota.veiculo.application.api.VeiculoRequest;
+import com.rlti.autoescola.matricula.domain.Status;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,6 +32,8 @@ public class Veiculo {
     private String ano;
     @Enumerated(EnumType.STRING)
     private Tipo tipo;
+    @Enumerated(EnumType.STRING)
+    private Status status = Status.ATIVO;
 
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "veiculo")
     @JsonIgnore
@@ -53,5 +56,9 @@ public class Veiculo {
         this.modelo = request.getModelo().toUpperCase();
         this.ano = request.getAno();
         this.tipo = request.getTipo();
+    }
+
+    public void inativa() {
+        this.status = Status.INATIVO;
     }
 }

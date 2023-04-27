@@ -18,9 +18,9 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 import org.hibernate.validator.group.GroupSequenceProvider;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -35,7 +35,7 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idCliente;
-    @Enumerated(EnumType.STRING)
+    @Transient
     private TipoPessoa tipoPessoa = TipoPessoa.FISICA;
     @NotBlank(message = "Campo Obrigatório!")
     @CPF(groups = PessoaFisica.class, message = "CPF inválido!")
@@ -48,6 +48,7 @@ public class Cliente {
     private String nacionalidade;
     @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;
+    private LocalDate dataCadastro = LocalDate.now();
 
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
     @JsonIgnore

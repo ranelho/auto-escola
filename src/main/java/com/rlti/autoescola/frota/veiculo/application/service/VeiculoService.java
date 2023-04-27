@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface VeiculoService {
     VeiculoIdResponse saveVeiculo(VeiculoRequest request);
-    Veiculo getByPlaca(String placa);
-    List<Veiculo> getAll();
-    void update(String placa, VeiculoRequest request);
-    void delete(String placa);
+    Veiculo getOneVeiculoByPlaca(String placa);
+    List<Veiculo> getAllVeiculos();
+    void updateVeiculo(String placa, VeiculoRequest request);
+    void inativaVeiculo(String placa);
 }

@@ -1,12 +1,13 @@
 package com.rlti.autoescola.servico.domain;
 
+import com.rlti.autoescola.matricula.domain.Status;
 import com.rlti.autoescola.servico.application.api.ServicoUpdateRequest;
 import com.rlti.autoescola.servico.application.api.ServicoRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -22,6 +23,8 @@ public class Servico {
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
     private BigDecimal valorServico;
+    @Enumerated(EnumType.STRING)
+    private Status status = Status.ATIVO;
 
     public Servico(ServicoRequest request) {
         this.categoria = request.getCategoria();
@@ -30,5 +33,9 @@ public class Servico {
 
     public void altera(ServicoUpdateRequest alteracaoRequest) {
         this.valorServico = alteracaoRequest.getValorServico();
+    }
+
+    public void alteraStatus() {
+        this.status = Status.INATIVO;
     }
 }

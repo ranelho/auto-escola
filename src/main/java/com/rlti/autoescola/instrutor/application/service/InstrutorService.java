@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.UUID;
 
 public interface InstrutorService {
-    InstrutorIdResponse post(InstrutorResquest resquest);
+    InstrutorIdResponse saveInstrutor(InstrutorResquest resquest);
     InstrutorResponse getInstrutor(UUID idInstrutor);
     void update(UUID idInstrutor, InstrutorUpdateResquest updateRequest);
     List<InstrutorResponse> getAllInstrutors();
-    void delete(UUID idInstrutor);
+    void inativaInstrutor(UUID idInstrutor);
 }
