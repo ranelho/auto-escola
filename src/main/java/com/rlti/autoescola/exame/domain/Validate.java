@@ -11,7 +11,7 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 public class Validate {
     public static void validaExame(List<Exame> exames, ExameRequest request) {
-       if (exames.isEmpty() && request.getTipoExame() != CLINICO) {
+        if (exames.isEmpty() && request.getTipoExame() != CLINICO) {
             throw build(BAD_REQUEST,"O primeiro exame deve ser do tipo CLINICO");
         }
         for (Exame exame : exames) {
