@@ -24,48 +24,48 @@ public class ContatoApplicationService implements ContatoService {
 
     @Override
     public ContatoResponse saveContato(UUID idCliente, ContatoRequest contatoRequest) {
-        log.info("[inicia] ContatoApplicationService - criaNovoContato");
+        log.info("[inicia] ContatoApplicationService - saveContato");
         Cliente cliente = clienteRepository.findOneCliente(idCliente);
         Contato contato = contatoRepository.saveContato(new Contato(cliente, contatoRequest));
-        log.info("[finaliza] ContatoApplicationService - criaNovoContato");
+        log.info("[finaliza] ContatoApplicationService - saveContato");
         return new ContatoResponse(contato);
     }
     @Override
     public ContatoResponse getOneContato(UUID idContato) {
-        log.info("[inicia] ContatoApplicationService - findById");
+        log.info("[inicia] ContatoApplicationService - getOneContato");
         Contato contato = contatoRepository.getOneContato(idContato);
-        log.info("[finaliza] ContatoApplicationService - findById");
+        log.info("[finaliza] ContatoApplicationService - getOneContato");
         return new ContatoResponse(contato);
     }
     @Override
     public ClienteContatosResponse getAllContatosCliente(UUID idCliente) {
-        log.info("[inicia] ContatoApplicationService - buscaContatosDoCliente");
+        log.info("[inicia] ContatoApplicationService - getAllContatosCliente");
         Cliente cliente = clienteRepository.findOneCliente(idCliente);
-        log.info("[finaliza] ContatoApplicationService - buscaContatosDoCliente");
+        log.info("[finaliza] ContatoApplicationService - getAllContatosCliente");
         return new ClienteContatosResponse(cliente);
     }
     @Override
     public void deleteContato(UUID idContato) {
-        log.info("[inicia] ContatoApplicationService - delete");
+        log.info("[inicia] ContatoApplicationService - deleteContato");
         contatoRepository.deleteContato(contatoRepository.getOneContato(idContato).getIdContato());
-        log.info("[finaliza] ContatoApplicationService - delete");
+        log.info("[finaliza] ContatoApplicationService - deleteContato");
     }
     @Override
     public void updateContato(UUID idContato, ContatoRequest contatoRequest) {
-        log.info("[inicia] ContatoApplicationService - update");
+        log.info("[inicia] ContatoApplicationService - updateContato");
         Contato contato = contatoRepository.getOneContato(idContato);
         contato.altera(contatoRequest);
         contatoRepository.saveContato(contato);
-        log.info("[finaliza] ContatoApplicationService - update");
+        log.info("[finaliza] ContatoApplicationService - updateContato");
     }
 
     @Override
-    public void verificaContato(Cliente cliente, OrcamentoRequest orcamentoRequest) {
-        log.info("[inicia] ContatoApplicationService - verificaContato");
+    public void getOrcamentoByCliente(Cliente cliente, OrcamentoRequest orcamentoRequest) {
+        log.info("[inicia] ContatoApplicationService - getOrcamentoByCliente");
         Optional<Contato> contatos = contatoRepository.getContatoByTelefone(orcamentoRequest.getTelefone());
         if(contatos.isEmpty() || contatos.get().getCliente().getIdCliente() != cliente.getIdCliente()){
             contatoRepository.saveContato(new Contato(cliente, orcamentoRequest));
         }
-        log.info("[finaliza] ContatoApplicationService - verificaContato");
+        log.info("[finaliza] ContatoApplicationService - getOrcamentoByCliente");
     }
 }

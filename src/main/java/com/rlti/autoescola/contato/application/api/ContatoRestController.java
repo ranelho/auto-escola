@@ -16,35 +16,35 @@ public class ContatoRestController implements ContatoApi {
 
     @Override
     public ContatoResponse saveContato(UUID idCliente, ContatoRequest contatoRequest) {
-        log.info("[inicia] ContatoRestController - post");
+        log.info("[inicia] ContatoRestController - saveContato");
         ContatoResponse contatoCriado = contatoService.saveContato(idCliente, contatoRequest);
-        log.info("[finaliza] ContatoRestController - post");
+        log.info("[finaliza] ContatoRestController - saveContato");
         return contatoCriado;
     }
     @Override
     public ContatoResponse getOneContato(UUID idContato) {
-        log.info("[inicia] ContatoRestController - findById");
+        log.info("[inicia] ContatoRestController - getOneContato");
         ContatoResponse buscaContato = contatoService.getOneContato(idContato);
-        log.info("[finaliza] ContatoRestController - findById");
+        log.info("[finaliza] ContatoRestController - getOneContato");
         return buscaContato;
     }
     @Override
     public ClienteContatosResponse getAllContatosCliente(UUID idCliente) {
-        log.info("[inicia] ContatoRestController - getAll");
+        log.info("[inicia] ContatoRestController - getAllContatosCliente");
         ClienteContatosResponse response = contatoService.getAllContatosCliente(idCliente);
-        log.info("[finaliza] ContatoRestController - getAll");
+        log.info("[finaliza] ContatoRestController - getAllContatosCliente");
         return response;
     }
     @Override
     public void deleteContato(UUID idContato) {
-        log.info("[inicia] ContatoRestController - delete");
+        log.info("[inicia] ContatoRestController - deleteContato");
         contatoService.deleteContato(idContato);
-        log.info("[finaliza] ContatoRestController - delete");
+        log.info("[finaliza] ContatoRestController - deleteContato");
     }
     @Override
     public void updateContato(UUID idContato, ContatoRequest contatoRequest) {
-        log.info("[inicia] ContatoRestController - update");
+        log.info("[inicia] ContatoRestController - updateContato");
         contatoService.updateContato(idContato, contatoRequest);
-        log.info("[finaliza] ContatoRestController - update");
+        log.info("[finaliza] ContatoRestController - updateContato");
     }
 }

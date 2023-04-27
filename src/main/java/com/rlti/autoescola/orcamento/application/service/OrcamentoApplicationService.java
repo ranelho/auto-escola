@@ -18,26 +18,26 @@ import static com.rlti.autoescola.matricula.annotation.constraints.Valid.validaS
 @Log4j2
 @RequiredArgsConstructor
 public class OrcamentoApplicationService implements OrcamentoService {
+    private final OrcamentoRepository orcamentoRepository;
     private final ClienteService clienteService;
     private final ServicoRepository servicoRepository;
-    private final OrcamentoRepository orcamentoRepository;
 
     @Override
     public OrcamentoResponse saveOrcamento(OrcamentoRequest orcamentoRequest) {
-        log.info("[inicia] OrcamentoApplicationService - criaNovoOrcamento");
+        log.info("[inicia] OrcamentoApplicationService - saveOrcamento");
         Servico servico = servicoRepository.getOneServico(orcamentoRequest.getIdServico());
         validaSolicitacao(orcamentoRequest, servico);
-        Cliente cliente = clienteService.verificaCliente(orcamentoRequest);
-        Orcamento orcamento = orcamentoRepository.salvaOrcamento(new Orcamento(cliente,servico,orcamentoRequest));
-        log.info("[finaliza] OrcamentoApplicationService - criaNovoOrcamento");
+        Cliente cliente = clienteService.getOrcamentoByCliente(orcamentoRequest);
+        Orcamento orcamento = orcamentoRepository.saveOrcamento(new Orcamento(cliente,servico,orcamentoRequest));
+        log.info("[finaliza] OrcamentoApplicationService - saveOrcamento");
         return new OrcamentoResponse(orcamento);
     }
 
     @Override
     public OrcamentoResponse getOneOrcamento(Long idOrcamento) {
-        log.info("[inicia] OrcamentoApplicationService - getById");
-        Orcamento orcamento = orcamentoRepository.getById(idOrcamento);
-        log.info("[finaliza] OrcamentoApplicationService - getById");
+        log.info("[inicia] OrcamentoApplicationService - getOneOrcamento");
+        Orcamento orcamento = orcamentoRepository.getOneOrcamento(idOrcamento);
+        log.info("[finaliza] OrcamentoApplicationService - getOneOrcamento");
         return new OrcamentoResponse(orcamento);
     }
 }

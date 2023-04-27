@@ -31,68 +31,68 @@ import static com.rlti.autoescola.matricula.annotation.constraints.Valid.validaS
 @Log4j2
 @RequiredArgsConstructor
 public class MatriculaApplicationService implements MatriculaService{
-    private final ClienteRepository clienteRepository;
     private final MatriculaRepository matriculaRepository;
+    private final ClienteRepository clienteRepository;
     private final ServicoRepository servicoRepository;
-    private final OrcamentoRepository orcamentoRepository;
     private final PagamentoService pagamentoService;
+    private final OrcamentoRepository orcamentoRepository;
 
     @Override
     public MatriculaIdResponse saveMatricula(MatriculaRequest matriculaRequest) {
-        log.info("[inicia] MatriculaApplicationService - criaNovaMatricula");
+        log.info("[inicia] MatriculaApplicationService - saveMatricula");
         Servico servico = servicoRepository.getOneServico(matriculaRequest.getIdServico());
         validaSolicitacao(matriculaRequest, servico);
         Cliente cliente = clienteRepository.findOneCliente(matriculaRequest.getIdCliente());
-        Matricula matricula = matriculaRepository.salva(new Matricula(cliente, servico,matriculaRequest));
+        Matricula matricula = matriculaRepository.saveMatricula(new Matricula(cliente, servico,matriculaRequest));
         if (matriculaRequest.getValorEntrada().compareTo(BigDecimal.ZERO)>0){
-            Pagamento pagamento = pagamentoService.entrada(matricula, TipoPagamento.valueOf(matriculaRequest.getTipoPagamentoEntrada()));
+            Pagamento pagamento = pagamentoService.savePagamentoByEntrada(matricula, TipoPagamento.valueOf(matriculaRequest.getTipoPagamentoEntrada()));
         }
-        log.info("[finaliza] MatriculaApplicationService - criaNovaMatricula");
+        log.info("[finaliza] MatriculaApplicationService - saveMatricula");
         return MatriculaIdResponse.builder().idMatricula(matricula.getIdMatricula()).build();
     }
 
     @Override
     public MatriculaIdResponse saveMatriculaByOrcamento(String cpf) {
-        log.info("[inicia] MatriculaApplicationService - criaNovaMatricula-Orcamento");
-        Orcamento orcamento = orcamentoRepository.findByCpf(cpf);
-        Matricula matricula = matriculaRepository.salva(new Matricula(orcamento));
+        log.info("[inicia] MatriculaApplicationService - saveMatriculaByOrcamento");
+        Orcamento orcamento = orcamentoRepository.getOneOrcamentoByCpf(cpf);
+        Matricula matricula = matriculaRepository.saveMatricula(new Matricula(orcamento));
         orcamentoRepository.deleteOrcamento(orcamento.getIdOrcamento());
-        log.info("[finaliza] MatriculaApplicationService - criaNovaMatricula-Orcamento");
+        log.info("[finaliza] MatriculaApplicationService - saveMatriculaByOrcamento");
         return MatriculaIdResponse.builder().idMatricula(matricula.getIdMatricula()).build();
     }
 
     @Override
     public List<MatriculaListResponse> getAllMatriculas() {
-        log.info("[inicia] MatriculaApplicationService - buscaTodasMatriculas");
+        log.info("[inicia] MatriculaApplicationService - getAllMatriculas");
         List<Matricula> matriculas = matriculaRepository.getAllMatriculas();
-        log.info("[finaliza] MatriculaApplicationService - buscaTodasMatriculas");
+        log.info("[finaliza] MatriculaApplicationService - getAllMatriculas");
         return MatriculaListResponse.converte(matriculas);
     }
 
     @Override
     public MatriculaDetalhadoResponse getOneMatricula(UUID idMatricula) {
-        log.info("[inicia] MatriculaApplicationService - matriculaAtravesId");
+        log.info("[inicia] MatriculaApplicationService - getOneMatricula");
         Matricula matricula = matriculaRepository.getOneMatricula(idMatricula);
-        log.info("[finaliza] MatriculaApplicationService - matriculaAtravesId");
+        log.info("[finaliza] MatriculaApplicationService - getOneMatricula");
         return new MatriculaDetalhadoResponse(matricula);
     }
 
     @Override
     public void deleteMatricula(UUID idMatricula) {
-        log.info("[inicia] MatriculaApplicationService - delete");
+        log.info("[inicia] MatriculaApplicationService - deleteMatricula");
         Matricula matricula = matriculaRepository.getOneMatricula(idMatricula);
         matriculaRepository.deleteMatricula(matricula);
-        log.info("[finaliza] MatriculaApplicationService - delete");
+        log.info("[finaliza] MatriculaApplicationService - deleteMatricula");
     }
 
     @Override
     public void updateMatricula(UUID idMatricula, MatriculaAlteracaoRequest request) {
-        log.info("[inicia] MatriculaApplicationService - update");
+        log.info("[inicia] MatriculaApplicationService - updateMatricula");
         Matricula matricula = matriculaRepository.getOneMatricula(idMatricula);
         validaAlteracaoMatricula(matricula, request);
         matricula.altera(request);
-        matriculaRepository.salva(matricula);
-        log.info("[finaliza] MatriculaApplicationService - update");
+        matriculaRepository.saveMatricula(matricula);
+        log.info("[finaliza] MatriculaApplicationService - updateMatricula");
     }
 
     @Override
@@ -100,7 +100,7 @@ public class MatriculaApplicationService implements MatriculaService{
         log.info("[inicia] MatriculaApplicationService - finalizaMatricula");
         Matricula matricula = matriculaRepository.getOneMatricula(idMatricula);
         matricula.finalizaMatricula();
-        matriculaRepository.salva(matricula);
+        matriculaRepository.saveMatricula(matricula);
         log.info("[finaliza] MatriculaApplicationService - finalizaMatricula");
     }
 
@@ -109,7 +109,7 @@ public class MatriculaApplicationService implements MatriculaService{
         log.info("[inicia] MatriculaApplicationService - ativaMatricula");
         Matricula matricula = matriculaRepository.getOneMatricula(idMatricula);
         matricula.ativaMatricula();
-        matriculaRepository.salva(matricula);
+        matriculaRepository.saveMatricula(matricula);
         log.info("[finaliza] MatriculaApplicationService - ativaMatricula");
     }
 
@@ -118,7 +118,7 @@ public class MatriculaApplicationService implements MatriculaService{
         log.info("[inicia] MatriculaApplicationService - cancelaMatricula");
         Matricula matricula = matriculaRepository.getOneMatricula(idMatricula);
         matricula.cancelaMatricula();
-        matriculaRepository.salva(matricula);
+        matriculaRepository.saveMatricula(matricula);
         log.info("[finaliza] MatriculaApplicationService - cancelaMatricula");
     }
 }

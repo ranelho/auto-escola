@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Repository
@@ -20,14 +19,14 @@ public class VeiculoInfraRepository implements VeiculoRepository {
     private final VeiculoSpringDataInfraRepository veiculoSpringDataJPARepository;
 
     @Override
-    public Veiculo saveVeiculos(Veiculo veiculo) {
-        log.info("[inicia] VeiculoInfraRepository - salva");
+    public Veiculo saveVeiculo(Veiculo veiculo) {
+        log.info("[inicia] VeiculoInfraRepository - saveVeiculo");
         try {
             veiculoSpringDataJPARepository.save(veiculo);
         }catch (DataIntegrityViolationException e){
             throw APIException.build(HttpStatus.BAD_REQUEST, "Veiculo já cadastrado", e);
         }
-        log.info("[finaliza] VeiculoInfraRepository - salva");
+        log.info("[finaliza] VeiculoInfraRepository - saveVeiculo");
         return veiculo;
     }
 
@@ -45,16 +44,9 @@ public class VeiculoInfraRepository implements VeiculoRepository {
 
     @Override
     public List<Veiculo> getAllVeiculo() {
-        log.info("[inicia] VeiculoInfraRepository - getAll");
+        log.info("[inicia] VeiculoInfraRepository - getAllVeiculo");
         List<Veiculo> list = veiculoSpringDataJPARepository.findAll();
-        log.info("[finaliza] VeiculoInfraRepository - getAll");
+        log.info("[finaliza] VeiculoInfraRepository - getAllVeiculo");
         return list;
-    }
-
-    @Override
-    public void deleteVeiculo(UUID idVeiculo) {
-        log.info("[inicia] VeiculoInfraRepository - delete");
-        veiculoSpringDataJPARepository.deleteById(idVeiculo);
-        log.info("[finaliza] VeiculoInfraRepository - delete");
     }
 }

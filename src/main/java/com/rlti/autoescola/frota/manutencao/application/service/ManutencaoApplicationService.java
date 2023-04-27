@@ -15,15 +15,15 @@ import java.util.List;
 @RequiredArgsConstructor
 @Log4j2
 public class ManutencaoApplicationService implements ManutencaoService {
-    private final VeiculoRepository veiculoRepository;
     private final ManutencaoRepository manutencaoRepository;
+    private final VeiculoRepository veiculoRepository;
 
     @Override
     public ManutencaoIdResponse saveManutencao(String placa, ManutencaoRequest request) {
-        log.info("[inicia] ManutencaoApplicationService - post");
+        log.info("[inicia] ManutencaoApplicationService - saveManutencao");
         Veiculo veiculo = veiculoRepository.getByPlaca(placa);
         Manutencao manutencao = manutencaoRepository.saveManutencao(new Manutencao(veiculo, request));
-        log.info("[finaliza] ManutencaoApplicationService - post");
+        log.info("[finaliza] ManutencaoApplicationService - saveManutencao");
         return ManutencaoIdResponse.builder().idManutencao(manutencao.getIdManutencao()).build();
     }
 
@@ -37,10 +37,10 @@ public class ManutencaoApplicationService implements ManutencaoService {
 
     @Override
     public List<ManutencaoListResponse> getManutencaoByVeiculo(String placa) {
-        log.info("[inicia] ManutencaoApplicationService - getByVeiculoVeiculo");
+        log.info("[inicia] ManutencaoApplicationService - getManutencaoByVeiculo");
         Veiculo veiculo = veiculoRepository.getByPlaca(placa);
         List<Manutencao> manutencoes = manutencaoRepository.getAllManutencoes(veiculo);
-        log.info("[finaliza] ManutencaoApplicationService - getByVeiculoVeiculo");
+        log.info("[finaliza] ManutencaoApplicationService - getManutencaoByVeiculo");
         return ManutencaoListResponse.converte(manutencoes);
 
     }

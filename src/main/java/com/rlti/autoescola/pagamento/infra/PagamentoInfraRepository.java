@@ -22,12 +22,21 @@ public class PagamentoInfraRepository implements PagamentoRepository {
     private final PagamentoSpringDataJPARepository pagamentoSpringDataJPARepository;
 
     @Override
+    public Pagamento salvaPagamento(Pagamento pagamento) {
+        log.info("[inicia] PagamentoInfraRepository - salva");
+        Pagamento pago = pagamentoSpringDataJPARepository.save(pagamento);
+        log.info("[inicia] PagamentoInfraRepository - salva");
+        return pago;
+    }
+
+    @Override
     public List<Pagamento> getAllPagamentoByMatricula(Matricula matricula) {
         log.info("[inicia] PagamentoInfraRepository - getPagamento");
         List<Pagamento> pagamentos = pagamentoSpringDataJPARepository.findByMatricula(matricula);
         log.info("[finaliza] PagamentoInfraRepository - getPagamento");
         return pagamentos;
     }
+
     @Override
     public BigDecimal totalPago(Matricula matricula) {
         log.info("[inicia] PagamentoInfraRepository - totalPago");
@@ -38,13 +47,7 @@ public class PagamentoInfraRepository implements PagamentoRepository {
         log.info("[finaliza] PagamentoInfraRepository - totalPago");
         return totalPago;
     }
-    @Override
-    public Pagamento salva(Pagamento pagamento) {
-        log.info("[inicia] PagamentoInfraRepository - salva");
-        Pagamento pago = pagamentoSpringDataJPARepository.save(pagamento);
-        log.info("[inicia] PagamentoInfraRepository - salva");
-        return pago;
-    }
+
     @Override
     public Pagamento getOnePagamento(Long idPagamento) {
         log.info("[inicia] PagamentoInfraRepository - getById");
@@ -54,26 +57,27 @@ public class PagamentoInfraRepository implements PagamentoRepository {
         log.info("[finaliza] PagamentoInfraRepository - getById");
         return pagamento;
     }
+
     @Override
-    public void delete(Long idPagamento) {
+    public void deletePagamento(Long idPagamento) {
         log.info("[inicia] PagamentoInfraRepository - delete");
         pagamentoSpringDataJPARepository.deleteById(idPagamento);
         log.info("[inicia] PagamentoInfraRepository - delete");
     }
 
     @Override
-    public List<Pagamento> getAllData(LocalDate data) {
-        log.info("[inicia] PagamentoInfraRepository - getAllData");
+    public List<Pagamento> getAllPagamentoByData(LocalDate data) {
+        log.info("[inicia] PagamentoInfraRepository - getAllPagamentoByData");
         List<Pagamento> pagamentos = pagamentoSpringDataJPARepository.findByDataPagamento(data);
-        log.info("[finaliza] PagamentoInfraRepository - getAllData");
+        log.info("[finaliza] PagamentoInfraRepository - getAllPagamentoByData");
         return pagamentos;
     }
 
     @Override
-    public List<Pagamento> getCategoriaAllData(TipoPagamento tipoPagamento, LocalDate data) {
-        log.info("[inicia] PagamentoInfraRepository - getCategoriaAllData");
+    public List<Pagamento> getAllPagamentoByTipoPagamento(TipoPagamento tipoPagamento, LocalDate data) {
+        log.info("[inicia] PagamentoInfraRepository - getAllPagamentoByTipoPagamento");
         List<Pagamento> pagamentos = pagamentoSpringDataJPARepository.findByTipoPagamentoAndDataPagamento(tipoPagamento,data);;
-        log.info("[finaliza] PagamentoInfraRepository - getCategoriaAllData");
+        log.info("[finaliza] PagamentoInfraRepository - getAllPagamentoByTipoPagamento");
         return pagamentos;
     }
 }

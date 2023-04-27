@@ -15,10 +15,10 @@ public class InstrutorRestController implements InstrutorApi {
     private final InstrutorService instrutorService;
 
     @Override
-    public InstrutorIdResponse post(InstrutorResquest resquest) {
-        log.info("[inicia] InstrutorRestController -  post");
-        InstrutorIdResponse idResponse = instrutorService.post(resquest);
-        log.info("[finaliza] InstrutorRestController -  post");
+    public InstrutorIdResponse saveInstrutor(InstrutorResquest resquest) {
+        log.info("[inicia] InstrutorRestController -  saveInstrutor");
+        InstrutorIdResponse idResponse = instrutorService.saveInstrutor(resquest);
+        log.info("[finaliza] InstrutorRestController -  saveInstrutor");
         return idResponse;
     }
 
@@ -31,10 +31,10 @@ public class InstrutorRestController implements InstrutorApi {
     }
 
     @Override
-    public void update(UUID idInstrutor, InstrutorUpdateResquest updateRequest) {
-        log.info("[inicia] InstrutorRestController -  getInstrutor");
+    public void updateInstrutor(UUID idInstrutor, InstrutorUpdateResquest updateRequest) {
+        log.info("[inicia] InstrutorRestController -  updateInstrutor");
         instrutorService.update(idInstrutor, updateRequest);
-        log.info("[finaliza] InstrutorRestController -  getInstrutor");
+        log.info("[finaliza] InstrutorRestController -  updateInstrutor");
     }
 
     @Override
@@ -46,9 +46,9 @@ public class InstrutorRestController implements InstrutorApi {
     }
 
     @Override
-    public void delete(UUID idInstrutor) {
-        log.info("[inicia] InstrutorRestController -  delete");
-        instrutorService.delete(idInstrutor);
-        log.info("[finaliza] InstrutorRestController -  delete");
+    public void inativaInstrutor(UUID idInstrutor) {
+        log.info("[inicia] InstrutorRestController -  inativaInstrutor");
+        instrutorService.inativaInstrutor(idInstrutor);
+        log.info("[finaliza] InstrutorRestController -  inativaInstrutor");
     }
 }

@@ -17,5 +17,5 @@ public interface ClienteService {
     void deleteCliente(UUID idCliente);
     void updateCliente(UUID idCliente, EditaClienteRequest editaClienteRequest);
     ClienteResponse getByCpf(String cpf);
-    Cliente verificaCliente(OrcamentoRequest orcamentoRequest);
+    Cliente getOrcamentoByCliente(OrcamentoRequest orcamentoRequest);
 }

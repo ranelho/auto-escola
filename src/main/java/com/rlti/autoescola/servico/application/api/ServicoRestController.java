@@ -53,4 +53,10 @@ public class ServicoRestController implements ServicoApi {
         log.info("[finaliza] ServicoRestController - update");
     }
 
+    @Override
+    public void updateServicoStatus(UUID idServico) {
+        log.info("[inicia] ServicoRestController - updateStatus");
+        servicoService.updateServicoStatus(idServico);
+        log.info("[finaliza] ServicoRestController - updateStatus");
+    }
 }

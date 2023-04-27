@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ServicoRepository {
-    Servico salva(Servico servico);
+    Servico salvaServico(Servico servico);
     Servico getOneServico(UUID idServico);
     List<Servico> getAllServicos();
     void deleteServico(UUID idServico);

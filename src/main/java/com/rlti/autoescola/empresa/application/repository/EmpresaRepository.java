@@ -8,6 +8,6 @@ public interface EmpresaRepository {
     Empresa saveEmpresa(Empresa empresa);
     List<Empresa> getAllEmpresas();
     Empresa getOneEmpresa(UUID idEmpresa);
-    Empresa getAllEmpresaByCnpj(String cnpj);
+    Empresa getByCnpj(String cnpj);
     void deleteEmpresa(UUID idEmpresa);
 }

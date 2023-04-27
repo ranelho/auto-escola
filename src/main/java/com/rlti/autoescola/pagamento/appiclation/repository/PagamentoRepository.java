@@ -11,9 +11,9 @@ import java.util.List;
 public interface PagamentoRepository {
     List<Pagamento> getAllPagamentoByMatricula(Matricula matricula);
     BigDecimal totalPago(Matricula matricula);
-    Pagamento salva(Pagamento pagamento);
+    Pagamento salvaPagamento(Pagamento pagamento);
     Pagamento getOnePagamento(Long idPagamento);
-    void delete(Long idPagamento);
-    List<Pagamento> getAllData(LocalDate data);
-    List<Pagamento> getCategoriaAllData(TipoPagamento tipoPagamento, LocalDate data);
+    void deletePagamento(Long idPagamento);
+    List<Pagamento> getAllPagamentoByData(LocalDate data);
+    List<Pagamento> getAllPagamentoByTipoPagamento(TipoPagamento tipoPagamento, LocalDate data);
 }

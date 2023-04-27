@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @RequestMapping("/v1/exame")
 public interface ExameApi {
+
     @PostMapping("{idCliente}")
     @ResponseStatus(code = HttpStatus.CREATED)
     ExameIdResponse saveExame(@PathVariable UUID idCliente, @Valid @RequestBody ExameRequest request);

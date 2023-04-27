@@ -23,43 +23,43 @@ public class ExameApplicationService implements ExameService {
 
     @Override
     public ExameIdResponse saveExame(UUID idCliente, ExameRequest request) {
-        log.info("[inicia] ExameApplicationService - post");
+        log.info("[inicia] ExameApplicationService - saveExame");
         Cliente cliente = clienteRepository.findOneCliente(idCliente);
         Exame exame = exameRepository.saveExame(new Exame(cliente, request));
-        log.info("[finaliza] ExameApplicationService - post");
+        log.info("[finaliza] ExameApplicationService - saveExame");
         return ExameIdResponse.builder().idExame(exame.getIdExame()).build();
     }
 
     @Override
     public ExameResponse getOneExame(Long idExame) {
-        log.info("[inicia] ExameApplicationService - getById");
+        log.info("[inicia] ExameApplicationService - getOneExame");
         Exame exame = exameRepository.getOneExame(idExame);
-        log.info("[finaliza] ExameApplicationService - getById");
+        log.info("[finaliza] ExameApplicationService - getOneExame");
         return new ExameResponse(exame);
     }
 
     @Override
     public List<ExameResponse> getAllExames(UUID idCliente) {
-        log.info("[inicia] ExameApplicationService - getAll");
+        log.info("[inicia] ExameApplicationService - getAllExames");
         Cliente cliente = clienteRepository.findOneCliente(idCliente);
         List<Exame> exames = exameRepository.getAllExamesByCliente(cliente);
-        log.info("[finaliza] ExameApplicationService - getAll");
+        log.info("[finaliza] ExameApplicationService - getAllExames");
         return ExameResponse.converte(exames);
     }
 
     @Override
     public void deleteExame(Long idExame) {
-        log.info("[inicia] ExameApplicationService - delete");
+        log.info("[inicia] ExameApplicationService - deleteExame");
         exameRepository.deleteExame(exameRepository.getOneExame(idExame).getIdExame());
-        log.info("[finaliza] ExameApplicationService - delete");
+        log.info("[finaliza] ExameApplicationService - deleteExame");
     }
 
     @Override
     public void updateExame(Long idExame, ExameRequest request) {
-        log.info("[inicia] ExameApplicationService - update");
+        log.info("[inicia] ExameApplicationService - updateExame");
         Exame exame = exameRepository.getOneExame(idExame);
         exame.altera(request);
         exameRepository.saveExame(exame);
-        log.info("[finaliza] ExameApplicationService - update");
+        log.info("[finaliza] ExameApplicationService - updateExame");
     }
 }

@@ -16,39 +16,39 @@ public class ExameRestController implements ExameApi {
 
     @Override
     public ExameIdResponse saveExame(UUID idCliente, ExameRequest request) {
-        log.info("[inicia] ExameRestController - post");
+        log.info("[inicia] ExameRestController - saveExame");
         ExameIdResponse idResponse = exameService.saveExame(idCliente, request);
-        log.info("[finaliza] ExameRestController - post");
+        log.info("[finaliza] ExameRestController - saveExame");
         return idResponse;
     }
 
     @Override
     public ExameResponse getOneExame(Long idExame) {
-        log.info("[inicia] ExameRestController - getById");
+        log.info("[inicia] ExameRestController - getOneExame");
         ExameResponse response = exameService.getOneExame(idExame);
-        log.info("[finaliza] ExameRestController - getById");
+        log.info("[finaliza] ExameRestController - getOneExame");
         return response;
     }
 
     @Override
     public List<ExameResponse> getAllExames(UUID idCliente) {
-        log.info("[inicia] ExameRestController - getAll");
+        log.info("[inicia] ExameRestController - getAllExames");
         List<ExameResponse> response = exameService.getAllExames(idCliente);
-        log.info("[finaliza] ExameRestController - getAll");
+        log.info("[finaliza] ExameRestController - getAllExames");
         return response;
     }
 
     @Override
     public void deleteExame(Long idExame) {
-        log.info("[inicia] ExameRestController - delete");
+        log.info("[inicia] ExameRestController - deleteExame");
         exameService.deleteExame(idExame);
-        log.info("[finaliza] ExameRestController - delete");
+        log.info("[finaliza] ExameRestController - deleteExame");
     }
 
     @Override
     public void updateExame(Long idExame, ExameRequest request) {
-        log.info("[inicia] ExameRestController - update");
+        log.info("[inicia] ExameRestController - updateExame");
         exameService.updateExame(idExame, request);
-        log.info("[finaliza] ExameRestController - update");
+        log.info("[finaliza] ExameRestController - updateExame");
     }
 }

@@ -29,4 +29,8 @@ public interface ServicoApi {
     @PatchMapping("/update/{idServico}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void updateServico(@PathVariable UUID idServico, @Valid @RequestBody ServicoUpdateRequest updateRequest);
+
+    @PatchMapping("/update/status/{idServico}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void updateServicoStatus(@PathVariable UUID idServico);
 }

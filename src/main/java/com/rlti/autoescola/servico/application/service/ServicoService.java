@@ -14,4 +14,5 @@ public interface ServicoService {
     List<Servico> getAllServicos();
     void deleteServico(UUID idServico);
     void updateServico(UUID idServico, ServicoUpdateRequest updateRequest);
+    void updateServicoStatus(UUID idServico);
 }

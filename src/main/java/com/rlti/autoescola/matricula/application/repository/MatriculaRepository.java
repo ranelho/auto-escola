@@ -6,11 +6,8 @@ import java.util.List;
 import java.util.UUID;
 
 public interface MatriculaRepository {
-    Matricula salva(Matricula matricula);
-
+    Matricula saveMatricula(Matricula matricula);
     List<Matricula> getAllMatriculas();
-
     Matricula getOneMatricula(UUID idMatricula);
-
     void deleteMatricula(Matricula matricula);
 }

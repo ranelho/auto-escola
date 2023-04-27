@@ -14,5 +14,5 @@ public interface ContatoService {
     ClienteContatosResponse getAllContatosCliente(UUID idCliente);
     void deleteContato(UUID idContato);
     void updateContato(UUID idContato, ContatoRequest contatoRequest);
-    void verificaContato(Cliente cliente, OrcamentoRequest orcamentoRequest);
+    void getOrcamentoByCliente(Cliente cliente, OrcamentoRequest orcamentoRequest);
 }

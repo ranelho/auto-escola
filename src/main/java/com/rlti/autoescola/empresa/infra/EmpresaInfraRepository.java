@@ -16,39 +16,40 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class EmpresaInfraRepository implements EmpresaRepository {
     private final EmpresaSpringDataJPARepository empresaSpringDataJPARepository;
+
     @Override
     public Empresa saveEmpresa(Empresa empresa) {
-        log.info("[inicia] EmpresaInfraRepository - salva");
+        log.info("[inicia] EmpresaInfraRepository - saveEmpresa");
         try {
             empresaSpringDataJPARepository.save(empresa);
         } catch (DataIntegrityViolationException e) {
             throw APIException.build(HttpStatus.BAD_REQUEST, "Existem dados duplicados", e);
         }
-        log.info("[finaliza] EmpresaInfraRepository - salva");
+        log.info("[finaliza] EmpresaInfraRepository - saveEmpresa");
         return empresa;
     }
     @Override
     public List<Empresa> getAllEmpresas() {
-        log.info("[inicia] EmpresaInfraRepository - buscaTodasEmpresas");
+        log.info("[inicia] EmpresaInfraRepository - getAllEmpresas");
         List<Empresa> todasEmpresas = empresaSpringDataJPARepository.findAll();
-        log.info("[finaliza] EmpresaInfraRepository - buscaTodasEmpresas");
+        log.info("[finaliza] EmpresaInfraRepository - getAllEmpresas");
         return todasEmpresas;
     }
     @Override
     public Empresa getOneEmpresa(UUID idEmpresa) {
-        log.info("[inicia] EmpresaInfraRepository - buscaEmpresaAtravesId");
+        log.info("[inicia] EmpresaInfraRepository - getOneEmpresa");
         Empresa empresa = empresaSpringDataJPARepository.findById(idEmpresa)
                 .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Empresa não encontrado"));
-        log.info("[finaliza] EmpresaInfraRepository - buscaEmpresaAtravesId");
+        log.info("[finaliza] EmpresaInfraRepository - getOneEmpresa");
         return empresa;
     }
     @Override
-    public Empresa getAllEmpresaByCnpj(String cnpj) {
-        log.info("[inicia] EmpresaInfraRepository - buscaEmpresaAtravesCnpj");
+    public Empresa getByCnpj(String cnpj) {
+        log.info("[inicia] EmpresaInfraRepository - getByCnpj");
         Optional<Empresa> empresaOptional = empresaSpringDataJPARepository.findByCnpj(cnpj);
         Empresa empresa = empresaOptional.orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,
                 "Empresa não encontrada!"));
-        log.info("[finaliza] EmpresaInfraRepository - buscaEmpresaAtravesCnpj");
+        log.info("[finaliza] EmpresaInfraRepository - getByCnpj");
         return empresa;
     }
     @Override

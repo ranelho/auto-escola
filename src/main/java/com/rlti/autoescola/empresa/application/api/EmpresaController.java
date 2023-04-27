@@ -12,29 +12,29 @@ import java.util.UUID;
 @Log4j2
 @RequiredArgsConstructor
 public class EmpresaController implements EmpresaApi{
-
     private final EmpresaService empresaService;
+
     @Override
     public EmpresaResponse saveEmpresa(EmpresaRequest empresaRequest) {
-        log.info("[inicia] EmpresaController - post");
+        log.info("[inicia] EmpresaController - saveEmpresa");
         EmpresaResponse empresaCriada = empresaService.saveEmpresa(empresaRequest);
-        log.info("[finaliza] EmpresaController - post");
+        log.info("[finaliza] EmpresaController - saveEmpresa");
         return empresaCriada;
     }
 
     @Override
     public List<EmpresaListResponse> getAllEmpresas() {
-        log.info("[inicia] EmpresaController - getEmpresas");
+        log.info("[inicia] EmpresaController - getAllEmpresas");
         List<EmpresaListResponse> empresas = empresaService.getAllEmpresas();
-        log.info("[finaliza] EmpresaController - getEmpresas");
+        log.info("[finaliza] EmpresaController - getAllEmpresas");
         return empresas;
     }
 
     @Override
     public EmpresaDetalhadoResponse getOneEmpresa(UUID idEmpresa) {
-        log.info("[inicia] EmpresaController - getById");
+        log.info("[inicia] EmpresaController - getOneEmpresa");
         EmpresaDetalhadoResponse empresaDetalhadoId = empresaService.getOneEmpresa(idEmpresa);
-        log.info("[finaliza] EmpresaController - getById");
+        log.info("[finaliza] EmpresaController - getOneEmpresa");
         return empresaDetalhadoId;
     }
 
@@ -47,16 +47,16 @@ public class EmpresaController implements EmpresaApi{
     }
     @Override
     public void deleteEmpresa(UUID idEmpresa) {
-        log.info("[inicia] EmpresaController - delete");
+        log.info("[inicia] EmpresaController - deleteEmpresa");
         log.info("[IdEmpresa] {}", idEmpresa);
         empresaService.deleteEmpresa(idEmpresa);
-        log.info("[finaliza] EmpresaController - delete");
+        log.info("[finaliza] EmpresaController - deleteEmpresa");
     }
 
     @Override
     public void updateEmpresa(UUID idEmpresa, EmpresaAlteracaoRequest empresaAlteracaoRequest) {
-        log.info("[inicia] EmpresaController - update");
+        log.info("[inicia] EmpresaController - updateEmpresa");
         empresaService.updateEmpresa(idEmpresa, empresaAlteracaoRequest);
-        log.info("[inicia] EmpresaController - update");
+        log.info("[inicia] EmpresaController - updateEmpresa");
     }
 }

@@ -26,7 +26,7 @@ public class FluxoApplicationService implements FluxoService {
     @Override
     public FluxoDeCaixaResponse getFluxoDiario(LocalDate data) {
         log.info("[inicia] FluxoApplicationService - getFluxoDiario");
-        List<Pagamento> pagamentoList = pagamentoRepository.getAllData(data);
+        List<Pagamento> pagamentoList = pagamentoRepository.getAllPagamentoByData(data);
         List<Manutencao> manutencaoList = manutencaoRepository.getAllManutencoesByData(data);
         List<ReceitaPagamentoResponse> receitaPagamentoResponseList = getReceitasPagamento(data);
         Fluxo fluxo = new Fluxo(pagamentoList, manutencaoList,  receitaPagamentoResponseList);
@@ -39,7 +39,7 @@ public class FluxoApplicationService implements FluxoService {
         log.info("[inicia] FluxoApplicationService - getReceitasPagamento");
         List<Fluxo> fluxos = new ArrayList<>();
         for (TipoPagamento tipoPagamento : TipoPagamento.values()) {
-            List<Pagamento> pagamentos = pagamentoRepository.getCategoriaAllData(tipoPagamento, data);
+            List<Pagamento> pagamentos = pagamentoRepository.getAllPagamentoByTipoPagamento(tipoPagamento, data);
             if(pagamentos != null && !pagamentos.isEmpty()) {
                 fluxos.add(new Fluxo(tipoPagamento, pagamentos));
             }

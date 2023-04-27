@@ -9,7 +9,7 @@ import com.rlti.autoescola.matricula.application.service.MatriculaService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
-import jakarta.validation.Valid;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -21,49 +21,49 @@ public class MatriculaRestController implements MatriculaAPI{
 
     @Override
     public MatriculaIdResponse saveMatricula(MatriculaRequest matriculaRequest) {
-        log.info("[inicia] MatriculaRestController - post");
+        log.info("[inicia] MatriculaRestController - saveMatricula");
         MatriculaIdResponse matriculaCriado = matriculaService.saveMatricula(matriculaRequest);
-        log.info("[finaliza] MatriculaRestController - post");
+        log.info("[finaliza] MatriculaRestController - saveMatricula");
         return matriculaCriado;
     }
 
     @Override
     public MatriculaIdResponse saveMatriculaByOrcamento(String cpf) {
-        log.info("[inicia] MatriculaRestController - post-orcamento");
+        log.info("[inicia] MatriculaRestController -saveMatriculaByOrcamento");
         MatriculaIdResponse matriculaCriado = matriculaService.saveMatriculaByOrcamento(cpf);
-        log.info("[finaliza] MatriculaRestController - post-orcamento");
+        log.info("[finaliza] MatriculaRestController - saveMatriculaByOrcamento");
         return matriculaCriado;
     }
 
     @Override
     public List<MatriculaListResponse> getAllMatriculas() {
-        log.info("[inicia] MatriculaRestController - getAll");
+        log.info("[inicia] MatriculaRestController - getAllMatriculas");
         List<MatriculaListResponse> matriculas = matriculaService.getAllMatriculas();
-        log.info("[finaliza] MatriculaRestController - getAll");
+        log.info("[finaliza] MatriculaRestController - getAllMatriculas");
         return matriculas;
     }
 
     @Override
     public MatriculaDetalhadoResponse getOneMatricula(UUID idMatricula) {
-        log.info("[inicia] MatriculaRestController - getById");
+        log.info("[inicia] MatriculaRestController - getOneMatricula");
         log.info("idMatricula {}", idMatricula);
         MatriculaDetalhadoResponse matriculaDetalhadoResponse = matriculaService.getOneMatricula(idMatricula);
-        log.info("[finaliza] MatriculaRestController - getById");
+        log.info("[finaliza] MatriculaRestController - getOneMatricula");
         return matriculaDetalhadoResponse;
     }
 
     @Override
     public void deleteMatricula(UUID idMatricula) {
-        log.info("[inicia] MatriculaRestController - delete");
+        log.info("[inicia] MatriculaRestController - deleteMatricula");
         matriculaService.deleteMatricula(idMatricula);
-        log.info("[finaliza] MatriculaRestController - delete");
+        log.info("[finaliza] MatriculaRestController - deleteMatricula");
     }
 
     @Override
-    public void updateMatricula(UUID idMatricula, @Valid MatriculaAlteracaoRequest matriculaAlteracaoRequest) {
-        log.info("[inicia] MatriculaRestController - update");
+    public void updateMatricula(UUID idMatricula, MatriculaAlteracaoRequest matriculaAlteracaoRequest) {
+        log.info("[inicia] MatriculaRestController - updateMatricula");
         matriculaService.updateMatricula(idMatricula, matriculaAlteracaoRequest);
-        log.info("[finaliza] MatriculaRestController - update");
+        log.info("[finaliza] MatriculaRestController - updateMatricula");
     }
 
     @Override

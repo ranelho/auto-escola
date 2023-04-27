@@ -14,47 +14,47 @@ import java.util.List;
 @Log4j2
 @Service
 public class VeiculoApplicationService implements VeiculoService {
-
     private final VeiculoRepository veiculoRepository;
 
     @Override
     public VeiculoIdResponse saveVeiculo(VeiculoRequest request) {
         log.info("[inicia] VeiculoApplicationService - saveVeiculo");
-        Veiculo veiculo = veiculoRepository.saveVeiculos(new Veiculo(request));
+        Veiculo veiculo = veiculoRepository.saveVeiculo(new Veiculo(request));
         log.info("[finaliza] VeiculoApplicationService - saveVeiculo");
         return VeiculoIdResponse.builder().idVeiculo(veiculo.getIdVeiculo()).build();
     }
 
     @Override
     public Veiculo getOneVeiculoByPlaca(String placa) {
-        log.info("[inicia] VeiculoApplicationService - getByPlaca");
+        log.info("[inicia] VeiculoApplicationService - getOneVeiculoByPlaca");
         Veiculo veiculo = veiculoRepository.getByPlaca(placa);
-        log.info("[finaliza] VeiculoApplicationService - getByPlaca");
+        log.info("[finaliza] VeiculoApplicationService - getOneVeiculoByPlaca");
         return veiculo;
     }
 
     @Override
-    public List<Veiculo> getAll() {
-        log.info("[inicia] VeiculoApplicationService - getAll");
+    public List<Veiculo> getAllVeiculos() {
+        log.info("[inicia] VeiculoApplicationService - getAllVeiculos");
         List<Veiculo> veiculo = veiculoRepository.getAllVeiculo();
-        log.info("[finaliza] VeiculoApplicationService - getAll");
+        log.info("[finaliza] VeiculoApplicationService - getAllVeiculos");
         return veiculo;
     }
 
     @Override
-    public void update(String placa, VeiculoRequest request) {
-        log.info("[inicia] VeiculoApplicationService - update");
+    public void updateVeiculo(String placa, VeiculoRequest request) {
+        log.info("[inicia] VeiculoApplicationService - updateVeiculo");
         Veiculo veiculo = veiculoRepository.getByPlaca(placa);
         veiculo.altera(request);
-        veiculoRepository.saveVeiculos(veiculo);
-        log.info("[finaliza] VeiculoApplicationService - update");
+        veiculoRepository.saveVeiculo(veiculo);
+        log.info("[finaliza] VeiculoApplicationService - updateVeiculo");
     }
 
     @Override
-    public void delete(String placa) {
-        log.info("[inicia] VeiculoApplicationService - update");
+    public void inativaVeiculo(String placa) {
+        log.info("[inicia] VeiculoApplicationService - inativaVeiculo");
         Veiculo veiculo = veiculoRepository.getByPlaca(placa.toUpperCase());
-        veiculoRepository.deleteVeiculo(veiculo.getIdVeiculo());
-        log.info("[finaliza] VeiculoApplicationService - update");
+        veiculo.inativa();
+        veiculoRepository.saveVeiculo(veiculo);
+        log.info("[finaliza] VeiculoApplicationService - inativaVeiculo");
     }
 }

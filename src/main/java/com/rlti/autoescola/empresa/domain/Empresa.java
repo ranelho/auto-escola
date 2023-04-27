@@ -35,7 +35,7 @@ public class Empresa {
     @Column(unique = true)
     @CNPJ(groups = PessoaJuridica.class, message = "CNPJ inválido!")
     private String cnpj;
-    @Enumerated(EnumType.STRING)
+    @Transient
     TipoPessoa tipoPessoa = TipoPessoa.JURIDICA;
     @NotBlank
     private String nomeAdministrador;

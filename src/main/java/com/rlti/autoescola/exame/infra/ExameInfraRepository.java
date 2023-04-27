@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Repository
 @RequiredArgsConstructor
@@ -21,34 +20,34 @@ public class ExameInfraRepository implements ExameRepository {
 
     @Override
     public Exame saveExame(Exame exame) {
-        log.info("[inicia] ExameInfraRepository -  salva");
+        log.info("[inicia] ExameInfraRepository -  saveExame");
         exameSpringDataJPARepository.save(exame);
-        log.info("[finaliza] ExameInfraRepository -  salva");
+        log.info("[finaliza] ExameInfraRepository -  saveExame");
         return exame;
     }
 
     @Override
     public Exame getOneExame(Long idExame) {
-        log.info("[inicia] ExameInfraRepository -  buscaExamePorId");
+        log.info("[inicia] ExameInfraRepository -  getOneExame");
         Optional<Exame> optionalExame = exameSpringDataJPARepository.findById(idExame);
         Exame exame = optionalExame
                 .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST, "Exame não encontrado"));
-        log.info("[finaliza] ExameInfraRepository -  buscaExamePorId");
+        log.info("[finaliza] ExameInfraRepository -  getOneExame");
         return exame;
     }
 
     @Override
     public List<Exame> getAllExamesByCliente(Cliente cliente) {
-        log.info("[inicia] ExameInfraRepository -  buscaExamesPorIdCliente");
+        log.info("[inicia] ExameInfraRepository -  getAllExamesByCliente");
         List<Exame> exames = exameSpringDataJPARepository.findByCliente(cliente);
-        log.info("[finaliza] ExameInfraRepository -  buscaExamesPorIdCliente");
+        log.info("[finaliza] ExameInfraRepository -  getAllExamesByCliente");
         return exames;
     }
 
     @Override
     public void deleteExame(Long idExame) {
-        log.info("[inicia] ExameInfraRepository -  delete");
+        log.info("[inicia] ExameInfraRepository -  deleteExame");
         exameSpringDataJPARepository.deleteById(idExame);
-        log.info("[finaliza] ExameInfraRepository -  delete");
+        log.info("[finaliza] ExameInfraRepository -  deleteExame");
     }
 }

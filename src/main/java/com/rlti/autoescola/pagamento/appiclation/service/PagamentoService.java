@@ -13,6 +13,6 @@ public interface PagamentoService {
     PagamentoResponse savePagamento(UUID idMatricula, PagamentoRequest pagamentoRequest);
     List<PagamentoResponse> getAllPagamentoByMatricula(UUID idMatricula);
     PagamentoResponse getOnePagamento(Long idPagamento);
-    Pagamento entrada(Matricula matricula, TipoPagamento tipoPagamentoEntrada);
+    Pagamento savePagamentoByEntrada(Matricula matricula, TipoPagamento tipoPagamentoEntrada);
     void deletePagamento(Long idPagamento);
 }

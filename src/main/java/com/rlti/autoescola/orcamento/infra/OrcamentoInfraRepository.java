@@ -20,22 +20,23 @@ public class OrcamentoInfraRepository implements OrcamentoRepository {
     private final OrcamentoSpringDataJPARepository orcamentoSpringDataJPARepository;
 
     @Override
-    public Orcamento salvaOrcamento(Orcamento orcamento) {
-        log.info("[inicia] OrcamentoInfraRepository - salvaOrcamento");
+    public Orcamento saveOrcamento(Orcamento orcamento) {
+        log.info("[inicia] OrcamentoInfraRepository - saveOrcamento");
         Orcamento orcamentoCriado = orcamentoSpringDataJPARepository.save(orcamento);
-        log.info("[finaliza] OrcamentoInfraRepository - salvaOrcamento");
+        log.info("[finaliza] OrcamentoInfraRepository - saveOrcamento");
         return orcamentoCriado;
     }
     @Override
-    public Orcamento getById(Long idOrcamento) {
-        log.info("[inicia] OrcamentoInfraRepository - getById");
+    public Orcamento getOneOrcamento(Long idOrcamento) {
+        log.info("[inicia] OrcamentoInfraRepository - getOneOrcamento");
         Optional<Orcamento> optionalOrcamento = orcamentoSpringDataJPARepository.findById(idOrcamento);
         Orcamento orcamento = optionalOrcamento
                 .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,
                                 "Orçamento não encontrado!"));
-        log.info("[finaliza] OrcamentoInfraRepository - getById");
+        log.info("[finaliza] OrcamentoInfraRepository - getOneOrcamento");
         return (orcamento);
     }
+
     @Scheduled(fixedRate = 86400000) // Executa a cada 24 horas)
     @Override
     @Transactional
@@ -47,19 +48,19 @@ public class OrcamentoInfraRepository implements OrcamentoRepository {
 
     @Override
     public void deleteOrcamento(Long idOrcamento) {
-        log.info("[inicia] OrcamentoInfraRepository - deleteById");
+        log.info("[inicia] OrcamentoInfraRepository - deleteOrcamento");
         orcamentoSpringDataJPARepository.deleteById(idOrcamento);
-        log.info("[finaliza] OrcamentoInfraRepository - deleteById");
+        log.info("[finaliza] OrcamentoInfraRepository - deleteOrcamento");
     }
 
     @Override
-    public Orcamento findByCpf(String cpf) {
-        log.info("[inicia] OrcamentoInfraRepository - deleteById");
+    public Orcamento getOneOrcamentoByCpf(String cpf) {
+        log.info("[inicia] OrcamentoInfraRepository - getOneOrcamentoByCpf");
         Optional<Orcamento> optionalOrcamento = orcamentoSpringDataJPARepository.findByClienteCpf(cpf);
         Orcamento orcamento = optionalOrcamento
                 .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,
                         "Orçamento não encontrado!"));
-        log.info("[finaliza] OrcamentoInfraRepository - deleteById");
+        log.info("[finaliza] OrcamentoInfraRepository - getOneOrcamentoByCpf");
         return orcamento;
     }
 }

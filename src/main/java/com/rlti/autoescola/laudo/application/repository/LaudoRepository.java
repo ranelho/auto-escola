@@ -6,8 +6,8 @@ import com.rlti.autoescola.matricula.domain.Matricula;
 import java.util.List;
 
 public interface LaudoRepository {
-    Laudo salva(Laudo laudo);
-    void delete(Long idLaudo);
-    Laudo getById(Long idLaudo);
+    Laudo saveLaudo(Laudo laudo);
+    void deleteLaudo(Long idLaudo);
+    Laudo getOneLaudo(Long idLaudo);
     List<Laudo> getAllLaudosByMatricula(Matricula Matricula);
 }

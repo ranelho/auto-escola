@@ -35,7 +35,7 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idCliente;
-    @Enumerated(EnumType.STRING)
+    @Transient
     private TipoPessoa tipoPessoa = TipoPessoa.FISICA;
     @NotBlank(message = "Campo Obrigatório!")
     @CPF(groups = PessoaFisica.class, message = "CPF inválido!")
@@ -48,6 +48,7 @@ public class Cliente {
     private String nacionalidade;
     @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;
+    private LocalDate dataCadastro = LocalDate.now();
 
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
     @JsonIgnore
