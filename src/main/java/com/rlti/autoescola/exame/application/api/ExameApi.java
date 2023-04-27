@@ -9,23 +9,24 @@ import java.util.UUID;
 
 @RequestMapping("/v1/exame")
 public interface ExameApi {
+
     @PostMapping("{idCliente}")
     @ResponseStatus(code = HttpStatus.CREATED)
-    ExameIdResponse post(@PathVariable UUID idCliente, @Valid @RequestBody ExameRequest request);
+    ExameIdResponse saveExame(@PathVariable UUID idCliente, @Valid @RequestBody ExameRequest request);
 
     @GetMapping("/{idExame}")
     @ResponseStatus(code = HttpStatus.OK)
-    ExameResponse getById(@PathVariable Long idExame);
+    ExameResponse getOneExame(@PathVariable Long idExame);
 
     @GetMapping("/all/{idCliente}")
     @ResponseStatus(code = HttpStatus.OK)
-    List<ExameResponse> getAll(@PathVariable UUID idCliente);
+    List<ExameResponse> getAllExames(@PathVariable UUID idCliente);
 
     @DeleteMapping("/{idExame}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void delete(@PathVariable Long idExame);
+    void deleteExame(@PathVariable Long idExame);
 
     @PutMapping("/{idExame}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void update(@PathVariable Long idExame, @Valid @RequestBody ExameRequest request);
+    void updateExame(@PathVariable Long idExame, @Valid @RequestBody ExameRequest request);
 }

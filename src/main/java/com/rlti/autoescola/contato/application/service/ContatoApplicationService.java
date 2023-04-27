@@ -23,51 +23,49 @@ public class ContatoApplicationService implements ContatoService {
     private final ContatoRepository contatoRepository;
 
     @Override
-    public ContatoResponse criaNovoContato(UUID idCliente, ContatoRequest contatoRequest) {
-        log.info("[inicia] ContatoApplicationService - criaNovoContato");
-        Cliente cliente = clienteRepository.findById(idCliente);
-        Contato contato = contatoRepository.salvaContato(new Contato(cliente, contatoRequest));
-        log.info("[finaliza] ContatoApplicationService - criaNovoContato");
+    public ContatoResponse saveContato(UUID idCliente, ContatoRequest contatoRequest) {
+        log.info("[inicia] ContatoApplicationService - saveContato");
+        Cliente cliente = clienteRepository.findOneCliente(idCliente);
+        Contato contato = contatoRepository.saveContato(new Contato(cliente, contatoRequest));
+        log.info("[finaliza] ContatoApplicationService - saveContato");
         return new ContatoResponse(contato);
     }
     @Override
-    public ContatoResponse findById(UUID idContato) {
-        log.info("[inicia] ContatoApplicationService - findById");
-        Contato contato = contatoRepository.findById(idContato);
-        log.info("[finaliza] ContatoApplicationService - findById");
+    public ContatoResponse getOneContato(UUID idContato) {
+        log.info("[inicia] ContatoApplicationService - getOneContato");
+        Contato contato = contatoRepository.getOneContato(idContato);
+        log.info("[finaliza] ContatoApplicationService - getOneContato");
         return new ContatoResponse(contato);
     }
     @Override
-    public ClienteContatosResponse buscaContatosDoCliente(UUID idCliente) {
-        log.info("[inicia] ContatoApplicationService - buscaContatosDoCliente");
-        Cliente cliente = clienteRepository.findById(idCliente);
-        log.info("[finaliza] ContatoApplicationService - buscaContatosDoCliente");
+    public ClienteContatosResponse getAllContatosCliente(UUID idCliente) {
+        log.info("[inicia] ContatoApplicationService - getAllContatosCliente");
+        Cliente cliente = clienteRepository.findOneCliente(idCliente);
+        log.info("[finaliza] ContatoApplicationService - getAllContatosCliente");
         return new ClienteContatosResponse(cliente);
     }
     @Override
-    public void delete(UUID idContato) {
-        log.info("[inicia] ContatoApplicationService - delete");
-        contatoRepository.deleteContato(contatoRepository.findById(idContato).getIdContato());
-        log.info("[finaliza] ContatoApplicationService - delete");
+    public void deleteContato(UUID idContato) {
+        log.info("[inicia] ContatoApplicationService - deleteContato");
+        contatoRepository.deleteContato(contatoRepository.getOneContato(idContato).getIdContato());
+        log.info("[finaliza] ContatoApplicationService - deleteContato");
     }
     @Override
-    public void update(UUID idContato, ContatoRequest contatoRequest) {
-        log.info("[inicia] ContatoApplicationService - update");
-        Contato contato = contatoRepository.findById(idContato);
+    public void updateContato(UUID idContato, ContatoRequest contatoRequest) {
+        log.info("[inicia] ContatoApplicationService - updateContato");
+        Contato contato = contatoRepository.getOneContato(idContato);
         contato.altera(contatoRequest);
-        contatoRepository.salvaContato(contato);
-        log.info("[finaliza] ContatoApplicationService - update");
+        contatoRepository.saveContato(contato);
+        log.info("[finaliza] ContatoApplicationService - updateContato");
     }
 
     @Override
-    public void verificaContato(Cliente cliente, OrcamentoRequest orcamentoRequest) {
-        log.info("[inicia] ContatoApplicationService - verificaContato");
-        //verifica se existe o telefone no sistema
-        Optional<Contato> contatos = contatoRepository.findTelefoneContato(orcamentoRequest.getTelefone());
-        //compara se o contado saldo pertence ao cliente, caso nao tenha cadastra para o cliente
+    public void getOrcamentoByCliente(Cliente cliente, OrcamentoRequest orcamentoRequest) {
+        log.info("[inicia] ContatoApplicationService - getOrcamentoByCliente");
+        Optional<Contato> contatos = contatoRepository.getContatoByTelefone(orcamentoRequest.getTelefone());
         if(contatos.isEmpty() || contatos.get().getCliente().getIdCliente() != cliente.getIdCliente()){
-            contatoRepository.salvaContato(new Contato(cliente, orcamentoRequest));
+            contatoRepository.saveContato(new Contato(cliente, orcamentoRequest));
         }
-        log.info("[finaliza] ContatoApplicationService - verificaContato");
+        log.info("[finaliza] ContatoApplicationService - getOrcamentoByCliente");
     }
 }

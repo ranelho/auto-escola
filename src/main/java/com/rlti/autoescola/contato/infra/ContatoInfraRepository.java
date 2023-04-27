@@ -20,27 +20,27 @@ public class ContatoInfraRepository implements ContatoRepository {
     private final ContatoSpringDataJPARepository contatoSpringDataJPARepository;
 
     @Override
-    public Contato salvaContato(Contato contato) {
-        log.info("[inicia] ContatoInfraRepository - salvaContato");
+    public Contato saveContato(Contato contato) {
+        log.info("[inicia] ContatoInfraRepository - saveContato");
         Contato contatoCriado = contatoSpringDataJPARepository.save(contato);
-        log.info("[finaliza] ContatoInfraRepository - salvaContato");
+        log.info("[finaliza] ContatoInfraRepository - saveContato");
         return contatoCriado;
     }
     @Override
-    public Contato findById(UUID idContato) {
-        log.info("[inicia] ContatoInfraRepository - findById");
+    public Contato getOneContato(UUID idContato) {
+        log.info("[inicia] ContatoInfraRepository - getOneContato");
         Optional<Contato> optionalContato = contatoSpringDataJPARepository.findById(idContato);
         Contato contato = optionalContato
                 .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,
                 "Contato do Cliente não encontrado!"));
-        log.info("[finaliza] ContatoInfraRepository - findById");
+        log.info("[finaliza] ContatoInfraRepository - getOneContato");
         return contato;
     }
     @Override
-    public List<Contato> buscaContatosDoCliente(Cliente cliente) {
-        log.info("[inicia] ContatoInfraRepository - buscaContatosDoCliente");
+    public List<Contato> getAllContatosByCliente(Cliente cliente) {
+        log.info("[inicia] ContatoInfraRepository - getAllContatosByCliente");
         List<Contato> contatos = contatoSpringDataJPARepository.findAllByCliente(cliente);
-        log.info("[finaliza] ContatoInfraRepository - buscaContatosDoCliente");
+        log.info("[finaliza] ContatoInfraRepository - getAllContatosByCliente");
         return contatos;
     }
     @Override
@@ -50,10 +50,10 @@ public class ContatoInfraRepository implements ContatoRepository {
         log.info("[finaliza] ContatoInfraRepository - deleteContato");
     }
     @Override
-    public Optional<Contato> findTelefoneContato(String telefone) {
-        log.info("[inicia] ContatoInfraRepository - findTelefoneContato");
+    public Optional<Contato> getContatoByTelefone(String telefone) {
+        log.info("[inicia] ContatoInfraRepository - getContatoByTelefone");
         Optional<Contato> optionalContato = contatoSpringDataJPARepository.findByTelefone(telefone);
-        log.info("[finaliza] ContatoInfraRepository - findTelefoneContato");
+        log.info("[finaliza] ContatoInfraRepository - getContatoByTelefone");
         return optionalContato;
     }
 }

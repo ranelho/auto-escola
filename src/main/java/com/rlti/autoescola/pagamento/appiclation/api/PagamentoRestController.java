@@ -15,30 +15,30 @@ public class PagamentoRestController implements PagamentoAPI {
     private final PagamentoService pagamentoService;
 
     @Override
-    public PagamentoResponse post(UUID idMatricula, PagamentoRequest pagamentoRequest) {
-        log.info("[inicia] PagamentoRestController - post");
-        PagamentoResponse pagamentoResponse = pagamentoService.newPagamento(idMatricula, pagamentoRequest);
-        log.info("[finaliza] PagamentoRestController - post");
+    public PagamentoResponse savePagamento(UUID idMatricula, PagamentoRequest pagamentoRequest) {
+        log.info("[inicia] PagamentoRestController - savePagamento");
+        PagamentoResponse pagamentoResponse = pagamentoService.savePagamento(idMatricula, pagamentoRequest);
+        log.info("[finaliza] PagamentoRestController - savePagamento");
         return pagamentoResponse;
     }
     @Override
-    public List<PagamentoResponse> getByMatricula(UUID idMatricula) {
-        log.info("[inicia] PagamentoRestController - getPagamentoByMatricula");
-        List<PagamentoResponse>  getPagamento = pagamentoService.getPagamentoByMatricula(idMatricula);
-        log.info("[finaliza] PagamentoRestController - getPagamentoByMatricula");
+    public List<PagamentoResponse> getAllPagamentoByMatricula(UUID idMatricula) {
+        log.info("[inicia] PagamentoRestController - getAllPagamentoByMatricula");
+        List<PagamentoResponse>  getPagamento = pagamentoService.getAllPagamentoByMatricula(idMatricula);
+        log.info("[finaliza] PagamentoRestController - getAllPagamentoByMatricula");
         return getPagamento;
     }
     @Override
-    public PagamentoResponse getById(Long idPagamento) {
-        log.info("[inicia] PagamentoRestController - getById");
-        PagamentoResponse pagamentoResponse = pagamentoService.getById(idPagamento);
-        log.info("[finaliza] PagamentoRestController - getById");
+    public PagamentoResponse getOnePagamento(Long idPagamento) {
+        log.info("[inicia] PagamentoRestController - getOnePagamento");
+        PagamentoResponse pagamentoResponse = pagamentoService.getOnePagamento(idPagamento);
+        log.info("[finaliza] PagamentoRestController - getOnePagamento");
         return pagamentoResponse;
     }
     @Override
-    public void delete(Long idPagamento) {
-        log.info("[inicia] PagamentoRestController - delete");
-        pagamentoService.deleteById(idPagamento);
-        log.info("[finaliza] PagamentoRestController - delete");
+    public void deletePagamento(Long idPagamento) {
+        log.info("[inicia] PagamentoRestController - deletePagamento");
+        pagamentoService.deletePagamento(idPagamento);
+        log.info("[finaliza] PagamentoRestController - deletePagamento");
     }
 }

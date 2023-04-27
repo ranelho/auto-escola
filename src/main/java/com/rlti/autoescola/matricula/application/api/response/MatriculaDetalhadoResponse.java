@@ -5,6 +5,7 @@ import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import lombok.Value;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -14,8 +15,9 @@ public class MatriculaDetalhadoResponse {
     String cpf;
     TipoPagamento tipoPagamento;
     BigDecimal valorEntrada;
-    int desconto;
     int quantidadeParcelas;
+    BigDecimal valorServico;
+    BigDecimal desconto;
     BigDecimal valorFinal;
     LocalDate dataMatricula;
     String fullName;
@@ -27,12 +29,18 @@ public class MatriculaDetalhadoResponse {
         this.cpf = matricula.getCliente().getCpf();
         this.tipoPagamento = matricula.getTipoPagamento();
         this.valorEntrada = matricula.getValorEntrada();
-        this.desconto = matricula.getDesconto();
         this.quantidadeParcelas = matricula.getQuantidadeParcelas();
+        this.valorServico = matricula.getServico().getValorServico();
+        this.desconto =  calculaDesconto(matricula.getDesconto(), matricula.getServico().getValorServico()) ;
         this.valorFinal = matricula.getValorFinal();
         this.dataMatricula = matricula.getDataMatricula();
         this.fullName = matricula.getCliente().getFullName();
         this.observacao = matricula.getObservacao();
         this.status = matricula.getStatus().toString();
+    }
+
+    private BigDecimal calculaDesconto(int desconto, BigDecimal valorServico) {
+        return valorServico.multiply(new BigDecimal(desconto)).divide(BigDecimal.valueOf(100),
+                2, RoundingMode.HALF_UP);
     }
 }

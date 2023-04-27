@@ -6,5 +6,5 @@ import java.io.IOException;
 import java.util.UUID;
 
 public interface ImagemService {
-    void novaImagem(UUID idCliente, MultipartFile imagem) throws IOException;
+    void saveImagem(UUID idCliente, MultipartFile imagem) throws IOException;
 }

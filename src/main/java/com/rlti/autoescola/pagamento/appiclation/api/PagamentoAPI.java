@@ -12,17 +12,17 @@ public interface PagamentoAPI {
 
     @PostMapping("/{idMatricula}")
     @ResponseStatus(code = HttpStatus.CREATED)
-    PagamentoResponse post(@PathVariable UUID idMatricula, @Valid @RequestBody PagamentoRequest pagamentoRequest);
+    PagamentoResponse savePagamento(@PathVariable UUID idMatricula, @Valid @RequestBody PagamentoRequest pagamentoRequest);
 
     @GetMapping(value = "/matricula/{idMatricula}")
     @ResponseStatus(code = HttpStatus.OK)
-    List<PagamentoResponse> getByMatricula(@PathVariable UUID idMatricula);
+    List<PagamentoResponse> getAllPagamentoByMatricula(@PathVariable UUID idMatricula);
 
     @GetMapping("/{idPagamento}")
     @ResponseStatus(code = HttpStatus.OK)
-    PagamentoResponse getById(@PathVariable Long idPagamento);
+    PagamentoResponse getOnePagamento(@PathVariable Long idPagamento);
 
     @DeleteMapping("/{idPagamento}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void delete(@PathVariable Long idPagamento);
+    void deletePagamento(@PathVariable Long idPagamento);
 }

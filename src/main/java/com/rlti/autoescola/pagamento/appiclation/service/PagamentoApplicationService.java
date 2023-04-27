@@ -25,14 +25,14 @@ public class PagamentoApplicationService implements PagamentoService {
     private final MatriculaRepository matriculaRepository;
 
     @Override
-    public PagamentoResponse newPagamento(UUID idMatricula, PagamentoRequest pagamentoRequest) {
-        log.info("[inicia] PagamentoApplicationService - newPagamento");
-        Matricula matricula = matriculaRepository.matriculaAtravesId(idMatricula);
+    public PagamentoResponse savePagamento(UUID idMatricula, PagamentoRequest pagamentoRequest) {
+        log.info("[inicia] PagamentoApplicationService - savePagamento");
+        Matricula matricula = matriculaRepository.getOneMatricula(idMatricula);
         BigDecimal totalPago = pagamentoRepository.totalPago(matricula);
         BigDecimal saldoAPagar = matricula.getValorFinal().subtract(totalPago);
         if (pagamentoRequest.getValorPago().compareTo(saldoAPagar)<=0){
-            Pagamento pagamento = pagamentoRepository.salva(new Pagamento(pagamentoRequest, matricula));
-            log.info("[finaliza] PagamentoApplicationService - newPagamento");
+            Pagamento pagamento = pagamentoRepository.salvaPagamento(new Pagamento(pagamentoRequest, matricula));
+            log.info("[finaliza] PagamentoApplicationService - savePagamento");
             return new PagamentoResponse(pagamento);
         } else {
             throw APIException.build(HttpStatus.BAD_REQUEST,
@@ -40,31 +40,31 @@ public class PagamentoApplicationService implements PagamentoService {
         }
     }
     @Override
-    public List<PagamentoResponse> getPagamentoByMatricula(UUID idMatricula) {
-        log.info("[inicia] PagamentoApplicationService - getPagamentoByMatricula");
-        Matricula matricula = matriculaRepository.matriculaAtravesId(idMatricula);
-        List<Pagamento> pagamento = pagamentoRepository.getPagamento(matricula);
-        log.info("[finaliza] PagamentoApplicationService - getPagamentoByMatricula");
+    public List<PagamentoResponse> getAllPagamentoByMatricula(UUID idMatricula) {
+        log.info("[inicia] PagamentoApplicationService - getAllPagamentoByMatricula");
+        Matricula matricula = matriculaRepository.getOneMatricula(idMatricula);
+        List<Pagamento> pagamento = pagamentoRepository.getAllPagamentoByMatricula(matricula);
+        log.info("[finaliza] PagamentoApplicationService - getAllPagamentoByMatricula");
         return PagamentoResponse.convert(pagamento);
     }
     @Override
-    public PagamentoResponse getById(Long idPagamento) {
-        log.info("[inicia] PagamentoApplicationService - getById");
-        Pagamento pagamento = pagamentoRepository.getById(idPagamento);
-        log.info("[finaliza] PagamentoApplicationService - getById");
+    public PagamentoResponse getOnePagamento(Long idPagamento) {
+        log.info("[inicia] PagamentoApplicationService - getOnePagamento");
+        Pagamento pagamento = pagamentoRepository.getOnePagamento(idPagamento);
+        log.info("[finaliza] PagamentoApplicationService - getOnePagamento");
         return new PagamentoResponse(pagamento);
     }
     @Override
-    public Pagamento entrada(Matricula matricula, TipoPagamento tipoPagamentoEntrada) {
-        log.info("[inicia] PagamentoApplicationService - entrada");
-        Pagamento pagamento = pagamentoRepository.salva(new Pagamento(matricula, tipoPagamentoEntrada));
-        log.info("[finaliza] PagamentoApplicationService - entrada");
+    public Pagamento savePagamentoByEntrada(Matricula matricula, TipoPagamento tipoPagamentoEntrada) {
+        log.info("[inicia] PagamentoApplicationService - savePagamentoByEntrada");
+        Pagamento pagamento = pagamentoRepository.salvaPagamento(new Pagamento(matricula, tipoPagamentoEntrada));
+        log.info("[finaliza] PagamentoApplicationService - savePagamentoByEntrada");
         return pagamento;
     }
     @Override
-    public void deleteById(Long idPagamento) {
-        log.info("[inicia] PagamentoApplicationService - deleteById");
-        pagamentoRepository.delete(pagamentoRepository.getById(idPagamento).getIdPagamento());
-        log.info("[finaliza] PagamentoApplicationService - deleteById");
+    public void deletePagamento(Long idPagamento) {
+        log.info("[inicia] PagamentoApplicationService - deletePagamento");
+        pagamentoRepository.deletePagamento(pagamentoRepository.getOnePagamento(idPagamento).getIdPagamento());
+        log.info("[finaliza] PagamentoApplicationService - deletePagamento");
     }
 }

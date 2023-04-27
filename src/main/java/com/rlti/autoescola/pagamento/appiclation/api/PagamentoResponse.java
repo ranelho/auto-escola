@@ -18,7 +18,7 @@ public class PagamentoResponse {
 
     public PagamentoResponse(Pagamento pagamento) {
         this.recibo = pagamento.getIdPagamento();
-        this.cpf = pagamento.getMatricula().getCliente().getCpf();
+        this.cpf = ocultarDocumento(pagamento.getMatricula().getCliente().getCpf());
         this.fullName = pagamento.getMatricula().getCliente().getFullName();
         this.servico = pagamento.getMatricula().getServico().getCategoria().toString();
         this.valorContratado = pagamento.getMatricula().getValorFinal();
@@ -29,5 +29,9 @@ public class PagamentoResponse {
         return pagamento.stream()
                 .map(PagamentoResponse::new)
                 .collect((Collectors.toList()));
+    }
+
+    public static String ocultarDocumento(String documento) {
+        return documento.replaceAll("\\d{3}\\.\\d{3}", "xxx.xxx");
     }
 }

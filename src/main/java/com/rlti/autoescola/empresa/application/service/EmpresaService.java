@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.UUID;
 
 public interface EmpresaService {
-    EmpresaResponse criaEmpresa(EmpresaRequest empresaRequest);
-    List<EmpresaListResponse> buscaTodosClientes();
-    EmpresaDetalhadoResponse buscaEmpresaAtravesId(UUID idEmpresa);
-    EmpresaDetalhadoResponseCnpj buscaEmpresaAtravesCnpj(String cnpj);
-    void delete(UUID idEmpresa);
-    void update(UUID idEmpresa, EmpresaAlteracaoRequest empresaAlteracaoRequest);
+    EmpresaResponse saveEmpresa(EmpresaRequest empresaRequest);
+    List<EmpresaListResponse> getAllEmpresas();
+    EmpresaDetalhadoResponse getOneEmpresa(UUID idEmpresa);
+    EmpresaDetalhadoResponseCnpj getByCnpj(String cnpj);
+    void deleteEmpresa(UUID idEmpresa);
+    void updateEmpresa(UUID idEmpresa, EmpresaAlteracaoRequest empresaAlteracaoRequest);
 }

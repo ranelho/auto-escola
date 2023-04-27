@@ -3,11 +3,11 @@ package com.rlti.autoescola.matricula.infra;
 import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
 import com.rlti.autoescola.matricula.domain.Matricula;
-import com.rlti.autoescola.matricula.infra.MatriculaSpringDataJPARepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -19,28 +19,28 @@ public class MatriculaInfraRepository implements MatriculaRepository {
     private final MatriculaSpringDataJPARepository matriculaSpringDataJPARepository;
 
     @Override
-    public Matricula salva(Matricula matricula) {
-        log.info("[inicia] MatriculaInfraRepository - salva");
+    public Matricula saveMatricula(Matricula matricula) {
+        log.info("[inicia] MatriculaInfraRepository - saveMatricula");
         matriculaSpringDataJPARepository.save(matricula);
-        log.info("[finaliza] MatriculaInfraRepository - salva");
+        log.info("[finaliza] MatriculaInfraRepository - saveMatricula");
         return matricula;
     }
 
     @Override
-    public List<Matricula> buscaTodasMatriculas() {
-        log.info("[inicia] MatriculaInfraRepository - buscaTodasMatriculas");
+    public List<Matricula> getAllMatriculas() {
+        log.info("[inicia] MatriculaInfraRepository - getAllMatriculas");
         List<Matricula> todasMatriculas = matriculaSpringDataJPARepository.findAll();
-        log.info("[finaliza] MatriculaInfraRepository - buscaTodasMatriculas");
+        log.info("[finaliza] MatriculaInfraRepository - getAllMatriculas");
         return todasMatriculas;
     }
 
     @Override
-    public Matricula matriculaAtravesId(UUID idMatricula) {
-        log.info("[inicia] MatriculaInfraRepository - matriculaAtravesId");
+    public Matricula getOneMatricula(UUID idMatricula) {
+        log.info("[inicia] MatriculaInfraRepository - getOneMatricula");
         Optional<Matricula> matriculaOptional = matriculaSpringDataJPARepository.findById(idMatricula);
         Matricula matricula = matriculaOptional
                 .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Matricula não encontrado!"));
-        log.info("[finaliza] MatriculaInfraRepository - matriculaAtravesId");
+        log.info("[finaliza] MatriculaInfraRepository - getOneMatricula");
         return matricula;
     }
 

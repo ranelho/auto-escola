@@ -20,41 +20,41 @@ public class ServicoInfraRepository implements ServicoRepository {
     private final ServicoSpringDataInfraRepository servicoSpringDataInfraRepository;
 
     @Override
-    public Servico salva(Servico servico) {
-        log.info("[inicia] ServicoInfraRepository - salva");
+    public Servico salvaServico(Servico servico) {
+        log.info("[inicia] ServicoInfraRepository - salvaServico");
         try {
             servicoSpringDataInfraRepository.save(servico);
         }catch (DataIntegrityViolationException e){
             throw APIException.build(HttpStatus.BAD_REQUEST, "Serviço já cadastrado", e);
         }
-        log.info("[finaliza] ServicoInfraRepository - salva");
+        log.info("[finaliza] ServicoInfraRepository - salvaServico");
         return servico;
     }
 
     @Override
-    public Servico getById(UUID idServico) {
-        log.info("[inicia] ServicoInfraRepository - getById");
+    public Servico getOneServico(UUID idServico) {
+        log.info("[inicia] ServicoInfraRepository - getOneServico");
         Optional<Servico> optionalServico = servicoSpringDataInfraRepository.findById(idServico);
         Servico servico = optionalServico
                 .orElseThrow(
                         () -> APIException.build(HttpStatus.BAD_REQUEST, "Serviço não encontrado")
                 );
-        log.info("[finaliza] ServicoInfraRepository - getById");
+        log.info("[finaliza] ServicoInfraRepository - getOneServico");
         return servico;
     }
 
     @Override
-    public List<Servico> getAll() {
-        log.info("[inicia] ServicoInfraRepository - getAll");
+    public List<Servico> getAllServicos() {
+        log.info("[inicia] ServicoInfraRepository - getAllServicos");
         List<Servico> servicos = servicoSpringDataInfraRepository.findAll();
-        log.info("[finaliza] ServicoInfraRepository - getAll");
+        log.info("[finaliza] ServicoInfraRepository - getAllServicos");
         return servicos;
     }
 
     @Override
-    public void delete(UUID idServico) {
-        log.info("[inicia] ServicoInfraRepository - getAll");
+    public void deleteServico(UUID idServico) {
+        log.info("[inicia] ServicoInfraRepository - deleteServico");
         servicoSpringDataInfraRepository.deleteById(idServico);
-        log.info("[finaliza] ServicoInfraRepository - getAll");
+        log.info("[finaliza] ServicoInfraRepository - deleteServico");
     }
 }

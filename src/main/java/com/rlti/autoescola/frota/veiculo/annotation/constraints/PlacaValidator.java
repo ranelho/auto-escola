@@ -1,17 +1,17 @@
 package com.rlti.autoescola.frota.veiculo.annotation.constraints;
 
-import com.rlti.autoescola.frota.veiculo.annotation.Placa;
+import com.rlti.autoescola.frota.veiculo.annotation.PlacaValida;
 import com.rlti.autoescola.frota.veiculo.domain.placa.TipoPlaca;
-
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PlacaValidator implements  ConstraintValidator<Placa, String> {
+public class PlacaValidator implements ConstraintValidator<PlacaValida, String> {
     private TipoPlaca[] tipos;
 
-    public void initialize(Placa constraintAnnotation) {
+    public void initialize(PlacaValida constraintAnnotation) {
         this.tipos = constraintAnnotation.tipo();
     }
 
@@ -37,3 +37,4 @@ public class PlacaValidator implements  ConstraintValidator<Placa, String> {
         }
     }
 }
+

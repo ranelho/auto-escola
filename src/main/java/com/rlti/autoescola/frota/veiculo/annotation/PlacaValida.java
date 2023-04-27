@@ -13,7 +13,7 @@ import java.lang.annotation.*;
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = PlacaValidator.class)
-public @interface Placa {
+public @interface PlacaValida {
 
     String message() default "Placa inválida";
 
@@ -27,6 +27,6 @@ public @interface Placa {
     @Target({ElementType.FIELD})
     @Retention(RetentionPolicy.RUNTIME)
     @interface List {
-        Placa[] value();
+        PlacaValida[] value();
     }
 }

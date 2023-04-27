@@ -19,10 +19,10 @@ public class ServicoApplicationService implements ServicoService {
     private final ServicoRepository servicoRepository;
 
     @Override
-    public ServicoIdResponse post(ServicoRequest request) {
-        log.info("[inicia] ServicoApplicationService - post");
-        Servico servico = servicoRepository.salva(new Servico(request));
-        log.info("[finaliza] ServicoApplicationService - post");
+    public ServicoIdResponse saveServico(ServicoRequest request) {
+        log.info("[inicia] ServicoApplicationService - saveServico");
+        Servico servico = servicoRepository.salvaServico(new Servico(request));
+        log.info("[finaliza] ServicoApplicationService - saveServico");
         return ServicoIdResponse
                 .builder()
                 .idServico(servico.getIdServico())
@@ -30,34 +30,43 @@ public class ServicoApplicationService implements ServicoService {
     }
 
     @Override
-    public Servico getById(UUID idServico) {
-        log.info("[inicia] ServicoApplicationService - getById");
-        Servico servico = servicoRepository.getById(idServico);
-        log.info("[finaliza] ServicoApplicationService - getById");
+    public Servico getOneServico(UUID idServico) {
+        log.info("[inicia] ServicoApplicationService - getOneServico");
+        Servico servico = servicoRepository.getOneServico(idServico);
+        log.info("[finaliza] ServicoApplicationService - getOneServico");
         return servico;
     }
 
     @Override
-    public List<Servico> getAll() {
-        log.info("[inicia] ServicoApplicationService - getAll");
-        List<Servico> servicos = servicoRepository.getAll();
-        log.info("[finaliza] ServicoApplicationService - getAll");
+    public List<Servico> getAllServicos() {
+        log.info("[inicia] ServicoApplicationService - getAllServicos");
+        List<Servico> servicos = servicoRepository.getAllServicos();
+        log.info("[finaliza] ServicoApplicationService - getAllServicos");
         return servicos;
     }
 
     @Override
-    public void delete(UUID idServico) {
-        log.info("[inicia] ServicoApplicationService - delete");
-        servicoRepository.delete(servicoRepository.getById(idServico).getIdServico());
-        log.info("[finaliza] ServicoApplicationService - delete");
+    public void deleteServico(UUID idServico) {
+        log.info("[inicia] ServicoApplicationService - deleteServico");
+        servicoRepository.deleteServico(servicoRepository.getOneServico(idServico).getIdServico());
+        log.info("[finaliza] ServicoApplicationService - deleteServico");
     }
 
     @Override
-    public void update(UUID idServico, ServicoUpdateRequest updateRequest) {
-        log.info("[inicia] ServicoApplicationService - delete");
-        Servico servico = servicoRepository.getById(idServico);
+    public void updateServico(UUID idServico, ServicoUpdateRequest updateRequest) {
+        log.info("[inicia] ServicoApplicationService - updateServico");
+        Servico servico = servicoRepository.getOneServico(idServico);
         servico.altera(updateRequest);
-        servicoRepository.salva(servico);
-        log.info("[finaliza] ServicoApplicationService - delete");
+        servicoRepository.salvaServico(servico);
+        log.info("[finaliza] ServicoApplicationService - updateServico");
+    }
+
+    @Override
+    public void updateServicoStatus(UUID idServico) {
+        log.info("[inicia] ServicoApplicationService - updateServicoStatus");
+        Servico servico = servicoRepository.getOneServico(idServico);
+        servico.alteraStatus();
+        servicoRepository.salvaServico(servico);
+        log.info("[finaliza] ServicoApplicationService - updateServicoStatus");
     }
 }

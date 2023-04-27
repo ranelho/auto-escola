@@ -12,21 +12,25 @@ public interface ServicoApi {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    ServicoIdResponse post(@Valid @RequestBody ServicoRequest request);
+    ServicoIdResponse saveServico(@Valid @RequestBody ServicoRequest request);
 
     @GetMapping("/{idServico}")
     @ResponseStatus(code = HttpStatus.OK)
-    ServicoResponse getById(@PathVariable UUID idServico);
+    ServicoResponse getOneServico(@PathVariable UUID idServico);
 
     @GetMapping("/all")
     @ResponseStatus(code = HttpStatus.OK)
-    List<ServicoResponse> getAll();
+    List<ServicoResponse> getAllServicos();
 
     @DeleteMapping("/{idServico}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void delete(@PathVariable UUID idServico);
+    void deleteServico(@PathVariable UUID idServico);
 
     @PatchMapping("/update/{idServico}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void update(@PathVariable UUID idServico, @Valid @RequestBody ServicoUpdateRequest updateRequest);
+    void updateServico(@PathVariable UUID idServico, @Valid @RequestBody ServicoUpdateRequest updateRequest);
+
+    @PatchMapping("/update/status/{idServico}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void updateServicoStatus(@PathVariable UUID idServico);
 }

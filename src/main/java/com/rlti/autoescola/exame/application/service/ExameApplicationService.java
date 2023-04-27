@@ -22,44 +22,44 @@ public class ExameApplicationService implements ExameService {
     private final ClienteRepository clienteRepository;
 
     @Override
-    public ExameIdResponse post(UUID idCliente, ExameRequest request) {
-        log.info("[inicia] ExameApplicationService - post");
-        Cliente cliente = clienteRepository.findById(idCliente);
-        Exame exame = exameRepository.salva(new Exame(cliente, request));
-        log.info("[finaliza] ExameApplicationService - post");
+    public ExameIdResponse saveExame(UUID idCliente, ExameRequest request) {
+        log.info("[inicia] ExameApplicationService - saveExame");
+        Cliente cliente = clienteRepository.findOneCliente(idCliente);
+        Exame exame = exameRepository.saveExame(new Exame(cliente, request));
+        log.info("[finaliza] ExameApplicationService - saveExame");
         return ExameIdResponse.builder().idExame(exame.getIdExame()).build();
     }
 
     @Override
-    public ExameResponse getById(Long idExame) {
-        log.info("[inicia] ExameApplicationService - getById");
-        Exame exame = exameRepository.buscaExamePorId(idExame);
-        log.info("[finaliza] ExameApplicationService - getById");
+    public ExameResponse getOneExame(Long idExame) {
+        log.info("[inicia] ExameApplicationService - getOneExame");
+        Exame exame = exameRepository.getOneExame(idExame);
+        log.info("[finaliza] ExameApplicationService - getOneExame");
         return new ExameResponse(exame);
     }
 
     @Override
-    public List<ExameResponse> getAll(UUID idCliente) {
-        log.info("[inicia] ExameApplicationService - getAll");
-        Cliente cliente = clienteRepository.findById(idCliente);
-        List<Exame> exames = exameRepository.buscaExamesPorIdCliente(cliente);
-        log.info("[finaliza] ExameApplicationService - getAll");
+    public List<ExameResponse> getAllExames(UUID idCliente) {
+        log.info("[inicia] ExameApplicationService - getAllExames");
+        Cliente cliente = clienteRepository.findOneCliente(idCliente);
+        List<Exame> exames = exameRepository.getAllExamesByCliente(cliente);
+        log.info("[finaliza] ExameApplicationService - getAllExames");
         return ExameResponse.converte(exames);
     }
 
     @Override
-    public void delete(Long idExame) {
-        log.info("[inicia] ExameApplicationService - delete");
-        exameRepository.delete(exameRepository.buscaExamePorId(idExame).getIdExame());
-        log.info("[finaliza] ExameApplicationService - delete");
+    public void deleteExame(Long idExame) {
+        log.info("[inicia] ExameApplicationService - deleteExame");
+        exameRepository.deleteExame(exameRepository.getOneExame(idExame).getIdExame());
+        log.info("[finaliza] ExameApplicationService - deleteExame");
     }
 
     @Override
-    public void update(Long idExame, ExameRequest request) {
-        log.info("[inicia] ExameApplicationService - update");
-        Exame exame = exameRepository.buscaExamePorId(idExame);
+    public void updateExame(Long idExame, ExameRequest request) {
+        log.info("[inicia] ExameApplicationService - updateExame");
+        Exame exame = exameRepository.getOneExame(idExame);
         exame.altera(request);
-        exameRepository.salva(exame);
-        log.info("[finaliza] ExameApplicationService - update");
+        exameRepository.saveExame(exame);
+        log.info("[finaliza] ExameApplicationService - updateExame");
     }
 }

@@ -23,9 +23,9 @@ public class ImagemServiceApplication implements ImagemService {
     private final ClienteRepository clienteRepository;
 
     @Override
-    public void novaImagem(UUID idCliente, MultipartFile imagem) throws IOException {
+    public void saveImagem(UUID idCliente, MultipartFile imagem) throws IOException {
         log.info("[inicia] ImagemServiceApplication - editaImagem");
-        Cliente cliente = clienteRepository.findById(idCliente);
+        Cliente cliente = clienteRepository.findOneCliente(idCliente);
         Optional<Imagem> optionalImagem = imagemRepository.findByCliente(cliente);
         if (optionalImagem.isPresent()){
             atualizarImagemCliente(cliente, imagem);

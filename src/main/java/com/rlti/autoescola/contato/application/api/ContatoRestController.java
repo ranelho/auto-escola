@@ -15,36 +15,36 @@ public class ContatoRestController implements ContatoApi {
     private final ContatoService contatoService;
 
     @Override
-    public ContatoResponse post(UUID idCliente, ContatoRequest contatoRequest) {
-        log.info("[inicia] ContatoRestController - post");
-        ContatoResponse contatoCriado = contatoService.criaNovoContato(idCliente, contatoRequest);
-        log.info("[finaliza] ContatoRestController - post");
+    public ContatoResponse saveContato(UUID idCliente, ContatoRequest contatoRequest) {
+        log.info("[inicia] ContatoRestController - saveContato");
+        ContatoResponse contatoCriado = contatoService.saveContato(idCliente, contatoRequest);
+        log.info("[finaliza] ContatoRestController - saveContato");
         return contatoCriado;
     }
     @Override
-    public ContatoResponse findById(UUID idContato) {
-        log.info("[inicia] ContatoRestController - findById");
-        ContatoResponse buscaContato = contatoService.findById(idContato);
-        log.info("[finaliza] ContatoRestController - findById");
+    public ContatoResponse getOneContato(UUID idContato) {
+        log.info("[inicia] ContatoRestController - getOneContato");
+        ContatoResponse buscaContato = contatoService.getOneContato(idContato);
+        log.info("[finaliza] ContatoRestController - getOneContato");
         return buscaContato;
     }
     @Override
-    public ClienteContatosResponse getAll(UUID idCliente) {
-        log.info("[inicia] ContatoRestController - getAll");
-        ClienteContatosResponse response = contatoService.buscaContatosDoCliente(idCliente);
-        log.info("[finaliza] ContatoRestController - getAll");
+    public ClienteContatosResponse getAllContatosCliente(UUID idCliente) {
+        log.info("[inicia] ContatoRestController - getAllContatosCliente");
+        ClienteContatosResponse response = contatoService.getAllContatosCliente(idCliente);
+        log.info("[finaliza] ContatoRestController - getAllContatosCliente");
         return response;
     }
     @Override
-    public void delete(UUID idContato) {
-        log.info("[inicia] ContatoRestController - delete");
-        contatoService.delete(idContato);
-        log.info("[finaliza] ContatoRestController - delete");
+    public void deleteContato(UUID idContato) {
+        log.info("[inicia] ContatoRestController - deleteContato");
+        contatoService.deleteContato(idContato);
+        log.info("[finaliza] ContatoRestController - deleteContato");
     }
     @Override
-    public void update(UUID idContato, ContatoRequest contatoRequest) {
-        log.info("[inicia] ContatoRestController - update");
-        contatoService.update(idContato, contatoRequest);
-        log.info("[finaliza] ContatoRestController - update");
+    public void updateContato(UUID idContato, ContatoRequest contatoRequest) {
+        log.info("[inicia] ContatoRestController - updateContato");
+        contatoService.updateContato(idContato, contatoRequest);
+        log.info("[finaliza] ContatoRestController - updateContato");
     }
 }

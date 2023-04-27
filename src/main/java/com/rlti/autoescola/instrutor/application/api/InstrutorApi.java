@@ -11,7 +11,7 @@ import java.util.UUID;
 public interface InstrutorApi {
     @PostMapping
     @ResponseStatus(code = HttpStatus.ACCEPTED)
-    InstrutorIdResponse post(@Valid @RequestBody InstrutorResquest resquest);
+    InstrutorIdResponse saveInstrutor(@Valid @RequestBody InstrutorResquest resquest);
 
     @GetMapping("{idInstrutor}")
     @ResponseStatus(code = HttpStatus.OK)
@@ -19,13 +19,13 @@ public interface InstrutorApi {
 
     @PatchMapping("/update/{idInstrutor}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void update(@PathVariable  UUID idInstrutor, @Valid @RequestBody InstrutorUpdateResquest updateRequest);
+    void updateInstrutor(@PathVariable  UUID idInstrutor, @Valid @RequestBody InstrutorUpdateResquest updateRequest);
 
     @GetMapping("/all")
     @ResponseStatus(code = HttpStatus.OK)
     List<InstrutorResponse> getAllInstrutors();
 
-    @DeleteMapping("/{idInstrutor}")
+    @PatchMapping("/{idInstrutor}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void delete(@PathVariable UUID idInstrutor);
+    void inativaInstrutor(@PathVariable UUID idInstrutor);
 }

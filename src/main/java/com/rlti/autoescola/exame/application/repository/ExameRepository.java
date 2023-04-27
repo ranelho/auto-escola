@@ -4,11 +4,10 @@ import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.exame.domain.Exame;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface ExameRepository {
-    Exame salva(Exame exame);
-    Exame buscaExamePorId(Long idExame);
-    List<Exame> buscaExamesPorIdCliente(Cliente cliente);
-    void delete(Long idExame);
+    Exame saveExame(Exame exame);
+    Exame getOneExame(Long idExame);
+    List<Exame> getAllExamesByCliente(Cliente cliente);
+    void deleteExame(Long idExame);
 }

@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface InstrutorRepository {
-    Instrutor save(Instrutor instrutor);
+    Instrutor saveInstrutor(Instrutor instrutor);
     Instrutor getInstrutor(UUID idInstrutor);
     List<Instrutor> getAllInstrutors();
-    void delete(UUID idInstrutor);
 }
