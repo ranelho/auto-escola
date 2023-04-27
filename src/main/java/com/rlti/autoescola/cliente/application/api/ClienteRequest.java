@@ -16,12 +16,12 @@ public class ClienteRequest {
     @NotBlank(message = "Campo Obrigatório!")
     @Pattern(regexp = "(^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$)")
     @CPF(groups = PessoaFisica.class, message = "CPF inválido!")
-    private String cpf;
+    String cpf;
     @NotNull(message = "Campo Obrigatório!")
-    private String fullName;
+    String fullName;
     @Adult
-    private LocalDate dataNascimento;
-    private String naturalidade;
-    private String nacionalidade;
-    private EstadoCivil estadoCivil;
+    LocalDate dataNascimento;
+    String naturalidade;
+    String nacionalidade;
+    EstadoCivil estadoCivil;
 }
