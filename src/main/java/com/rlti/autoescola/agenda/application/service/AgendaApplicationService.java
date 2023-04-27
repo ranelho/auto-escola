@@ -32,7 +32,7 @@ public class AgendaApplicationService implements AgendaService {
     public AgendaIdResponse post(AgendaRequest agendaRequest) {
         log.info("[inicia] - AgendaApplicationService - post");
         Instrutor instrutor = instrutorRepository.getInstrutor(agendaRequest.getIdInstrutor());
-        Matricula matricula = matriculaRepository.matriculaAtravesId(agendaRequest.getIdMatricula());
+        Matricula matricula = matriculaRepository.getOneMatricula(agendaRequest.getIdMatricula());
         Veiculo veiculo = veiculoRepository.getByPlaca(agendaRequest.getPlaca());
         Agenda agenda = agendaRepository.save(new Agenda(instrutor, matricula, veiculo, agendaRequest));
         log.info("[finaliza] - AgendaApplicationService - post");
@@ -66,7 +66,7 @@ public class AgendaApplicationService implements AgendaService {
     @Override
     public List<AgendaListResponse> getByIdMatricula(UUID idMatricula) {
         log.info("[inicia] - AgendaApplicationService - getByIdMatricula");
-        Matricula matricula = matriculaRepository.matriculaAtravesId(idMatricula);
+        Matricula matricula = matriculaRepository.getOneMatricula(idMatricula);
         List<Agenda> agendas = agendaRepository.getAgendaByIdMatricula(matricula);
         log.info("[finaliza] - AgendaApplicationService - getByIdMatricula");
         return AgendaListResponse.converte(agendas);
