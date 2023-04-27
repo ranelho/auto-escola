@@ -1,5 +1,6 @@
 package com.rlti.autoescola.cliente.application.api;
 
+import com.rlti.autoescola.cliente.annotation.Adult;
 import com.rlti.autoescola.cliente.domain.enums.EstadoCivil;
 import com.rlti.autoescola.cliente.domain.groups.PessoaFisica;
 import lombok.Value;
@@ -18,6 +19,7 @@ public class ClienteRequest {
     private String cpf;
     @NotNull(message = "Campo Obrigatório!")
     private String fullName;
+    @Adult
     private LocalDate dataNascimento;
     private String naturalidade;
     private String nacionalidade;
