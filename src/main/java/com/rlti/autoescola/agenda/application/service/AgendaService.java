@@ -14,4 +14,5 @@ public interface AgendaService {
     AgendaResponse getByIdAgenda(Long idAgenda);
     List<AgendaListResponse> getByIdInstrutor(UUID idInstrutor);
     List<AgendaListResponse> getByIdMatricula(UUID idMatricula);
+    List<AgendaListResponse> getByPlaca(String placa);
 }

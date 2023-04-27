@@ -14,7 +14,7 @@ public class AgendaRestController implements AgendaAPI {
     private final AgendaService agendaService;
 
     @Override
-    public AgendaIdResponse post(AgendaRequest agendaRequest) {
+    public AgendaIdResponse saveLaudo(AgendaRequest agendaRequest) {
         log.info("[inicia] - AgendaRestController - post");
         AgendaIdResponse agendaResponse = agendaService.post(agendaRequest);
         log.info("[finaliza] - AgendaRestController - post");
@@ -23,33 +23,41 @@ public class AgendaRestController implements AgendaAPI {
 
     @Override
     public List<AgendaListResponse> getAll() {
-        log.info("[inicia] AgendaRestController - findByIdMatricula");
+        log.info("[inicia] AgendaRestController - getAll");
         List<AgendaListResponse> agendas = agendaService.buscaAgendamentos();
-        log.info("[inicia] AgendaRestController - findByIdMatricula");
+        log.info("[inicia] AgendaRestController - getAll");
         return agendas;
     }
 
     @Override
-    public AgendaResponse getByIdAgenda(Long idAgenda) {
-        log.info("[inicia] - AgendaRestController - findByIdAgenda");
+    public AgendaResponse getOneAgenda(Long idAgenda) {
+        log.info("[inicia] - AgendaRestController - getOneAgenda");
         AgendaResponse buscaAgenda = agendaService.getByIdAgenda(idAgenda);
-        log.info("[finaliza] - AgendaRestController - findByIdAgenda");
+        log.info("[finaliza] - AgendaRestController - getOneAgenda");
         return buscaAgenda;
     }
 
     @Override
-    public List<AgendaListResponse> getByIdInstrutor(UUID idInstrutor) {
-        log.info("[inicia] - AgendaRestController - getByIdInstrutor");
+    public List<AgendaListResponse> getAllAgendaByInstrutor(UUID idInstrutor) {
+        log.info("[inicia] - AgendaRestController - getAllAgendaByInstrutor");
         List<AgendaListResponse> buscaAgendaInstrutor = agendaService.getByIdInstrutor(idInstrutor);
-        log.info("[finaliza] - AgendaRestController - getByIdInstrutor");
+        log.info("[finaliza] - AgendaRestController - getAllAgendaByInstrutor");
         return buscaAgendaInstrutor;
     }
 
     @Override
-    public List<AgendaListResponse> getByIdMatricula(UUID idMatricula) {
-        log.info("[inicia] - AgendaRestController - getByIdMatricula");
+    public List<AgendaListResponse> getAllAgendaByMatricula(UUID idMatricula) {
+        log.info("[inicia] - AgendaRestController - getAllAgendaByMatricula");
         List<AgendaListResponse> buscaAgendaMatricula = agendaService.getByIdMatricula(idMatricula);
-        log.info("[finaliza] - AgendaRestController - getByIdMatricula");
+        log.info("[finaliza] - AgendaRestController - getAllAgendaByMatricula");
         return buscaAgendaMatricula;
+    }
+
+    @Override
+    public List<AgendaListResponse> getAllAgendaByVeiculo(String placa) {
+        log.info("[inicia] - AgendaRestController - getAllAgendaByVeiculo");
+        List<AgendaListResponse> buscaAgendaVeiculo = agendaService.getByPlaca(placa);
+        log.info("[finaliza] - AgendaRestController - getAllAgendaByVeiculo");
+        return buscaAgendaVeiculo;
     }
 }

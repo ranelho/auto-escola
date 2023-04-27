@@ -72,4 +72,13 @@ public class AgendaApplicationService implements AgendaService {
         return AgendaListResponse.converte(agendas);
     }
 
+    @Override
+    public List<AgendaListResponse> getByPlaca(String placa) {
+        log.info("[inicia] - AgendaApplicationService - getByPlaca");
+        Veiculo veiculo = veiculoRepository.getByPlaca(placa);
+        List<Agenda> agendas = agendaRepository.getAgendaByPlaca(veiculo);
+        log.info("[finaliza] - AgendaApplicationService - getByPlaca");
+        return AgendaListResponse.converte(agendas);
+    }
+
 }

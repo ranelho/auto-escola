@@ -12,7 +12,7 @@ public interface AgendaAPI{
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    AgendaIdResponse post(@Valid @RequestBody AgendaRequest agendaRequest);
+    AgendaIdResponse saveLaudo(@Valid @RequestBody AgendaRequest agendaRequest);
 
     @GetMapping("/all")
     @ResponseStatus(code = HttpStatus.OK)
@@ -20,13 +20,17 @@ public interface AgendaAPI{
 
     @GetMapping("{idAgenda}")
     @ResponseStatus(code = HttpStatus.OK)
-    AgendaResponse getByIdAgenda(@PathVariable Long idAgenda);
+    AgendaResponse getOneAgenda(@PathVariable Long idAgenda);
 
     @GetMapping("/instrutor/{idInstrutor}")
     @ResponseStatus(code = HttpStatus.OK)
-    List<AgendaListResponse> getByIdInstrutor(@PathVariable UUID idInstrutor);
+    List<AgendaListResponse> getAllAgendaByInstrutor(@PathVariable UUID idInstrutor);
 
     @GetMapping("/matricula/{idMatricula}")
     @ResponseStatus(code = HttpStatus.OK)
-    List<AgendaListResponse> getByIdMatricula(@PathVariable UUID idMatricula);
+    List<AgendaListResponse> getAllAgendaByMatricula(@PathVariable UUID idMatricula);
+
+    @GetMapping("/veiculo/{placa}")
+    @ResponseStatus(code = HttpStatus.OK)
+    List<AgendaListResponse> getAllAgendaByVeiculo(@PathVariable String placa);
 }
