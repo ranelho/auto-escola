@@ -60,4 +60,11 @@ public class AgendaRestController implements AgendaAPI {
         log.info("[finaliza] - AgendaRestController - getAllAgendaByVeiculo");
         return buscaAgendaVeiculo;
     }
+
+    @Override
+    public void deleteAgenda(Long idAgenda) {
+        log.info("[inicia] - AgendaRestController - deleteAgenda");
+        agendaService.deleteAgenda(idAgenda);
+        log.info("[finaliza - AgendaRestController - deleteAgenda");
+    }
 }

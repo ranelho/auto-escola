@@ -33,4 +33,8 @@ public interface AgendaAPI{
     @GetMapping("/veiculo/{placa}")
     @ResponseStatus(code = HttpStatus.OK)
     List<AgendaListResponse> getAllAgendaByVeiculo(@PathVariable String placa);
+
+    @DeleteMapping(value = "/{idAgenda}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void deleteAgenda(@PathVariable Long idAgenda);
 }

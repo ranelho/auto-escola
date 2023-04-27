@@ -10,6 +10,7 @@ import com.rlti.autoescola.frota.veiculo.application.repository.VeiculoRepositor
 import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 import com.rlti.autoescola.instrutor.application.repository.InstrutorRepository;
 import com.rlti.autoescola.instrutor.domain.Instrutor;
+import com.rlti.autoescola.laudo.domain.Laudo;
 import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import lombok.RequiredArgsConstructor;
@@ -79,6 +80,14 @@ public class AgendaApplicationService implements AgendaService {
         List<Agenda> agendas = agendaRepository.getAgendaByPlaca(veiculo);
         log.info("[finaliza] - AgendaApplicationService - getByPlaca");
         return AgendaListResponse.converte(agendas);
+    }
+
+    @Override
+    public void deleteAgenda(Long idAgenda) {
+        log.info("[inicia] AgendaApplicationService -  deleteAgenda");
+        Agenda agenda = agendaRepository.getByIdAgenda(idAgenda);
+        agendaRepository.deleteAgenda(agenda.getIdAgenda());
+        log.info("[finaliza] AgendaApplicationService -  deleteAgenda");
     }
 
 }

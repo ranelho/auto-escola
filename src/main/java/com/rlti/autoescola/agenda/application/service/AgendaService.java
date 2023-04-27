@@ -15,4 +15,5 @@ public interface AgendaService {
     List<AgendaListResponse> getByIdInstrutor(UUID idInstrutor);
     List<AgendaListResponse> getByIdMatricula(UUID idMatricula);
     List<AgendaListResponse> getByPlaca(String placa);
+    void deleteAgenda(Long idAgenda);
 }

@@ -15,4 +15,5 @@ public interface AgendaRepository {
     List<Agenda> getAgendaByIdInstrutor(Instrutor instrutor);
     List<Agenda> getAgendaByIdMatricula(Matricula matricula);
     List<Agenda> getAgendaByPlaca(Veiculo veiculo);
+    void deleteAgenda(Long idAgenda);
 }
