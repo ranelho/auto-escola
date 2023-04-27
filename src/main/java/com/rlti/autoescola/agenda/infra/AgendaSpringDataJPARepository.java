@@ -5,7 +5,6 @@ import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 import com.rlti.autoescola.instrutor.domain.Instrutor;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.List;
 import java.util.Optional;
 

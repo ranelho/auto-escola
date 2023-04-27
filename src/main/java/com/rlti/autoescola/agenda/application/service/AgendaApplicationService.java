@@ -10,13 +10,11 @@ import com.rlti.autoescola.frota.veiculo.application.repository.VeiculoRepositor
 import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 import com.rlti.autoescola.instrutor.application.repository.InstrutorRepository;
 import com.rlti.autoescola.instrutor.domain.Instrutor;
-import com.rlti.autoescola.laudo.domain.Laudo;
 import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -89,5 +87,4 @@ public class AgendaApplicationService implements AgendaService {
         agendaRepository.deleteAgenda(agenda.getIdAgenda());
         log.info("[finaliza] AgendaApplicationService -  deleteAgenda");
     }
-
 }

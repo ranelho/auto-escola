@@ -4,9 +4,7 @@ import com.rlti.autoescola.agenda.domain.Agenda;
 import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 import com.rlti.autoescola.instrutor.domain.Instrutor;
 import com.rlti.autoescola.matricula.domain.Matricula;
-
 import java.util.List;
-import java.util.UUID;
 
 public interface AgendaRepository {
     Agenda save(Agenda agenda);
