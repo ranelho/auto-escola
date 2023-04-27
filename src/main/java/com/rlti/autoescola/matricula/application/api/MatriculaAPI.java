@@ -5,6 +5,7 @@ import com.rlti.autoescola.matricula.application.api.request.MatriculaRequest;
 import com.rlti.autoescola.matricula.application.api.response.MatriculaDetalhadoResponse;
 import com.rlti.autoescola.matricula.application.api.response.MatriculaIdResponse;
 import com.rlti.autoescola.matricula.application.api.response.MatriculaListResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
+@Tag(name = "Matricula", description = "Matricula APIs")
 @RequestMapping("/v1/matricula")
 public interface MatriculaAPI {
 

@@ -1,5 +1,6 @@
 package com.rlti.autoescola.fluxo.application.api;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
+@Tag(name = "Fluxo de Caixa", description = "Fluxo de Caixa APIs")
 @RequestMapping("/v1/fluxo-de-caixa")
 public interface FluxoApi {
 

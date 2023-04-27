@@ -3,14 +3,15 @@ package com.rlti.autoescola.exame.application.service;
 import com.rlti.autoescola.exame.application.api.ExameIdResponse;
 import com.rlti.autoescola.exame.application.api.ExameRequest;
 import com.rlti.autoescola.exame.application.api.ExameResponse;
+import com.rlti.autoescola.exame.domain.Resultado;
 
 import java.util.List;
 import java.util.UUID;
 
 public interface ExameService {
-    ExameIdResponse saveExame(UUID idCliente, ExameRequest request);
+    ExameIdResponse saveExame(UUID idMatricula, ExameRequest request);
     ExameResponse getOneExame(Long idExame);
-    List<ExameResponse> getAllExames(UUID idCliente);
+    List<ExameResponse> getAllExames(UUID idMatricula);
     void deleteExame(Long idExame);
-    void updateExame(Long idExame, ExameRequest request);
+    void updateExame(Long idExame, Resultado request);
 }
