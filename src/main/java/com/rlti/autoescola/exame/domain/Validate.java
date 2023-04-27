@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
+import static com.rlti.autoescola.exame.domain.Resultado.*;
 import static com.rlti.autoescola.exame.domain.TipoExame.*;
 
 public class Validate {
@@ -15,29 +16,29 @@ public class Validate {
                     .build(HttpStatus.BAD_REQUEST,"O primeiro exame deve ser do tipo CLINICO");
         }
         for (Exame exame : exames) {
-            if (exame.getTipoExame() == CLINICO && exame.getResultado() == Resultado.INAPTO
+            if (exame.getTipoExame() == CLINICO && exame.getResultado() == INAPTO
                     && request.getTipoExame() == CLINICO) {
                 continue;
             }
-            if (request.getTipoExame() == CLINICO && exame.getResultado() == Resultado.APTO) {
+            if (request.getTipoExame() == CLINICO && exame.getResultado() == APTO) {
                 throw APIException
                         .build(HttpStatus.BAD_REQUEST,"Não é permitido cadastrar outro exame CLINICO");
             }
-            if ((request.getTipoExame() == TEORICO && exame.getTipoExame() == CLINICO && exame.getResultado() == Resultado.APTO) ||
-                    (request.getTipoExame() == TEORICO && exame.getTipoExame() == TEORICO && exame.getResultado() == Resultado.INAPTO)) {
+            if ((request.getTipoExame() == TEORICO && exame.getTipoExame() == CLINICO && exame.getResultado() == APTO) ||
+                    (request.getTipoExame() == TEORICO && exame.getTipoExame() == TEORICO && exame.getResultado() == INAPTO)) {
                 continue;
             }
-            if ((request.getTipoExame() == TEORICO && exame.getResultado() == Resultado.APTO) ||
-                    (request.getTipoExame() == TEORICO && exame.getResultado() == Resultado.A_FAZER)){
+            if ((request.getTipoExame() == TEORICO && exame.getResultado() == APTO) ||
+                    (request.getTipoExame() == TEORICO && exame.getResultado() == A_FAZER)){
                 throw APIException
                         .build(HttpStatus.BAD_REQUEST,"Não é permitido cadastrar outro exame TEORICO");
             }
-            if ((request.getTipoExame() == PRATICO && exame.getTipoExame() == TEORICO && exame.getResultado() == Resultado.APTO) ||
-                    ((request.getTipoExame() == PRATICO && exame.getTipoExame() == PRATICO && exame.getResultado() == Resultado.INAPTO)) ){
+            if ((request.getTipoExame() == PRATICO && exame.getTipoExame() == TEORICO && exame.getResultado() == APTO) ||
+                    ((request.getTipoExame() == PRATICO && exame.getTipoExame() == PRATICO && exame.getResultado() == INAPTO)) ){
                 continue;
             }
-            if ((request.getTipoExame() == PRATICO && exame.getTipoExame() == PRATICO && exame.getResultado() == Resultado.APTO) ||
-                    (request.getTipoExame() == PRATICO && exame.getTipoExame() == PRATICO && exame.getResultado() == Resultado.A_FAZER)){
+            if ((request.getTipoExame() == PRATICO && exame.getTipoExame() == PRATICO && exame.getResultado() == APTO) ||
+                    (request.getTipoExame() == PRATICO && exame.getTipoExame() == PRATICO && exame.getResultado() == A_FAZER)){
                 throw APIException
                         .build(HttpStatus.BAD_REQUEST,"Não é permitido cadastrar outro exame PRATICO");
             }
