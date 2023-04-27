@@ -44,4 +44,8 @@ public class Exame {
         this.resultado = request.getResultado();
         this.observacao = request.getObservacao();
     }
+
+    // TODO -> mudar Cliente para Matricula,
+    // TODO -> validar tipo de exame na sequencia, CLINICO, TEORICO, PRATICO. cada matricula tem que ter esse processo,
+    //  caso reprovado tem que refazer, entao é preciso estar aprovado    para ir para o proximo estagio.
 }
