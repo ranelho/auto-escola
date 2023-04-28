@@ -10,9 +10,15 @@ import static com.rlti.autoescola.exame.domain.TipoExame.*;
 import static com.rlti.autoescola.handler.APIException.build;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
-
+/**
+ * @author Ranelho Lacerda
+ */
 public class Validate {
-    /*
+    /**
+     * Metodo para Validar Exame
+     * @param exames recebe uma lista com os exames cadastrados
+     * @param request recebe as informações vindo do usuario
+     * -----------------NORMAS---------------
      * 1 - O PRIMEIRO EXAME DEVE SER CLINICO
      * 2 - POSSO TER VARIOS EXAMES DO TIPO CLINICO, POREM TODOS TEM QUE SER INAPTO
      * 3 - SO PODE TER UM EXAME DO TIPO CLINICO COMO APTO OU A_FAZER
@@ -20,10 +26,9 @@ public class Validate {
      * 5 - POSSO TER VARIOS EXAMES DO TIPO TEORICO, POREM TEM QUE SER INAPTO
      * 6 - SO PODE TER UM EXAME DO TIPO TEORICO APTO OU A_FAZER
      * 7 - PARA UM EXAME DO TIPO PRATICO OS EXAMES CLINICO E TEORICO DEVEM SER APTO
-     * 8 - POSSO TER VARIOS EXAMES DO TIPO PRATICO POREM TEM QUE SER INAPTO
-     * 9 - SO PODE TER UM EXAME DO TIPO PRATICO APTO OU A_FAZER
-     * */
-
+     *  8 - POSSO TER VARIOS EXAMES DO TIPO PRATICO POREM TEM QUE SER INAPTO
+     *  9 - SO PODE TER UM EXAME DO TIPO PRATICO APTO OU A_FAZER
+     */
     public static void validaExame(List<Exame> exames, ExameRequest request) {
         if (exames.isEmpty() && request.getTipoExame() != CLINICO) {
             throw build(BAD_REQUEST, "O primeiro exame deve ser do tipo CLINICO");
