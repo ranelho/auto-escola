@@ -24,12 +24,28 @@ public class Validate {
      * 9 - SO PODE TER UM EXAME DO TIPO PRATICO APTO OU A_FAZER
      * */
 
-    public static void validaExame(List<Exame> exames, ExameRequest request){
+    public static void validaExame(List<Exame> exames, ExameRequest request) {
         if (exames.isEmpty() && request.getTipoExame() != CLINICO) {
             throw build(BAD_REQUEST, "O primeiro exame deve ser do tipo CLINICO");
         }
-        for (Exame exame : exames) {
-            if (request.getTipoExame().equals(CLINICO)) {
+
+        // Verifica se o primeiro exame é CLINICO e está APTO ou A_FAZER antes de permitir cadastrar um exame TEORICO
+        if (request.getTipoExame().equals(TEORICO)) {
+            boolean hasClinicoApto = false;
+            for (Exame exame : exames) {
+                if (exame.getTipoExame() == CLINICO && exame.getResultado() == APTO) {
+                    hasClinicoApto = true;
+                    break;
+                }
+            }
+            if (!hasClinicoApto) {
+                throw build(BAD_REQUEST, "Para cadastrar um exame TEORICO, o exame CLINICO deve estar APTO");
+            }
+        }
+
+        // Verifica se já existe um exame CLINICO APTO ou A_FAZER antes de permitir cadastrar outro exame CLINICO
+        if (request.getTipoExame().equals(CLINICO)) {
+            for (Exame exame : exames) {
                 if (exame.getTipoExame() == CLINICO) {
                     if (exame.getResultado() != INAPTO) {
                         throw build(BAD_REQUEST, "Não é permitido cadastrar outro exame CLINICO");
@@ -38,7 +54,11 @@ public class Validate {
                     }
                 }
             }
-            if (request.getTipoExame().equals(TEORICO)) {
+        }
+
+        // Verifica se já existe um exame TEORICO APTO ou A_FAZER antes de permitir cadastrar outro exame TEORICO
+        if (request.getTipoExame().equals(TEORICO)) {
+            for (Exame exame : exames) {
                 if (exame.getTipoExame() == TEORICO) {
                     if (exame.getResultado() != INAPTO) {
                         throw build(BAD_REQUEST, "Não é permitido cadastrar outro exame TEORICO");
@@ -47,7 +67,11 @@ public class Validate {
                     }
                 }
             }
-            if (request.getTipoExame().equals(PRATICO)) {
+        }
+
+        // Verifica se já existe um exame PRATICO APTO ou A_FAZER antes de permitir cadastrar outro exame PRATICO
+        if (request.getTipoExame().equals(PRATICO)) {
+            for (Exame exame : exames) {
                 if (exame.getTipoExame() == PRATICO) {
                     if (exame.getResultado() != INAPTO) {
                         throw build(BAD_REQUEST, "Não é permitido cadastrar outro exame PRATICO");
@@ -57,6 +81,22 @@ public class Validate {
                 }
             }
         }
+
+        // Verifica se existe um exame CLINICO e um exame TEORICO APTO antes de permitir cadastrar um exame PRATICO
+        if (request.getTipoExame().equals(PRATICO)) {
+            boolean hasClinicoApto = false;
+            boolean hasTeoricoApto = false;
+            for (Exame exame : exames) {
+                if (exame.getTipoExame() == CLINICO && exame.getResultado() == APTO) {
+                    hasClinicoApto = true;
+                }
+                if (exame.getTipoExame() == TEORICO && exame.getResultado() == APTO) {
+                    hasTeoricoApto = true;
+                }
+            }
+            if (!hasClinicoApto || !hasTeoricoApto) {
+                throw build(BAD_REQUEST, "Para cadastrar um exame PRATICO, os exames CLINICO e TEORICO devem estar APTOS");
+            }
+        }
     }
 }
-
