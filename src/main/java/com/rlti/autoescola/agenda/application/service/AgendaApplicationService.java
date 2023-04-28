@@ -18,6 +18,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 
+import static com.rlti.autoescola.agenda.annotation.constraints.Valid.validaSolicitacao;
+
 @Service
 @RequiredArgsConstructor
 @Log4j2
@@ -31,6 +33,7 @@ public class AgendaApplicationService implements AgendaService {
     public AgendaIdResponse post(AgendaRequest agendaRequest) {
         log.info("[inicia] - AgendaApplicationService - post");
         Instrutor instrutor = instrutorRepository.getInstrutor(agendaRequest.getIdInstrutor());
+        validaSolicitacao(agendaRequest, instrutor, agendaRepository);
         Matricula matricula = matriculaRepository.getOneMatricula(agendaRequest.getIdMatricula());
         Veiculo veiculo = veiculoRepository.getByPlaca(agendaRequest.getPlaca());
         Agenda agenda = agendaRepository.save(new Agenda(instrutor, matricula, veiculo, agendaRequest));
