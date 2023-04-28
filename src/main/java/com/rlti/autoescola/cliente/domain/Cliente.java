@@ -56,9 +56,6 @@ public class Cliente {
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
     @JsonIgnore
     List<Matricula> matriculas;
-    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
-    @JsonIgnore
-    List<Exame> exames;
     @OneToOne(mappedBy = "cliente")
     @JsonIgnore
     Imagem imagem;

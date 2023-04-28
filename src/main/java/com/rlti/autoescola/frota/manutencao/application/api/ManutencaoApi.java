@@ -1,11 +1,13 @@
 package com.rlti.autoescola.frota.manutencao.application.api;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 import java.util.List;
 
+@Tag(name = "Manutencao", description = "Manutencao APIs")
 @RequestMapping("/v1/manutencao")
 public interface ManutencaoApi {
 
