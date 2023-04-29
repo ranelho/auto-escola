@@ -61,7 +61,6 @@ public class ExameApplicationService implements ExameService {
 
     @Override
     public void updateExame(Long idExame, Resultado request) {
-        //TODO ->
         log.info("[inicia] ExameApplicationService - updateExame");
         Exame exame = exameRepository.getOneExame(idExame);
         exame.altera(request);

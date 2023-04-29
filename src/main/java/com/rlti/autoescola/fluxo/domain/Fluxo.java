@@ -3,10 +3,8 @@ package com.rlti.autoescola.fluxo.domain;
 import com.rlti.autoescola.fluxo.application.api.ManutencaoFluxoResponse;
 import com.rlti.autoescola.fluxo.application.api.PagamentoFluxoResponse;
 import com.rlti.autoescola.fluxo.application.api.ReceitaPagamentoResponse;
-import com.rlti.autoescola.frota.manutencao.application.api.ManutencaoResponse;
 import com.rlti.autoescola.frota.manutencao.domain.Manutencao;
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
-import com.rlti.autoescola.pagamento.appiclation.api.PagamentoResponse;
 import com.rlti.autoescola.pagamento.domain.Pagamento;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,11 +25,11 @@ public class Fluxo {
     List<ManutencaoFluxoResponse> manutencoes;
     List<ReceitaPagamentoResponse> receitaPagamentoResponseList;
 
-    public Fluxo(List<Pagamento> pagamentos, List<Manutencao> manutencaos) {
+    public Fluxo(List<Pagamento> pagamentos, List<Manutencao> manutencoes) {
         this.pagamentos = PagamentoFluxoResponse.convert(pagamentos);
-        this.manutencoes = ManutencaoFluxoResponse.convert(manutencaos);
+        this.manutencoes = ManutencaoFluxoResponse.convert(manutencoes);
         this.valorTotalReceitas = somaReceita(pagamentos);
-        this.valorTotalDespesas = somaDespesa(manutencaos);
+        this.valorTotalDespesas = somaDespesa(manutencoes);
         this.saldoGeral = valorTotalReceitas.subtract(valorTotalDespesas);
     }
 
@@ -40,17 +38,17 @@ public class Fluxo {
         this.valorTotalReceitas = somaReceita(pagamentos);
     }
 
-    public Fluxo(List<Pagamento> pagamentos, List<Manutencao> manutencaos, List<ReceitaPagamentoResponse> receitaPagamentoResponseList) {
+    public Fluxo(List<Pagamento> pagamentos, List<Manutencao> manutencoes, List<ReceitaPagamentoResponse> receitaPagamentoResponseList) {
         this.pagamentos = PagamentoFluxoResponse.convert(pagamentos);
-        this.manutencoes = ManutencaoFluxoResponse.convert(manutencaos);
+        this.manutencoes = ManutencaoFluxoResponse.convert(manutencoes);
         this.valorTotalReceitas = somaReceita(pagamentos);
-        this.valorTotalDespesas = somaDespesa(manutencaos);
+        this.valorTotalDespesas = somaDespesa(manutencoes);
         this.saldoGeral = valorTotalReceitas.subtract(valorTotalDespesas);
         this.receitaPagamentoResponseList = receitaPagamentoResponseList;
     }
 
-    private BigDecimal somaDespesa(List<Manutencao> manutencaos) {
-        return manutencaos
+    private BigDecimal somaDespesa(List<Manutencao> manutencoes) {
+        return manutencoes
                 .stream()
                 .map(Manutencao::getValorManutencao)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
