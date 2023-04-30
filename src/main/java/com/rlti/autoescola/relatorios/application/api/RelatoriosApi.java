@@ -1,6 +1,7 @@
 package com.rlti.autoescola.relatorios.application.api;
 
 import com.rlti.autoescola.relatorios.application.api.respose.RelatorioClientesResponse;
+import com.rlti.autoescola.relatorios.application.api.respose.RelatorioInstrutorResponse;
 import com.rlti.autoescola.relatorios.application.api.respose.RelatorioMatriculasAtivasResponse;
 import com.rlti.autoescola.relatorios.application.api.respose.RelatorioVeiculosResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -14,6 +15,7 @@ import java.util.List;
 @Tag(name = "Relatórios", description = "Relatórios APIs")
 @RequestMapping("/v1/relatorios")
 public interface RelatoriosApi {
+
     //TODO -> Relatório de Intrutor, aulas, uso de veiculos.
     //TODO -> Relatório Mensal Financeiro.
 
@@ -28,4 +30,8 @@ public interface RelatoriosApi {
     @GetMapping("/veiculos")
     @ResponseStatus(code = HttpStatus.OK)
     List<RelatorioVeiculosResponse> getAllVeiculos();
+
+    @GetMapping("instrutor")
+    @ResponseStatus(code = HttpStatus.OK)
+    List<RelatorioInstrutorResponse> getAllInstrutor();
 }
