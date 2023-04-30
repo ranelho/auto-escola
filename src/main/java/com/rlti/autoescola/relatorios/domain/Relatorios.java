@@ -1,7 +1,7 @@
 package com.rlti.autoescola.relatorios.domain;
 
-import com.rlti.autoescola.relatorios.application.api.ClienteResponseRelatorio;
-import com.rlti.autoescola.relatorios.application.api.MatriculaResponseRelatorio;
+import com.rlti.autoescola.cliente.domain.Cliente;
+import com.rlti.autoescola.matricula.domain.Matricula;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +12,10 @@ import java.util.List;
 @NoArgsConstructor
 public class Relatorios {
     LocalDate data;
-    List<ClienteResponseRelatorio> clientes;
-    List<MatriculaResponseRelatorio> matriculas;
+    List<Cliente> clientes;
+    List<Matricula> matriculas;
+
+    public Relatorios(List<Cliente> clientes) {
+        this.clientes = clientes;
+    }
 }

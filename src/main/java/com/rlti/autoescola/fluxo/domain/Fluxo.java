@@ -38,13 +38,13 @@ public class Fluxo {
         this.valorTotalReceitas = somaReceita(pagamentos);
     }
 
-    public Fluxo(List<Pagamento> pagamentos, List<Manutencao> manutencoes, List<ReceitaPagamentoResponse> receitaPagamentoResponseList) {
+    public Fluxo(List<Pagamento> pagamentos, List<Manutencao> manutencoes, List<ReceitaPagamentoResponse> receitas) {
         this.pagamentos = PagamentoFluxoResponse.convert(pagamentos);
         this.manutencoes = ManutencaoFluxoResponse.convert(manutencoes);
         this.valorTotalReceitas = somaReceita(pagamentos);
         this.valorTotalDespesas = somaDespesa(manutencoes);
         this.saldoGeral = valorTotalReceitas.subtract(valorTotalDespesas);
-        this.receitaPagamentoResponseList = receitaPagamentoResponseList;
+        this.receitaPagamentoResponseList = receitas;
     }
 
     private BigDecimal somaDespesa(List<Manutencao> manutencoes) {
