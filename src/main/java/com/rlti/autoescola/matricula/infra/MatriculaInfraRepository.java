@@ -3,6 +3,7 @@ package com.rlti.autoescola.matricula.infra;
 import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
 import com.rlti.autoescola.matricula.domain.Matricula;
+import com.rlti.autoescola.matricula.domain.Status;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -49,5 +50,13 @@ public class MatriculaInfraRepository implements MatriculaRepository {
         log.info("[inicia] MatriculaInfraRepository - deleteMatricula");
         matriculaSpringDataJPARepository.delete(matricula);
         log.info("[finaliza] MatriculaInfraRepository - deleteMatricula");
+    }
+
+    @Override
+    public List<Matricula> getAllMatriculasAtivas() {
+        log.info("[inicia] MatriculaInfraRepository - getAllMatriculasAtivas");
+        List<Matricula> matriculas = matriculaSpringDataJPARepository.findAllMatriculaByStatus(Status.ATIVA);
+        log.info("[finaliza] MatriculaInfraRepository - getAllMatriculasAtivas");
+        return matriculas;
     }
 }

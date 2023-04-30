@@ -2,7 +2,10 @@ package com.rlti.autoescola.relatorios.application.service;
 
 import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.cliente.domain.Cliente;
+import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
+import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.relatorios.application.api.RelatorioClientesResponse;
+import com.rlti.autoescola.relatorios.application.api.RelatorioMatriculasAtivasResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -14,6 +17,7 @@ import java.util.List;
 @Log4j2
 public class RelatoriosApplicationService implements RelatoriosService {
     private final ClienteRepository clienteRepository;
+    private final MatriculaRepository matriculaRepository;
 
     @Override
     public List<RelatorioClientesResponse> getAllClientes() {
@@ -21,5 +25,13 @@ public class RelatoriosApplicationService implements RelatoriosService {
         List<Cliente> clientes = clienteRepository.getAllClientes();
         log.info("[Finaliza] RelatoriosApplicationService - getAllClientes");
         return RelatorioClientesResponse.convert(clientes);
+    }
+
+    @Override
+    public List<RelatorioMatriculasAtivasResponse> getAllMatriculasAtivas() {
+        log.info("[inicia] RelatoriosApplicationService - getAllMatriculasAtivas");
+        List<Matricula> matriculas = matriculaRepository.getAllMatriculasAtivas();
+        log.info("[Finaliza] RelatoriosApplicationService - getAllMatriculasAtivas");
+        return RelatorioMatriculasAtivasResponse.convert(matriculas);
     }
 }

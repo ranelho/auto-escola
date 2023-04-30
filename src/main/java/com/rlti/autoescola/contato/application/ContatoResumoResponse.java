@@ -15,8 +15,10 @@ public class ContatoResumoResponse {
     public ContatoResumoResponse(Contato contato) {
         this.telefone = contato.getTelefone();
         this.email = contato.getEmail();
-        this.endereco = "CEP: " + contato.getCep() + ", ENDEREÇO: " + contato.getEndereco() +", CIDADE: " + contato.getCidade() + " - "
-                + contato.getUf();
+        this.endereco =
+                "CEP: " + contato.getCep() +
+                ", ENDEREÇO: " + contato.getEndereco() +
+                ", CIDADE: "   + contato.getCidade() + " - " + contato.getUf();
     }
     public static List<ContatoResumoResponse> converte(List<Contato> contatos) {
         return contatos.stream()

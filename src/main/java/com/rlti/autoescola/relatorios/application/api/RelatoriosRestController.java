@@ -20,4 +20,12 @@ public class RelatoriosRestController implements RelatoriosApi {
         log.info("[finaliza] - RelatoriosRestController - getAllClientes");
         return response;
     }
+
+    @Override
+    public List<RelatorioMatriculasAtivasResponse> getAllMatriculasAtivas() {
+        log.info("[inicia] - RelatoriosRestController - getAllMatriculasAtivas");
+        List<RelatorioMatriculasAtivasResponse> response = relatoriosService.getAllMatriculasAtivas();
+        log.info("[finaliza] - RelatoriosRestController - getAllMatriculasAtivas");
+        return response;
+    }
 }
