@@ -1,4 +1,4 @@
-package com.rlti.autoescola.relatorios.application.api;
+package com.rlti.autoescola.relatorios.application.api.respose;
 
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.matricula.domain.TipoPagamento;

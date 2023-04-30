@@ -1,4 +1,4 @@
-package com.rlti.autoescola.relatorios.application.api;
+package com.rlti.autoescola.relatorios.application.api.respose;
 
 import com.rlti.autoescola.exame.application.api.ExameResumoResponse;
 import com.rlti.autoescola.laudo.application.api.LaudoResumoResponse;

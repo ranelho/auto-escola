@@ -1,14 +1,13 @@
 package com.rlti.autoescola.frota.manutencao.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.rlti.autoescola.frota.manutencao.domain.TipoManutencao;
 import com.rlti.autoescola.frota.manutencao.application.api.ManutencaoRequest;
 import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -26,6 +25,7 @@ public class Manutencao {
     private BigDecimal valorManutencao;
     @Enumerated(EnumType.STRING)
     private TipoManutencao tipoManutencao;
+    private String descricao;
 
     @ManyToOne
     @JoinColumn(name = "veiculo_id")
@@ -36,6 +36,7 @@ public class Manutencao {
         this.dataManutencao = request.getDataManutencao();
         this.valorManutencao = request.getValorManutencao();
         this.tipoManutencao = request.getTipoManutencao();
+        this.descricao = request.getDescricao();
         this.veiculo = veiculo;
     }
 
@@ -43,6 +44,7 @@ public class Manutencao {
         this.dataManutencao = request.getDataManutencao();
         this.valorManutencao = request.getValorManutencao();
         this.tipoManutencao = request.getTipoManutencao();
+        this.descricao = request.getDescricao();
     }
 
 

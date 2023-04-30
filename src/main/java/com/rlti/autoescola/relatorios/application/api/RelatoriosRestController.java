@@ -1,5 +1,8 @@
 package com.rlti.autoescola.relatorios.application.api;
 
+import com.rlti.autoescola.relatorios.application.api.respose.RelatorioClientesResponse;
+import com.rlti.autoescola.relatorios.application.api.respose.RelatorioMatriculasAtivasResponse;
+import com.rlti.autoescola.relatorios.application.api.respose.RelatorioVeiculosResponse;
 import com.rlti.autoescola.relatorios.application.service.RelatoriosService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -26,6 +29,14 @@ public class RelatoriosRestController implements RelatoriosApi {
         log.info("[inicia] - RelatoriosRestController - getAllMatriculasAtivas");
         List<RelatorioMatriculasAtivasResponse> response = relatoriosService.getAllMatriculasAtivas();
         log.info("[finaliza] - RelatoriosRestController - getAllMatriculasAtivas");
+        return response;
+    }
+
+    @Override
+    public List<RelatorioVeiculosResponse> getAllVeiculos() {
+        log.info("[inicia] - RelatoriosRestController - getAllVeiculos");
+        List<RelatorioVeiculosResponse> response = relatoriosService.getAllVeiculos();
+        log.info("[finaliza] - RelatoriosRestController - getAllVeiculos");
         return response;
     }
 }

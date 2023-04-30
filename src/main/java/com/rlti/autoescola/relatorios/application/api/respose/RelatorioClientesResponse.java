@@ -1,4 +1,4 @@
-package com.rlti.autoescola.relatorios.application.api;
+package com.rlti.autoescola.relatorios.application.api.respose;
 
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.cliente.domain.enums.EstadoCivil;

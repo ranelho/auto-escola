@@ -16,6 +16,7 @@ public class ManutencaoResponse {
     LocalDate dataManutencao;
     BigDecimal valorManutencao;
     TipoManutencao tipoManutencao;
+    String descricao;
 
     public ManutencaoResponse(Manutencao manutencao) {
         this.idManutencao = manutencao.getIdManutencao();
@@ -23,6 +24,7 @@ public class ManutencaoResponse {
         this.dataManutencao = manutencao.getDataManutencao();
         this.valorManutencao = manutencao.getValorManutencao();
         this.tipoManutencao = manutencao.getTipoManutencao();
+        this.descricao = manutencao.getDescricao();
     }
 
     public static List<ManutencaoResponse> convert(List<Manutencao> manutencao) {

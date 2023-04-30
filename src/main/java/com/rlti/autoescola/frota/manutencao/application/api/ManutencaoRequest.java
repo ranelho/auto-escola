@@ -15,4 +15,5 @@ public class ManutencaoRequest {
     BigDecimal valorManutencao;
     @NotNull
     TipoManutencao tipoManutencao;
+    String descricao;
 }
