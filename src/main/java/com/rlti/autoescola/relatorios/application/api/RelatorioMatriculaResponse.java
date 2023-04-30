@@ -1,10 +1,10 @@
 package com.rlti.autoescola.relatorios.application.api;
 
-import com.rlti.autoescola.exame.domain.Exame;
-import com.rlti.autoescola.laudo.domain.Laudo;
+import com.rlti.autoescola.exame.application.api.ExameResumoResponse;
+import com.rlti.autoescola.laudo.application.api.LaudoResumoResponse;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
-import com.rlti.autoescola.pagamento.domain.Pagamento;
+import com.rlti.autoescola.pagamento.appiclation.api.PagamentoResumoResponse;
 import lombok.Value;
 
 import java.math.BigDecimal;
@@ -22,9 +22,9 @@ public class RelatorioMatriculaResponse {
     LocalDate dataMatricula;
     String observacao;
     String status;
-    List<Exame> exames;
-    List<Laudo> laudos;
-    List<Pagamento> pagamentos;
+    List<ExameResumoResponse> exames;
+    List<LaudoResumoResponse> laudos;
+    List<PagamentoResumoResponse> pagamentos;
 
     public RelatorioMatriculaResponse(Matricula matricula) {
         this.idMatricula = matricula.getIdMatricula();
@@ -34,9 +34,9 @@ public class RelatorioMatriculaResponse {
         this.dataMatricula = matricula.getDataMatricula();
         this.observacao = matricula.getObservacao();
         this.status = matricula.getStatus().toString();
-        this.exames = matricula.getExames().stream().toList();
-        this.laudos = matricula.getLaudo().stream().toList();
-        this.pagamentos = matricula.getPagamentos().stream().toList();
+        this.exames = ExameResumoResponse.converte(matricula.getExames());
+        this.laudos = LaudoResumoResponse.converte(matricula.getLaudo());
+        this.pagamentos = PagamentoResumoResponse.convert(matricula.getPagamentos());
     }
 
     public static List<RelatorioMatriculaResponse> converte(List<Matricula> matriculas){
