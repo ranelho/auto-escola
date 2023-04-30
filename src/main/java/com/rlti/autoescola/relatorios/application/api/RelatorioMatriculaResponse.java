@@ -20,7 +20,6 @@ public class RelatorioMatriculaResponse {
     BigDecimal valorEntrada;
     BigDecimal valorFinal;
     LocalDate dataMatricula;
-    String observacao;
     String status;
     List<ExameResumoResponse> exames;
     List<LaudoResumoResponse> laudos;
@@ -32,7 +31,6 @@ public class RelatorioMatriculaResponse {
         this.valorEntrada = matricula.getValorEntrada();
         this.valorFinal = matricula.getValorFinal();
         this.dataMatricula = matricula.getDataMatricula();
-        this.observacao = matricula.getObservacao();
         this.status = matricula.getStatus().toString();
         this.exames = ExameResumoResponse.converte(matricula.getExames());
         this.laudos = LaudoResumoResponse.converte(matricula.getLaudo());

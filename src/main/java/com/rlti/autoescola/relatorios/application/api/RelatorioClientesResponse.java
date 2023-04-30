@@ -2,7 +2,7 @@ package com.rlti.autoescola.relatorios.application.api;
 
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.cliente.domain.enums.EstadoCivil;
-import com.rlti.autoescola.contato.domain.Contato;
+import com.rlti.autoescola.contato.application.ContatoResumoResponse;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -20,7 +20,7 @@ public class RelatorioClientesResponse {
     String nacionalidade;
     EstadoCivil estadoCivil;
     LocalDate dataCadastro;
-    List<Contato> contatos;
+    List<ContatoResumoResponse> contatos;
     List<RelatorioMatriculaResponse> matriculas;
 
     public RelatorioClientesResponse(Cliente cliente) {
@@ -32,7 +32,7 @@ public class RelatorioClientesResponse {
         this.nacionalidade = cliente.getNacionalidade();
         this.estadoCivil = cliente.getEstadoCivil();
         this.dataCadastro = cliente.getDataCadastro();
-        this.contatos = cliente.getContatos().stream().toList();
+        this.contatos = ContatoResumoResponse.converte(cliente.getContatos());
         this.matriculas = RelatorioMatriculaResponse.converte(cliente.getMatriculas());
     }
 
