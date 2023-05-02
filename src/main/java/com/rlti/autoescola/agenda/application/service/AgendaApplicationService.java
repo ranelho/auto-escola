@@ -9,15 +9,18 @@ import com.rlti.autoescola.agenda.domain.Agenda;
 import com.rlti.autoescola.agenda.domain.ValidaAgenda;
 import com.rlti.autoescola.frota.veiculo.application.repository.VeiculoRepository;
 import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
+import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.instrutor.application.repository.InstrutorRepository;
 import com.rlti.autoescola.instrutor.domain.Instrutor;
 import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -35,11 +38,10 @@ public class AgendaApplicationService implements AgendaService {
         Instrutor instrutor = instrutorRepository.getInstrutor(agendaRequest.getIdInstrutor());
         Matricula matricula = matriculaRepository.getOneMatricula(agendaRequest.getIdMatricula());
         Veiculo veiculo = veiculoRepository.getByPlaca(agendaRequest.getPlaca());
-        List<Agenda> agendas = agendaRepository.buscaAgendamentos();
         ValidaAgenda.validaInstrutorServico(instrutor, matricula.getServico().getCategoria());
         ValidaAgenda.validaVeiculoServico(veiculo, matricula.getServico().getCategoria());
-        ValidaAgenda.verificarDisponibilidadeAgenda(agendas, agendaRequest);
-        //validaAgenda(agendaRequest, instrutor, matricula, veiculo);
+        List<Agenda> agendas = agendaRepository.buscaAgendamentos();
+        ValidaAgenda.validaHorario(instrutor, veiculo, agendaRequest.getData(), agendaRequest.getHorarioAula(), agendas);
         Agenda agenda = agendaRepository.save(new Agenda(instrutor, matricula, veiculo, agendaRequest));
         log.info("[finaliza] - AgendaApplicationService - post");
         return AgendaIdResponse.builder().idAgenda(agenda.getIdAgenda()).build();

@@ -39,9 +39,6 @@ public class Veiculo {
     @JsonIgnore
     List<Manutencao> manutencoes;
 
-    @OneToOne(mappedBy = "veiculo")
-    private Agenda agenda;
-
     public Veiculo(VeiculoRequest request) {
         this.placa = request.getPlaca().toUpperCase();
         this.marca = request.getMarca().toUpperCase();

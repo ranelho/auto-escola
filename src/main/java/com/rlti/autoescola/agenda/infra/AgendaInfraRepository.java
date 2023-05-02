@@ -2,6 +2,7 @@ package com.rlti.autoescola.agenda.infra;
 
 import com.rlti.autoescola.agenda.application.repository.AgendaRepository;
 import com.rlti.autoescola.agenda.domain.Agenda;
+import com.rlti.autoescola.agenda.domain.HorarioAula;
 import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.instrutor.domain.Instrutor;
@@ -10,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
+
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,5 +77,13 @@ public class AgendaInfraRepository implements AgendaRepository {
         log.info("[inicia] AgendaInfraRepository - deleteAgenda");
         agendaSpringDataJPARepository.deleteById(idAgenda);
         log.info("[finaliza] AgendaInfraRepository - deleteAgenda");
+    }
+
+    @Override
+    public Optional<Agenda> getDataAndHorario(LocalDate data, HorarioAula horarioAula) {
+        log.info("[inicia] getDataAndHorario - deleteAgenda");
+        Optional<Agenda> agenda = agendaSpringDataJPARepository.findByDataAndHorarioAula(data, horarioAula);
+        log.info("[finaliza] getDataAndHorario - deleteAgenda");
+        return agenda;
     }
 }

@@ -5,6 +5,7 @@ import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 import com.rlti.autoescola.instrutor.domain.Instrutor;
 import com.rlti.autoescola.servico.domain.Categoria;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static com.rlti.autoescola.handler.APIException.build;
@@ -65,11 +66,12 @@ public class ValidaAgenda {
         }
     }
 
-    public static void verificarDisponibilidadeAgenda(List<Agenda> agendas, AgendaRequest request) {
-        if (agendas.stream()
-                .anyMatch(agenda -> agenda.getData().equals(request.getData())
-                        && agenda.getHorarioAula().equals(request.getHorarioAula()))) {
-            throw build(BAD_REQUEST, "Agenda já existe para a data e horário informados");
+    public static void validaHorario(Instrutor instrutor, Veiculo veiculo, LocalDate data, HorarioAula horarioAula, List<Agenda> agendas) {
+        for (Agenda agenda : agendas) {
+            if (agenda.getData().equals(data) && agenda.getHorarioAula().equals(horarioAula)) {
+                // A data e horário já estão agendados, lança uma exceção informando o usuário
+                throw build(BAD_REQUEST,"Data e horário já estão agendados.");
+            }
         }
     }
 }

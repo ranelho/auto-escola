@@ -1,5 +1,6 @@
 package com.rlti.autoescola.agenda.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.agenda.application.api.AgendaRequest;
 import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 import com.rlti.autoescola.instrutor.domain.Instrutor;
@@ -9,6 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.*;
+import org.hibernate.sql.results.graph.Fetch;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -29,7 +32,7 @@ public class Agenda {
     @JoinColumn(name = "matricula_id")
     private Matricula matricula;
 
-    @OneToOne
+    @OneToOne()
     @JoinColumn(name = "veiculo_id")
     private Veiculo veiculo;
 
