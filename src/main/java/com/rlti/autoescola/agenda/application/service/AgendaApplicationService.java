@@ -36,6 +36,7 @@ public class AgendaApplicationService implements AgendaService {
         Matricula matricula = matriculaRepository.getOneMatricula(agendaRequest.getIdMatricula());
         Veiculo veiculo = veiculoRepository.getByPlaca(agendaRequest.getPlaca());
         ValidaAgenda.validaInstrutorServico(instrutor, matricula.getServico().getCategoria());
+        ValidaAgenda.validaVeiculoServico(veiculo, matricula.getServico().getCategoria());
         //validaAgenda(agendaRequest, instrutor, matricula, veiculo);
         Agenda agenda = agendaRepository.save(new Agenda(instrutor, matricula, veiculo, agendaRequest));
         log.info("[finaliza] - AgendaApplicationService - post");

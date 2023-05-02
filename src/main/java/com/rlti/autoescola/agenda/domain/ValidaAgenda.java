@@ -1,5 +1,6 @@
 package com.rlti.autoescola.agenda.domain;
 
+import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 import com.rlti.autoescola.instrutor.domain.Instrutor;
 import com.rlti.autoescola.servico.domain.Categoria;
 
@@ -29,4 +30,36 @@ public class ValidaAgenda {
             throw build(BAD_REQUEST,"Instrutor não possui categoria AD, A, B, C, D ou AB");
         }
     }
+
+    public static void validaVeiculoServico(Veiculo veiculo, Categoria categoria) {
+        switch (veiculo.getTipo()) {
+            case MOTOCICLETA -> {
+                if (categoria != A) {
+                    throw build(BAD_REQUEST, "Categoria A permitida somente para motocicletas");
+                }
+            }
+            case AUTOMOVEL -> {
+                if (categoria != B && categoria != AB) {
+                    throw build(BAD_REQUEST, "Categoria B ou AB permitida somente para automóveis");
+                }
+            }
+            case ONIBUS, MICROONIBUS -> {
+                if (categoria != D) {
+                    throw build(BAD_REQUEST, "Categoria D permitida somente para ônibus e micro-ônibus");
+                }
+            }
+            case CAMINHAO -> {
+                if (categoria != C) {
+                    throw build(BAD_REQUEST, "Categoria E permitida somente para caminhões");
+                }
+            }
+            case CARRETA -> {
+                if (categoria != E) {
+                    throw build(BAD_REQUEST, "Categoria C permitida somente para carretas");
+                }
+            }
+            default -> throw build(BAD_REQUEST, "Tipo de veículo não reconhecido");
+        }
+    }
+
 }
