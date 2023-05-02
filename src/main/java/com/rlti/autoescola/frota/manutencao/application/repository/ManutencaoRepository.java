@@ -12,4 +12,5 @@ public interface ManutencaoRepository {
     Manutencao getOneManutencao(Long idManutencao);
     void deleteManutencao(Long idManutencao);
     List<Manutencao> getAllManutencoesByData(LocalDate data);
+    List<Manutencao> getAllDataPagamento(LocalDate dataInicial, LocalDate dataFinal);
 }
