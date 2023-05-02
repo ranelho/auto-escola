@@ -12,11 +12,11 @@ import java.util.stream.Collectors;
 @Value
 public class AgendaListResponse {
     Long idAgenda;
-    UUID idInstrutor;
-    UUID idMatricula;
-    String placa;
+    String instrutor;
+    String servico;
+    String veiculo;
     LocalDate data;
-    HorarioAula horarioAula;
+    String horarioAula;
     TipoAula tipoAula;
 
         public static List<AgendaListResponse> converte(List<Agenda>agendas){
@@ -26,11 +26,11 @@ public class AgendaListResponse {
         }
         public AgendaListResponse(Agenda agenda) {
             this.idAgenda = agenda.getIdAgenda();
-            this.idInstrutor = agenda.getInstrutor().getIdInstrutor();
-            this.idMatricula = agenda.getMatricula().getIdMatricula();
-            this.placa = agenda.getVeiculo().getPlaca();
+            this.instrutor = agenda.getInstrutor().getNomeCompleto();
+            this.servico = agenda.getMatricula().getServico().getCategoria().toString();
+            this.veiculo = agenda.getVeiculo().getModelo() + " - "+ agenda.getVeiculo().getPlaca();
             this.data = agenda.getData();
-            this.horarioAula = agenda.getHorarioAula();
+            this.horarioAula = agenda.getHorarioAula().toString();
             this.tipoAula = agenda.getTipoAula();
         }
 }

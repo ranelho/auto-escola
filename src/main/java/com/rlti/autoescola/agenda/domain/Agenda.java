@@ -36,6 +36,7 @@ public class Agenda {
     @Enumerated(EnumType.STRING)
     private TipoAula tipoAula;
     private LocalDate data;
+    @Enumerated(EnumType.STRING)
     private HorarioAula horarioAula;
 
     public Agenda(Instrutor instrutor, Matricula matricula, Veiculo veiculo, AgendaRequest agendaRequest) {

@@ -1,8 +1,11 @@
 package com.rlti.autoescola.agenda.domain;
 
+import com.rlti.autoescola.agenda.application.api.AgendaRequest;
 import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 import com.rlti.autoescola.instrutor.domain.Instrutor;
 import com.rlti.autoescola.servico.domain.Categoria;
+
+import java.util.List;
 
 import static com.rlti.autoescola.handler.APIException.build;
 import static com.rlti.autoescola.servico.domain.Categoria.*;
@@ -62,4 +65,11 @@ public class ValidaAgenda {
         }
     }
 
+    public static void verificarDisponibilidadeAgenda(List<Agenda> agendas, AgendaRequest request) {
+        if (agendas.stream()
+                .anyMatch(agenda -> agenda.getData().equals(request.getData())
+                        && agenda.getHorarioAula().equals(request.getHorarioAula()))) {
+            throw build(BAD_REQUEST, "Agenda já existe para a data e horário informados");
+        }
+    }
 }
