@@ -13,7 +13,6 @@ import java.util.List;
 public class AgendaResumoResponse {
     LocalDate data;
     HorarioAula horarioAula;
-    BigDecimal horaAulaRealizada;
     TipoAula tipoAula;
     ClienteResumoResponse cliente;
     VeiculoResumoResponse veiculo;
@@ -21,7 +20,6 @@ public class AgendaResumoResponse {
     public AgendaResumoResponse(Agenda agenda) {
         this.data = agenda.getData();
         this.horarioAula = agenda.getHorarioAula();
-        this.horaAulaRealizada = agenda.getHoraAulaRealizada();
         this.tipoAula = agenda.getTipoAula();
         this.veiculo = new VeiculoResumoResponse(agenda.getVeiculo());
         this.cliente = new ClienteResumoResponse(agenda.getMatricula().getCliente());

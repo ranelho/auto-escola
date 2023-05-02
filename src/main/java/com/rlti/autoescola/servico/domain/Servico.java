@@ -25,14 +25,17 @@ public class Servico {
     private BigDecimal valorServico;
     @Enumerated(EnumType.STRING)
     private Status status = Status.ATIVO;
+    private Integer quantidadeHorasAula;
 
     public Servico(ServicoRequest request) {
         this.categoria = request.getCategoria();
         this.valorServico = request.getValorServico();
+        this.quantidadeHorasAula = request.getQuantidadeHorasAula();
     }
 
     public void altera(ServicoUpdateRequest alteracaoRequest) {
         this.valorServico = alteracaoRequest.getValorServico();
+        this.quantidadeHorasAula = alteracaoRequest.getQuantidadeHorasAula();
     }
 
     public void alteraStatus() {

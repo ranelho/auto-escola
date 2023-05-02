@@ -1,21 +1,23 @@
 package com.rlti.autoescola.agenda.application.api;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
+@Tag(name = "Agenda", description = "Agenda APIs")
 @RequestMapping("/v1/agenda")
 public interface AgendaAPI{
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    AgendaIdResponse saveLaudo(@Valid @RequestBody AgendaRequest agendaRequest);
+    AgendaIdResponse saveAgenda(@Valid @RequestBody AgendaRequest agendaRequest);
 
     @GetMapping("/all")
     @ResponseStatus(code = HttpStatus.OK)
-    List<AgendaListResponse> getAll();
+    List<AgendaListResponse> getAllAgenda();
 
     @GetMapping("{idAgenda}")
     @ResponseStatus(code = HttpStatus.OK)

@@ -6,6 +6,7 @@ import com.rlti.autoescola.agenda.application.api.AgendaRequest;
 import com.rlti.autoescola.agenda.application.api.AgendaResponse;
 import com.rlti.autoescola.agenda.application.repository.AgendaRepository;
 import com.rlti.autoescola.agenda.domain.Agenda;
+import com.rlti.autoescola.agenda.domain.ValidaAgenda;
 import com.rlti.autoescola.frota.veiculo.application.repository.VeiculoRepository;
 import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 import com.rlti.autoescola.instrutor.application.repository.InstrutorRepository;
@@ -15,10 +16,9 @@ import com.rlti.autoescola.matricula.domain.Matricula;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.UUID;
-
-import static com.rlti.autoescola.agenda.annotation.constraints.Valid.validaSolicitacao;
 
 @Service
 @RequiredArgsConstructor
@@ -33,9 +33,10 @@ public class AgendaApplicationService implements AgendaService {
     public AgendaIdResponse post(AgendaRequest agendaRequest) {
         log.info("[inicia] - AgendaApplicationService - post");
         Instrutor instrutor = instrutorRepository.getInstrutor(agendaRequest.getIdInstrutor());
-        validaSolicitacao(agendaRequest, instrutor, agendaRepository);
         Matricula matricula = matriculaRepository.getOneMatricula(agendaRequest.getIdMatricula());
         Veiculo veiculo = veiculoRepository.getByPlaca(agendaRequest.getPlaca());
+        ValidaAgenda.validaInstrutorServico(instrutor, matricula.getServico().getCategoria());
+        //validaAgenda(agendaRequest, instrutor, matricula, veiculo);
         Agenda agenda = agendaRepository.save(new Agenda(instrutor, matricula, veiculo, agendaRequest));
         log.info("[finaliza] - AgendaApplicationService - post");
         return AgendaIdResponse.builder().idAgenda(agenda.getIdAgenda()).build();

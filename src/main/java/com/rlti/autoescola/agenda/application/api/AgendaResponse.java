@@ -14,7 +14,6 @@ public class AgendaResponse {
     Long idAgenda;
     LocalDate data;
     HorarioAula horarioAula;
-    BigDecimal horaAulaRealizada;
     TipoAula tipoAula;
     UUID idInstrutor;
     UUID idMatricula;
@@ -27,7 +26,6 @@ public class AgendaResponse {
         this.placa = agenda.getVeiculo().getPlaca();
         this.data = agenda.getData();
         this.horarioAula = agenda.getHorarioAula();
-        this.horaAulaRealizada = agenda.getHoraAulaRealizada();
         this.tipoAula = agenda.getTipoAula();
     }
 }

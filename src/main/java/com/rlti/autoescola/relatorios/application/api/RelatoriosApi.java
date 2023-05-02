@@ -1,6 +1,5 @@
 package com.rlti.autoescola.relatorios.application.api;
 
-import com.rlti.autoescola.fluxo.application.api.FluxoDeCaixaResponse;
 import com.rlti.autoescola.relatorios.application.api.respose.*;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,19 +20,19 @@ public interface RelatoriosApi {
 
     @GetMapping("/clientes")
     @ResponseStatus(code = HttpStatus.OK)
-    List<RelatorioClientesResponse> getAllClientes();
+    List<RelatorioClientesResponse> getRelatorioClientes();
 
     @GetMapping("/matriculas-ativas")
     @ResponseStatus(code = HttpStatus.OK)
-    List<RelatorioMatriculasAtivasResponse> getAllMatriculasAtivas();
+    List<RelatorioMatriculasAtivasResponse> getRelatorioMatriculasAtivas();
 
     @GetMapping("/veiculos")
     @ResponseStatus(code = HttpStatus.OK)
-    List<RelatorioVeiculosResponse> getAllVeiculos();
+    List<RelatorioVeiculosResponse> getRelatorioVeiculos();
 
     @GetMapping("instrutor")
     @ResponseStatus(code = HttpStatus.OK)
-    List<RelatorioInstrutorResponse> getAllInstrutor();
+    List<RelatorioInstrutorResponse> getRelatorioInstrutor();
 
     @GetMapping(value = "/periodo/{dataInicial},{dataFinal}")
     @ResponseStatus(code = HttpStatus.OK)

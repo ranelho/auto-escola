@@ -37,7 +37,6 @@ public class Agenda {
     private TipoAula tipoAula;
     private LocalDate data;
     private HorarioAula horarioAula;
-    private BigDecimal horaAulaRealizada;
 
     public Agenda(Instrutor instrutor, Matricula matricula, Veiculo veiculo, AgendaRequest agendaRequest) {
         this.instrutor = instrutor;
@@ -45,7 +44,6 @@ public class Agenda {
         this.veiculo = veiculo;
         this.data = agendaRequest.getData();
         this.horarioAula = agendaRequest.getHorarioAula();
-        this.horaAulaRealizada = agendaRequest.getHoraAulaRealizada();
         this.tipoAula = agendaRequest.getTipoAula();
     }
 }

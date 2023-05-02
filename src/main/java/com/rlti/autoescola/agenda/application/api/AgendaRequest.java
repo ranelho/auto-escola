@@ -14,7 +14,6 @@ public class AgendaRequest {
     LocalDate data;
     @NotNull(message = "O campo não pode ser null")
     HorarioAula horarioAula;
-    BigDecimal horaAulaRealizada;
     @NotNull(message = "O campo não pode ser null")
     TipoAula tipoAula;
     @NotNull(message = "O instrutor não pode ser null")

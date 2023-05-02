@@ -9,4 +9,5 @@ import java.math.BigDecimal;
 public class ServicoUpdateRequest {
     @NotNull
     BigDecimal valorServico;
+    Integer quantidadeHorasAula;
 }

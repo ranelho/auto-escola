@@ -22,6 +22,7 @@ public class MatriculaListResponse {
     LocalDate dataMatricula;
     String fullName;
     String observacao;
+    String servico;
     String status;
 
     public static List<MatriculaListResponse> converte(List<Matricula>matriculas){
@@ -41,6 +42,7 @@ public class MatriculaListResponse {
         this.dataMatricula = matricula.getDataMatricula();
         this.fullName = matricula.getCliente().getFullName();
         this.observacao = matricula.getObservacao();
+        this.servico = matricula.getServico().getCategoria().toString();
         this.status = matricula.getStatus().toString();
     }
 }
