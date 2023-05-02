@@ -10,4 +10,5 @@ import java.util.List;
 public interface ManutencaoSpringDataJPARepository extends JpaRepository<Manutencao, Long> {
     List<Manutencao> findAllByVeiculo(Veiculo veiculo);
     List<Manutencao> findByDataManutencao(LocalDate data);
+    List<Manutencao> findAllByDataManutencaoBetween(LocalDate dataInicial, LocalDate dataFinal);
 }

@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -37,8 +38,8 @@ public class Instrutor {
     @Enumerated(EnumType.STRING)
     private Status status = Status.ATIVO;
 
-    @OneToOne(mappedBy = "instrutor")
-    private Agenda agenda;
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "instrutor")
+    private List<Agenda> agendas;
 
     public Instrutor(InstrutorResquest resquest) {
         this.nomeCompleto = resquest.getNomeCompleto().toUpperCase();

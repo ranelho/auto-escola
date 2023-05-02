@@ -80,4 +80,20 @@ public class PagamentoInfraRepository implements PagamentoRepository {
         log.info("[finaliza] PagamentoInfraRepository - getAllPagamentoByTipoPagamento");
         return pagamentos;
     }
+
+    @Override
+    public List<Pagamento> getAllDataPagamento(LocalDate dataInicial, LocalDate dataFinal) {
+        log.info("[inicia] PagamentoInfraRepository - getAllDataPagamento");
+        List<Pagamento> pagamentos = pagamentoSpringDataJPARepository.findByDataPagamentoBetween(dataInicial,dataFinal);
+        log.info("[finaliza] PagamentoInfraRepository - getAllDataPagamento");
+        return pagamentos;
+    }
+
+    @Override
+    public List<Pagamento> getAllReceitasPagamento(TipoPagamento tipoPagamento, LocalDate dataInicial, LocalDate dataFinal) {
+        log.info("[inicia] PagamentoInfraRepository - getAllReceitasPagamento");
+        List<Pagamento> pagamentos = pagamentoSpringDataJPARepository.findByTipoPagamentoAndDataPagamentoBetween(tipoPagamento,dataInicial,dataFinal);
+        log.info("[finaliza] PagamentoInfraRepository - getAllReceitasPagamento");
+        return pagamentos;
+    }
 }

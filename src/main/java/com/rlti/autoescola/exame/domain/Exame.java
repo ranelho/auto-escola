@@ -1,14 +1,13 @@
 package com.rlti.autoescola.exame.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.exame.application.api.ExameRequest;
 import com.rlti.autoescola.matricula.domain.Matricula;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -39,10 +38,14 @@ public class Exame {
         this.observacao = request.getObservacao();
     }
 
+    public Exame( TipoExame tipoExame, LocalDate dataExame, Resultado resultado, String observacao) {
+        this.tipoExame = tipoExame;
+        this.dataExame = dataExame;
+        this.resultado = resultado;
+        this.observacao = observacao;
+    }
+
     public void altera(Resultado request) {
         this.resultado = request;
     }
-
-    // TODO -> validar tipo de exame na sequencia, CLINICO, TEORICO, PRATICO. cada matricula tem que ter esse processo,
-    //  caso reprovado tem que refazer, entao é preciso estar aprovado    para ir para o proximo estagio.
 }

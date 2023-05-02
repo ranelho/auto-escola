@@ -47,4 +47,17 @@ public class FluxoApplicationService implements FluxoService {
         log.info("[finaliza] FluxoApplicationService - getReceitasPagamento");
         return ReceitaPagamentoResponse.converte(fluxos);
     }
+
+    public List<ReceitaPagamentoResponse> getAllReceitasPagamento(LocalDate dataInicial, LocalDate dataFinal) {
+        log.info("[inicia] FluxoApplicationService - getReceitasPagamento");
+        List<Fluxo> fluxos = new ArrayList<>();
+        for (TipoPagamento tipoPagamento : TipoPagamento.values()) {
+            List<Pagamento> pagamentos = pagamentoRepository.getAllReceitasPagamento(tipoPagamento, dataInicial, dataFinal);
+            if(pagamentos != null && !pagamentos.isEmpty()) {
+                fluxos.add(new Fluxo(tipoPagamento, pagamentos));
+            }
+        }
+        log.info("[finaliza] FluxoApplicationService - getReceitasPagamento");
+        return ReceitaPagamentoResponse.converte(fluxos);
+    }
 }

@@ -8,9 +8,11 @@ import com.rlti.autoescola.cliente.domain.enums.TipoPessoa;
 import com.rlti.autoescola.cliente.domain.groups.ClienteGroupSequenceProvider;
 import com.rlti.autoescola.cliente.domain.groups.PessoaFisica;
 import com.rlti.autoescola.contato.domain.Contato;
-import com.rlti.autoescola.exame.domain.Exame;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,9 +20,6 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 import org.hibernate.validator.group.GroupSequenceProvider;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -52,7 +51,7 @@ public class Cliente {
 
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
     @JsonIgnore
-    List<Contato> contato;
+    List<Contato> contatos;
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
     @JsonIgnore
     List<Matricula> matriculas;
