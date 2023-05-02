@@ -1,5 +1,6 @@
 package com.rlti.autoescola.instrutor.application.api;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -7,6 +8,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
+@Tag(name = "Instrutor", description = "Instrutor APIs")
 @RequestMapping("/v1/instrutor")
 public interface InstrutorApi {
     @PostMapping

@@ -59,4 +59,12 @@ public class ManutencaoInfraRepository implements ManutencaoRepository {
         log.info("[finaliza] ManutencaoInfraRepository - getAllManutencoesByData");
         return manutencaos;
     }
+
+    @Override
+    public List<Manutencao> getAllDataPagamento(LocalDate dataInicial, LocalDate dataFinal) {
+        log.info("[inicia] ManutencaoInfraRepository - getAllDataPagamento");
+        List<Manutencao> manutencaos = manutencaoSpringDataJPARepository.findAllByDataManutencaoBetween(dataInicial, dataFinal);
+        log.info("[finaliza] ManutencaoInfraRepository - getAllDataPagamento");
+        return manutencaos;
+    }
 }

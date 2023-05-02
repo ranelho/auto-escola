@@ -12,4 +12,6 @@ public interface PagamentoSpringDataJPARepository extends JpaRepository<Pagament
     List<Pagamento> findByMatricula(Matricula matricula);
     List<Pagamento> findByDataPagamento(LocalDate data);
     List<Pagamento> findByTipoPagamentoAndDataPagamento(TipoPagamento tipoPagamento, LocalDate data);
+    List<Pagamento> findByDataPagamentoBetween(LocalDate dataInicial, LocalDate dataFinal);
+    List<Pagamento> findByTipoPagamentoAndDataPagamentoBetween(TipoPagamento tipoPagamento, LocalDate dataInicial, LocalDate dataFinal);
 }

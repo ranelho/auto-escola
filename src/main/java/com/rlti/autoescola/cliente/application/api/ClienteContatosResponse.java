@@ -2,7 +2,6 @@ package com.rlti.autoescola.cliente.application.api;
 
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.contato.application.api.ContatoListResponse;
-import com.rlti.autoescola.contato.application.api.ContatoResponse;
 import lombok.Value;
 
 import java.time.LocalDate;
@@ -22,6 +21,6 @@ public class ClienteContatosResponse {
         this.cpf = cliente.getCpf();
         this.fullName = cliente.getFullName();
         this.dataNascimento = cliente.getDataNascimento();
-        this.contatos = ContatoListResponse.converte(cliente.getContato());
+        this.contatos = ContatoListResponse.converte(cliente.getContatos());
     }
 }

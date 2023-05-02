@@ -39,7 +39,7 @@ public class MatriculaDetalhadoResponse {
         this.status = matricula.getStatus().toString();
     }
 
-    private BigDecimal calculaDesconto(int desconto, BigDecimal valorServico) {
+    public static BigDecimal calculaDesconto(int desconto, BigDecimal valorServico) {
         return valorServico.multiply(new BigDecimal(desconto)).divide(BigDecimal.valueOf(100),
                 2, RoundingMode.HALF_UP);
     }

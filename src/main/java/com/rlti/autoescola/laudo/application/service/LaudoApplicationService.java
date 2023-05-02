@@ -1,14 +1,19 @@
 package com.rlti.autoescola.laudo.application.service;
 
-import com.rlti.autoescola.laudo.application.api.*;
+import com.rlti.autoescola.handler.APIException;
+import com.rlti.autoescola.laudo.application.api.LaudoIdResponse;
+import com.rlti.autoescola.laudo.application.api.LaudoRequest;
+import com.rlti.autoescola.laudo.application.api.LaudoResponse;
 import com.rlti.autoescola.laudo.application.repository.LaudoRepository;
 import com.rlti.autoescola.laudo.domain.Laudo;
 import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,6 +28,12 @@ public class LaudoApplicationService implements LaudoService {
     public LaudoIdResponse saveLaudo(UUID idMatricula, LaudoRequest request) {
         log.info("[inicia] LaudoApplicationService -  saveLaudo");
         Matricula matricula = matriculaRepository.getOneMatricula(idMatricula);
+        List<Laudo> laudos = laudoRepository.getAllLaudosByMatricula(matricula);
+        for (Laudo laudo : laudos) {
+            if (!laudo.getValidade().isBefore(LocalDate.now())) {
+                throw APIException.build(HttpStatus.BAD_REQUEST,"Existe Laudo válido!");
+            }
+        }
         Laudo laudo = laudoRepository.saveLaudo(new Laudo(matricula, request));
         log.info("[finaliza] LaudoApplicationService -  saveLaudo");
         return LaudoIdResponse.builder().idLaudo(laudo.getIdLaudo()).build();

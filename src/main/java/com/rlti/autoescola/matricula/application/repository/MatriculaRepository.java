@@ -10,4 +10,5 @@ public interface MatriculaRepository {
     List<Matricula> getAllMatriculas();
     Matricula getOneMatricula(UUID idMatricula);
     void deleteMatricula(Matricula matricula);
+    List<Matricula> getAllMatriculasAtivas();
 }

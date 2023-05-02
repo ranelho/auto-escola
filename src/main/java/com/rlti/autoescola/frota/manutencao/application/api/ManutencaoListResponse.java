@@ -14,12 +14,14 @@ public class ManutencaoListResponse {
     LocalDate dataManutencao;
     BigDecimal valorManutencao;
     TipoManutencao tipoManutencao;
+    String descricao;
 
     public ManutencaoListResponse(Manutencao manutencao) {
         this.idManutencao = manutencao.getIdManutencao();
         this.dataManutencao = manutencao.getDataManutencao();
         this.valorManutencao = manutencao.getValorManutencao();
         this.tipoManutencao = manutencao.getTipoManutencao();
+        this.descricao = manutencao.getDescricao();
     }
     public static List<ManutencaoListResponse> converte(List<Manutencao> servicos) {
         return servicos

@@ -1,5 +1,6 @@
 package com.rlti.autoescola.laudo.application.api;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -7,6 +8,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
+@Tag(name = "Laudo", description = "Laudo APIs")
 @RequestMapping("/v1/laudo")
 public interface LaudoApi {
 

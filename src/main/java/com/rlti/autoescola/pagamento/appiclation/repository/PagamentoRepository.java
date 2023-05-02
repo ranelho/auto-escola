@@ -16,4 +16,6 @@ public interface PagamentoRepository {
     void deletePagamento(Long idPagamento);
     List<Pagamento> getAllPagamentoByData(LocalDate data);
     List<Pagamento> getAllPagamentoByTipoPagamento(TipoPagamento tipoPagamento, LocalDate data);
+    List<Pagamento> getAllDataPagamento(LocalDate dataInicial, LocalDate dataFinal);
+    List<Pagamento> getAllReceitasPagamento(TipoPagamento tipoPagamento, LocalDate dataInicial, LocalDate dataFinal);
 }

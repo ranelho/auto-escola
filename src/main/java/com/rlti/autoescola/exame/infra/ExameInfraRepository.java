@@ -4,6 +4,7 @@ import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.exame.application.repository.ExameRepository;
 import com.rlti.autoescola.exame.domain.Exame;
 import com.rlti.autoescola.handler.APIException;
+import com.rlti.autoescola.matricula.domain.Matricula;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -37,9 +38,9 @@ public class ExameInfraRepository implements ExameRepository {
     }
 
     @Override
-    public List<Exame> getAllExamesByCliente(Cliente cliente) {
+    public List<Exame> getAllExamesByMatricula(Matricula matricula) {
         log.info("[inicia] ExameInfraRepository -  getAllExamesByCliente");
-        List<Exame> exames = exameSpringDataJPARepository.findByCliente(cliente);
+        List<Exame> exames = exameSpringDataJPARepository.findByMatricula(matricula);
         log.info("[finaliza] ExameInfraRepository -  getAllExamesByCliente");
         return exames;
     }
