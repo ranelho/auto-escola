@@ -16,7 +16,7 @@ public class AgendaRestController implements AgendaAPI {
     @Override
     public AgendaIdResponse saveAgenda(AgendaRequest agendaRequest) {
         log.info("[inicia] - AgendaRestController - post");
-        AgendaIdResponse agendaResponse = agendaService.post(agendaRequest);
+        AgendaIdResponse agendaResponse = agendaService.saveAgenda(agendaRequest);
         log.info("[finaliza] - AgendaRestController - post");
         return agendaResponse;
     }

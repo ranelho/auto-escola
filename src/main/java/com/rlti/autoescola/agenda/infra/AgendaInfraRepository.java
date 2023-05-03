@@ -23,18 +23,18 @@ public class AgendaInfraRepository implements AgendaRepository {
     private final AgendaSpringDataJPARepository agendaSpringDataJPARepository;
 
    @Override
-    public Agenda save(Agenda agenda) {
-        log.info("[inicia] - AgendaInfraRepository - post");
+    public Agenda saveAgenda(Agenda agenda) {
+        log.info("[inicia] - AgendaInfraRepository - saveAgenda");
         agendaSpringDataJPARepository.save(agenda);
-        log.info("[finaliza] - AgendaInfraRepository - post");
+        log.info("[finaliza] - AgendaInfraRepository - saveAgenda");
         return agenda;
     }
 
     @Override
-    public List<Agenda> buscaAgendamentos() {
-        log.info("[inicia] - AgendaInfraRepository - buscaAgendamentos");
+    public List<Agenda> getAllAgendas() {
+        log.info("[inicia] - AgendaInfraRepository - getAllAgendas");
         List<Agenda> agendamentos = agendaSpringDataJPARepository.findAll();
-        log.info("[finaliza] - AgendaInfraRepository - buscaAgendamentos");
+        log.info("[finaliza] - AgendaInfraRepository - getAllAgendas");
         return agendamentos;
     }
 
@@ -85,5 +85,13 @@ public class AgendaInfraRepository implements AgendaRepository {
         Optional<Agenda> agenda = agendaSpringDataJPARepository.findByDataAndHorarioAula(data, horarioAula);
         log.info("[finaliza] getDataAndHorario - deleteAgenda");
         return agenda;
+    }
+
+    @Override
+    public List<Agenda> getAgendasPorData(LocalDate data) {
+       log.info("[inicia] getAgendasPorData - deleteAgenda");
+       List<Agenda> agendas = agendaSpringDataJPARepository.findByData(data);
+       log.info("[finaliza] getAgendasPorData - deleteAgenda");
+       return agendas;
     }
 }

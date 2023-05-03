@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface AgendaService {
-    AgendaIdResponse post(AgendaRequest agendaRequest);
+    AgendaIdResponse saveAgenda(AgendaRequest agendaRequest);
     List<AgendaListResponse> buscaAgendamentos();
     AgendaResponse getByIdAgenda(Long idAgenda);
     List<AgendaListResponse> getByIdInstrutor(UUID idInstrutor);

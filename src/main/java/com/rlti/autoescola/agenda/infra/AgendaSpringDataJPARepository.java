@@ -17,4 +17,5 @@ public interface AgendaSpringDataJPARepository extends JpaRepository<Agenda, Lon
     List<Agenda> findAgendaByMatricula(Matricula matricula);
     List<Agenda> findAgendaByVeiculo(Veiculo veiculo);
     Optional<Agenda> findByDataAndHorarioAula(LocalDate data, HorarioAula horarioAula);
+    List<Agenda> findByData(LocalDate data);
 }

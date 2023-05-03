@@ -11,12 +11,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AgendaRepository {
-    Agenda save(Agenda agenda);
-    List<Agenda> buscaAgendamentos();
+    Agenda saveAgenda(Agenda agenda);
+    List<Agenda> getAllAgendas();
     Agenda getByIdAgenda(Long idAgenda);
     List<Agenda> getAgendaByIdInstrutor(Instrutor instrutor);
     List<Agenda> getAgendaByIdMatricula(Matricula matricula);
     List<Agenda> getAgendaByPlaca(Veiculo veiculo);
     void deleteAgenda(Long idAgenda);
     Optional<Agenda> getDataAndHorario(LocalDate data, HorarioAula horarioAula);
+    List<Agenda> getAgendasPorData(LocalDate data);
 }
