@@ -3,15 +3,14 @@ package com.rlti.autoescola.agenda.annotation.constraints;
 import com.rlti.autoescola.agenda.application.api.AgendaRequest;
 import com.rlti.autoescola.agenda.domain.Agenda;
 import com.rlti.autoescola.agenda.domain.HorarioAula;
+import com.rlti.autoescola.frota.veiculo.domain.Tipo;
 import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 import com.rlti.autoescola.instrutor.domain.Instrutor;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.servico.domain.Categoria;
 import lombok.extern.log4j.Log4j2;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static com.rlti.autoescola.handler.APIException.build;
 import static com.rlti.autoescola.servico.domain.Categoria.*;
@@ -49,33 +48,20 @@ public class ValidaAgenda {
     }
 
     public static void validaVeiculoServico(Veiculo veiculo, Categoria categoria) {
-        switch (veiculo.getTipo()) {
-            case MOTOCICLETA -> {
-                if (categoria != A) {
-                    throw build(BAD_REQUEST, "Categoria A permitida somente para motocicletas");
-                }
-            }
-            case AUTOMOVEL -> {
-                if (categoria != B && categoria != AB) {
-                    throw build(BAD_REQUEST, "Categoria B ou AB permitida somente para automóveis");
-                }
-            }
-            case ONIBUS, MICROONIBUS -> {
-                if (categoria != D) {
-                    throw build(BAD_REQUEST, "Categoria D permitida somente para ônibus e micro-ônibus");
-                }
-            }
-            case CAMINHAO -> {
-                if (categoria != C) {
-                    throw build(BAD_REQUEST, "Categoria E permitida somente para caminhões");
-                }
-            }
-            case CARRETA -> {
-                if (categoria != E) {
-                    throw build(BAD_REQUEST, "Categoria C permitida somente para carretas");
-                }
-            }
-            default -> throw build(BAD_REQUEST, "Tipo de veículo não reconhecido");
+        Map<Tipo, Set<Categoria>> categoriasPermitidas = Map.of(
+                Tipo.MOTOCICLETA, Set.of(Categoria.A),
+                Tipo.AUTOMOVEL, Set.of(Categoria.B, Categoria.AB),
+                Tipo.ONIBUS, Set.of(Categoria.D),
+                Tipo.MICROONIBUS, Set.of(Categoria.D),
+                Tipo.CAMINHAO, Set.of(Categoria.C),
+                Tipo.CARRETA, Set.of(Categoria.E)
+        );
+        Set<Categoria> categorias = categoriasPermitidas.get(veiculo.getTipo());
+        if (categorias == null) {
+            throw build(BAD_REQUEST, "Tipo de veículo não reconhecido");
+        }
+        if (!categorias.contains(categoria)) {
+            throw build(BAD_REQUEST, String.format("Categoria %s não permitida para este tipo de veículo", categoria));
         }
     }
 

@@ -1,7 +1,6 @@
 package com.rlti.autoescola.frota.veiculo.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.rlti.autoescola.agenda.domain.Agenda;
 import com.rlti.autoescola.frota.manutencao.domain.Manutencao;
 import com.rlti.autoescola.frota.veiculo.application.api.VeiculoRequest;
 import com.rlti.autoescola.matricula.domain.Status;

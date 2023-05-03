@@ -20,4 +20,5 @@ public interface AgendaRepository {
     void deleteAgenda(Long idAgenda);
     Optional<Agenda> getDataAndHorario(LocalDate data, HorarioAula horarioAula);
     List<Agenda> getAgendasPorData(LocalDate data);
+    List<Agenda> getAgendasPorDataEInstrutor(LocalDate data, Instrutor instrutor);
 }
