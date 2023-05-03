@@ -9,7 +9,6 @@ import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.servico.domain.Categoria;
 import lombok.extern.log4j.Log4j2;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +19,13 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @Log4j2
 public class ValidaAgenda {
+
+    public static void isValid(Instrutor instrutor, Matricula matricula, Veiculo veiculo, AgendaRequest request,
+                               List<Agenda> agendasPorData) {
+        validaInstrutorServico(instrutor, matricula.getServico().getCategoria());
+        validaVeiculoServico(veiculo, matricula.getServico().getCategoria());
+        validaHorario(instrutor, veiculo, matricula,request, agendasPorData);
+    }
 
     public static void validaInstrutorServico(Instrutor instrutor, Categoria categoria) {
         if (categoria == ACC && instrutor.getCategoria() != ACC) {
@@ -73,13 +79,15 @@ public class ValidaAgenda {
         }
     }
 
-    public static void validaHorario(Instrutor instrutor, Veiculo veiculo, Matricula matricula, AgendaRequest request, List<Agenda> agendas, List<Agenda> agendasPorData) {
-        for (Agenda agenda : agendas) {
+    public static void validaHorario(Instrutor instrutor, Veiculo veiculo, Matricula matricula, AgendaRequest request,
+                                     List<Agenda> agendasPorData) {
+        for (Agenda agenda : agendasPorData) {
             //1 - Validar cliente horario e horario
             if (agenda.getData().equals(request.getData()) && agenda.getHorarioAula().equals(request.getHorarioAula())
                     && agenda.getMatricula().getCliente().equals(matricula.getCliente())) {
-                throw build(BAD_REQUEST,"Data e horário já estão agendados." +
-                        "segue horarios disponiveis:" );
+                List<HorarioAula> horariosDisponiveis = getHorariosDisponiveis(agendasPorData);
+                throw build(BAD_REQUEST,"Data e horário já estão agendados, segue horarios disponiveis:"
+                        +  horariosDisponiveis);
             }
             //2 - Validar veiculo e horario
             if(agenda.getVeiculo().getPlaca().equals(veiculo.getPlaca()) && agenda.getHorarioAula().equals(request.getHorarioAula())
@@ -95,7 +103,7 @@ public class ValidaAgenda {
         }
     }
 
-    public static List<HorarioAula> getHorariosDisponiveis(LocalDate data, List<Agenda> agendasPorData) {
+    public static List<HorarioAula> getHorariosDisponiveis(List<Agenda> agendasPorData) {
         List<HorarioAula> horariosDisponiveis = new ArrayList<>(Arrays.asList(HorarioAula.values()));
         for (Agenda agenda : agendasPorData) {
             HorarioAula horarioMarcado = HorarioAula.valueOf(agenda.getHorarioAula().toString());

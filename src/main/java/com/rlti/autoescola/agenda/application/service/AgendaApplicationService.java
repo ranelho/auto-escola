@@ -39,13 +39,8 @@ public class AgendaApplicationService implements AgendaService {
         Instrutor instrutor = instrutorRepository.getInstrutor(request.getIdInstrutor());
         Matricula matricula = matriculaRepository.getOneMatricula(request.getIdMatricula());
         Veiculo veiculo = veiculoRepository.getByPlaca(request.getPlaca());
-        ValidaAgenda.validaInstrutorServico(instrutor, matricula.getServico().getCategoria());
-        ValidaAgenda.validaVeiculoServico(veiculo, matricula.getServico().getCategoria());
-        List<Agenda> agendas = agendaRepository.getAllAgendas();
         List<Agenda> agendasPorData = agendaRepository.getAgendasPorData(request.getData());
-
-        ValidaAgenda.validaHorario(instrutor, veiculo, matricula,request, agendas, agendasPorData);
-
+        ValidaAgenda.isValid(instrutor, matricula, veiculo, request, agendasPorData);
         Agenda agenda = agendaRepository.saveAgenda(new Agenda(instrutor, matricula, veiculo, request));
         log.info("[finaliza] - AgendaApplicationService - saveAgenda");
         return AgendaIdResponse.builder().idAgenda(agenda.getIdAgenda()).build();
