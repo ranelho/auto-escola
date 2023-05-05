@@ -7,13 +7,17 @@
 ## ✔️ Técnicas e tecnologias utilizadas
 
 - ``Java``
+- ``Spring Boot``
 - ``Maven``
 - ``JPA``
 - ``Lombok``
-- ``Spring Boot``
 - ``PostgreSQL``
 - ``InteliJ IDEA``
 - ``Swagger``
+- ``Postman``
+- ``DBeaver``
+- ``Git``
+- ``GitHub``
 
 ### Ajustes e melhorias
 
@@ -22,24 +26,26 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [X] Empresa
 - [X] Cliente
   - [X] Contato
+  - [x] Imagem
 - [X] Frota
   - [X] Veiculo
   - [X] Manutenção
 - [X] Orçamento
 - [X] Matricula
-  - [ ] Pagamento
+  - [x] Pagamento
   - [x] Laudo
+  - [x] Exame
 - [X] Serviço
 - [X] Instrutor
-- [ ] Validações
+- [x] Relatórios
+- [x] Fluxo de Caixa
   
-
+# Banco de Dados
 <img src="Banco.png" width=800><br><sub>Banco de Dados</sub>
-
 
 # Autores
 
-| [<img src="perfil2.jpg" width=115><br><sub>Ranelho Lacerda</sub>](https://github.com/ranelho) | [<img src="john.jpeg" width=115><br><sub>Jonh Everton</sub>](https://github.com/JohnEverton-Dev) | [<img src="matheus.png" width=115><br><sub>Matheus Prata</sub>](https://github.com/matheusprata) |
-|:---------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
+| [<img src="perfil2.jpg" width=115><br><sub>Ranelho Lacerda</sub>](https://github.com/ranelho) | [<img src="john.jpeg" width=115><br><sub>Jonh Everton de Souza</sub>](https://github.com/JohnEverton-Dev) | [<img src="matheus.png" width=115><br><sub>Matheus Prata</sub>](https://github.com/matheusprata) |
+|:---------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
 
 [⬆ Voltar ao topo](https://github.com/ranelho/auto-escola)<br>
