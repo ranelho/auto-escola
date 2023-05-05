@@ -102,4 +102,12 @@ public class AgendaInfraRepository implements AgendaRepository {
         log.info("[finaliza] getAgendasPorDataEInstrutor - deleteAgenda");
         return agendas;
     }
+
+    @Override
+    public List<Agenda> getAgendasPorDataEVeiculo(LocalDate data, Veiculo veiculo) {
+       log.info("[inicia] getAgendasPorDataEVeiculo - deleteAgenda");
+       List<Agenda> agendas = agendaSpringDataJPARepository.findByDataAndVeiculo(data, veiculo);
+       log.info("[finaliza] getAgendasPorDataEVeiculo - deleteAgenda");
+       return agendas;
+    }
 }

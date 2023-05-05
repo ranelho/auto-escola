@@ -29,7 +29,7 @@ import static com.rlti.autoescola.matricula.annotation.constraints.Valid.calcula
 @Entity
 public class Matricula {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idMatricula;
 
     @ManyToOne(fetch = FetchType.LAZY)

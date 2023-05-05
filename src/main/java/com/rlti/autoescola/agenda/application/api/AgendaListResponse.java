@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 public class AgendaListResponse {
     Long idAgenda;
     String instrutor;
+    String aluno;
     String servico;
     String veiculo;
     LocalDate data;
@@ -27,6 +28,7 @@ public class AgendaListResponse {
         public AgendaListResponse(Agenda agenda) {
             this.idAgenda = agenda.getIdAgenda();
             this.instrutor = agenda.getInstrutor().getNomeCompleto();
+            this.aluno = agenda.getMatricula().getCliente().getFullName();
             this.servico = agenda.getMatricula().getServico().getCategoria().toString();
             this.veiculo = agenda.getVeiculo().getModelo() + " - "+ agenda.getVeiculo().getPlaca();
             this.data = agenda.getData();

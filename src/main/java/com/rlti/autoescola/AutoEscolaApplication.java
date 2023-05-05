@@ -8,7 +8,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "Auto Escola API", version = "1.0", description = "Gestão de Auto Escola"))
+@OpenAPIDefinition(info = @Info(title = "Auto Escola API", version = "1.0.0", description = "Gestão de Auto Escola"))
 public class AutoEscolaApplication {
 
 	public static void main(String[] args) {

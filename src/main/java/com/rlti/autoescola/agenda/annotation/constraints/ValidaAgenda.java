@@ -26,6 +26,7 @@ public class ValidaAgenda {
 
      public void isValid(Instrutor instrutor, Matricula matricula, Veiculo veiculo, AgendaRequest request ) {
          List<Agenda> agendasPorInstrutor = agendaRepository.getAgendasPorDataEInstrutor(request.getData(), instrutor);
+         List<Agenda> agendasPorVeiculo = agendaRepository.getAgendasPorDataEVeiculo(request.getData(), veiculo);
          List<Agenda> agendasPorData = agendaRepository.getAgendasPorData(request.getData());
          validaInstrutorServico(instrutor, matricula.getServico().getCategoria());
          validaVeiculoServico(veiculo, matricula.getServico().getCategoria());
@@ -38,9 +39,9 @@ public class ValidaAgenda {
         } else if (categoria == AB &&
                 (instrutor.getCategoria() != A && instrutor.getCategoria() != B && instrutor.getCategoria() != AB)) {
             throw build(BAD_REQUEST,"Instrutor não possui categoria AB, A ou B");
-        } else if (categoria == A && instrutor.getCategoria() != A) {
+        } else if (categoria == A && (instrutor.getCategoria() != A && instrutor.getCategoria() != AB)) {
             throw build(BAD_REQUEST,"Instrutor não possui categoria A");
-        } else if (categoria == B && instrutor.getCategoria() != B) {
+        } else if (categoria == B && (instrutor.getCategoria() != B && instrutor.getCategoria() != AB)) {
             throw build(BAD_REQUEST,"Instrutor não possui categoria B");
         } else if (categoria == C && instrutor.getCategoria() != C) {
             throw build(BAD_REQUEST,"Instrutor não possui categoria C");
@@ -84,15 +85,17 @@ public class ValidaAgenda {
             //2 - Validar veiculo e horario
             if(agenda.getVeiculo().getPlaca().equals(veiculo.getPlaca()) && agenda.getHorarioAula().equals(request.getHorarioAula())
                     && agenda.getData().equals(request.getData())){
-                List<HorarioAula> horariosDisponiveis = getHorariosDisponiveisPorInstrutor(agendasPorInstrutor);
-                throw build(BAD_REQUEST,"Veículo já está agendado neste horário, segue horarios disponiveis: "
+                List<HorarioAula> horariosDisponiveis = getHorariosDisponiveisPorVeiculo(agendasPorData);
+                throw build(BAD_REQUEST,"Veículo já está agendado neste horário, segue horarios disponiveis:"
                         +  horariosDisponiveis);
             }
             //3 - Validar Instrutor e horario
             if(agenda.getInstrutor().getIdInstrutor().equals(instrutor.getIdInstrutor())
                     && agenda.getHorarioAula().equals(request.getHorarioAula())
                     && agenda.getData().equals(request.getData())){
-                throw build(BAD_REQUEST,"Instrutor já está agendado neste horário.");
+                List<HorarioAula> horariosDisponiveis = getHorariosDisponiveisPorInstrutor(agendasPorInstrutor);
+                throw build(BAD_REQUEST,"Instrutor já está agendado neste horário, segue horarios disponiveis:"
+                        +  horariosDisponiveis);
             }
         }
     }
@@ -107,6 +110,14 @@ public class ValidaAgenda {
     public List<HorarioAula> getHorariosDisponiveisPorInstrutor(List<Agenda> agendaInstrutor) {
         List<HorarioAula> horariosDisponiveis = new ArrayList<>(Arrays.asList(HorarioAula.values()));
         for (Agenda agenda : agendaInstrutor) {
+            HorarioAula horarioMarcado = HorarioAula.valueOf(agenda.getHorarioAula().toString());
+            horariosDisponiveis.remove(horarioMarcado);
+        }
+        return horariosDisponiveis;
+    }
+    public List<HorarioAula> getHorariosDisponiveisPorVeiculo(List<Agenda> agendasPorVeiculo) {
+        List<HorarioAula> horariosDisponiveis = new ArrayList<>(Arrays.asList(HorarioAula.values()));
+        for (Agenda agenda : agendasPorVeiculo) {
             HorarioAula horarioMarcado = HorarioAula.valueOf(agenda.getHorarioAula().toString());
             horariosDisponiveis.remove(horarioMarcado);
         }

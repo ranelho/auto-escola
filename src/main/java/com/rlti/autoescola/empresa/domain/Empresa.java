@@ -25,7 +25,7 @@ import java.util.UUID;
 @GroupSequenceProvider(value = EmpresaGroupSequenceProvider.class)
 public class Empresa {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
      UUID idEmpresa;
     @NotBlank
      String razaoSocial;

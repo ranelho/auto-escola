@@ -20,9 +20,9 @@ import java.util.UUID;
 @Entity
 public class Veiculo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idVeiculo;
-    @Column(unique = true)
+    @Column(unique = true, updatable = false)
     @NotBlank
     private String placa;
     private String marca;
