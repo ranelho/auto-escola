@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @Entity
 public class Exame {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idExame;
     @Enumerated(EnumType.STRING)
     private TipoExame tipoExame;

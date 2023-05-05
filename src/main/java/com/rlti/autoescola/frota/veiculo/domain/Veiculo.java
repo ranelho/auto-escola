@@ -20,7 +20,7 @@ import java.util.UUID;
 @Entity
 public class Veiculo {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID idVeiculo;
     @Column(unique = true)
     @NotBlank

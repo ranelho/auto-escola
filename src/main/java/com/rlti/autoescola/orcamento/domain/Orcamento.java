@@ -23,7 +23,7 @@ import java.time.LocalDate;
 @Entity
 public class Orcamento {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idOrcamento;
 
     @OneToOne

@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @Entity
 public class Agenda {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAgenda;
 
     @OneToOne

@@ -32,7 +32,7 @@ import java.util.UUID;
 @GroupSequenceProvider(value = ClienteGroupSequenceProvider.class)
 public class Cliente {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID idCliente;
     @Transient
     private TipoPessoa tipoPessoa = TipoPessoa.FISICA;

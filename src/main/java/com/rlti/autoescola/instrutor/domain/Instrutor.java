@@ -24,7 +24,7 @@ import java.util.UUID;
 @Entity
 public class Instrutor {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID idInstrutor;
     private String nomeCompleto;
     @NotBlank(message = "Campo Obrigatório!")

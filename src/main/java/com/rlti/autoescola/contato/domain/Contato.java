@@ -18,7 +18,7 @@ import java.util.UUID;
 @Entity
 public class Contato {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID idContato;
     @Email
     private String email;

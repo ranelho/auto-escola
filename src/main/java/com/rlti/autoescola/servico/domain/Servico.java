@@ -17,7 +17,7 @@ import java.util.UUID;
 @Entity
 public class Servico {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID idServico;
     @Column(unique = true, updatable = false)
     @Enumerated(EnumType.STRING)
