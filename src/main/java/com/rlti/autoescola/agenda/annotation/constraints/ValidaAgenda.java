@@ -11,6 +11,7 @@ import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.servico.domain.Categoria;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
@@ -20,6 +21,7 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @Log4j2
 @RequiredArgsConstructor
+@Component
 public class ValidaAgenda {
 
     private final AgendaRepository agendaRepository;
@@ -30,7 +32,7 @@ public class ValidaAgenda {
          List<Agenda> agendasPorData = agendaRepository.getAgendasPorData(request.getData());
          validaInstrutorServico(instrutor, matricula.getServico().getCategoria());
          validaVeiculoServico(veiculo, matricula.getServico().getCategoria());
-         validaHorario(instrutor, veiculo, matricula,request, agendasPorData, agendasPorInstrutor);
+         validaHorario(instrutor, veiculo, matricula,request, agendasPorData, agendasPorInstrutor, agendasPorVeiculo);
     }
 
     public void validaInstrutorServico(Instrutor instrutor, Categoria categoria) {
@@ -56,7 +58,7 @@ public class ValidaAgenda {
 
     public void validaVeiculoServico(Veiculo veiculo, Categoria categoria) {
         Map<Tipo, Set<Categoria>> categoriasPermitidas = Map.of(
-                Tipo.MOTOCICLETA, Set.of(Categoria.A),
+                Tipo.MOTOCICLETA, Set.of(Categoria.A, Categoria.AB),
                 Tipo.AUTOMOVEL, Set.of(Categoria.B, Categoria.AB),
                 Tipo.ONIBUS, Set.of(Categoria.D),
                 Tipo.MICROONIBUS, Set.of(Categoria.D),
@@ -73,7 +75,7 @@ public class ValidaAgenda {
     }
 
     public void validaHorario(Instrutor instrutor, Veiculo veiculo, Matricula matricula, AgendaRequest request,
-                                     List<Agenda> agendasPorData, List<Agenda> agendasPorInstrutor) {
+                      List<Agenda> agendasPorData, List<Agenda> agendasPorInstrutor, List<Agenda> agendasPorVeiculo) {
         for (Agenda agenda : agendasPorData) {
             //1 - Validar cliente horario e horario
             if (agenda.getData().equals(request.getData()) && agenda.getHorarioAula().equals(request.getHorarioAula())
@@ -83,9 +85,9 @@ public class ValidaAgenda {
                         +  horariosDisponiveis);
             }
             //2 - Validar veiculo e horario
-            if(agenda.getVeiculo().getPlaca().equals(veiculo.getPlaca()) && agenda.getHorarioAula().equals(request.getHorarioAula())
-                    && agenda.getData().equals(request.getData())){
-                List<HorarioAula> horariosDisponiveis = getHorariosDisponiveisPorVeiculo(agendasPorData);
+            if(agenda.getVeiculo().getPlaca().equals(veiculo.getPlaca())
+                    && agenda.getHorarioAula().equals(request.getHorarioAula()) && agenda.getData().equals(request.getData())){
+                List<HorarioAula> horariosDisponiveis = getHorariosDisponiveisPorVeiculo(agendasPorVeiculo);
                 throw build(BAD_REQUEST,"Veículo já está agendado neste horário, segue horarios disponiveis:"
                         +  horariosDisponiveis);
             }

@@ -32,6 +32,7 @@ public class AgendaApplicationService implements AgendaService {
     private final MatriculaRepository matriculaRepository;
     private final VeiculoRepository veiculoRepository;
     private final AgendaRepository agendaRepository;
+    private final ValidaAgenda validaAgenda;
 
     @Override
     public AgendaIdResponse saveAgenda(AgendaRequest request) {
@@ -39,7 +40,6 @@ public class AgendaApplicationService implements AgendaService {
         Instrutor instrutor = instrutorRepository.getInstrutor(request.getIdInstrutor());
         Matricula matricula = matriculaRepository.getOneMatricula(request.getIdMatricula());
         Veiculo veiculo = veiculoRepository.getByPlaca(request.getPlaca());
-        ValidaAgenda validaAgenda = new ValidaAgenda(agendaRepository);
         validaAgenda.isValid(instrutor, matricula, veiculo, request);
         Agenda agenda = agendaRepository.saveAgenda(new Agenda(instrutor, matricula, veiculo, request));
         log.info("[finaliza] - AgendaApplicationService - saveAgenda");
