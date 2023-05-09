@@ -35,7 +35,7 @@ public class ValidaAgenda {
          validaHorario(instrutor, veiculo, matricula,request, agendasPorData, agendasPorInstrutor, agendasPorVeiculo);
     }
 
-    public void validaInstrutorServico(Instrutor instrutor, Categoria categoria) {
+    private void validaInstrutorServico(Instrutor instrutor, Categoria categoria) {
         if (categoria == ACC && instrutor.getCategoria() != ACC) {
             throw build(BAD_REQUEST,"Instrutor não possui categoria ACC");
         } else if (categoria == AB &&
@@ -56,7 +56,7 @@ public class ValidaAgenda {
         }
     }
 
-    public void validaVeiculoServico(Veiculo veiculo, Categoria categoria) {
+    private void validaVeiculoServico(Veiculo veiculo, Categoria categoria) {
         Map<Tipo, Set<Categoria>> categoriasPermitidas = Map.of(
                 Tipo.MOTOCICLETA, Set.of(Categoria.A, Categoria.AB),
                 Tipo.AUTOMOVEL, Set.of(Categoria.B, Categoria.AB),
@@ -74,7 +74,7 @@ public class ValidaAgenda {
         }
     }
 
-    public void validaHorario(Instrutor instrutor, Veiculo veiculo, Matricula matricula, AgendaRequest request,
+    private void validaHorario(Instrutor instrutor, Veiculo veiculo, Matricula matricula, AgendaRequest request,
                       List<Agenda> agendasPorData, List<Agenda> agendasPorInstrutor, List<Agenda> agendasPorVeiculo) {
         for (Agenda agenda : agendasPorData) {
             //1 - Validar cliente horario e horario
@@ -101,7 +101,7 @@ public class ValidaAgenda {
             }
         }
     }
-    public List<HorarioAula> getHorariosDisponiveis(List<Agenda> agendasPorData) {
+    private List<HorarioAula> getHorariosDisponiveis(List<Agenda> agendasPorData) {
         List<HorarioAula> horariosDisponiveis = new ArrayList<>(Arrays.asList(HorarioAula.values()));
         for (Agenda agenda : agendasPorData) {
             HorarioAula horarioMarcado = HorarioAula.valueOf(agenda.getHorarioAula().toString());
@@ -109,7 +109,7 @@ public class ValidaAgenda {
         }
         return horariosDisponiveis;
     }
-    public List<HorarioAula> getHorariosDisponiveisPorInstrutor(List<Agenda> agendaInstrutor) {
+    private List<HorarioAula> getHorariosDisponiveisPorInstrutor(List<Agenda> agendaInstrutor) {
         List<HorarioAula> horariosDisponiveis = new ArrayList<>(Arrays.asList(HorarioAula.values()));
         for (Agenda agenda : agendaInstrutor) {
             HorarioAula horarioMarcado = HorarioAula.valueOf(agenda.getHorarioAula().toString());
@@ -117,7 +117,7 @@ public class ValidaAgenda {
         }
         return horariosDisponiveis;
     }
-    public List<HorarioAula> getHorariosDisponiveisPorVeiculo(List<Agenda> agendasPorVeiculo) {
+    private List<HorarioAula> getHorariosDisponiveisPorVeiculo(List<Agenda> agendasPorVeiculo) {
         List<HorarioAula> horariosDisponiveis = new ArrayList<>(Arrays.asList(HorarioAula.values()));
         for (Agenda agenda : agendasPorVeiculo) {
             HorarioAula horarioMarcado = HorarioAula.valueOf(agenda.getHorarioAula().toString());
