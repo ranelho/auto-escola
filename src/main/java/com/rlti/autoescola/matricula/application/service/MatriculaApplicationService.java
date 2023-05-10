@@ -24,8 +24,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
-import static com.rlti.autoescola.matricula.annotation.constraints.Valid.validaAlteracaoMatricula;
-import static com.rlti.autoescola.matricula.annotation.constraints.Valid.validaSolicitacao;
+import static com.rlti.autoescola.matricula.annotation.constraints.ValidaMatricula.validaAlteracaoMatricula;
+import static com.rlti.autoescola.matricula.annotation.constraints.ValidaMatricula.validaSolicitacao;
 
 @Service
 @Log4j2

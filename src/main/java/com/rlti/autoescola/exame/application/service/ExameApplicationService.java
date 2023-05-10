@@ -6,7 +6,7 @@ import com.rlti.autoescola.exame.application.api.ExameResponse;
 import com.rlti.autoescola.exame.application.repository.ExameRepository;
 import com.rlti.autoescola.exame.domain.Exame;
 import com.rlti.autoescola.exame.domain.Resultado;
-import com.rlti.autoescola.exame.domain.Validate;
+import com.rlti.autoescola.exame.domain.ValidaExame;
 import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +28,7 @@ public class ExameApplicationService implements ExameService {
         log.info("[inicia] ExameApplicationService - saveExame");
         Matricula matricula = matriculaRepository.getOneMatricula(idMatricula);
         List<Exame> exames = exameRepository.getAllExamesByMatricula(matricula);
-        Validate.validaExame(exames, request);
+        ValidaExame.validaExame(exames, request);
         Exame exame = exameRepository.saveExame(new Exame(matricula, request));
         log.info("[finaliza] ExameApplicationService - saveExame");
         return ExameIdResponse.builder().idExame(exame.getIdExame()).build();

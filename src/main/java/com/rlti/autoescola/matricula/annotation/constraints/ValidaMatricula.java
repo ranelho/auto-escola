@@ -13,7 +13,7 @@ import org.springframework.http.HttpStatus;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class Valid {
+public class ValidaMatricula {
     public static void validaSolicitacao(SolicitacaoRequest request, Servico servico) {
         isCombinationValid(request.getTipoServico(),servico.getCategoria());
         validarTipoPagamentoETotalParcelas(request.getTipoPagamento(), request.getQuantidadeParcelas());
@@ -32,7 +32,7 @@ public class Valid {
         }
     }
 
-    public static void validarTipoPagamentoETotalParcelas(TipoPagamento tipoPagamento, int quantidadeParcelas) {
+    private static void validarTipoPagamentoETotalParcelas(TipoPagamento tipoPagamento, int quantidadeParcelas) {
         if (tipoPagamento == TipoPagamento.DINHEIRO || tipoPagamento == TipoPagamento.CARTAO_DEBITO ||
                 tipoPagamento == TipoPagamento.PIX || tipoPagamento == TipoPagamento.BOLETO) {
             if (quantidadeParcelas != 1) {
@@ -47,7 +47,7 @@ public class Valid {
         }
     }
 
-    public  static void validaEntrada(BigDecimal valorEntrada, BigDecimal valorServico, int desconto){
+    private  static void validaEntrada(BigDecimal valorEntrada, BigDecimal valorServico, int desconto){
         BigDecimal valorFinal = calcularValorFinal(desconto, valorServico);
         if(valorEntrada.compareTo(valorServico) > 0){
             throw APIException

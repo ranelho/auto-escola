@@ -21,7 +21,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-import static com.rlti.autoescola.matricula.annotation.constraints.Valid.calcularValorFinal;
+import static com.rlti.autoescola.matricula.annotation.constraints.ValidaMatricula.calcularValorFinal;
 
 @AllArgsConstructor
 @NoArgsConstructor

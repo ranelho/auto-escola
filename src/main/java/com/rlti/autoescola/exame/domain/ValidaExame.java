@@ -13,7 +13,7 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 /**
  * @author Ranelho Lacerda
  */
-public class Validate {
+public class ValidaExame {
     /**
      * Metodo para Validar Exame
      * @param exames recebe uma lista com os exames cadastrados
