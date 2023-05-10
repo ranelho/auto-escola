@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Tag(name = "Agenda", description = "Agenda APIs")
-@RequestMapping("/v1/agenda")
+@RequestMapping("/v1/agendas")
 public interface AgendaAPI{
 
     @PostMapping

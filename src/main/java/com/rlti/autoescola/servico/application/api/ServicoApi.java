@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Tag(name = "Servico", description = "Servico APIs")
-@RequestMapping("/v1/servico")
+@RequestMapping("/v1/servicos")
 public interface ServicoApi {
 
     @PostMapping
@@ -23,10 +23,6 @@ public interface ServicoApi {
     @GetMapping("/all")
     @ResponseStatus(code = HttpStatus.OK)
     List<ServicoResponse> getAllServicos();
-
-    @DeleteMapping("/{idServico}")
-    @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void deleteServico(@PathVariable UUID idServico);
 
     @PatchMapping("/update/{idServico}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)

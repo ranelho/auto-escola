@@ -9,7 +9,7 @@ import jakarta.validation.Valid;
 import java.util.UUID;
 
 @Tag(name = "Contato", description = "Contato APIs")
-@RequestMapping("v1/contato")
+@RequestMapping("v1/contatos")
 public interface ContatoApi {
 
     @PostMapping("/{idCliente}")

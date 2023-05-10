@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Tag(name = "Exame", description = "Exame APIs")
-@RequestMapping("/v1/exame")
+@RequestMapping("/v1/exames")
 public interface ExameApi {
 
     @PostMapping("{idMatricula}")

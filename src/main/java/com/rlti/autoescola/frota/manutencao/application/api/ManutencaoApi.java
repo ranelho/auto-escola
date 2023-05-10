@@ -8,7 +8,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 @Tag(name = "Manutencao", description = "Manutencao APIs")
-@RequestMapping("/v1/manutencao")
+@RequestMapping("/v1/manutencoes")
 public interface ManutencaoApi {
 
     @PostMapping("/{placa}")

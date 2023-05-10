@@ -16,8 +16,6 @@ import java.util.List;
 @RequestMapping("/v1/relatorios")
 public interface RelatoriosApi {
 
-    //TODO -> Relatório Mensal Financeiro.
-
     @GetMapping("/clientes")
     @ResponseStatus(code = HttpStatus.OK)
     List<RelatorioClientesResponse> getRelatorioClientes();

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Tag(name = "Instrutor", description = "Instrutor APIs")
-@RequestMapping("/v1/instrutor")
+@RequestMapping("/v1/instrutores")
 public interface InstrutorApi {
     @PostMapping
     @ResponseStatus(code = HttpStatus.ACCEPTED)

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Tag(name = "Veiculo", description = "Veiculo APIs")
-@RequestMapping("/v1/veiculo")
+@RequestMapping("/v1/veiculos")
 public interface VeiculoApi {
 
     @PostMapping
