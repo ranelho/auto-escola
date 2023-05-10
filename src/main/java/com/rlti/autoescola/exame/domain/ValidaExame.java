@@ -15,18 +15,18 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
  */
 public class ValidaExame {
     /**
-     * Metodo para Validar Exame
+     * Método para Validar Exame
      * @param exames recebe uma lista com os exames cadastrados
      * @param request recebe as informações vindo do usuario
      * -----------------NORMAS---------------
      * 1 - O PRIMEIRO EXAME DEVE SER CLINICO
-     * 2 - POSSO TER VARIOS EXAMES DO TIPO CLINICO, POREM TODOS TEM QUE SER INAPTO
+     * 2 - POSSO TER VÁRIOS EXAMES DO TIPO CLINICO, POREM TODOS TEM QUE SER INAPTO
      * 3 - SO PODE TER UM EXAME DO TIPO CLINICO COMO APTO OU A_FAZER
      * 4 - PARA O CADASTRO DO EXAME TIPO TEORICO O EXAME CLINICO DEVE SER APTO
-     * 5 - POSSO TER VARIOS EXAMES DO TIPO TEORICO, POREM TEM QUE SER INAPTO
+     * 5 - POSSO TER VÁRIOS EXAMES DO TIPO TEORICO, POREM TEM QUE SER INAPTO
      * 6 - SO PODE TER UM EXAME DO TIPO TEORICO APTO OU A_FAZER
      * 7 - PARA UM EXAME DO TIPO PRATICO OS EXAMES CLINICO E TEORICO DEVEM SER APTO
-     *  8 - POSSO TER VARIOS EXAMES DO TIPO PRATICO POREM TEM QUE SER INAPTO
+     *  8 - POSSO TER VÁRIOS EXAMES DO TIPO PRATICO POREM TEM QUE SER INAPTO
      *  9 - SO PODE TER UM EXAME DO TIPO PRATICO APTO OU A_FAZER
      */
     public static void validaExame(List<Exame> exames, ExameRequest request) {

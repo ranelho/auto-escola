@@ -27,8 +27,8 @@ public class ValidaMatricula {
 
     private static void isCombinationValid(TipoServico tipoServico, Categoria categoria) {
         if (!tipoServico.isValidCategoria(categoria)) {
-            throw APIException
-                    .build(HttpStatus.BAD_REQUEST,"Categoria "+ categoria + " não é compativel para o servico " + tipoServico);
+            throw APIException.build(HttpStatus.BAD_REQUEST,
+                    "Categoria "+ categoria + " não é compativel para o servico " + tipoServico);
         }
     }
 
@@ -36,13 +36,13 @@ public class ValidaMatricula {
         if (tipoPagamento == TipoPagamento.DINHEIRO || tipoPagamento == TipoPagamento.CARTAO_DEBITO ||
                 tipoPagamento == TipoPagamento.PIX || tipoPagamento == TipoPagamento.BOLETO) {
             if (quantidadeParcelas != 1) {
-                throw APIException
-                        .build(HttpStatus.BAD_REQUEST,"Quantidade de parcelas inválida para o tipo de pagamento escolhido.");
+                throw APIException.build(HttpStatus.BAD_REQUEST,
+                        "Quantidade de parcelas inválida para o tipo de pagamento escolhido.");
             }
         } else if (tipoPagamento == TipoPagamento.CARTAO_CREDITO) {
             if (quantidadeParcelas < 1) {
-                throw APIException
-                        .build(HttpStatus.BAD_REQUEST,"Quantidade de parcelas inválida para o tipo de pagamento escolhido.");
+                throw APIException.build(HttpStatus.BAD_REQUEST,
+                        "Quantidade de parcelas inválida para o tipo de pagamento escolhido.");
             }
         }
     }
@@ -50,9 +50,9 @@ public class ValidaMatricula {
     private  static void validaEntrada(BigDecimal valorEntrada, BigDecimal valorServico, int desconto){
         BigDecimal valorFinal = calcularValorFinal(desconto, valorServico);
         if(valorEntrada.compareTo(valorServico) > 0){
-            throw APIException
-                    .build(HttpStatus.BAD_REQUEST,"Valor entrada R$: "+valorEntrada + " maior que o valor contratado, " +
-                            "Valor Serviço R$: " + valorServico + " - desconto de " + desconto+"% igual a R$: " + valorFinal);
+            throw APIException.build(HttpStatus.BAD_REQUEST,"Valor entrada R$: "+valorEntrada
+                    + " maior que o valor contratado, " + "Valor Serviço R$: " + valorServico + " - desconto de "
+                    + desconto+"% igual a R$: " + valorFinal);
         }
     }
 
@@ -66,8 +66,8 @@ public class ValidaMatricula {
         if (valorServico.compareTo(BigDecimal.ZERO) <= 0) {
             throw APIException.build(HttpStatus.BAD_REQUEST,"O valor do serviço deve ser maior que zero");
         }
-        BigDecimal valorDescontado = valorServico.multiply(new BigDecimal(desconto)).divide(BigDecimal.valueOf(100),
-                2, RoundingMode.HALF_UP);
+        BigDecimal valorDescontado = valorServico.multiply(new BigDecimal(desconto))
+                .divide(BigDecimal.valueOf(100),2, RoundingMode.HALF_UP);
         return valorServico.subtract(valorDescontado);
     }
 }
