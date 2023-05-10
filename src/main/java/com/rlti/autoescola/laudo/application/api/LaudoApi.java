@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Tag(name = "Laudo", description = "Laudo APIs")
-@RequestMapping("/v1/laudo")
+@RequestMapping("/v1/laudos")
 public interface LaudoApi {
 
     @PostMapping("{idMatricula}")

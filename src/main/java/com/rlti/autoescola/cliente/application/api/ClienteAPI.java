@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 @Tag(name = "Cliente", description = "Cliente APIs")
-@RequestMapping("/v1/cliente")
+@RequestMapping("/v1/clientes")
 public interface ClienteAPI {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
@@ -27,10 +27,6 @@ public interface ClienteAPI {
     @GetMapping("/all")
     @ResponseStatus(code = HttpStatus.OK)
     List<ClienteListResponse> getAllClientes();
-
-    @DeleteMapping(value = "/{idCliente}")
-    @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void deleteCliente(@PathVariable UUID idCliente);
 
     @PatchMapping("/{idCliente}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)

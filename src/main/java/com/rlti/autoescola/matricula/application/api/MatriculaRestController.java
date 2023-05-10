@@ -53,13 +53,6 @@ public class MatriculaRestController implements MatriculaAPI{
     }
 
     @Override
-    public void deleteMatricula(UUID idMatricula) {
-        log.info("[inicia] MatriculaRestController - deleteMatricula");
-        matriculaService.deleteMatricula(idMatricula);
-        log.info("[finaliza] MatriculaRestController - deleteMatricula");
-    }
-
-    @Override
     public void updateMatricula(UUID idMatricula, MatriculaAlteracaoRequest matriculaAlteracaoRequest) {
         log.info("[inicia] MatriculaRestController - updateMatricula");
         matriculaService.updateMatricula(idMatricula, matriculaAlteracaoRequest);

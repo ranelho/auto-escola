@@ -1,14 +1,14 @@
 package com.rlti.autoescola.frota.veiculo.application.api;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.validation.Valid;
 import java.util.List;
 
 @Tag(name = "Veiculo", description = "Veiculo APIs")
-@RequestMapping("/v1/veiculo")
+@RequestMapping("/v1/veiculos")
 public interface VeiculoApi {
 
     @PostMapping

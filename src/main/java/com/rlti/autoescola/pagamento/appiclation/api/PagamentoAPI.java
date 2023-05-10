@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Tag(name = "Pagamento", description = "Pagamento APIs")
-@RequestMapping("/v1/pagamento")
+@RequestMapping("/v1/pagamentos")
 public interface PagamentoAPI {
 
     @PostMapping("/{idMatricula}")

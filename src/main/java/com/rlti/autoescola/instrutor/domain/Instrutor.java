@@ -1,6 +1,7 @@
 package com.rlti.autoescola.instrutor.domain;
 
 import com.rlti.autoescola.agenda.domain.Agenda;
+import com.rlti.autoescola.agenda.domain.HorarioAula;
 import com.rlti.autoescola.cliente.domain.groups.PessoaFisica;
 import com.rlti.autoescola.instrutor.application.api.InstrutorResquest;
 import com.rlti.autoescola.instrutor.application.api.InstrutorUpdateResquest;
@@ -40,6 +41,8 @@ public class Instrutor {
 
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "instrutor")
     private List<Agenda> agendas;
+
+    private List<HorarioAula> aulas;
 
     public Instrutor(InstrutorResquest resquest) {
         this.nomeCompleto = resquest.getNomeCompleto().toUpperCase();

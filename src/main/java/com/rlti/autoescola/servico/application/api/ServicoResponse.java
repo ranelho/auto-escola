@@ -12,11 +12,13 @@ public class ServicoResponse {
     UUID idServico;
     String categoria;
     BigDecimal valorServico;
+    Integer quantidadeHorasAula;
 
     public ServicoResponse(Servico servico) {
         this.idServico = servico.getIdServico();
         this.categoria = servico.getCategoria().toString();
         this.valorServico = servico.getValorServico();
+        this.quantidadeHorasAula = servico.getQuantidadeHorasAula();
     }
 
     public static List<ServicoResponse> converte(List<Servico> servicos) {

@@ -2,6 +2,7 @@ package com.rlti.autoescola.agenda.infra;
 
 import com.rlti.autoescola.agenda.application.repository.AgendaRepository;
 import com.rlti.autoescola.agenda.domain.Agenda;
+import com.rlti.autoescola.agenda.domain.HorarioAula;
 import com.rlti.autoescola.frota.veiculo.domain.Veiculo;
 import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.instrutor.domain.Instrutor;
@@ -10,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
+
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,18 +23,18 @@ public class AgendaInfraRepository implements AgendaRepository {
     private final AgendaSpringDataJPARepository agendaSpringDataJPARepository;
 
    @Override
-    public Agenda save(Agenda agenda) {
-        log.info("[inicia] - AgendaInfraRepository - post");
+    public Agenda saveAgenda(Agenda agenda) {
+        log.info("[inicia] - AgendaInfraRepository - saveAgenda");
         agendaSpringDataJPARepository.save(agenda);
-        log.info("[finaliza] - AgendaInfraRepository - post");
+        log.info("[finaliza] - AgendaInfraRepository - saveAgenda");
         return agenda;
     }
 
     @Override
-    public List<Agenda> buscaAgendamentos() {
-        log.info("[inicia] - AgendaInfraRepository - buscaAgendamentos");
+    public List<Agenda> getAllAgendas() {
+        log.info("[inicia] - AgendaInfraRepository - getAllAgendas");
         List<Agenda> agendamentos = agendaSpringDataJPARepository.findAll();
-        log.info("[finaliza] - AgendaInfraRepository - buscaAgendamentos");
+        log.info("[finaliza] - AgendaInfraRepository - getAllAgendas");
         return agendamentos;
     }
 
@@ -74,5 +77,37 @@ public class AgendaInfraRepository implements AgendaRepository {
         log.info("[inicia] AgendaInfraRepository - deleteAgenda");
         agendaSpringDataJPARepository.deleteById(idAgenda);
         log.info("[finaliza] AgendaInfraRepository - deleteAgenda");
+    }
+
+    @Override
+    public Optional<Agenda> getDataAndHorario(LocalDate data, HorarioAula horarioAula) {
+        log.info("[inicia] getDataAndHorario - deleteAgenda");
+        Optional<Agenda> agenda = agendaSpringDataJPARepository.findByDataAndHorarioAula(data, horarioAula);
+        log.info("[finaliza] getDataAndHorario - deleteAgenda");
+        return agenda;
+    }
+
+    @Override
+    public List<Agenda> getAgendasPorData(LocalDate data) {
+       log.info("[inicia] getAgendasPorData - deleteAgenda");
+       List<Agenda> agendas = agendaSpringDataJPARepository.findByData(data);
+       log.info("[finaliza] getAgendasPorData - deleteAgenda");
+       return agendas;
+    }
+
+    @Override
+    public List<Agenda> getAgendasPorDataEInstrutor(LocalDate data, Instrutor instrutor) {
+        log.info("[inicia] getAgendasPorDataEInstrutor - deleteAgenda");
+        List<Agenda> agendas = agendaSpringDataJPARepository.findByDataAndInstrutor(data, instrutor);
+        log.info("[finaliza] getAgendasPorDataEInstrutor - deleteAgenda");
+        return agendas;
+    }
+
+    @Override
+    public List<Agenda> getAgendasPorDataEVeiculo(LocalDate data, Veiculo veiculo) {
+       log.info("[inicia] getAgendasPorDataEVeiculo - deleteAgenda");
+       List<Agenda> agendas = agendaSpringDataJPARepository.findByDataAndVeiculo(data, veiculo);
+       log.info("[finaliza] getAgendasPorDataEVeiculo - deleteAgenda");
+       return agendas;
     }
 }

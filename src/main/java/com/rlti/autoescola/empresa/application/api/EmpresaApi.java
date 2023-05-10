@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Tag(name = "Empresa", description = "Empresa APIs")
-@RequestMapping("/v1/empresa")
+@RequestMapping("/v1/empresas")
 public interface EmpresaApi {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)

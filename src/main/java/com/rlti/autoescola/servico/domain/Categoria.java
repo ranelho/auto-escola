@@ -3,7 +3,7 @@ package com.rlti.autoescola.servico.domain;
 import com.rlti.autoescola.matricula.domain.TipoServico;
 
 public enum Categoria {
-    ACC, A, B, C, D, E, AB;
+    ACC, A, B, C, D, E, AB, AC, AD;
 
     public boolean isValidTipoServico(TipoServico tipoServico) {
         return switch (tipoServico) {

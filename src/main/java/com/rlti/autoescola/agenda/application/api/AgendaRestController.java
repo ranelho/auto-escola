@@ -14,15 +14,15 @@ public class AgendaRestController implements AgendaAPI {
     private final AgendaService agendaService;
 
     @Override
-    public AgendaIdResponse saveLaudo(AgendaRequest agendaRequest) {
+    public AgendaIdResponse saveAgenda(AgendaRequest agendaRequest) {
         log.info("[inicia] - AgendaRestController - post");
-        AgendaIdResponse agendaResponse = agendaService.post(agendaRequest);
+        AgendaIdResponse agendaResponse = agendaService.saveAgenda(agendaRequest);
         log.info("[finaliza] - AgendaRestController - post");
         return agendaResponse;
     }
 
     @Override
-    public List<AgendaListResponse> getAll() {
+    public List<AgendaListResponse> getAllAgenda() {
         log.info("[inicia] AgendaRestController - getAll");
         List<AgendaListResponse> agendas = agendaService.buscaAgendamentos();
         log.info("[inicia] AgendaRestController - getAll");

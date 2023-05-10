@@ -24,7 +24,7 @@ public class VeiculoInfraRepository implements VeiculoRepository {
         try {
             veiculoSpringDataJPARepository.save(veiculo);
         }catch (DataIntegrityViolationException e){
-            throw APIException.build(HttpStatus.BAD_REQUEST, "Veiculo já cadastrado", e);
+            throw APIException.build(HttpStatus.BAD_REQUEST, "Veiculo já cadastrado" + veiculo.getPlaca());
         }
         log.info("[finaliza] VeiculoInfraRepository - saveVeiculo");
         return veiculo;

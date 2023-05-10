@@ -17,7 +17,7 @@ public class RelatoriosRestController implements RelatoriosApi {
     private final RelatoriosService relatoriosService;
 
     @Override
-    public List<RelatorioClientesResponse> getAllClientes() {
+    public List<RelatorioClientesResponse> getRelatorioClientes() {
         log.info("[inicia] - RelatoriosRestController - getAllClientes");
         List<RelatorioClientesResponse> response = relatoriosService.getAllClientes();
         log.info("[finaliza] - RelatoriosRestController - getAllClientes");
@@ -25,7 +25,7 @@ public class RelatoriosRestController implements RelatoriosApi {
     }
 
     @Override
-    public List<RelatorioMatriculasAtivasResponse> getAllMatriculasAtivas() {
+    public List<RelatorioMatriculasAtivasResponse> getRelatorioMatriculasAtivas() {
         log.info("[inicia] - RelatoriosRestController - getAllMatriculasAtivas");
         List<RelatorioMatriculasAtivasResponse> response = relatoriosService.getAllMatriculasAtivas();
         log.info("[finaliza] - RelatoriosRestController - getAllMatriculasAtivas");
@@ -33,7 +33,7 @@ public class RelatoriosRestController implements RelatoriosApi {
     }
 
     @Override
-    public List<RelatorioVeiculosResponse> getAllVeiculos() {
+    public List<RelatorioVeiculosResponse> getRelatorioVeiculos() {
         log.info("[inicia] - RelatoriosRestController - getAllVeiculos");
         List<RelatorioVeiculosResponse> response = relatoriosService.getAllVeiculos();
         log.info("[finaliza] - RelatoriosRestController - getAllVeiculos");
@@ -41,7 +41,7 @@ public class RelatoriosRestController implements RelatoriosApi {
     }
 
     @Override
-    public List<RelatorioInstrutorResponse> getAllInstrutor() {
+    public List<RelatorioInstrutorResponse> getRelatorioInstrutor() {
         log.info("[inicia] RelatoriosRestController - getAllInstrutor");
         List<RelatorioInstrutorResponse> response = relatoriosService.getAllInstrutor();
         log.info("[finaliza] RelatoriosRestController - getAllInstrutor");

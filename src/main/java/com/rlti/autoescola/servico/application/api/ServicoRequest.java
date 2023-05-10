@@ -9,4 +9,5 @@ import java.math.BigDecimal;
 public class ServicoRequest {
     Categoria categoria;
     BigDecimal valorServico;
+    Integer quantidadeHorasAula;
 }

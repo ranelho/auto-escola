@@ -48,19 +48,12 @@ public class ClienteRestController implements ClienteAPI {
         return clientes;
     }
     @Override
-    public void deleteCliente(UUID idCliente) {
-        log.info("[inicia] ClienteRestController - deleteCliente");
-        clienteService.deleteCliente(idCliente);
-        log.info("[finaliza] ClienteRestController - deleteCliente");
-    }
-    @Override
     public void updateCliente(UUID idCliente, @Valid  EditaClienteRequest editaClienteRequest) {
         log.info("[inicia] ClienteRestController - updateCliente");
         clienteService.updateCliente(idCliente, editaClienteRequest);
         log.info("[idCliente] {}", idCliente);
         log.info("[finaliza] ClienteRestController - updateCliente");
     }
-
     @Override
     public void saveImagem(UUID idCliente, MultipartFile imagem) throws IOException {
         log.info("[inicia] ClienteRestController - saveImagem");

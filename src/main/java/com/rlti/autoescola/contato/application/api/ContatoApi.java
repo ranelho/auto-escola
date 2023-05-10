@@ -1,13 +1,15 @@
 package com.rlti.autoescola.contato.application.api;
 
 import com.rlti.autoescola.cliente.application.api.ClienteContatosResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 import java.util.UUID;
 
-@RequestMapping("v1/contato")
+@Tag(name = "Contato", description = "Contato APIs")
+@RequestMapping("v1/contatos")
 public interface ContatoApi {
 
     @PostMapping("/{idCliente}")

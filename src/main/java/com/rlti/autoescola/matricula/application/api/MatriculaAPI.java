@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Tag(name = "Matricula", description = "Matricula APIs")
-@RequestMapping("/v1/matricula")
+@RequestMapping("/v1/matriculas")
 public interface MatriculaAPI {
 
     @PostMapping
@@ -32,10 +32,6 @@ public interface MatriculaAPI {
     @GetMapping(value = "/{idMatricula}")
     @ResponseStatus(code = HttpStatus.OK)
     MatriculaDetalhadoResponse getOneMatricula(@PathVariable UUID idMatricula);
-
-    @DeleteMapping(value = "/{idMatricula}")
-    @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void deleteMatricula(@PathVariable UUID idMatricula);
 
     @PatchMapping(value = "/{idMatricula}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)

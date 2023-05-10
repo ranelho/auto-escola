@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 
 @Tag(name = "Orcamento", description = "Orcamento APIs")
-@RequestMapping("/v1/orcamento")
+@RequestMapping("/v1/orcamentos")
 public interface OrcamentoAPI {
 
     @PostMapping
