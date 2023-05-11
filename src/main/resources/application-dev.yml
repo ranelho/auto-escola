@@ -1,7 +1,3 @@
-server:
-  servlet:
-    context-path: /auto-escola/api
-
 spring:
   datasource:
     driverClassName: org.postgresql.Driver
@@ -15,14 +11,3 @@ spring:
         ddl-auto: update
         show_sql: true
         format_sql: true
-  servlet:
-    multipart:
-      enabled: true
-      max-file-size: 1MB
-      max-request-size: 1MB
-      file-size-threshold: 0
-      location: ~/temp/
-
-springdoc:
-  swagger-ui:
-    path: /public/swagger

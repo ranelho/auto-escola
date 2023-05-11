@@ -1,7 +1,16 @@
 spring:
   profiles:
-    active: ${APP_PROFILE:dev}
-  jpa:
-    open-in-view: false
-cors:
-  origins: ${CORS_ORIGINS:http://localhost:5173,http://localhost:3000}
+    active: ${SPRING_PROFILES_ACTIVE}
+server:
+  servlet:
+    context-path: /auto-escola/api
+    multipart:
+      enabled: true
+      max-file-size: 1MB
+      max-request-size: 1MB
+      file-size-threshold: 0
+      location: ~/temp/
+
+springdoc:
+  swagger-ui:
+    path: /public/swagger
