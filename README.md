@@ -41,7 +41,7 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [x] Fluxo de Caixa
   
 # Banco de Dados
-<img src="Banco.png" width=800><br><sub>Banco de Dados</sub>
+<img src="Banco.png" width=650><br><sub>Banco de Dados</sub>
 
 ## Trechos de código
 
