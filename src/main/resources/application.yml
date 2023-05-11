@@ -1,28 +1,7 @@
-server:
-  servlet:
-    context-path: /auto-escola/api
-
 spring:
-  datasource:
-    driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://autoescola.postgres.uhserver.com:5432/autoescola
-    username: rlti
-    password: Dev@8524*
+  profiles:
+    active: ${APP_PROFILE:dev}
   jpa:
-    generate-ddl: true
-    properties:
-      hibernate:
-        ddl-auto: update
-        show_sql: true
-        format_sql: true
-  servlet:
-    multipart:
-      enabled: true
-      max-file-size: 1MB
-      max-request-size: 1MB
-      file-size-threshold: 0
-      location: ~/temp/
-
-springdoc:
-  swagger-ui:
-    path: /public/swagger
+    open-in-view: false
+cors:
+  origins: ${CORS_ORIGINS:http://localhost:5173,http://localhost:3000}
