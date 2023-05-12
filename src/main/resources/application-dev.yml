@@ -6,14 +6,12 @@ spring:
     password: Dev@8524*
   jpa:
     generate-ddl: true
-    jpa:
-      generate-ddl: true
-      properties:
-        hibernate:
-          ddl-auto: update
-          show_sql: true
-          format_sql: true
-#criar sql do banco.
+    properties:
+      hibernate:
+        ddl-auto: update
+        show_sql: true
+        format_sql: true
+#gera script do bd
 #      jakarta:
 #        persistence:
 #          schema-generation:

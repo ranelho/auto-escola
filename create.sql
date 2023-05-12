@@ -1,12 +1,6 @@
-create sequence agenda_seq start with 1 increment by 50;
-create sequence exame_seq start with 1 increment by 50;
-create sequence laudo_seq start with 1 increment by 50;
-create sequence manutencao_seq start with 1 increment by 50;
-create sequence orcamento_seq start with 1 increment by 50;
-create sequence pagamento_seq start with 1 increment by 50;
 
     create table agenda (
-       id_agenda bigint not null,
+       id_agenda bigserial not null,
         data date,
         horario_aula varchar(255),
         tipo_aula varchar(255),
@@ -57,7 +51,7 @@ create sequence pagamento_seq start with 1 increment by 50;
     );
 
     create table exame (
-       id_exame bigint not null,
+       id_exame bigserial not null,
         data_exame date,
         observacao varchar(255),
         resultado varchar(255),
@@ -86,7 +80,7 @@ create sequence pagamento_seq start with 1 increment by 50;
     );
 
     create table laudo (
-       id_laudo bigint not null,
+       id_laudo bigserial not null,
         data_emissao date,
         renach varchar(255),
         validade date,
@@ -95,7 +89,7 @@ create sequence pagamento_seq start with 1 increment by 50;
     );
 
     create table manutencao (
-       id_manutencao bigint not null,
+       id_manutencao bigserial not null,
         data_manutencao date,
         descricao varchar(255),
         tipo_manutencao varchar(255),
@@ -121,7 +115,7 @@ create sequence pagamento_seq start with 1 increment by 50;
     );
 
     create table orcamento (
-       id_orcamento bigint not null,
+       id_orcamento bigserial not null,
         data_orcamento date,
         desconto integer not null,
         observacao varchar(255),
@@ -137,7 +131,7 @@ create sequence pagamento_seq start with 1 increment by 50;
     );
 
     create table pagamento (
-       id_pagamento bigint not null,
+       id_pagamento bigserial not null,
         data_pagamento date,
         tipo_pagamento varchar(255),
         valor_pago numeric(38,2),
