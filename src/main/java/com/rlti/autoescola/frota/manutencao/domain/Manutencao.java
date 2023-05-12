@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class Manutencao {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idManutencao;
     private LocalDate dataManutencao;
     private BigDecimal valorManutencao;

@@ -33,7 +33,7 @@ public class RelatorioMatriculaResponse {
         this.dataMatricula = matricula.getDataMatricula();
         this.status = matricula.getStatus().toString();
         this.exames = ExameResumoResponse.converte(matricula.getExames());
-        this.laudos = LaudoResumoResponse.converte(matricula.getLaudo());
+        this.laudos = LaudoResumoResponse.converte(matricula.getLaudos());
         this.pagamentos = PagamentoResumoResponse.convert(matricula.getPagamentos());
     }
 

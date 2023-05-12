@@ -61,7 +61,7 @@ public class Matricula {
     private List<Pagamento> pagamentos;
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "matricula")
     @JsonIgnore
-    private List<Laudo> laudo;
+    private List<Laudo> laudos;
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "matricula")
     @JsonIgnore
     List<Exame> exames;
