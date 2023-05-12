@@ -14,6 +14,7 @@ public class InstrutorResponse {
     String cpf;
     String cnh;
     LocalDate validadeCnh;
+    String situacaoCnh;
     String categoria;
 
     public InstrutorResponse(Instrutor instrutor) {
@@ -22,7 +23,13 @@ public class InstrutorResponse {
         this.cpf = instrutor.getCpf();
         this.cnh = instrutor.getCnh();
         this.validadeCnh = instrutor.getValidadeCnh();
+        this.situacaoCnh = verificaValidadeCNH();
         this.categoria = instrutor.getCategoria().toString();
+    }
+
+    public String verificaValidadeCNH() {
+        LocalDate validadeCnh = this.getValidadeCnh();
+        return (validadeCnh != null && validadeCnh.isBefore(LocalDate.now())) ? "CNH VENCIDA" : "CNH VÁLIDA";
     }
 
     public static List<InstrutorResponse> converte(List<Instrutor> instrutors) {
