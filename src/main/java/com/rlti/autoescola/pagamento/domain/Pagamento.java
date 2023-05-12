@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @Entity
 public class Pagamento {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPagamento;
     private LocalDate dataPagamento = LocalDate.now();
     @Enumerated(EnumType.STRING)

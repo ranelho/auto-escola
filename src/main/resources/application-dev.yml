@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://autoescola.postgres.uhserver.com:5432/autoescola
+    username: rlti
+    password: Dev@8524*
+  jpa:
+    generate-ddl: true
+    properties:
+      hibernate:
+        ddl-auto: update
+        show_sql: true
+        format_sql: true
+#gera script do bd
+#      jakarta:
+#        persistence:
+#          schema-generation:
+#            create-source: metadata
+#            scripts:
+#              action: create
+#              create-target: create.sql
+#          hibernate:
+#            hbm2ddl:
+#              delimiter: ";"

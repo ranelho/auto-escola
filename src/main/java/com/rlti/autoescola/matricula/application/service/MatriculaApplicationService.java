@@ -2,6 +2,7 @@ package com.rlti.autoescola.matricula.application.service;
 
 import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.cliente.domain.Cliente;
+import com.rlti.autoescola.matricula.annotation.constraints.ValidaMatricula;
 import com.rlti.autoescola.matricula.application.api.request.MatriculaAlteracaoRequest;
 import com.rlti.autoescola.matricula.application.api.request.MatriculaRequest;
 import com.rlti.autoescola.matricula.application.api.response.MatriculaDetalhadoResponse;
@@ -24,9 +25,6 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
-import static com.rlti.autoescola.matricula.annotation.constraints.ValidaMatricula.validaAlteracaoMatricula;
-import static com.rlti.autoescola.matricula.annotation.constraints.ValidaMatricula.validaSolicitacao;
-
 @Service
 @Log4j2
 @RequiredArgsConstructor
@@ -36,12 +34,13 @@ public class MatriculaApplicationService implements MatriculaService{
     private final ServicoRepository servicoRepository;
     private final PagamentoService pagamentoService;
     private final OrcamentoRepository orcamentoRepository;
+    private final ValidaMatricula validaMatricula;
 
     @Override
     public MatriculaIdResponse saveMatricula(MatriculaRequest matriculaRequest) {
         log.info("[inicia] MatriculaApplicationService - saveMatricula");
         Servico servico = servicoRepository.getOneServico(matriculaRequest.getIdServico());
-        validaSolicitacao(matriculaRequest, servico);
+        validaMatricula.validaSolicitacao(matriculaRequest, servico);
         Cliente cliente = clienteRepository.findOneCliente(matriculaRequest.getIdCliente());
         Matricula matricula = matriculaRepository.saveMatricula(new Matricula(cliente, servico,matriculaRequest));
         if (matriculaRequest.getValorEntrada().compareTo(BigDecimal.ZERO)>0){
@@ -89,7 +88,7 @@ public class MatriculaApplicationService implements MatriculaService{
     public void updateMatricula(UUID idMatricula, MatriculaAlteracaoRequest request) {
         log.info("[inicia] MatriculaApplicationService - updateMatricula");
         Matricula matricula = matriculaRepository.getOneMatricula(idMatricula);
-        validaAlteracaoMatricula(matricula, request);
+        validaMatricula.validaAlteracaoMatricula(matricula, request);
         matricula.altera(request);
         matriculaRepository.saveMatricula(matricula);
         log.info("[finaliza] MatriculaApplicationService - updateMatricula");

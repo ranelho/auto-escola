@@ -1,21 +1,9 @@
+spring:
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE}
 server:
   servlet:
     context-path: /auto-escola/api
-
-spring:
-  datasource:
-    driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://autoescola.postgres.uhserver.com:5432/autoescola
-    username: rlti
-    password: Dev@8524*
-  jpa:
-    generate-ddl: true
-    properties:
-      hibernate:
-        ddl-auto: update
-        show_sql: true
-        format_sql: true
-  servlet:
     multipart:
       enabled: true
       max-file-size: 1MB

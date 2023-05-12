@@ -9,18 +9,20 @@ import com.rlti.autoescola.matricula.domain.TipoServico;
 import com.rlti.autoescola.servico.domain.Categoria;
 import com.rlti.autoescola.servico.domain.Servico;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+@Component
 public class ValidaMatricula {
-    public static void validaSolicitacao(SolicitacaoRequest request, Servico servico) {
+    public void validaSolicitacao(SolicitacaoRequest request, Servico servico) {
         isCombinationValid(request.getTipoServico(),servico.getCategoria());
         validarTipoPagamentoETotalParcelas(request.getTipoPagamento(), request.getQuantidadeParcelas());
         validaEntrada(request.getValorEntrada(), servico.getValorServico(), request.getDesconto());
     }
 
-    public static void validaAlteracaoMatricula(Matricula matricula, MatriculaAlteracaoRequest request) {
+    public void validaAlteracaoMatricula(Matricula matricula, MatriculaAlteracaoRequest request) {
         validarTipoPagamentoETotalParcelas(request.getTipoPagamento(), request.getQuantidadeParcelas());
         validaEntrada(request.getValorEntrada(), matricula.getServico().getValorServico(), request.getDesconto());
     }
