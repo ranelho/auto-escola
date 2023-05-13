@@ -1,4 +1,4 @@
-package com.rlti.autoescola.security.user.application.api;
+package com.rlti.autoescola.security.auth.api;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthentificationRequest {
-    private String email;
-    private String password;
+public class AuthenticationRequest {
+
+  private String email;
+  String password;
 }
