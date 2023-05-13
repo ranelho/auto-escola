@@ -17,7 +17,7 @@ import java.util.UUID;
 public class Token {
 
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.AUTO)
   public UUID idToken;
 
   @Column(unique = true)

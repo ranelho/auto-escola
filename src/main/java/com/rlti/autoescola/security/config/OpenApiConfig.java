@@ -13,16 +13,16 @@ import io.swagger.v3.oas.annotations.servers.Server;
 @OpenAPIDefinition(
         info = @Info(
                 contact = @Contact(
-                        name = "Alibou",
-                        email = "contact@aliboucoding.com",
-                        url = "https://aliboucoding.com/course"
+                        name = "Ranelho Lacerda",
+                        email = "ranelho.dev@gmail.com",
+                        url = "https://rl-ti.com"
                 ),
-                description = "OpenApi documentation for Spring Security",
-                title = "OpenApi specification - Alibou",
-                version = "1.0",
+                description = "OpenApi documentation for Spring Auto Escola",
+                title = "OpenApi specification - RR Soluções em TI",
+                version = "1.0.0",
                 license = @License(
                         name = "Licence name",
-                        url = "https://some-url.com"
+                        url = "https://rl-ti.com/licenca"
                 ),
                 termsOfService = "Terms of service"
         ),
@@ -31,10 +31,6 @@ import io.swagger.v3.oas.annotations.servers.Server;
                         description = "Local ENV",
                         url = "http://localhost:8080"
                 ),
-                @Server(
-                        description = "PROD ENV",
-                        url = "https://aliboucoding.com/course"
-                )
         },
         security = {
                 @SecurityRequirement(

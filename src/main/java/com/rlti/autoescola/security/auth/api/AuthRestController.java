@@ -4,6 +4,7 @@ import com.rlti.autoescola.security.auth.service.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,21 +12,32 @@ import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
+@Log4j2
 public class AuthRestController implements AuthApi {
     private final AuthService authService;
 
     @Override
     public ResponseEntity<AuthenticationResponse> register(RegisterRequest request) {
-        return ResponseEntity.ok((AuthenticationResponse) authService.register(request));
+        log.info("[inicia] AuthRestController.register");
+        AuthenticationResponse response = (AuthenticationResponse) authService.register(request);
+        log.info("[finaliza] AuthRestController.register");
+        return ResponseEntity.ok(response);
+       // return ResponseEntity.ok((AuthenticationResponse) authService.register(request));
     }
 
     @Override
     public ResponseEntity<AuthenticationResponse> authenticate(AuthenticationRequest request) {
-        return ResponseEntity.ok((AuthenticationResponse) authService.authenticate(request));
+        log.info("[inicia] AuthRestController.authenticate");
+        AuthenticationResponse response = (AuthenticationResponse) authService.authenticate(request);
+        log.info("[finaliza] AuthRestController.authenticate");
+        return ResponseEntity.ok(response);
+       // return ResponseEntity.ok((AuthenticationResponse) authService.authenticate(request));
     }
 
     @Override
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("[inicia] AuthRestController.refreshToken");
         authService.refreshToken(request, response);
+        log.info("[finaliza] AuthRestController.refreshToken");
     }
 }

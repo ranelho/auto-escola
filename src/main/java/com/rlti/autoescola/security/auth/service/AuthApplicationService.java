@@ -1,6 +1,7 @@
 package com.rlti.autoescola.security.auth.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.security.auth.api.AuthenticationRequest;
 import com.rlti.autoescola.security.auth.api.AuthenticationResponse;
 import com.rlti.autoescola.security.auth.api.RegisterRequest;
@@ -13,7 +14,9 @@ import com.rlti.autoescola.security.user.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,6 +26,7 @@ import java.io.IOException;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class AuthApplicationService implements AuthService {
     private final UserRepository repository;
     private final TokenRepository tokenRepository;
@@ -32,6 +36,7 @@ public class AuthApplicationService implements AuthService {
 
     @Override
     public Object register(RegisterRequest request) {
+        log.info("[inicia] AuthApplicationService.register");
         var user = User.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
@@ -43,6 +48,7 @@ public class AuthApplicationService implements AuthService {
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         saveUserToken(savedUser, jwtToken);
+        log.info("[finaliza] AuthApplicationService.register");
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
@@ -51,6 +57,7 @@ public class AuthApplicationService implements AuthService {
 
     @Override
     public Object authenticate(AuthenticationRequest request) {
+        log.info("[inicia] AuthApplicationService.authenticate");
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
@@ -63,6 +70,7 @@ public class AuthApplicationService implements AuthService {
         var refreshToken = jwtService.generateRefreshToken(user);
         revokeAllUserTokens(user);
         saveUserToken(user, jwtToken);
+        log.info("[finaliza] AuthApplicationService.authenticate");
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
@@ -70,6 +78,7 @@ public class AuthApplicationService implements AuthService {
     }
 
     private void saveUserToken(User user, String jwtToken) {
+        log.info("[inicia] AuthApplicationService.saveUserToken");
         var token = Token.builder()
                 .user(user)
                 .token(jwtToken)
@@ -78,6 +87,7 @@ public class AuthApplicationService implements AuthService {
                 .revoked(false)
                 .build();
         tokenRepository.save(token);
+        log.info("[finaliza] AuthApplicationService.saveUserToken");
     }
 
     private void revokeAllUserTokens(User user) {
@@ -91,21 +101,17 @@ public class AuthApplicationService implements AuthService {
         tokenRepository.saveAll(validUserTokens);
     }
 
-    public void refreshToken(
-            HttpServletRequest request,
-            HttpServletResponse response
-    ) throws IOException {
+    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        log.info("[inicia] AuthApplicationService.refreshToken");
         final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
         final String refreshToken;
         final String userEmail;
-        if (authHeader == null ||!authHeader.startsWith("Bearer ")) {
-            return;
-        }
+        if (authHeader == null ||!authHeader.startsWith("Bearer ")) {  return;  }
         refreshToken = authHeader.substring(7);
         userEmail = jwtService.extractUsername(refreshToken);
         if (userEmail != null) {
             var user = this.repository.findByEmail(userEmail)
-                    .orElseThrow();
+                    .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Usuário não encontrado!"));
             if (jwtService.isTokenValid(refreshToken, user)) {
                 var accessToken = jwtService.generateToken(user);
                 revokeAllUserTokens(user);
@@ -117,5 +123,6 @@ public class AuthApplicationService implements AuthService {
                 new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
             }
         }
+        log.info("[finaliza] AuthApplicationService.refreshToken");
     }
 }
