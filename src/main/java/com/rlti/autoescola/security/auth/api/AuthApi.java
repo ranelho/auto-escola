@@ -1,5 +1,6 @@
 package com.rlti.autoescola.security.auth.api;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.io.IOException;
 
+@Tag(name = "Authenticate", description = "Authenticate APIs")
 @RequestMapping("/v1/auth")
 public interface AuthApi {
 
