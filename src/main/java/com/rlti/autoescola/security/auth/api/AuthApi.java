@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.io.IOException;
 
-@Tag(name = "Authentification", description = "Authentification APIs")
+@Tag(name = "Authenticate", description = "Authenticate APIs")
 @RequestMapping("/v1/auth")
 public interface AuthApi {
 
@@ -27,4 +27,5 @@ public interface AuthApi {
     @PostMapping("/refresh-token")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException;
+
 }
