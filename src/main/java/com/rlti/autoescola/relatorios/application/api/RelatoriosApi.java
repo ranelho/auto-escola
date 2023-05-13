@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import java.time.LocalDate;
 import java.util.List;
 
-@PreAuthorize("hasRole('ADMIN')")
 @Tag(name = "Relatórios", description = "Relatórios APIs")
 @RequestMapping("/v1/relatorios")
+@PreAuthorize("hasAnyRole('USER','ADMIN', 'MANAGER')")
 public interface RelatoriosApi {
 
     @GetMapping("/clientes")

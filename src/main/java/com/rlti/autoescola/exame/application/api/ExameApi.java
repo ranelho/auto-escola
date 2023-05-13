@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Tag(name = "Exame", description = "Exame APIs")
 @RequestMapping("/v1/exames")
-@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
 public interface ExameApi {
 
     @PostMapping("{idMatricula}")

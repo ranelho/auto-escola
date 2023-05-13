@@ -2,6 +2,7 @@ package com.rlti.autoescola.agenda.application.api;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.UUID;
 
 @Tag(name = "Agenda", description = "Agenda APIs")
 @RequestMapping("/v1/agendas")
+@PreAuthorize("hasAnyRole('USER','ADMIN', 'MANAGER')")
 public interface AgendaAPI{
 
     @PostMapping

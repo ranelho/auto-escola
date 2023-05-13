@@ -1,14 +1,17 @@
 package com.rlti.autoescola.empresa.application.api;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.UUID;
 
 @Tag(name = "Empresa", description = "Empresa APIs")
 @RequestMapping("/v1/empresas")
+@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
 public interface EmpresaApi {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)

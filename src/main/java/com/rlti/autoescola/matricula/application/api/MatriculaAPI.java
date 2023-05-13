@@ -7,6 +7,7 @@ import com.rlti.autoescola.matricula.application.api.response.MatriculaIdRespons
 import com.rlti.autoescola.matricula.application.api.response.MatriculaListResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
@@ -15,6 +16,7 @@ import java.util.UUID;
 
 @Tag(name = "Matricula", description = "Matricula APIs")
 @RequestMapping("/v1/matriculas")
+@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
 public interface MatriculaAPI {
 
     @PostMapping

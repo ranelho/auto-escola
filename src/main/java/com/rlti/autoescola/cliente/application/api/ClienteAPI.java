@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 //@PreAuthorize("hasRole('ADMIN')")
+@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
 @Tag(name = "Cliente", description = "Cliente APIs")
 @RequestMapping("/v1/clientes")
 public interface ClienteAPI {
