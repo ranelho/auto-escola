@@ -13,6 +13,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
+import static com.rlti.autoescola.security.user.Role.ADMIN;
+
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -29,9 +31,6 @@ public class SecurityConfiguration {
             .authorizeHttpRequests()
                 .requestMatchers(
                         "/v1/auth/**",
-                        "/v2/api-docs",
-                        "/v3/api-docs",
-                        "/v3/api-docs/**",
                         "/public/swagger-resources",
                         "/public/swagger-resources/**",
                         "/configuration/ui",
@@ -40,6 +39,9 @@ public class SecurityConfiguration {
                         "/webjars/**",
                         "/public/swagger-ui.html"
                 ).permitAll()
+
+                .requestMatchers("/v1/relatorios/**").hasRole(ADMIN.name())
+
             .anyRequest().authenticated()
             .and()
               .sessionManagement()

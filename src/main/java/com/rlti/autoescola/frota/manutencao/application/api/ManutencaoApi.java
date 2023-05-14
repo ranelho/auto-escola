@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "Manutencao", description = "Manutencao APIs")
+@Tag(name = "Manutenção", description = "Manutenção APIs")
 @RequestMapping("/v1/manutencoes")
 @PreAuthorize("hasAnyRole('USER','ADMIN', 'MANAGER')")
 public interface ManutencaoApi {

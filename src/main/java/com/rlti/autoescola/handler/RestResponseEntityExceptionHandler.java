@@ -44,7 +44,7 @@ public class RestResponseEntityExceptionHandler {
 
 	@ExceptionHandler(MaxUploadSizeExceededException.class)
 	public ResponseEntity<ErrorResponse> handleMaxUploadSizeExceededException(MaxUploadSizeExceededException ex) {
-		String mensagem = "O tamanho do arquivo enviado excede o limite permitido de 1 MB.";
+		String mensagem = "O tamanho do arquivo enviado excede o limite permitido de 1 MB!";
 		ErrorResponse erro = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), mensagem);
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
 	}
@@ -52,7 +52,7 @@ public class RestResponseEntityExceptionHandler {
 	@ResponseStatus(HttpStatus.FORBIDDEN)
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<ErrorResponse> handleAccessDeniedException(AccessDeniedException ex) {
-        String mensagem = "Vocé não tem permissão para acessar este recurso.";
+        String mensagem = "Você não tem permissão para acessar este recurso!";
         ErrorResponse erro = new ErrorResponse(HttpStatus.FORBIDDEN.value(), mensagem);
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(erro);
     }
