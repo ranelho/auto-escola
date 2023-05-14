@@ -6,10 +6,12 @@ import com.rlti.autoescola.security.auth.api.AuthenticationRequest;
 import com.rlti.autoescola.security.auth.api.AuthenticationResponse;
 import com.rlti.autoescola.security.auth.api.RegisterRequest;
 import com.rlti.autoescola.security.config.JwtService;
+import com.rlti.autoescola.security.infra.AccessLogRepository;
 import com.rlti.autoescola.security.infra.UserRepository;
 import com.rlti.autoescola.security.token.Token;
 import com.rlti.autoescola.security.token.TokenRepository;
 import com.rlti.autoescola.security.token.TokenType;
+import com.rlti.autoescola.security.user.AccessLog;
 import com.rlti.autoescola.security.user.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -33,6 +35,7 @@ public class AuthApplicationService implements AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final AccessLogRepository accessLogRepository;
 
     @Override
     public Object register(RegisterRequest request) {
@@ -56,7 +59,7 @@ public class AuthApplicationService implements AuthService {
     }
 
     @Override
-    public Object authenticate(AuthenticationRequest request) {
+    public Object authenticate(AuthenticationRequest request, HttpServletRequest httpServletRequest) {
         log.info("[inicia] AuthApplicationService.authenticate");
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -71,6 +74,7 @@ public class AuthApplicationService implements AuthService {
         revokeAllUserTokens(user);
         saveUserToken(user, jwtToken);
         log.info("[finaliza] AuthApplicationService.authenticate");
+        accessLogRepository.save(new AccessLog(user, httpServletRequest));
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)

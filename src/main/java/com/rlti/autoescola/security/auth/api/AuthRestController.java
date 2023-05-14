@@ -25,9 +25,9 @@ public class AuthRestController implements AuthApi {
     }
 
     @Override
-    public ResponseEntity<AuthenticationResponse> authenticate(AuthenticationRequest request) {
+    public ResponseEntity<AuthenticationResponse> authenticate(AuthenticationRequest request, HttpServletRequest httpServletRequest) {
         log.info("[inicia] AuthRestController.authenticate");
-        AuthenticationResponse response = (AuthenticationResponse) authService.authenticate(request);
+        AuthenticationResponse response = (AuthenticationResponse) authService.authenticate(request, httpServletRequest);
         log.info("[finaliza] AuthRestController.authenticate");
         return ResponseEntity.ok(response);
     }

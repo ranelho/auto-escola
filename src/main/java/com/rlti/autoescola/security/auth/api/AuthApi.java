@@ -22,7 +22,7 @@ public interface AuthApi {
 
     @PostMapping("/authenticate")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request);
+    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request, HttpServletRequest httpServletRequest);
 
     @PostMapping("/refresh-token")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
