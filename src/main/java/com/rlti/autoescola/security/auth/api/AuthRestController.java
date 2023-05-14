@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -37,5 +38,12 @@ public class AuthRestController implements AuthApi {
         log.info("[inicia] AuthRestController.refreshToken");
         authService.refreshToken(request, response);
         log.info("[finaliza] AuthRestController.refreshToken");
+    }
+
+    @Override
+    public void updatePassword(String email, UpdatePasswordRequest request) {
+        log.info("[inicia] AuthRestController.updatePassword");
+        authService.updatePassword(email, request);
+        log.info("[finaliza] AuthRestController.updatePassword");
     }
 }

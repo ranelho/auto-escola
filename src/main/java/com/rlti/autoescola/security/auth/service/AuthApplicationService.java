@@ -5,6 +5,7 @@ import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.security.auth.api.AuthenticationRequest;
 import com.rlti.autoescola.security.auth.api.AuthenticationResponse;
 import com.rlti.autoescola.security.auth.api.RegisterRequest;
+import com.rlti.autoescola.security.auth.api.UpdatePasswordRequest;
 import com.rlti.autoescola.security.config.JwtService;
 import com.rlti.autoescola.security.infra.AccessLogRepository;
 import com.rlti.autoescola.security.infra.UserRepository;
@@ -79,6 +80,16 @@ public class AuthApplicationService implements AuthService {
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
                 .build();
+    }
+
+    @Override
+    public void updatePassword(String email, UpdatePasswordRequest request) {
+        log.info("[inicia] AuthApplicationService.updatePassword");
+        var user = repository.findByEmail(email)
+                .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Usuário não encontrado!"));
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        repository.save(user);
+        log.info("[finaliza] AuthApplicationService.updatePassword");
     }
 
     private void saveUserToken(User user, String jwtToken) {
