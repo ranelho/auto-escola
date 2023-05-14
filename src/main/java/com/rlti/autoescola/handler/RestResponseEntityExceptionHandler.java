@@ -56,5 +56,4 @@ public class RestResponseEntityExceptionHandler {
         ErrorResponse erro = new ErrorResponse(HttpStatus.FORBIDDEN.value(), mensagem);
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(erro);
     }
-
 }

@@ -3,7 +3,6 @@ package com.rlti.autoescola.pagamento.appiclation.api;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,7 +10,6 @@ import java.util.UUID;
 
 @Tag(name = "Pagamento", description = "Pagamento APIs")
 @RequestMapping("/v1/pagamentos")
-@PreAuthorize("hasAnyRole('USER','ADMIN', 'MANAGER')")
 public interface PagamentoAPI {
 
     @PostMapping("/{idMatricula}")

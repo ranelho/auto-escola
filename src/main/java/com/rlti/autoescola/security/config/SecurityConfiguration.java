@@ -13,7 +13,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
-import static com.rlti.autoescola.security.user.Role.ADMIN;
+import static com.rlti.autoescola.security.user.Role.*;
 
 @Configuration
 @EnableWebSecurity
@@ -39,10 +39,25 @@ public class SecurityConfiguration {
                         "/webjars/**",
                         "/public/swagger-ui.html"
                 ).permitAll()
-
+                //ACESSO EXCLUSIVO AO ADMIN
                 .requestMatchers("/v1/relatorios/**").hasRole(ADMIN.name())
+                .requestMatchers("/v1/fluxo-de-caixa/**").hasRole(ADMIN.name())
+                .requestMatchers("/v1/servicos/**").hasRole(ADMIN.name())
+                //ACESSO EXCLUSIVO AO MANAGER E ADMIN
+                .requestMatchers("/v1/manutencoes/**").hasAnyRole(MANAGER.name(), ADMIN.name())
+                .requestMatchers("/v1/veiculos/**").hasAnyRole(MANAGER.name(), ADMIN.name())
+                .requestMatchers("/v1/clientes/**").hasAnyRole(MANAGER.name(), ADMIN.name())
+                .requestMatchers("/v1/empresas/**").hasAnyRole(MANAGER.name(), ADMIN.name())
+                .requestMatchers("/v1/exames/**").hasAnyRole(MANAGER.name(), ADMIN.name())
+                .requestMatchers("/v1/instrutores/**").hasAnyRole(MANAGER.name(), ADMIN.name())
+                .requestMatchers("/v1/laudos/**").hasAnyRole(MANAGER.name(), ADMIN.name())
+                .requestMatchers("/v1/pagamentos/**").hasAnyRole(MANAGER.name(), ADMIN.name())
+                //ACESSO DE TODOS
+                .requestMatchers("/v1/contatos/**").hasAnyRole(USER.name(), MANAGER.name(), ADMIN.name())
+                .requestMatchers("/v1/agendas/**").hasAnyRole(USER.name(), MANAGER.name(), ADMIN.name())
+                .requestMatchers("/v1/orcamentos/**").hasAnyRole(USER.name(), MANAGER.name(), ADMIN.name())
 
-            .anyRequest().authenticated()
+                .anyRequest().authenticated()
             .and()
               .sessionManagement()
               .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
