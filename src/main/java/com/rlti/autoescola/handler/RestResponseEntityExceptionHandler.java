@@ -1,18 +1,18 @@
 package com.rlti.autoescola.handler;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import lombok.extern.log4j.Log4j2;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestControllerAdvice
 @Log4j2
@@ -48,4 +48,13 @@ public class RestResponseEntityExceptionHandler {
 		ErrorResponse erro = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), mensagem);
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
 	}
+
+	@ResponseStatus(HttpStatus.FORBIDDEN)
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ErrorResponse> handleAccessDeniedException(AccessDeniedException ex) {
+        String mensagem = "Vocé não tem permissão para acessar este recurso.";
+        ErrorResponse erro = new ErrorResponse(HttpStatus.FORBIDDEN.value(), mensagem);
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(erro);
+    }
+
 }

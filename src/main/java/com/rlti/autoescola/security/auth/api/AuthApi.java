@@ -27,5 +27,4 @@ public interface AuthApi {
     @PostMapping("/refresh-token")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException;
-
 }

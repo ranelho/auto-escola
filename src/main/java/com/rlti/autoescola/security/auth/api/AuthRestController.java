@@ -22,7 +22,6 @@ public class AuthRestController implements AuthApi {
         AuthenticationResponse response = (AuthenticationResponse) authService.register(request);
         log.info("[finaliza] AuthRestController.register");
         return ResponseEntity.ok(response);
-       // return ResponseEntity.ok((AuthenticationResponse) authService.register(request));
     }
 
     @Override
@@ -31,7 +30,6 @@ public class AuthRestController implements AuthApi {
         AuthenticationResponse response = (AuthenticationResponse) authService.authenticate(request);
         log.info("[finaliza] AuthRestController.authenticate");
         return ResponseEntity.ok(response);
-       // return ResponseEntity.ok((AuthenticationResponse) authService.authenticate(request));
     }
 
     @Override
