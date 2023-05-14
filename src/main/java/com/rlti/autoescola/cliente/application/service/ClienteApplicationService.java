@@ -10,6 +10,8 @@ import com.rlti.autoescola.contato.application.service.ContatoService;
 import com.rlti.autoescola.empresa.validation.ValidaCpfouCnpj;
 import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
+import com.rlti.autoescola.security.infra.UserRepository;
+import com.rlti.autoescola.security.user.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -26,13 +28,23 @@ public class ClienteApplicationService implements ClienteService {
 
     private final ClienteRepository clienteRepository;
     private final ContatoService contatoService;
+    private final UserRepository userRepository;
 
     @Override
     public ClienteResponse saveCliente(ClienteRequest clienteRequest) {
         log.info("[inicia] ClienteApplicationService - saveCliente");
         Cliente cliente = clienteRepository.saveCliente(new Cliente(clienteRequest));
+        User user = userRepository.save(new User(clienteRequest));
+        saveUserCliente(user, cliente);
         log.info("[finaliza] ClienteApplicationService - saveCliente");
         return new ClienteResponse(cliente);
+    }
+    public void saveUserCliente(User user, Cliente cliente){
+        log.info("[inicia] ClienteApplicationService - saveUserCliente");
+        Cliente client = clienteRepository.findOneCliente(cliente.getIdCliente());
+        client.insertUser(user);
+        clienteRepository.saveCliente(client);
+        log.info("[finaliza] ClienteApplicationService - saveUserCliente");
     }
     @Override
     public ClienteResponse getOneCliente(UUID idCliente) {

@@ -3,6 +3,7 @@ package com.rlti.autoescola.cliente.application.api;
 import com.rlti.autoescola.cliente.annotation.Adult;
 import com.rlti.autoescola.cliente.domain.enums.EstadoCivil;
 import com.rlti.autoescola.cliente.domain.groups.PessoaFisica;
+import jakarta.validation.constraints.Email;
 import lombok.Value;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -24,4 +25,6 @@ public class ClienteRequest {
     String naturalidade;
     String nacionalidade;
     EstadoCivil estadoCivil;
+    @Email(message = "Email inválido!")
+    String email;
 }

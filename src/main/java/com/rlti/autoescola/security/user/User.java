@@ -1,5 +1,6 @@
 package com.rlti.autoescola.security.user;
 
+import com.rlti.autoescola.cliente.application.api.ClienteRequest;
 import com.rlti.autoescola.security.token.Token;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Collection;
 import java.util.List;
@@ -34,6 +36,23 @@ public class User implements UserDetails {
 
   @OneToMany(mappedBy = "user")
   private List<Token> tokens;
+
+
+  public User(ClienteRequest clienteRequest) {
+    String[] nameParts = extractFirstAndLastName(clienteRequest.getFullName());
+      this.firstname = nameParts[0];
+      this.lastname = nameParts[1];
+      this.email = clienteRequest.getEmail();
+      this.password = new  BCryptPasswordEncoder().encode(lastname.toLowerCase());
+      this.role = Role.USER;
+  }
+
+  private static String[] extractFirstAndLastName(String fullName) {
+    String[] parts = fullName.split(" ");
+    String firstName = parts[0];
+    String lastName = parts[parts.length - 1];
+    return new String[]{firstName, lastName};
+  }
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
