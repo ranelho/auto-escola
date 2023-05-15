@@ -1,6 +1,7 @@
 package com.rlti.autoescola.security.auth.api;
 
 import com.rlti.autoescola.security.auth.service.AuthService;
+import com.rlti.autoescola.security.config.JwtService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -9,13 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
 @Log4j2
 public class AuthRestController implements AuthApi {
     private final AuthService authService;
+    private final JwtService tokenService;
 
     @Override
     public ResponseEntity<AuthenticationResponse> register(RegisterRequest request) {
@@ -38,6 +39,13 @@ public class AuthRestController implements AuthApi {
         log.info("[inicia] AuthRestController.refreshToken");
         authService.refreshToken(request, response);
         log.info("[finaliza] AuthRestController.refreshToken");
+    }
+
+    @Override
+    public void updatePasswordUser(String token, UpdatePasswordRequest request) {
+        log.info("[inicia] AuthRestController.updatePasswordUser");
+        authService.updatePasswordUser(token, request);
+        log.info("[finaliza] AuthRestController.updatePasswordUser");
     }
 
     @Override

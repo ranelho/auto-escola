@@ -1,8 +1,6 @@
 package com.rlti.autoescola.security.config;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +11,7 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 
 @Service
@@ -92,4 +91,23 @@ public class JwtService {
     byte[] keyBytes = Decoders.BASE64.decode(secretKey);
     return Keys.hmacShaKeyFor(keyBytes);
   }
+
+  public Optional<String> getUser(String token) {
+    try {
+      var claims = extractAllClaims(token);
+      return Optional.of(claims.getSubject());
+    } catch (JwtException ex) {
+      return Optional.empty();
+    }
+  }
+
+  public Optional<String> getUserByBearerToken(String bearerToken) {
+    if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+      String token = bearerToken.substring(7);
+      return this.getUser(token);
+    } else {
+      return Optional.empty();
+    }
+  }
+
 }

@@ -7,10 +7,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public interface AuthService {
     Object register(RegisterRequest request);
     void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException;
     Object authenticate(AuthenticationRequest request, HttpServletRequest httpServletRequest);
     void updatePassword(String email, UpdatePasswordRequest request);
+    Optional<String> getUserByToken(String token);
+    void updatePasswordUser(String token, UpdatePasswordRequest request);
 }

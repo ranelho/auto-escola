@@ -26,6 +26,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -69,7 +70,7 @@ public class AuthApplicationService implements AuthService {
                 )
         );
         var user = repository.findByEmail(request.getEmail())
-                .orElseThrow();
+                .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Usuário não encontrado!"));
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         revokeAllUserTokens(user);
@@ -139,5 +140,25 @@ public class AuthApplicationService implements AuthService {
             }
         }
         log.info("[finaliza] AuthApplicationService.refreshToken");
+    }
+
+    public Optional<String> getUserByToken(String token) {
+        log.info("[inicia] AuthApplicationService.getUserByToken");
+        var user = jwtService.getUserByBearerToken(token);
+        log.info("[finaliza] AuthApplicationService.getUserByToken");
+        return user;
+    }
+
+    @Override
+    public void updatePasswordUser(String token, UpdatePasswordRequest request) {
+        log.info("[inicia] AuthApplicationService.updatePasswordUser");
+        var user = jwtService.getUserByBearerToken(token);
+        if (user.isPresent()) {
+            var userFound = repository.findByEmail(user.get())
+                    .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Usuário não encontrado!"));
+            userFound.setPassword(passwordEncoder.encode(request.getPassword()));
+            repository.save(userFound);
+        }
+        log.info("[finaliza] AuthApplicationService.updatePasswordUser");
     }
 }
