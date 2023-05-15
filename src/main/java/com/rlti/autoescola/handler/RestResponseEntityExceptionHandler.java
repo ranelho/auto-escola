@@ -1,5 +1,6 @@
 package com.rlti.autoescola.handler;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,16 +52,17 @@ public class RestResponseEntityExceptionHandler {
 	}
 
 	@ResponseStatus(HttpStatus.FORBIDDEN)
-	@ExceptionHandler({AccessDeniedException.class, BadCredentialsException.class})
+	@ExceptionHandler({AccessDeniedException.class, BadCredentialsException.class, ExpiredJwtException.class})
 	public ResponseEntity<ErrorResponse> handleExceptions(Exception ex) {
 		String mensagem = "Erro ao realizar login!";
 		if (ex instanceof AccessDeniedException) {
 			mensagem = "Você não tem permissão para acessar este recurso!";
 		} else if (ex instanceof BadCredentialsException) {
 			mensagem = "Credenciais inválidas!";
+		} else if (ex instanceof ExpiredJwtException) {
+			mensagem = "Token de autenticação expirado!";
 		}
 		ErrorResponse erro = new ErrorResponse(HttpStatus.FORBIDDEN.value(), mensagem);
 		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(erro);
 	}
-
 }
