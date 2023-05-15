@@ -4,6 +4,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -49,11 +50,25 @@ public class RestResponseEntityExceptionHandler {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
 	}
 
-	@ResponseStatus(HttpStatus.FORBIDDEN)
+/*	@ResponseStatus(HttpStatus.FORBIDDEN)
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<ErrorResponse> handleAccessDeniedException(AccessDeniedException ex) {
         String mensagem = "Você não tem permissão para acessar este recurso!";
         ErrorResponse erro = new ErrorResponse(HttpStatus.FORBIDDEN.value(), mensagem);
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(erro);
-    }
+    }*/
+
+	@ResponseStatus(HttpStatus.FORBIDDEN)
+	@ExceptionHandler({AccessDeniedException.class, BadCredentialsException.class})
+	public ResponseEntity<ErrorResponse> handleExceptions(Exception ex) {
+		String mensagem = "Erro ao realizar login!";
+		if (ex instanceof AccessDeniedException) {
+			mensagem = "Você não tem permissão para acessar este recurso!";
+		} else if (ex instanceof BadCredentialsException) {
+			mensagem = "Credenciais inválidas!";
+		}
+		ErrorResponse erro = new ErrorResponse(HttpStatus.FORBIDDEN.value(), mensagem);
+		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(erro);
+	}
+
 }
