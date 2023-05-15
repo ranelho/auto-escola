@@ -1,7 +1,6 @@
 package com.rlti.autoescola.security.auth.api;
 
 import com.rlti.autoescola.security.auth.service.AuthService;
-import com.rlti.autoescola.security.config.JwtService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +15,6 @@ import java.io.IOException;
 @Log4j2
 public class AuthRestController implements AuthApi {
     private final AuthService authService;
-    private final JwtService tokenService;
 
     @Override
     public ResponseEntity<AuthenticationResponse> register(RegisterRequest request) {

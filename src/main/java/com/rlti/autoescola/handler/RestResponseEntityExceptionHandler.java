@@ -50,14 +50,6 @@ public class RestResponseEntityExceptionHandler {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
 	}
 
-/*	@ResponseStatus(HttpStatus.FORBIDDEN)
-    @ExceptionHandler(AccessDeniedException.class)
-    public ResponseEntity<ErrorResponse> handleAccessDeniedException(AccessDeniedException ex) {
-        String mensagem = "Você não tem permissão para acessar este recurso!";
-        ErrorResponse erro = new ErrorResponse(HttpStatus.FORBIDDEN.value(), mensagem);
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(erro);
-    }*/
-
 	@ResponseStatus(HttpStatus.FORBIDDEN)
 	@ExceptionHandler({AccessDeniedException.class, BadCredentialsException.class})
 	public ResponseEntity<ErrorResponse> handleExceptions(Exception ex) {

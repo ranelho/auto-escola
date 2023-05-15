@@ -37,5 +37,4 @@ public interface AuthApi {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void updatePasswordUser(@RequestHeader(name = "Authorization", required = true) String token,
             @RequestBody UpdatePasswordRequest request);
-
 }

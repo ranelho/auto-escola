@@ -40,6 +40,14 @@ public class ExameRestController implements ExameApi {
     }
 
     @Override
+    public List<ExameResponse> getAllExames(String token) {
+             log.info("[inicia] ExameRestController - getAllExames");
+        List<ExameResponse> response = exameService.getAllExamesUser(token);
+        log.info("[finaliza] ExameRestController - getAllExames");
+        return response;
+    }
+
+    @Override
     public void deleteExame(Long idExame) {
         log.info("[inicia] ExameRestController - deleteExame");
         exameService.deleteExame(idExame);

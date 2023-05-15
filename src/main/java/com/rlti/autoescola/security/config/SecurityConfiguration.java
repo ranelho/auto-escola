@@ -48,7 +48,6 @@ public class SecurityConfiguration {
                 .requestMatchers("/v1/veiculos/**").hasAnyRole(MANAGER.name(), ADMIN.name())
                 .requestMatchers("/v1/clientes/**").hasAnyRole(MANAGER.name(), ADMIN.name())
                 .requestMatchers("/v1/empresas/**").hasAnyRole(MANAGER.name(), ADMIN.name())
-                .requestMatchers("/v1/exames/**").hasAnyRole(MANAGER.name(), ADMIN.name())
                 .requestMatchers("/v1/instrutores/**").hasAnyRole(MANAGER.name(), ADMIN.name())
                 .requestMatchers("/v1/laudos/**").hasAnyRole(MANAGER.name(), ADMIN.name())
                 .requestMatchers("/v1/pagamentos/**").hasAnyRole(MANAGER.name(), ADMIN.name())

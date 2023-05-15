@@ -93,6 +93,19 @@ public class AuthApplicationService implements AuthService {
         log.info("[finaliza] AuthApplicationService.updatePassword");
     }
 
+    @Override
+    public void updatePasswordUser(String token, UpdatePasswordRequest request) {
+        log.info("[inicia] AuthApplicationService.updatePasswordUser");
+        var user = jwtService.getUserByBearerToken(token);
+        if (user.isPresent()) {
+            var userFound = repository.findByEmail(user.get())
+                    .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Usuário não encontrado!"));
+            userFound.setPassword(passwordEncoder.encode(request.getPassword()));
+            repository.save(userFound);
+        }
+        log.info("[finaliza] AuthApplicationService.updatePasswordUser");
+    }
+
     private void saveUserToken(User user, String jwtToken) {
         log.info("[inicia] AuthApplicationService.saveUserToken");
         var token = Token.builder()
@@ -147,18 +160,5 @@ public class AuthApplicationService implements AuthService {
         var user = jwtService.getUserByBearerToken(token);
         log.info("[finaliza] AuthApplicationService.getUserByToken");
         return user;
-    }
-
-    @Override
-    public void updatePasswordUser(String token, UpdatePasswordRequest request) {
-        log.info("[inicia] AuthApplicationService.updatePasswordUser");
-        var user = jwtService.getUserByBearerToken(token);
-        if (user.isPresent()) {
-            var userFound = repository.findByEmail(user.get())
-                    .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Usuário não encontrado!"));
-            userFound.setPassword(passwordEncoder.encode(request.getPassword()));
-            repository.save(userFound);
-        }
-        log.info("[finaliza] AuthApplicationService.updatePasswordUser");
     }
 }

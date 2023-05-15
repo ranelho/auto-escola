@@ -4,6 +4,7 @@ import com.rlti.autoescola.exame.domain.Resultado;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.UUID;
 
 @Tag(name = "Exame", description = "Exame APIs")
 @RequestMapping("/v1/exames")
+@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
 public interface ExameApi {
 
     @PostMapping("{idMatricula}")
@@ -24,6 +26,11 @@ public interface ExameApi {
     @GetMapping("/all/{idMatricula}")
     @ResponseStatus(code = HttpStatus.OK)
     List<ExameResponse> getAllExames(@PathVariable UUID idMatricula);
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'USER')")
+    @GetMapping("/all-auth")
+    @ResponseStatus(code = HttpStatus.OK)
+    List<ExameResponse> getAllExames(@RequestHeader(name = "Authorization", required = true) String token);
 
     @DeleteMapping("/{idExame}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
