@@ -1,4 +1,4 @@
-package com.rlti.autoescola.security.config;
+package com.rlti.autoescola.config;
 
 import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.security.infra.UserRepository;
