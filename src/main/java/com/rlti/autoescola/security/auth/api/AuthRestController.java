@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
+import static com.rlti.autoescola.security.anotation.EmailValidator.validateEmailFormat;
+
 @RestController
 @RequiredArgsConstructor
 @Log4j2
@@ -49,7 +51,7 @@ public class AuthRestController implements AuthApi {
     @Override
     public void updatePassword(String email, UpdatePasswordRequest request) {
         log.info("[inicia] AuthRestController.updatePassword");
-        authService.updatePassword(email, request);
+        authService.updatePassword(validateEmailFormat(email), request);
         log.info("[finaliza] AuthRestController.updatePassword");
     }
 }

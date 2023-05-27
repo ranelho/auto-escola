@@ -3,6 +3,7 @@ package com.rlti.autoescola.security.auth.api;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,11 +17,11 @@ public interface AuthApi {
 
     @PostMapping("/register")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request);
+    public ResponseEntity<AuthenticationResponse> register(@Valid @RequestBody RegisterRequest request);
 
     @PostMapping("/authenticate")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request,
+    public ResponseEntity<AuthenticationResponse> authenticate(@Valid @RequestBody AuthenticationRequest request,
                                                                HttpServletRequest httpServletRequest);
 
     @PostMapping("/refresh-token")
