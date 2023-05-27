@@ -24,4 +24,4 @@ springdoc:
     path: /public/swagger
   api-docs:
     servers:
-      - url: /auto-escola/api
+      - url: ${URL_HOST}/auto-escola/api
