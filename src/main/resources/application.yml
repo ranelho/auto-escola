@@ -22,6 +22,3 @@ application:
 springdoc:
   swagger-ui:
     path: /public/swagger
-  api-docs:
-    servers:
-      - url: ${URL_HOST}/auto-escola/api
