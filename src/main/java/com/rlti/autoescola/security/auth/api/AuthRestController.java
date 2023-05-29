@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
-import static com.rlti.autoescola.security.anotation.EmailValidator.validateEmailFormat;
+import static com.rlti.autoescola.security.annotation.EmailValidator.validateEmailFormat;
 
 @RestController
 @RequiredArgsConstructor

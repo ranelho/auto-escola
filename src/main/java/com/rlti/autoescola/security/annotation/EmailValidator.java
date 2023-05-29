@@ -1,5 +1,4 @@
-package com.rlti.autoescola.security.anotation;
-
+package com.rlti.autoescola.security.annotation;
 
 import com.rlti.autoescola.handler.APIException;
 import org.springframework.http.HttpStatus;
