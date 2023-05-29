@@ -27,6 +27,7 @@ public class Contato {
     private String endereco;
     private String cidade;
     private String uf;
+    private Boolean padrao;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
@@ -41,11 +42,13 @@ public class Contato {
         this.cidade = contatoRequest.getCidade().toUpperCase();
         this.uf = contatoRequest.getUf().toUpperCase();
         this.cliente = cliente;
+        this.padrao = contatoRequest.getPadrao();
     }
 
     public Contato(Cliente cliente, OrcamentoRequest orcamentoRequest) {
         this.cliente = cliente;
         this.telefone = orcamentoRequest.getTelefone();
+        this.padrao = true;
     }
 
     public void altera(ContatoRequest contatoRequest) {
@@ -55,6 +58,10 @@ public class Contato {
         this.endereco = contatoRequest.getEndereco().toUpperCase();
         this.cidade = contatoRequest.getCidade().toUpperCase();
         this.uf = contatoRequest.getUf().toUpperCase();
-        this.cliente = cliente;
+        this.padrao = contatoRequest.getPadrao();
+    }
+
+    public void alteraPadrao() {
+        this.padrao = false;
     }
 }
