@@ -7,11 +7,14 @@ import com.rlti.autoescola.contato.application.api.ContatoRequest;
 import com.rlti.autoescola.contato.application.api.ContatoResponse;
 import com.rlti.autoescola.contato.application.repository.ContatoRepository;
 import com.rlti.autoescola.contato.domain.Contato;
+import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -26,10 +29,26 @@ public class ContatoApplicationService implements ContatoService {
     public ContatoResponse saveContato(UUID idCliente, ContatoRequest contatoRequest) {
         log.info("[inicia] ContatoApplicationService - saveContato");
         Cliente cliente = clienteRepository.findOneCliente(idCliente);
+        VerificaContato(cliente, contatoRequest);
         Contato contato = contatoRepository.saveContato(new Contato(cliente, contatoRequest));
         log.info("[finaliza] ContatoApplicationService - saveContato");
         return new ContatoResponse(contato);
     }
+
+    private void VerificaContato(Cliente cliente, ContatoRequest contatoRequest) {
+        log.info("[Inicia] ContatoApplicationService - VerificaContato");
+        List<Contato> contatos = cliente.getContatos();
+        for (Contato contato : contatos) {
+            if (contato.getTelefone().equals(contatoRequest.getTelefone())) {
+                throw APIException.build(HttpStatus.BAD_REQUEST, "Telefone ja Cadastrado");
+            } else if (contato.getPadrao() && contatoRequest.getPadrao()) {
+                contato.alteraPadrao();
+                contatoRepository.saveContato(contato);
+            }
+        }
+        log.info("[Finaliza] ContatoApplicationService - VerificaContato");
+    }
+
     @Override
     public ContatoResponse getOneContato(UUID idContato) {
         log.info("[inicia] ContatoApplicationService - getOneContato");
