@@ -2,6 +2,7 @@ package com.rlti.autoescola.exame.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.exame.application.api.ExameRequest;
+import com.rlti.autoescola.exame.application.api.ResultadoRequest;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,8 @@ import java.time.LocalDate;
 @Entity
 public class Exame {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_exame")
+    @SequenceGenerator(name = "sequence_exame", sequenceName = "sequence_exame")
     private Long idExame;
     @Enumerated(EnumType.STRING)
     private TipoExame tipoExame;
@@ -45,7 +47,7 @@ public class Exame {
         this.observacao = observacao;
     }
 
-    public void altera(Resultado request) {
-        this.resultado = request;
+    public void altera(ResultadoRequest request) {
+        this.resultado = request.getResultado();
     }
 }

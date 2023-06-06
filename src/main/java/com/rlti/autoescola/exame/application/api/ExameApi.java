@@ -38,5 +38,5 @@ public interface ExameApi {
 
     @PatchMapping("/{idExame}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void updateResultadoExame(@PathVariable Long idExame, @Valid @RequestBody Resultado request);
+    void updateResultadoExame(@PathVariable Long idExame, @Valid @RequestBody ResultadoRequest request);
 }

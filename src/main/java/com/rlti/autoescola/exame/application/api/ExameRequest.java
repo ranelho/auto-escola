@@ -2,11 +2,11 @@ package com.rlti.autoescola.exame.application.api;
 
 import com.rlti.autoescola.exame.domain.Resultado;
 import com.rlti.autoescola.exame.domain.TipoExame;
-import lombok.Value;
+import lombok.Data;
 
 import java.time.LocalDate;
 
-@Value
+@Data
 public class ExameRequest {
     TipoExame tipoExame;
     LocalDate dataExame;

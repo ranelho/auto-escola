@@ -3,6 +3,7 @@ package com.rlti.autoescola.exame.application.service;
 import com.rlti.autoescola.exame.application.api.ExameIdResponse;
 import com.rlti.autoescola.exame.application.api.ExameRequest;
 import com.rlti.autoescola.exame.application.api.ExameResponse;
+import com.rlti.autoescola.exame.application.api.ResultadoRequest;
 import com.rlti.autoescola.exame.application.repository.ExameRepository;
 import com.rlti.autoescola.exame.domain.Exame;
 import com.rlti.autoescola.exame.domain.Resultado;
@@ -64,7 +65,7 @@ public class ExameApplicationService implements ExameService {
     }
 
     @Override
-    public void updateExame(Long idExame, Resultado request) {
+    public void updateExame(Long idExame, ResultadoRequest request) {
         log.info("[inicia] ExameApplicationService - updateExame");
         Exame exame = exameRepository.getOneExame(idExame);
         exame.altera(request);

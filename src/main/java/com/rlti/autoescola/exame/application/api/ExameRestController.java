@@ -55,7 +55,7 @@ public class ExameRestController implements ExameApi {
     }
 
     @Override
-    public void updateResultadoExame(Long idExame, Resultado request) {
+    public void updateResultadoExame(Long idExame, ResultadoRequest request) {
         log.info("[inicia] ExameRestController - updateExame");
         exameService.updateExame(idExame, request);
         log.info("[finaliza] ExameRestController - updateExame");
