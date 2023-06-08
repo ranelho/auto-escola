@@ -2,12 +2,12 @@ package com.rlti.autoescola.servico.domain;
 
 import com.rlti.autoescola.matricula.domain.Status;
 import com.rlti.autoescola.servico.application.api.ServicoUpdateRequest;
-import com.rlti.autoescola.servico.application.api.ServicoRequest;
+import com.rlti.autoescola.servico.application.api.SevicoRecord;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -27,10 +27,10 @@ public class Servico {
     private Status status = Status.ATIVO;
     private Integer quantidadeHorasAula;
 
-    public Servico(ServicoRequest request) {
-        this.categoria = request.getCategoria();
-        this.valorServico = request.getValorServico();
-        this.quantidadeHorasAula = request.getQuantidadeHorasAula();
+    public Servico(SevicoRecord record) {
+        this.categoria = record.categoria();
+        this.valorServico = record.valorServico();
+        this.quantidadeHorasAula = record.quantidadeHorasAula();
     }
 
     public void altera(ServicoUpdateRequest alteracaoRequest) {

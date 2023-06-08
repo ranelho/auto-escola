@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 public class RelatorioInstrutorResponse {
-    String nomeCompleto;
+    String fullName;
     String cpf;
     String cnh;
     String Categoria;
@@ -15,7 +15,7 @@ public class RelatorioInstrutorResponse {
     List<AgendaResumoResponse> agendas;
 
     public RelatorioInstrutorResponse(Instrutor instrutor) {
-        this.nomeCompleto = instrutor.getNomeCompleto();
+        this.fullName = instrutor.getFullName();
         this.cpf = instrutor.getCpf();
         this.cnh = instrutor.getCnh();
         this.Categoria = instrutor.getCategoria().toString();

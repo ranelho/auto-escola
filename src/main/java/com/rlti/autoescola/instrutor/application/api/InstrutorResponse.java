@@ -10,7 +10,7 @@ import java.util.UUID;
 @Value
 public class InstrutorResponse {
     UUID idInstrutor;
-    String nomeCompleto;
+    String full;
     String cpf;
     String cnh;
     LocalDate validadeCnh;
@@ -19,7 +19,7 @@ public class InstrutorResponse {
 
     public InstrutorResponse(Instrutor instrutor) {
         this.idInstrutor = instrutor.getIdInstrutor();
-        this.nomeCompleto = instrutor.getNomeCompleto();
+        this.full = instrutor.getFullName();
         this.cpf = instrutor.getCpf();
         this.cnh = instrutor.getCnh();
         this.validadeCnh = instrutor.getValidadeCnh();

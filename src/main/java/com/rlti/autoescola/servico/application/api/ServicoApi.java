@@ -14,7 +14,7 @@ public interface ServicoApi {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    ServicoIdResponse saveServico(@Valid @RequestBody ServicoRequest request);
+    ServicoIdResponse saveServico(@Valid @RequestBody SevicoRecord record);
 
     @GetMapping("/{idServico}")
     @ResponseStatus(code = HttpStatus.OK)

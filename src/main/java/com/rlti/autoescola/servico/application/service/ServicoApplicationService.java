@@ -1,8 +1,8 @@
 package com.rlti.autoescola.servico.application.service;
 
 import com.rlti.autoescola.servico.application.api.ServicoIdResponse;
-import com.rlti.autoescola.servico.application.api.ServicoRequest;
 import com.rlti.autoescola.servico.application.api.ServicoUpdateRequest;
+import com.rlti.autoescola.servico.application.api.SevicoRecord;
 import com.rlti.autoescola.servico.application.repository.ServicoRepository;
 import com.rlti.autoescola.servico.domain.Servico;
 import lombok.RequiredArgsConstructor;
@@ -19,9 +19,9 @@ public class ServicoApplicationService implements ServicoService {
     private final ServicoRepository servicoRepository;
 
     @Override
-    public ServicoIdResponse saveServico(ServicoRequest request) {
+    public ServicoIdResponse saveServico(SevicoRecord record) {
         log.info("[inicia] ServicoApplicationService - saveServico");
-        Servico servico = servicoRepository.salvaServico(new Servico(request));
+        var servico = servicoRepository.salvaServico(new Servico(record));
         log.info("[finaliza] ServicoApplicationService - saveServico");
         return ServicoIdResponse
                 .builder()

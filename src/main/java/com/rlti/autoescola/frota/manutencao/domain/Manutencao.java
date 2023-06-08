@@ -17,9 +17,9 @@ import java.time.LocalDate;
 @Getter
 @Entity
 public class Manutencao {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_manutencao")
+    @SequenceGenerator(name = "sequence_manutencao", sequenceName = "sequence_manutencao")
     private Long idManutencao;
     private LocalDate dataManutencao;
     private BigDecimal valorManutencao;

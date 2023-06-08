@@ -26,7 +26,7 @@ public class Instrutor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idInstrutor;
-    private String nomeCompleto;
+    private String fullName;
     @NotBlank(message = "Campo Obrigatório!")
     @CPF(groups = PessoaFisica.class, message = "CPF inválido!")
     @Column(unique = true, length = 14, updatable = false)
@@ -45,7 +45,7 @@ public class Instrutor {
     private List<HorarioAula> aulas;
 
     public Instrutor(InstrutorResquest resquest) {
-        this.nomeCompleto = resquest.getNomeCompleto().toUpperCase();
+        this.fullName = resquest.getFullName().toUpperCase();
         this.cpf = resquest.getCpf();
         this.cnh = resquest.getCnh();
         this.validadeCnh = resquest.getValidadeCnh();
@@ -53,7 +53,7 @@ public class Instrutor {
     }
 
     public void altera(InstrutorUpdateResquest updateRequest) {
-        this.nomeCompleto = updateRequest.getNomeCompleto().toUpperCase();
+        this.fullName = updateRequest.getFullName().toUpperCase();
         this.validadeCnh = updateRequest.getValidadeCnh();
         this.categoria = updateRequest.getCategoria();
     }

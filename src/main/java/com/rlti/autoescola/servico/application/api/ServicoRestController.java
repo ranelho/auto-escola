@@ -16,9 +16,9 @@ public class ServicoRestController implements ServicoApi {
     private final ServicoService servicoService;
 
     @Override
-    public ServicoIdResponse saveServico(ServicoRequest request) {
+    public ServicoIdResponse saveServico(SevicoRecord record) {
         log.info("[inicia] ServicoRestController - post");
-        ServicoIdResponse idResponse = servicoService.saveServico(request);
+        ServicoIdResponse idResponse = servicoService.saveServico(record);
         log.info("[finaliza] ServicoRestController - post");
         return idResponse;
     }

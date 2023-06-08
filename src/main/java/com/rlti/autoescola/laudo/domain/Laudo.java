@@ -16,7 +16,8 @@ import java.time.LocalDate;
 @Entity
 public class Laudo {
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_laudo")
+    @SequenceGenerator(name = "sequence_laudo", sequenceName = "sequence_laudo")
     private Long idLaudo;
     private LocalDate dataEmissao;
     private LocalDate validade;    /* 1 ANO APÓS A DATA DE EMISSÃO */
