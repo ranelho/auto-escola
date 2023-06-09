@@ -31,7 +31,7 @@ public class ExameInfraRepository implements ExameRepository {
         log.info("[inicia] ExameInfraRepository -  getOneExame");
         Optional<Exame> optionalExame = exameSpringDataJPARepository.findById(idExame);
         Exame exame = optionalExame
-                .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Exame não encontrado"));
+                .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST, "Exame não encontrado"));
         log.info("[finaliza] ExameInfraRepository -  getOneExame");
         return exame;
     }

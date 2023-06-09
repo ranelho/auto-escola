@@ -1,6 +1,6 @@
 package com.rlti.autoescola.matricula.application.api;
 
-import com.rlti.autoescola.matricula.application.api.request.MatriculaAlteracaoRequest;
+import com.rlti.autoescola.matricula.application.api.request.MatriculaUpdateRequest;
 import com.rlti.autoescola.matricula.application.api.request.MatriculaRequest;
 import com.rlti.autoescola.matricula.application.api.response.MatriculaDetalhadoResponse;
 import com.rlti.autoescola.matricula.application.api.response.MatriculaIdResponse;
@@ -38,7 +38,7 @@ public interface MatriculaAPI {
     @PatchMapping(value = "/{idMatricula}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void updateMatricula(@PathVariable UUID idMatricula,
-                         @Valid @RequestBody MatriculaAlteracaoRequest matriculaAlteracaoRequest);
+                         @Valid @RequestBody MatriculaUpdateRequest matriculaUpdateRequest);
 
     @PatchMapping("/finaliza-matricula/{idMatricula}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)

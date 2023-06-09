@@ -23,7 +23,7 @@ public class ApplicationConfig {
   @Bean
   public UserDetailsService userDetailsService() {
     return username -> repository.findByEmail(username)
-        .orElseThrow(()-> APIException.build(HttpStatus.NOT_FOUND,"User not found!"));
+        .orElseThrow(()-> APIException.build(HttpStatus.BAD_REQUEST,"User not found!"));
   }
 
   @Bean

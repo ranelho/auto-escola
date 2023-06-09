@@ -43,7 +43,7 @@ public class AgendaInfraRepository implements AgendaRepository {
         log.info("[inicia] - AgendaInfraRepository - getAgenda");
         Optional<Agenda> optionalAgenda = agendaSpringDataJPARepository.findByIdAgenda(idAgenda);
         Agenda agenda = optionalAgenda
-                .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Agenda não cadastrada!"));
+                .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST, "Agenda não cadastrada!"));
         log.info("[finaliza] - AgendaInfraRepository - getAgenda");
         return agenda;
     }

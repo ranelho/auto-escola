@@ -1,6 +1,6 @@
 package com.rlti.autoescola.matricula.application.api;
 
-import com.rlti.autoescola.matricula.application.api.request.MatriculaAlteracaoRequest;
+import com.rlti.autoescola.matricula.application.api.request.MatriculaUpdateRequest;
 import com.rlti.autoescola.matricula.application.api.request.MatriculaRequest;
 import com.rlti.autoescola.matricula.application.api.response.MatriculaDetalhadoResponse;
 import com.rlti.autoescola.matricula.application.api.response.MatriculaIdResponse;
@@ -53,9 +53,9 @@ public class MatriculaRestController implements MatriculaAPI{
     }
 
     @Override
-    public void updateMatricula(UUID idMatricula, MatriculaAlteracaoRequest matriculaAlteracaoRequest) {
+    public void updateMatricula(UUID idMatricula, MatriculaUpdateRequest matriculaUpdateRequest) {
         log.info("[inicia] MatriculaRestController - updateMatricula");
-        matriculaService.updateMatricula(idMatricula, matriculaAlteracaoRequest);
+        matriculaService.updateMatricula(idMatricula, matriculaUpdateRequest);
         log.info("[finaliza] MatriculaRestController - updateMatricula");
     }
 
