@@ -1,6 +1,5 @@
 package com.rlti.autoescola.exame.application.api;
 
-import com.rlti.autoescola.exame.domain.Resultado;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -17,20 +16,20 @@ public interface ExameApi {
 
     @PostMapping("{idMatricula}")
     @ResponseStatus(code = HttpStatus.CREATED)
-    ExameIdResponse saveExame(@PathVariable UUID idMatricula, @Valid @RequestBody ExameRecord record);
+    ExameIdResponse saveExame(@PathVariable UUID idMatricula, @Valid @RequestBody ExameRequest record);
 
     @GetMapping("/{idExame}")
     @ResponseStatus(code = HttpStatus.OK)
-    ExameResponseRecord getOneExame(@PathVariable Long idExame);
+    ExameResponse getOneExame(@PathVariable Long idExame);
 
     @GetMapping("/all/{idMatricula}")
     @ResponseStatus(code = HttpStatus.OK)
-    List<ExameResponseRecord> getAllExames(@PathVariable UUID idMatricula);
+    List<ExameResponse> getAllExames(@PathVariable UUID idMatricula);
 
     @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'USER')")
     @GetMapping("/all-auth")
     @ResponseStatus(code = HttpStatus.OK)
-    List<ExameResponseRecord> getAllExames(@RequestHeader(name = "Authorization", required = true) String token);
+    List<ExameResponse> getAllExames(@RequestHeader(name = "Authorization", required = true) String token);
 
     @DeleteMapping("/{idExame}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)

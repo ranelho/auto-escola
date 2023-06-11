@@ -8,7 +8,6 @@ import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.security.config.JwtService;
 import com.rlti.autoescola.security.user.Role;
-import com.rlti.autoescola.security.user.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -26,7 +25,7 @@ public class ExameApplicationService implements ExameService {
     private final JwtService jwtService;
 
     @Override
-    public ExameIdResponse saveExame(UUID idMatricula, ExameRecord record) {
+    public ExameIdResponse saveExame(UUID idMatricula, ExameRequest record) {
         log.info("[inicia] ExameApplicationService - saveExame");
         Matricula matricula = matriculaRepository.getOneMatricula(idMatricula);
         List<Exame> exames = exameRepository.getAllExamesByMatricula(matricula);
@@ -37,20 +36,20 @@ public class ExameApplicationService implements ExameService {
     }
 
     @Override
-    public ExameResponseRecord getOneExame(Long idExame) {
+    public ExameResponse getOneExame(Long idExame) {
         log.info("[inicia] ExameApplicationService - getOneExame");
         Exame exame = exameRepository.getOneExame(idExame);
         log.info("[finaliza] ExameApplicationService - getOneExame");
-        return new ExameResponseRecord(exame);
+        return new ExameResponse(exame);
     }
 
     @Override
-    public List<ExameResponseRecord> getAllExames(UUID idMatricula) {
+    public List<ExameResponse> getAllExames(UUID idMatricula) {
         log.info("[inicia] ExameApplicationService - getAllExames");
         Matricula matricula = matriculaRepository.getOneMatricula(idMatricula);
         List<Exame> exames = exameRepository.getAllExamesByMatricula(matricula);
         log.info("[finaliza] ExameApplicationService - getAllExames");
-        return ExameResponseRecord.converte(exames);
+        return ExameResponse.converte(exames);
     }
 
     @Override
@@ -71,18 +70,17 @@ public class ExameApplicationService implements ExameService {
     }
 
     @Override
-    public List<ExameResponseRecord> getAllExamesUser(String token) {
+    public List<ExameResponse> getAllExamesUser(String token) {
         log.info("[inicia] ExameApplicationService - getAllExamesUser");
         List<Exame> exames;
         Optional<String> user = jwtService.getUserByBearerToken(token);
         if (user.isPresent() && user.get().equals(Role.USER.name())) {
-            UUID userId = UUID.fromString(user.get());
-            Matricula matricula = matriculaRepository.getOneMatricula(userId);
+            Matricula matricula = matriculaRepository.getOneMatricula(UUID.fromString(user.get()));
             exames = exameRepository.getAllExamesByMatricula(matricula);
         } else {
             exames = exameRepository.getAllExames();
         }
         log.info("[finaliza] ExameApplicationService - getAllExamesUser");
-        return ExameResponseRecord.converte(exames);
+        return ExameResponse.converte(exames);
     }
 }

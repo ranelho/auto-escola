@@ -1,6 +1,5 @@
 package com.rlti.autoescola.exame.domain;
 
-import com.rlti.autoescola.exame.application.api.ExameRecord;
 import com.rlti.autoescola.exame.application.api.ExameRequest;
 
 import java.util.List;
@@ -30,7 +29,7 @@ public class ValidaExame {
      *  8 - POSSO TER VÁRIOS EXAMES DO TIPO PRATICO POREM TEM QUE SER INAPTO
      *  9 - SO PODE TER UM EXAME DO TIPO PRATICO APTO OU A_FAZER
      */
-    public static void validaExame(List<Exame> exames, ExameRecord record) {
+    public static void validaExame(List<Exame> exames, ExameRequest record) {
         if (exames.isEmpty() && record.tipoExame() != CLINICO) {
             throw build(BAD_REQUEST, "O primeiro exame deve ser do tipo CLINICO");
         }

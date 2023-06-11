@@ -1,7 +1,6 @@
 package com.rlti.autoescola.exame.application.api;
 
 import com.rlti.autoescola.exame.application.service.ExameService;
-import com.rlti.autoescola.exame.domain.Resultado;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +15,7 @@ public class ExameRestController implements ExameApi {
     private final ExameService exameService;
 
     @Override
-    public ExameIdResponse saveExame(UUID idMatricula, ExameRecord record) {
+    public ExameIdResponse saveExame(UUID idMatricula, ExameRequest record) {
         log.info("[inicia] ExameRestController - saveExame");
         ExameIdResponse idResponse = exameService.saveExame(idMatricula, record);
         log.info("[finaliza] ExameRestController - saveExame");
@@ -24,25 +23,25 @@ public class ExameRestController implements ExameApi {
     }
 
     @Override
-    public ExameResponseRecord getOneExame(Long idExame) {
+    public ExameResponse getOneExame(Long idExame) {
         log.info("[inicia] ExameRestController - getOneExame");
-        ExameResponseRecord response = exameService.getOneExame(idExame);
+        ExameResponse response = exameService.getOneExame(idExame);
         log.info("[finaliza] ExameRestController - getOneExame");
         return response;
     }
 
     @Override
-    public List<ExameResponseRecord> getAllExames(UUID idMatricula) {
+    public List<ExameResponse> getAllExames(UUID idMatricula) {
         log.info("[inicia] ExameRestController - getAllExames");
-        List<ExameResponseRecord> response = exameService.getAllExames(idMatricula);
+        List<ExameResponse> response = exameService.getAllExames(idMatricula);
         log.info("[finaliza] ExameRestController - getAllExames");
         return response;
     }
 
     @Override
-    public List<ExameResponseRecord> getAllExames(String token) {
+    public List<ExameResponse> getAllExames(String token) {
              log.info("[inicia] ExameRestController - getAllExames");
-        List<ExameResponseRecord> response = exameService.getAllExamesUser(token);
+        List<ExameResponse> response = exameService.getAllExamesUser(token);
         log.info("[finaliza] ExameRestController - getAllExames");
         return response;
     }

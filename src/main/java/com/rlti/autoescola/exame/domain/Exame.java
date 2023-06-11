@@ -1,7 +1,6 @@
 package com.rlti.autoescola.exame.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.rlti.autoescola.exame.application.api.ExameRecord;
 import com.rlti.autoescola.exame.application.api.ExameRequest;
 import com.rlti.autoescola.exame.application.api.ResultadoRequest;
 import com.rlti.autoescola.matricula.domain.Matricula;
@@ -33,7 +32,7 @@ public class Exame {
     @JsonIgnore
     private Matricula matricula;
 
-    public Exame(Matricula matricula, ExameRecord record) {
+    public Exame(Matricula matricula, ExameRequest record) {
         this.matricula = matricula;
         this.tipoExame = record.tipoExame();
         this.dataExame = record.dataExame();
@@ -49,6 +48,6 @@ public class Exame {
     }
 
     public void altera(ResultadoRequest request) {
-        this.resultado = request.getResultado();
+        this.resultado = request.resultado();
     }
 }
