@@ -11,5 +11,5 @@ public interface ExameService {
     List<ExameResponseRecord> getAllExames(UUID idMatricula);
     void deleteExame(Long idExame);
     void updateExame(Long idExame, ResultadoRequest request);
-    List<ExameResponse> getAllExamesUser(String token);
+    List<ExameResponseRecord> getAllExamesUser(String token);
 }

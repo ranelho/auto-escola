@@ -30,7 +30,7 @@ public interface ExameApi {
     @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'USER')")
     @GetMapping("/all-auth")
     @ResponseStatus(code = HttpStatus.OK)
-    List<ExameResponse> getAllExames(@RequestHeader(name = "Authorization", required = true) String token);
+    List<ExameResponseRecord> getAllExames(@RequestHeader(name = "Authorization", required = true) String token);
 
     @DeleteMapping("/{idExame}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)

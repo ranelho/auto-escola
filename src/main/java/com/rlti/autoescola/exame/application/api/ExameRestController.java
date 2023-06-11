@@ -40,9 +40,9 @@ public class ExameRestController implements ExameApi {
     }
 
     @Override
-    public List<ExameResponse> getAllExames(String token) {
+    public List<ExameResponseRecord> getAllExames(String token) {
              log.info("[inicia] ExameRestController - getAllExames");
-        List<ExameResponse> response = exameService.getAllExamesUser(token);
+        List<ExameResponseRecord> response = exameService.getAllExamesUser(token);
         log.info("[finaliza] ExameRestController - getAllExames");
         return response;
     }

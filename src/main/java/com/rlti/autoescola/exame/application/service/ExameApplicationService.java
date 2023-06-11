@@ -3,18 +3,18 @@ package com.rlti.autoescola.exame.application.service;
 import com.rlti.autoescola.exame.application.api.*;
 import com.rlti.autoescola.exame.application.repository.ExameRepository;
 import com.rlti.autoescola.exame.domain.Exame;
-import com.rlti.autoescola.exame.domain.Resultado;
 import com.rlti.autoescola.exame.domain.ValidaExame;
 import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.security.config.JwtService;
 import com.rlti.autoescola.security.user.Role;
+import com.rlti.autoescola.security.user.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -71,19 +71,18 @@ public class ExameApplicationService implements ExameService {
     }
 
     @Override
-    public List<ExameResponse> getAllExamesUser(String token) {
+    public List<ExameResponseRecord> getAllExamesUser(String token) {
         log.info("[inicia] ExameApplicationService - getAllExamesUser");
-        List<Exame> exames = new ArrayList<>();
-        var user = jwtService.getUserByBearerToken(token);
-        if (user.get().equals(Role.USER)) {
-            Matricula matricula = matriculaRepository.getOneMatricula(UUID.fromString(user.get()));
+        List<Exame> exames;
+        Optional<String> user = jwtService.getUserByBearerToken(token);
+        if (user.isPresent() && user.get().equals(Role.USER.name())) {
+            UUID userId = UUID.fromString(user.get());
+            Matricula matricula = matriculaRepository.getOneMatricula(userId);
             exames = exameRepository.getAllExamesByMatricula(matricula);
-            log.info("[matricula] {}",  matricula);
-        }else{
+        } else {
             exames = exameRepository.getAllExames();
-            log.info("[all] ");
         }
         log.info("[finaliza] ExameApplicationService - getAllExamesUser");
-        return ExameResponse.converte(exames);
+        return ExameResponseRecord.converte(exames);
     }
 }
