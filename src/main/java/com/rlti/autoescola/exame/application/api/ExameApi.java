@@ -17,15 +17,15 @@ public interface ExameApi {
 
     @PostMapping("{idMatricula}")
     @ResponseStatus(code = HttpStatus.CREATED)
-    ExameIdResponse saveExame(@PathVariable UUID idMatricula, @Valid @RequestBody ExameRequest request);
+    ExameIdResponse saveExame(@PathVariable UUID idMatricula, @Valid @RequestBody ExameRecord record);
 
     @GetMapping("/{idExame}")
     @ResponseStatus(code = HttpStatus.OK)
-    ExameResponse getOneExame(@PathVariable Long idExame);
+    ExameResponseRecord getOneExame(@PathVariable Long idExame);
 
     @GetMapping("/all/{idMatricula}")
     @ResponseStatus(code = HttpStatus.OK)
-    List<ExameResponse> getAllExames(@PathVariable UUID idMatricula);
+    List<ExameResponseRecord> getAllExames(@PathVariable UUID idMatricula);
 
     @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'USER')")
     @GetMapping("/all-auth")

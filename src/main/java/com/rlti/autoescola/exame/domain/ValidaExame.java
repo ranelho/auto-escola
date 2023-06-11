@@ -1,5 +1,6 @@
 package com.rlti.autoescola.exame.domain;
 
+import com.rlti.autoescola.exame.application.api.ExameRecord;
 import com.rlti.autoescola.exame.application.api.ExameRequest;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class ValidaExame {
     /**
      * Método para Validar Exame
      * @param exames recebe uma lista com os exames cadastrados
-     * @param request recebe as informações vindo do usuario
+     * @param record recebe as informações vindo do usuario
      * -----------------NORMAS---------------
      * 1 - O PRIMEIRO EXAME DEVE SER CLINICO
      * 2 - POSSO TER VÁRIOS EXAMES DO TIPO CLINICO, POREM TODOS TEM QUE SER INAPTO
@@ -29,13 +30,13 @@ public class ValidaExame {
      *  8 - POSSO TER VÁRIOS EXAMES DO TIPO PRATICO POREM TEM QUE SER INAPTO
      *  9 - SO PODE TER UM EXAME DO TIPO PRATICO APTO OU A_FAZER
      */
-    public static void validaExame(List<Exame> exames, ExameRequest request) {
-        if (exames.isEmpty() && request.getTipoExame() != CLINICO) {
+    public static void validaExame(List<Exame> exames, ExameRecord record) {
+        if (exames.isEmpty() && record.tipoExame() != CLINICO) {
             throw build(BAD_REQUEST, "O primeiro exame deve ser do tipo CLINICO");
         }
 
         // Verifica se o primeiro exame é CLINICO e está APTO ou A_FAZER antes de permitir cadastrar um exame TEORICO
-        if (request.getTipoExame().equals(TEORICO)) {
+        if (record.tipoExame().equals(TEORICO)) {
             boolean hasClinicoApto = false;
             for (Exame exame : exames) {
                 if (exame.getTipoExame() == CLINICO && exame.getResultado() == APTO) {
@@ -49,7 +50,7 @@ public class ValidaExame {
         }
 
         // Verifica se já existe um exame CLINICO APTO ou A_FAZER antes de permitir cadastrar outro exame CLINICO
-        if (request.getTipoExame().equals(CLINICO)) {
+        if (record.tipoExame().equals(CLINICO)) {
             for (Exame exame : exames) {
                 if (exame.getTipoExame() == CLINICO) {
                     if (exame.getResultado() != INAPTO) {
@@ -62,7 +63,7 @@ public class ValidaExame {
         }
 
         // Verifica se já existe um exame TEORICO APTO ou A_FAZER antes de permitir cadastrar outro exame TEORICO
-        if (request.getTipoExame().equals(TEORICO)) {
+        if (record.tipoExame().equals(TEORICO)) {
             for (Exame exame : exames) {
                 if (exame.getTipoExame() == TEORICO) {
                     if (exame.getResultado() != INAPTO) {
@@ -75,7 +76,7 @@ public class ValidaExame {
         }
 
         // Verifica se já existe um exame PRATICO APTO ou A_FAZER antes de permitir cadastrar outro exame PRATICO
-        if (request.getTipoExame().equals(PRATICO)) {
+        if (record.tipoExame().equals(PRATICO)) {
             for (Exame exame : exames) {
                 if (exame.getTipoExame() == PRATICO) {
                     if (exame.getResultado() != INAPTO) {
@@ -88,7 +89,7 @@ public class ValidaExame {
         }
 
         // Verifica se existe um exame CLINICO e um exame TEORICO APTO antes de permitir cadastrar um exame PRATICO
-        if (request.getTipoExame().equals(PRATICO)) {
+        if (record.tipoExame().equals(PRATICO)) {
             boolean hasClinicoApto = false;
             boolean hasTeoricoApto = false;
             for (Exame exame : exames) {

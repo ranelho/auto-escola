@@ -16,25 +16,25 @@ public class ExameRestController implements ExameApi {
     private final ExameService exameService;
 
     @Override
-    public ExameIdResponse saveExame(UUID idMatricula, ExameRequest request) {
+    public ExameIdResponse saveExame(UUID idMatricula, ExameRecord record) {
         log.info("[inicia] ExameRestController - saveExame");
-        ExameIdResponse idResponse = exameService.saveExame(idMatricula, request);
+        ExameIdResponse idResponse = exameService.saveExame(idMatricula, record);
         log.info("[finaliza] ExameRestController - saveExame");
         return idResponse;
     }
 
     @Override
-    public ExameResponse getOneExame(Long idExame) {
+    public ExameResponseRecord getOneExame(Long idExame) {
         log.info("[inicia] ExameRestController - getOneExame");
-        ExameResponse response = exameService.getOneExame(idExame);
+        ExameResponseRecord response = exameService.getOneExame(idExame);
         log.info("[finaliza] ExameRestController - getOneExame");
         return response;
     }
 
     @Override
-    public List<ExameResponse> getAllExames(UUID idMatricula) {
+    public List<ExameResponseRecord> getAllExames(UUID idMatricula) {
         log.info("[inicia] ExameRestController - getAllExames");
-        List<ExameResponse> response = exameService.getAllExames(idMatricula);
+        List<ExameResponseRecord> response = exameService.getAllExames(idMatricula);
         log.info("[finaliza] ExameRestController - getAllExames");
         return response;
     }

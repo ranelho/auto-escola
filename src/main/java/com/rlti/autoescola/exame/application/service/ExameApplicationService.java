@@ -1,9 +1,6 @@
 package com.rlti.autoescola.exame.application.service;
 
-import com.rlti.autoescola.exame.application.api.ExameIdResponse;
-import com.rlti.autoescola.exame.application.api.ExameRequest;
-import com.rlti.autoescola.exame.application.api.ExameResponse;
-import com.rlti.autoescola.exame.application.api.ResultadoRequest;
+import com.rlti.autoescola.exame.application.api.*;
 import com.rlti.autoescola.exame.application.repository.ExameRepository;
 import com.rlti.autoescola.exame.domain.Exame;
 import com.rlti.autoescola.exame.domain.Resultado;
@@ -29,31 +26,31 @@ public class ExameApplicationService implements ExameService {
     private final JwtService jwtService;
 
     @Override
-    public ExameIdResponse saveExame(UUID idMatricula, ExameRequest request) {
+    public ExameIdResponse saveExame(UUID idMatricula, ExameRecord record) {
         log.info("[inicia] ExameApplicationService - saveExame");
         Matricula matricula = matriculaRepository.getOneMatricula(idMatricula);
         List<Exame> exames = exameRepository.getAllExamesByMatricula(matricula);
-        ValidaExame.validaExame(exames, request);
-        Exame exame = exameRepository.saveExame(new Exame(matricula, request));
+        ValidaExame.validaExame(exames, record);
+        Exame exame = exameRepository.saveExame(new Exame(matricula, record));
         log.info("[finaliza] ExameApplicationService - saveExame");
         return ExameIdResponse.builder().idExame(exame.getIdExame()).build();
     }
 
     @Override
-    public ExameResponse getOneExame(Long idExame) {
+    public ExameResponseRecord getOneExame(Long idExame) {
         log.info("[inicia] ExameApplicationService - getOneExame");
         Exame exame = exameRepository.getOneExame(idExame);
         log.info("[finaliza] ExameApplicationService - getOneExame");
-        return new ExameResponse(exame);
+        return new ExameResponseRecord(exame);
     }
 
     @Override
-    public List<ExameResponse> getAllExames(UUID idMatricula) {
+    public List<ExameResponseRecord> getAllExames(UUID idMatricula) {
         log.info("[inicia] ExameApplicationService - getAllExames");
         Matricula matricula = matriculaRepository.getOneMatricula(idMatricula);
         List<Exame> exames = exameRepository.getAllExamesByMatricula(matricula);
         log.info("[finaliza] ExameApplicationService - getAllExames");
-        return ExameResponse.converte(exames);
+        return ExameResponseRecord.converte(exames);
     }
 
     @Override
