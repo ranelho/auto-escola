@@ -12,12 +12,13 @@
 - ``JPA``
 - ``Lombok``
 - ``PostgreSQL``
-- ``InteliJ IDEA``
+- ``IntelliJ IDEA``
 - ``Swagger``
 - ``Postman``
 - ``DBeaver``
 - ``Git``
 - ``GitHub``
+- ``JWT``
 
 ### Ajustes e melhorias
 
@@ -39,6 +40,10 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [X] Instrutor
 - [x] Relatórios
 - [x] Fluxo de Caixa
+- [x] Security
+  - [x] User
+  - [x] JWT
+  - [x] Controle de Acesso
   
 # Banco de Dados
 <img src="Banco.png" width=650><br><sub>Banco de Dados</sub>

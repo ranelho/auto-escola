@@ -1,10 +1,10 @@
 package com.rlti.autoescola.servico.application.api;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,7 +14,7 @@ public interface ServicoApi {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    ServicoIdResponse saveServico(@Valid @RequestBody ServicoRequest request);
+    ServicoIdResponse saveServico(@Valid @RequestBody SevicoRecord record);
 
     @GetMapping("/{idServico}")
     @ResponseStatus(code = HttpStatus.OK)

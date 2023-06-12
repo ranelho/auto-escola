@@ -1,6 +1,5 @@
 package com.rlti.autoescola.exame.infra;
 
-import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.exame.application.repository.ExameRepository;
 import com.rlti.autoescola.exame.domain.Exame;
 import com.rlti.autoescola.handler.APIException;
@@ -50,5 +49,13 @@ public class ExameInfraRepository implements ExameRepository {
         log.info("[inicia] ExameInfraRepository -  deleteExame");
         exameSpringDataJPARepository.deleteById(idExame);
         log.info("[finaliza] ExameInfraRepository -  deleteExame");
+    }
+
+    @Override
+    public List<Exame> getAllExames() {
+        log.info("[inicia] ExameInfraRepository -  getAllExames");
+        List<Exame> exames = exameSpringDataJPARepository.findAll();
+        log.info("[finaliza] ExameInfraRepository -  getAllExames");
+        return exames;
     }
 }

@@ -17,16 +17,16 @@ public class ContatoRestController implements ContatoApi {
     @Override
     public ContatoResponse saveContato(UUID idCliente, ContatoRequest contatoRequest) {
         log.info("[inicia] ContatoRestController - saveContato");
-        ContatoResponse contatoCriado = contatoService.saveContato(idCliente, contatoRequest);
+        ContatoResponse response = contatoService.saveContato(idCliente, contatoRequest);
         log.info("[finaliza] ContatoRestController - saveContato");
-        return contatoCriado;
+        return response;
     }
     @Override
     public ContatoResponse getOneContato(UUID idContato) {
         log.info("[inicia] ContatoRestController - getOneContato");
-        ContatoResponse buscaContato = contatoService.getOneContato(idContato);
+        ContatoResponse response = contatoService.getOneContato(idContato);
         log.info("[finaliza] ContatoRestController - getOneContato");
-        return buscaContato;
+        return response;
     }
     @Override
     public ClienteContatosResponse getAllContatosCliente(UUID idCliente) {

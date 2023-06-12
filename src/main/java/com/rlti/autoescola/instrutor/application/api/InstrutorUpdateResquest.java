@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Data
 public class InstrutorUpdateResquest {
     @NotNull(message = "Campo Obrigatório!")
-    String nomeCompleto;
+    String fullName;
     @NotNull(message = "Campo Obrigatório!")
     LocalDate validadeCnh;
     @NotNull(message = "Campo Obrigatório!")

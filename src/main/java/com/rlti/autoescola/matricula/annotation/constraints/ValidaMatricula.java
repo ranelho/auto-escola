@@ -1,7 +1,7 @@
 package com.rlti.autoescola.matricula.annotation.constraints;
 
 import com.rlti.autoescola.handler.APIException;
-import com.rlti.autoescola.matricula.application.api.request.MatriculaAlteracaoRequest;
+import com.rlti.autoescola.matricula.application.api.request.MatriculaUpdateRequest;
 import com.rlti.autoescola.matricula.application.api.request.SolicitacaoRequest;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
@@ -18,12 +18,12 @@ import java.math.RoundingMode;
 public class ValidaMatricula {
     public void validaSolicitacao(SolicitacaoRequest request, Servico servico) {
         isCombinationValid(request.getTipoServico(),servico.getCategoria());
-        validarTipoPagamentoETotalParcelas(request.getTipoPagamento(), request.getQuantidadeParcelas());
+        validaTipoPagamentoETotalParcelas(request.getTipoPagamento(), request.getQuantidadeParcelas());
         validaEntrada(request.getValorEntrada(), servico.getValorServico(), request.getDesconto());
     }
 
-    public void validaAlteracaoMatricula(Matricula matricula, MatriculaAlteracaoRequest request) {
-        validarTipoPagamentoETotalParcelas(request.getTipoPagamento(), request.getQuantidadeParcelas());
+    public void validaAlteracaoMatricula(Matricula matricula, MatriculaUpdateRequest request) {
+        validaTipoPagamentoETotalParcelas(request.getTipoPagamento(), request.getQuantidadeParcelas());
         validaEntrada(request.getValorEntrada(), matricula.getServico().getValorServico(), request.getDesconto());
     }
 
@@ -34,7 +34,7 @@ public class ValidaMatricula {
         }
     }
 
-    private static void validarTipoPagamentoETotalParcelas(TipoPagamento tipoPagamento, int quantidadeParcelas) {
+    private static void validaTipoPagamentoETotalParcelas(TipoPagamento tipoPagamento, int quantidadeParcelas) {
         if (tipoPagamento == TipoPagamento.DINHEIRO || tipoPagamento == TipoPagamento.CARTAO_DEBITO ||
                 tipoPagamento == TipoPagamento.PIX || tipoPagamento == TipoPagamento.BOLETO) {
             if (quantidadeParcelas != 1) {
@@ -50,7 +50,7 @@ public class ValidaMatricula {
     }
 
     private  static void validaEntrada(BigDecimal valorEntrada, BigDecimal valorServico, int desconto){
-        BigDecimal valorFinal = calcularValorFinal(desconto, valorServico);
+        BigDecimal valorFinal = calculaValorFinal(desconto, valorServico);
         if(valorEntrada.compareTo(valorServico) > 0){
             throw APIException.build(HttpStatus.BAD_REQUEST,"Valor entrada R$: "+valorEntrada
                     + " maior que o valor contratado, " + "Valor Serviço R$: " + valorServico + " - desconto de "
@@ -58,7 +58,7 @@ public class ValidaMatricula {
         }
     }
 
-    public static BigDecimal calcularValorFinal(int desconto, BigDecimal valorServico) {
+    public static BigDecimal calculaValorFinal(int desconto, BigDecimal valorServico) {
         final int DESCONTO_MAXIMO = 100;
         final int DESCONTO_MINIMO = 0;
 

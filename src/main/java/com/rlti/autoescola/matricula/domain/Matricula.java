@@ -4,24 +4,26 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rlti.autoescola.cliente.domain.Cliente;
 import com.rlti.autoescola.exame.domain.Exame;
 import com.rlti.autoescola.laudo.domain.Laudo;
-import com.rlti.autoescola.matricula.application.api.request.MatriculaAlteracaoRequest;
 import com.rlti.autoescola.matricula.application.api.request.MatriculaRequest;
+import com.rlti.autoescola.matricula.application.api.request.MatriculaUpdateRequest;
 import com.rlti.autoescola.orcamento.domain.Orcamento;
 import com.rlti.autoescola.pagamento.domain.Pagamento;
 import com.rlti.autoescola.servico.domain.Servico;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.hibernate.Hibernate;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
-import static com.rlti.autoescola.matricula.annotation.constraints.ValidaMatricula.calcularValorFinal;
+import static com.rlti.autoescola.matricula.annotation.constraints.ValidaMatricula.calculaValorFinal;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,7 +31,7 @@ import static com.rlti.autoescola.matricula.annotation.constraints.ValidaMatricu
 @Entity
 public class Matricula {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID idMatricula;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -74,7 +76,7 @@ public class Matricula {
         this.desconto = matriculaRequest.getDesconto();
         this.quantidadeParcelas = matriculaRequest.getQuantidadeParcelas();
         this.observacao = matriculaRequest.getObservacao().toUpperCase();
-        this.valorFinal = calcularValorFinal(matriculaRequest.getDesconto(), servico.getValorServico());
+        this.valorFinal = calculaValorFinal(matriculaRequest.getDesconto(), servico.getValorServico());
         this.tipoServico = matriculaRequest.getTipoServico();
     }
 
@@ -90,12 +92,12 @@ public class Matricula {
         this.tipoServico = orcamento.getTipoServico();
     }
 
-    public void altera(MatriculaAlteracaoRequest matriculaAlteracaoRequest) {
-        this.tipoPagamento = matriculaAlteracaoRequest.getTipoPagamento();
-        this.valorEntrada = matriculaAlteracaoRequest.getValorEntrada();
-        this.desconto = matriculaAlteracaoRequest.getDesconto();
-        this.quantidadeParcelas = matriculaAlteracaoRequest.getQuantidadeParcelas();
-        this.observacao = matriculaAlteracaoRequest.getObservacao().toUpperCase();
+    public void altera(MatriculaUpdateRequest matriculaUpdateRequest) {
+        this.tipoPagamento = matriculaUpdateRequest.getTipoPagamento();
+        this.valorEntrada = matriculaUpdateRequest.getValorEntrada();
+        this.desconto = matriculaUpdateRequest.getDesconto();
+        this.quantidadeParcelas = matriculaUpdateRequest.getQuantidadeParcelas();
+        this.observacao = matriculaUpdateRequest.getObservacao().toUpperCase();
     }
 
     public void finalizaMatricula() {
@@ -105,4 +107,17 @@ public class Matricula {
     public void ativaMatricula() { this.status = Status.ATIVA; }
 
     public void cancelaMatricula() { this.status = Status.CANCELADA; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Matricula matricula = (Matricula) o;
+        return getIdMatricula() != null && Objects.equals(getIdMatricula(), matricula.getIdMatricula());
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

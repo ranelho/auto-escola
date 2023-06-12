@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Min;
 import java.math.BigDecimal;
 
 @Value
-public class MatriculaAlteracaoRequest {
+public class MatriculaUpdateRequest {
     TipoPagamento tipoPagamento;
     BigDecimal valorEntrada;
     int desconto;

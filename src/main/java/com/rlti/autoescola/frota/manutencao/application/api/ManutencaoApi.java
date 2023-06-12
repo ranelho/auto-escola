@@ -1,14 +1,15 @@
 package com.rlti.autoescola.frota.manutencao.application.api;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.validation.Valid;
 import java.util.List;
 
-@Tag(name = "Manutencao", description = "Manutencao APIs")
+@Tag(name = "Manutenção", description = "Manutenção APIs")
 @RequestMapping("/v1/manutencoes")
+//@PreAuthorize("hasAnyRole('USER','ADMIN', 'MANAGER')")
 public interface ManutencaoApi {
 
     @PostMapping("/{placa}")

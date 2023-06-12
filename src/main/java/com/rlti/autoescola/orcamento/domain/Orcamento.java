@@ -23,7 +23,8 @@ import java.time.LocalDate;
 @Entity
 public class Orcamento {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_orcamento")
+    @SequenceGenerator(name = "sequence_orcamento", sequenceName = "sequence_orcamento")
     private Long idOrcamento;
 
     @OneToOne
@@ -57,7 +58,7 @@ public class Orcamento {
         this.desconto = orcamentoRequest.getDesconto();
         this.quantidadeParcelas = orcamentoRequest.getQuantidadeParcelas();
         this.observacao = orcamentoRequest.getObservacao();
-        this.valorFinal = ValidaMatricula.calcularValorFinal(orcamentoRequest.getDesconto(), servico.getValorServico());
+        this.valorFinal = ValidaMatricula.calculaValorFinal(orcamentoRequest.getDesconto(), servico.getValorServico());
         this.tipoServico = orcamentoRequest.getTipoServico();
     }
 }

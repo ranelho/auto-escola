@@ -18,7 +18,8 @@ import java.time.LocalDate;
 @Entity
 public class Pagamento {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_pagamento")
+    @SequenceGenerator(name = "sequence_pagamento", sequenceName = "sequence_pagamento")
     private Long idPagamento;
     private LocalDate dataPagamento = LocalDate.now();
     @Enumerated(EnumType.STRING)

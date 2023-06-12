@@ -10,6 +10,7 @@ import com.rlti.autoescola.cliente.domain.groups.PessoaFisica;
 import com.rlti.autoescola.contato.domain.Contato;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
+import com.rlti.autoescola.security.user.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -59,6 +60,11 @@ public class Cliente {
     @JsonIgnore
     Imagem imagem;
 
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
+
     public Cliente(ClienteRequest clienteRequest) {
         this.tipoPessoa = getTipoPessoa();
         this.cpf = clienteRequest.getCpf();
@@ -78,5 +84,9 @@ public class Cliente {
         this.naturalidade = editaClienteRequest.getNaturalidade().toUpperCase();
         this.nacionalidade = editaClienteRequest.getNacionalidade().toUpperCase();
         this.estadoCivil = editaClienteRequest.getEstadoCivil();
+    }
+
+    public void insertUser(User user) {
+        this.user = user;
     }
 }

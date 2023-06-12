@@ -31,8 +31,7 @@ public class ContatoInfraRepository implements ContatoRepository {
         log.info("[inicia] ContatoInfraRepository - getOneContato");
         Optional<Contato> optionalContato = contatoSpringDataJPARepository.findById(idContato);
         Contato contato = optionalContato
-                .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,
-                "Contato do Cliente não encontrado!"));
+                .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,"Contato do Cliente não encontrado!"));
         log.info("[finaliza] ContatoInfraRepository - getOneContato");
         return contato;
     }
