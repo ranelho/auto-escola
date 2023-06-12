@@ -62,6 +62,7 @@ public class ExameApplicationService implements ExameService {
 
     @Override
     public void updateExame(Long idExame, ResultadoRequest request) {
+        //TODO -> validação nao permitindo alterar um exame ja finalizado
         log.info("[inicia] ExameApplicationService - updateExame");
         Exame exame = exameRepository.getOneExame(idExame);
         exame.altera(request);
