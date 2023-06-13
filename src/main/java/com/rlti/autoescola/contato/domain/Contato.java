@@ -35,14 +35,14 @@ public class Contato {
     private Cliente cliente;
 
     public Contato(Cliente cliente, ContatoRequest contatoRequest) {
-        this.email = contatoRequest.getEmail().toLowerCase();
-        this.telefone = contatoRequest.getTelefone();
-        this.cep = contatoRequest.getCep();
-        this.endereco = contatoRequest.getEndereco().toUpperCase();
-        this.cidade = contatoRequest.getCidade().toUpperCase();
-        this.uf = contatoRequest.getUf().toUpperCase();
+        this.email = contatoRequest.email().toLowerCase();
+        this.telefone = contatoRequest.telefone();
+        this.cep = contatoRequest.cep();
+        this.endereco = contatoRequest.endereco().toUpperCase();
+        this.cidade = contatoRequest.cidade().toUpperCase();
+        this.uf = contatoRequest.uf().toUpperCase();
         this.cliente = cliente;
-        this.padrao = contatoRequest.getPadrao();
+        this.padrao = contatoRequest.padrao();
     }
 
     public Contato(Cliente cliente, OrcamentoRequest orcamentoRequest) {
@@ -52,13 +52,13 @@ public class Contato {
     }
 
     public void altera(ContatoRequest contatoRequest) {
-        this.email = contatoRequest.getEmail().toLowerCase();
-        this.telefone = contatoRequest.getTelefone();
-        this.cep = contatoRequest.getCep();
-        this.endereco = contatoRequest.getEndereco().toUpperCase();
-        this.cidade = contatoRequest.getCidade().toUpperCase();
-        this.uf = contatoRequest.getUf().toUpperCase();
-        this.padrao = contatoRequest.getPadrao();
+        this.email = contatoRequest.email().toLowerCase();
+        this.telefone = contatoRequest.telefone();
+        this.cep = contatoRequest.cep();
+        this.endereco = contatoRequest.endereco().toUpperCase();
+        this.cidade = contatoRequest.cidade().toUpperCase();
+        this.uf = contatoRequest.uf().toUpperCase();
+        this.padrao = contatoRequest.padrao();
     }
 
     public void alteraPadrao() {

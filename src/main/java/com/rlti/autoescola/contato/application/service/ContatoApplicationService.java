@@ -39,9 +39,9 @@ public class ContatoApplicationService implements ContatoService {
         log.info("[Inicia] ContatoApplicationService - VerificaContato");
         List<Contato> contatos = cliente.getContatos();
         for (Contato contato : contatos) {
-            if (contato.getTelefone().equals(contatoRequest.getTelefone())) {
-                throw APIException.build(HttpStatus.BAD_REQUEST, "Telefone ja Cadastrado");
-            } else if (contato.getPadrao() && contatoRequest.getPadrao()) {
+            if (contato.getTelefone().equals(contatoRequest.telefone())) {
+                throw APIException.build(HttpStatus.BAD_REQUEST, "Telefone já Cadastrado");
+            } else if (contato.getPadrao() && contatoRequest.padrao()) {
                 contato.alteraPadrao();
                 contatoRepository.saveContato(contato);
             }
