@@ -28,19 +28,19 @@ public class ImagemServiceApplication implements ImagemService {
         Cliente cliente = clienteRepository.findOneCliente(idCliente);
         Optional<Imagem> optionalImagem = imagemRepository.findByCliente(cliente);
         if (optionalImagem.isPresent()){
-            atualizarImagemCliente(cliente, imagem);
+            updateFotoCliente(cliente, imagem);
         }else {
             Imagem novaImagem = imagemRepository.salva(new Imagem(cliente, imagem));
         }
         log.info("[finaliza] ImagemServiceApplication - editaImagem");
     }
 
-    private void atualizarImagemCliente(Cliente cliente, MultipartFile imagem) throws IOException {
-        log.info("[inicia] ImagemServiceApplication - atualizarImagemCliente");
-        Imagem imagemAtual = imagemRepository.findByCliente(cliente)
+    private void updateFotoCliente(Cliente cliente, MultipartFile imagem) throws IOException {
+        log.info("[inicia] ImagemServiceApplication - updateFotoCliente");
+        Imagem fotoAtual = imagemRepository.findByCliente(cliente)
                 .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,"Imagem não encontrado!"));
-        imagemAtual.altera(imagem.getBytes());
-        imagemRepository.salva(imagemAtual);
-        log.info("[finaliza] ImagemServiceApplication - atualizarImagemCliente");
+        fotoAtual.altera(imagem.getBytes());
+        imagemRepository.salva(fotoAtual);
+        log.info("[finaliza] ImagemServiceApplication - updateFotoCliente");
     }
 }

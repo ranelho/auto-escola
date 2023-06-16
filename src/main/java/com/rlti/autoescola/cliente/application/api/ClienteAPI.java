@@ -35,7 +35,7 @@ public interface ClienteAPI {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void updateCliente(@PathVariable UUID idCliente, @Valid @RequestBody EditaClienteRequest editaClienteRequest);
 
-    @PutMapping("/{idCliente}/imagem")
+    @PutMapping("/{idCliente}/foto")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void saveImagem(@PathVariable UUID idCliente, @RequestParam("imagem") MultipartFile imagem) throws IOException;
+    void saveImagem(@PathVariable UUID idCliente, @RequestParam("foto") MultipartFile imagem) throws IOException;
 }

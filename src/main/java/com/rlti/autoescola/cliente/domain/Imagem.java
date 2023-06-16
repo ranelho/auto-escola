@@ -19,11 +19,11 @@ public class Imagem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private byte[] dados;
+    @Lob
+    private byte[] foto;
 
     public Imagem(byte[] bytes) {
-        this.dados = bytes;
+        this.foto = bytes;
     }
 
     @OneToOne
@@ -33,10 +33,10 @@ public class Imagem {
 
     public Imagem(Cliente cliente, MultipartFile imagem) throws IOException {
         this.cliente = cliente;
-        this.dados = imagem.getBytes();
+        this.foto = imagem.getBytes();
     }
 
     public void altera(byte[] imagem) throws IOException {
-        this.dados = imagem;
+        this.foto = imagem;
     }
 }

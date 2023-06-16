@@ -15,7 +15,8 @@ public record ContatoResponse(
         String cep,
         String endereco,
         String cidade,
-        String uf)
+        String uf,
+        Boolean padrao)
 {
     public ContatoResponse(Contato contato) {
         this(
@@ -27,7 +28,8 @@ public record ContatoResponse(
                 contato.getCep(),
                 contato.getEndereco(),
                 contato.getCidade(),
-                contato.getUf()
+                contato.getUf(),
+                contato.getPadrao()
         );
     }
     public static List<ContatoResponse> converte(List<Contato> contatos) {
