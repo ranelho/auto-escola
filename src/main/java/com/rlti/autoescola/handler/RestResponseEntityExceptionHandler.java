@@ -9,9 +9,11 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 import java.time.format.DateTimeParseException;
@@ -86,4 +88,18 @@ public class RestResponseEntityExceptionHandler {
 		errors.put("message", "Formato de data inválido: formato padrão -> 'yyyy-MM-dd'T'HH:mm:ss'");
 		return ResponseEntity.badRequest().body(errors);
 	}
+
+	@ExceptionHandler({IllegalArgumentException.class, MethodArgumentTypeMismatchException.class})
+	public ResponseEntity<Map<String, String>> handleException(Exception ex) {
+		Map<String, String> errors = new HashMap<>();
+		if (ex instanceof IllegalArgumentException) {
+			errors.put("message", "UUID inválido: " + ex.getMessage());
+		} else if (ex instanceof MethodArgumentTypeMismatchException) {
+			MethodArgumentTypeMismatchException mismatchEx = (MethodArgumentTypeMismatchException) ex;
+			errors.put("message", "Tipo de argumento inválido: " + mismatchEx.getName());
+		}
+		return ResponseEntity.badRequest().body(errors);
+	}
+
+
 }
