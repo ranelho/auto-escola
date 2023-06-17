@@ -31,7 +31,7 @@ public class RelatorioClientesResponse {
         this.naturalidade = cliente.getNaturalidade();
         this.nacionalidade = cliente.getNacionalidade();
         this.estadoCivil = cliente.getEstadoCivil();
-        this.dataCadastro = cliente.getDataCadastro();
+        this.dataCadastro = cliente.getDateRegistration();
         this.contatos = ContatoResumoResponse.converte(cliente.getContatos());
         this.matriculas = RelatorioMatriculaResponse.converte(cliente.getMatriculas());
     }

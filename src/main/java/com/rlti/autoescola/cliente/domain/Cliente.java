@@ -48,7 +48,7 @@ public class Cliente {
     private String nacionalidade;
     @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;
-    private LocalDate dataCadastro = LocalDate.now();
+    private LocalDate dateRegistration = LocalDate.now();
 
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
     @JsonIgnore
