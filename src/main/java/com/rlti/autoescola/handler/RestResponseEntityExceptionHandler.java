@@ -7,9 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -56,12 +56,12 @@ public class RestResponseEntityExceptionHandler {
 	}
 
 	@ResponseStatus(HttpStatus.FORBIDDEN)
-	@ExceptionHandler({AccessDeniedException.class, BadCredentialsException.class, ExpiredJwtException.class})
+	@ExceptionHandler({AccessDeniedException.class, BadCredentialsException.class, ExpiredJwtException.class, InternalAuthenticationServiceException.class})
 	public ResponseEntity<ErrorResponse> handleExceptions(Exception ex) {
 		String mensagem = "Erro ao realizar login!";
 		if (ex instanceof AccessDeniedException) {
 			mensagem = "Você não tem permissão para acessar este recurso!";
-		} else if (ex instanceof BadCredentialsException) {
+		} else if (ex instanceof BadCredentialsException || ex instanceof InternalAuthenticationServiceException) {
 			mensagem = "Credenciais inválidas!";
 		} else if (ex instanceof ExpiredJwtException) {
 			mensagem = "Token de autenticação expirado!";
