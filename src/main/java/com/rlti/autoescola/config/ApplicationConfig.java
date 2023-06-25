@@ -1,7 +1,7 @@
 package com.rlti.autoescola.config;
 
 import com.rlti.autoescola.handler.APIException;
-import com.rlti.autoescola.security.infra.UserRepository;
+import com.rlti.autoescola.security.infra.UserSpringDataJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
-  private final UserRepository repository;
+  private final UserSpringDataJpaRepository repository;
 
   @Bean
   public UserDetailsService userDetailsService() {

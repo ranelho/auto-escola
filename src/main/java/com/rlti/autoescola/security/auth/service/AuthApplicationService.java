@@ -8,7 +8,7 @@ import com.rlti.autoescola.security.auth.api.RegisterRequest;
 import com.rlti.autoescola.security.auth.api.UpdatePasswordRequest;
 import com.rlti.autoescola.security.config.JwtService;
 import com.rlti.autoescola.security.infra.AccessLogRepository;
-import com.rlti.autoescola.security.infra.UserRepository;
+import com.rlti.autoescola.security.repository.UserRepository;
 import com.rlti.autoescola.security.token.Token;
 import com.rlti.autoescola.security.token.TokenRepository;
 import com.rlti.autoescola.security.token.TokenType;
@@ -40,25 +40,19 @@ public class AuthApplicationService implements AuthService {
     private final AccessLogRepository accessLogRepository;
 
     @Override
-    public Object register(RegisterRequest request) {
+    public Object register(final RegisterRequest request) {
         log.info("[inicia] AuthApplicationService.register");
-        var user = User.builder()
-                .firstname(request.getFirstname())
-                .lastname(request.getLastname())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .role(request.getRole())
-                .build();
-        var savedUser = repository.save(user);
+        var user = repository.save(new User(request, passwordEncoder));
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
-        saveUserToken(savedUser, jwtToken);
+        saveUserToken(user, jwtToken);
         log.info("[finaliza] AuthApplicationService.register");
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
                 .build();
     }
+
 
     @Override
     public Object authenticate(AuthenticationRequest request, HttpServletRequest httpServletRequest) {
@@ -69,8 +63,7 @@ public class AuthApplicationService implements AuthService {
                         request.getPassword()
                 )
         );
-        var user = repository.findByEmail(request.getEmail())
-                .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Usuário não encontrado!"));
+        User user = repository.findByEmail(request.getEmail()).orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         revokeAllUserTokens(user);

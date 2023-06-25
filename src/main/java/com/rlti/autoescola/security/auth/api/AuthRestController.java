@@ -19,7 +19,7 @@ public class AuthRestController implements AuthApi {
     private final AuthService authService;
 
     @Override
-    public ResponseEntity<AuthenticationResponse> register(RegisterRequest request) {
+    public ResponseEntity<AuthenticationResponse> register(final RegisterRequest request) {
         log.info("[inicia] AuthRestController.register");
         AuthenticationResponse response = (AuthenticationResponse) authService.register(request);
         log.info("[finaliza] AuthRestController.register");

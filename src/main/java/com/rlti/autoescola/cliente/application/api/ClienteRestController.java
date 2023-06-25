@@ -22,23 +22,23 @@ public class ClienteRestController implements ClienteAPI {
     @Override
     public ClienteResponse saveCliente(ClienteRequest clienteRequest) {
         log.info("[inicia] ClienteRestController - saveCliente");
-        ClienteResponse clienteCriado = clienteService.saveCliente(clienteRequest);
+        ClienteResponse response = clienteService.saveCliente(clienteRequest);
         log.info("[finaliza] ClienteRestController - saveCliente");
-        return clienteCriado;
+        return response;
     }
     @Override
     public ClienteResponse getOneCliente(UUID idCliente) {
         log.info("[inicia] ClienteRestController - getOneCliente");
-        ClienteResponse buscaCliente = clienteService.getOneCliente(idCliente);
+        ClienteResponse response = clienteService.getOneCliente(idCliente);
         log.info("[finaliza] ClienteRestController - getOneCliente");
-        return buscaCliente;
+        return response;
     }
     @Override
     public ClienteResponse getByCpf(String cpf) {
         log.info("[inicia] ClienteRestController - getByCpf");
-        ClienteResponse buscaCPF = clienteService.getByCpf(cpf);
+        ClienteResponse response = clienteService.getByCpf(cpf);
         log.info("[finaliza] ClienteRestController - getByCpf");
-        return buscaCPF;
+        return response;
     }
     @Override
     public List<ClienteListResponse> getAllClientes() {
@@ -51,7 +51,6 @@ public class ClienteRestController implements ClienteAPI {
     public void updateCliente(UUID idCliente, @Valid  EditaClienteRequest editaClienteRequest) {
         log.info("[inicia] ClienteRestController - updateCliente");
         clienteService.updateCliente(idCliente, editaClienteRequest);
-        log.info("[idCliente] {}", idCliente);
         log.info("[finaliza] ClienteRestController - updateCliente");
     }
     @Override

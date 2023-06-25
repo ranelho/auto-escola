@@ -10,7 +10,7 @@ import com.rlti.autoescola.contato.application.service.ContatoService;
 import com.rlti.autoescola.empresa.validation.ValidaCpfouCnpj;
 import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
-import com.rlti.autoescola.security.infra.UserRepository;
+import com.rlti.autoescola.security.infra.UserSpringDataJpaRepository;
 import com.rlti.autoescola.security.user.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -28,13 +28,13 @@ public class ClienteApplicationService implements ClienteService {
 
     private final ClienteRepository clienteRepository;
     private final ContatoService contatoService;
-    private final UserRepository userRepository;
+    private final UserSpringDataJpaRepository userSpringDataJpaRepository;
 
     @Override
     public ClienteResponse saveCliente(ClienteRequest clienteRequest) {
         log.info("[inicia] ClienteApplicationService - saveCliente");
         Cliente cliente = clienteRepository.saveCliente(new Cliente(clienteRequest));
-        User user = userRepository.save(new User(clienteRequest));
+        User user = userSpringDataJpaRepository.save(new User(clienteRequest));
         saveUserCliente(user, cliente);
         log.info("[finaliza] ClienteApplicationService - saveCliente");
         return new ClienteResponse(cliente);
@@ -80,7 +80,7 @@ public class ClienteApplicationService implements ClienteService {
         log.info("[inicia] ClienteApplicationService - getByCpf");
         ValidaCpfouCnpj.validateCpfOrCnpj(cpf);
         Cliente cliente = clienteRepository.findByCpf(cpf)
-                .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,"Cliente não encontrado!"));;
+                .orElseThrow(() -> APIException.build(HttpStatus.BAD_REQUEST,"Cliente não encontrado!"));
         log.info("[finaliza] ClienteApplicationService - getByCpf");
         return new ClienteResponse(cliente);
     }
