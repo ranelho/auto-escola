@@ -1,4 +1,4 @@
-package com.rlti.autoescola.validator;
+package com.rlti.autoescola.handler.validator;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

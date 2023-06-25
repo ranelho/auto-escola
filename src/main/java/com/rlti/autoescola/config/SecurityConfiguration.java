@@ -14,7 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
-import static com.rlti.autoescola.security.user.Role.*;
+import static com.rlti.autoescola.security.user.domain.Role.*;
 
 @Configuration
 @EnableWebSecurity

@@ -1,7 +1,7 @@
-package com.rlti.autoescola.security.infra;
+package com.rlti.autoescola.security.user.infra;
 
-import com.rlti.autoescola.security.repository.UserRepository;
-import com.rlti.autoescola.security.user.User;
+import com.rlti.autoescola.security.user.application.repository.UserRepository;
+import com.rlti.autoescola.security.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Repository;

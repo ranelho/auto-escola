@@ -1,6 +1,6 @@
-package com.rlti.autoescola.security.repository;
+package com.rlti.autoescola.security.user.application.repository;
 
-import com.rlti.autoescola.security.user.User;
+import com.rlti.autoescola.security.user.domain.User;
 
 import java.util.Optional;
 

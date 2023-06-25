@@ -7,7 +7,7 @@ import com.rlti.autoescola.exame.domain.ValidaExame;
 import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.security.config.JwtService;
-import com.rlti.autoescola.security.user.Role;
+import com.rlti.autoescola.security.user.domain.Role;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.rlti.autoescola.security.user;
+package com.rlti.autoescola.security.user.domain;
 
 import jakarta.persistence.*;
 import jakarta.servlet.http.HttpServletRequest;

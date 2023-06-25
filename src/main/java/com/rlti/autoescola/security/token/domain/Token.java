@@ -1,6 +1,6 @@
-package com.rlti.autoescola.security.token;
+package com.rlti.autoescola.security.token.domain;
 
-import com.rlti.autoescola.security.user.User;
+import com.rlti.autoescola.security.user.domain.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

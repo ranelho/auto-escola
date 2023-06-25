@@ -1,5 +1,6 @@
-package com.rlti.autoescola.security.token;
+package com.rlti.autoescola.security.token.repository;
 
+import com.rlti.autoescola.security.token.domain.Token;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

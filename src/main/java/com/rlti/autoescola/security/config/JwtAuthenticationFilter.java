@@ -1,6 +1,6 @@
 package com.rlti.autoescola.security.config;
 
-import com.rlti.autoescola.security.token.TokenRepository;
+import com.rlti.autoescola.security.token.repository.TokenRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

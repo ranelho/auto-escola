@@ -1,4 +1,4 @@
-package com.rlti.autoescola.security.user;
+package com.rlti.autoescola.security.user.domain;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

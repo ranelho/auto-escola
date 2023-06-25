@@ -1,6 +1,6 @@
-package com.rlti.autoescola.security.infra;
+package com.rlti.autoescola.security.user.infra;
 
-import com.rlti.autoescola.security.user.User;
+import com.rlti.autoescola.security.user.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

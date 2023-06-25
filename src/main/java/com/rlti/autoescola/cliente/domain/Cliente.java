@@ -10,7 +10,7 @@ import com.rlti.autoescola.cliente.domain.groups.PessoaFisica;
 import com.rlti.autoescola.contato.domain.Contato;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
-import com.rlti.autoescola.security.user.User;
+import com.rlti.autoescola.security.user.domain.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

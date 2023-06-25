@@ -1,8 +1,8 @@
-package com.rlti.autoescola.security.user;
+package com.rlti.autoescola.security.user.domain;
 
 import com.rlti.autoescola.cliente.application.api.ClienteRequest;
 import com.rlti.autoescola.security.auth.api.RegisterRequest;
-import com.rlti.autoescola.security.token.Token;
+import com.rlti.autoescola.security.token.domain.Token;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;

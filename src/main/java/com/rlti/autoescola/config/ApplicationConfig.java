@@ -1,7 +1,7 @@
 package com.rlti.autoescola.config;
 
 import com.rlti.autoescola.handler.APIException;
-import com.rlti.autoescola.security.infra.UserSpringDataJpaRepository;
+import com.rlti.autoescola.security.user.infra.UserSpringDataJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

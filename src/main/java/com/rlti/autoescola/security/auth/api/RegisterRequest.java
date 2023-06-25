@@ -1,6 +1,6 @@
 package com.rlti.autoescola.security.auth.api;
 
-import com.rlti.autoescola.security.user.Role;
+import com.rlti.autoescola.security.user.domain.Role;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
