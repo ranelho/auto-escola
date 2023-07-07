@@ -16,7 +16,7 @@ public interface ExameApi {
 
     @PostMapping("{idMatricula}")
     @ResponseStatus(code = HttpStatus.CREATED)
-    ExameIdResponse saveExame(@PathVariable UUID idMatricula, @Valid @RequestBody ExameRequest record);
+    ExameIdResponse saveExame(@PathVariable UUID idMatricula, @Valid @RequestBody ExameRequest request);
 
     @GetMapping("/{idExame}")
     @ResponseStatus(code = HttpStatus.OK)

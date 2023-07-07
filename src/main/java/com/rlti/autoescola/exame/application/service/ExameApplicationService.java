@@ -3,13 +3,16 @@ package com.rlti.autoescola.exame.application.service;
 import com.rlti.autoescola.exame.application.api.*;
 import com.rlti.autoescola.exame.application.repository.ExameRepository;
 import com.rlti.autoescola.exame.domain.Exame;
+import com.rlti.autoescola.exame.domain.Resultado;
 import com.rlti.autoescola.exame.domain.ValidaExame;
+import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
 import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.security.config.JwtService;
 import com.rlti.autoescola.security.user.domain.Role;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -62,11 +65,14 @@ public class ExameApplicationService implements ExameService {
 
     @Override
     public void updateExame(Long idExame, ResultadoRequest request) {
-        //TODO -> validação nao permitindo alterar um exame ja finalizado
         log.info("[inicia] ExameApplicationService - updateExame");
         Exame exame = exameRepository.getOneExame(idExame);
-        exame.altera(request);
-        exameRepository.saveExame(exame);
+        if (!exame.getResultado().equals(Resultado.APTO)){
+            exame.altera(request);
+            exameRepository.saveExame(exame);
+        }else {
+            throw APIException.build(HttpStatus.BAD_REQUEST,"Exame finalizado!");
+        }
         log.info("[finaliza] ExameApplicationService - updateExame");
     }
 
