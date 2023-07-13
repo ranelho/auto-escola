@@ -4,12 +4,12 @@ import com.rlti.autoescola.matricula.annotation.TipoPagamentoEntradaConstraint;
 import com.rlti.autoescola.matricula.annotation.ValidSolicitacaoRequest;
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import com.rlti.autoescola.matricula.domain.TipoServico;
-import lombok.Data;
-
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -18,6 +18,7 @@ import java.util.UUID;
 public class SolicitacaoRequest {
     UUID idServico;
     @NotNull(message = "O tipo de pagamento não pode ser nulo")
+    //TODO -> VALIDAÇÃO PARA TIPO DE PAGAMENTO
     TipoPagamento tipoPagamento;
     @DecimalMin(message = "O valor de entrada não pode ser negativo", value = "0.0")
     BigDecimal valorEntrada;

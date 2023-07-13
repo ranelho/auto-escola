@@ -4,15 +4,15 @@ import com.rlti.autoescola.cliente.annotation.Adult;
 import com.rlti.autoescola.cliente.domain.enums.EstadoCivil;
 import com.rlti.autoescola.cliente.domain.groups.PessoaFisica;
 import jakarta.validation.constraints.Email;
-import lombok.Value;
-import org.hibernate.validator.constraints.br.CPF;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import lombok.Getter;
+import org.hibernate.validator.constraints.br.CPF;
+
 import java.time.LocalDate;
 
-@Value
+@Getter
 public class ClienteRequest {
     @NotBlank(message = "Campo Obrigatório!")
     @Pattern(regexp = "(^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$)")

@@ -1,6 +1,7 @@
-package com.rlti.autoescola.exame.domain;
+package com.rlti.autoescola.exame.validation;
 
 import com.rlti.autoescola.exame.application.api.ExameRequest;
+import com.rlti.autoescola.exame.domain.Exame;
 
 import java.util.List;
 

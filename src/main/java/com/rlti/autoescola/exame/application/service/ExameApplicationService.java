@@ -21,8 +21,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static com.rlti.autoescola.exame.application.api.ExameResponse.*;
-import static com.rlti.autoescola.exame.domain.ValidaExame.validaExame;
+import static com.rlti.autoescola.exame.application.api.ExameResponse.converte;
+import static com.rlti.autoescola.exame.validation.ValidaDeleteExame.validaDelete;
+import static com.rlti.autoescola.exame.validation.ValidaExame.validaExame;
 
 @Service
 @RequiredArgsConstructor
@@ -33,12 +34,12 @@ public class ExameApplicationService implements ExameService {
     private final JwtService jwtService;
 
     @Override
-    public ExameIdResponse saveExame(UUID idMatricula, ExameRequest record) {
+    public ExameIdResponse saveExame(UUID idMatricula, ExameRequest request) {
         log.info("[inicia] ExameApplicationService.saveExame");
         Matricula matricula = matriculaRepository.getOneMatricula(idMatricula);
         List<Exame> exames = exameRepository.getAllExamesByMatricula(matricula);
-        validaExame(exames, record);
-        Exame exame = exameRepository.saveExame(new Exame(matricula, record));
+        validaExame(exames, request);
+        Exame exame = exameRepository.saveExame(new Exame(matricula, request));
         log.info("[finaliza] ExameApplicationService.saveExame");
         return ExameIdResponse.builder().idExame(exame.getIdExame()).build();
     }
@@ -62,9 +63,12 @@ public class ExameApplicationService implements ExameService {
 
     @Override
     public void deleteExame(Long idExame) {
-        //TODO -> criar validacao permitir exclusão de um exame que quebre a norma
         log.info("[inicia] ExameApplicationService.deleteExame");
-        exameRepository.deleteExame(exameRepository.getOneExame(idExame).getIdExame());
+        //TODO -> criar validacao permitir exclusão de um exame que quebre a norma
+        Exame exame = exameRepository.getOneExame(idExame);
+        List<Exame> exames = exameRepository.getAllExamesByMatricula(exame.getMatricula());
+        validaDelete(exames, exame);
+        exameRepository.deleteExame(exame.getIdExame());
         log.info("[finaliza] ExameApplicationService.deleteExame");
     }
 

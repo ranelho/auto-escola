@@ -17,7 +17,7 @@ public class ClienteResponse {
     String nacionalidade;
     EstadoCivil estadoCivil;
     LocalDate dateRegistration;
-    byte[] foto;
+    //byte[] foto;
 
     public ClienteResponse(Cliente cliente) {
         this.idCliente = cliente.getIdCliente();
@@ -28,6 +28,6 @@ public class ClienteResponse {
         this.nacionalidade = cliente.getNacionalidade();
         this.estadoCivil = cliente.getEstadoCivil();
         this.dateRegistration = cliente.getDateRegistration();
-        this.foto = cliente.getImagem().getFoto();
+        //this.foto = cliente.getImagem().getFoto();
     }
 }

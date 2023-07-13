@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ExameService {
-    ExameIdResponse saveExame(UUID idMatricula, ExameRequest record);
+    ExameIdResponse saveExame(UUID idMatricula, ExameRequest request);
     ExameResponse getOneExame(Long idExame);
     List<ExameResponse> getAllExames(UUID idMatricula);
     void deleteExame(Long idExame);
