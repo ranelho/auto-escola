@@ -12,7 +12,6 @@ import com.rlti.autoescola.matricula.domain.Matricula;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
 import com.rlti.autoescola.security.user.domain.User;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,8 +19,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 import org.hibernate.validator.group.GroupSequenceProvider;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,13 +34,13 @@ import java.util.UUID;
 @Setter
 @Entity
 @GroupSequenceProvider(value = ClienteGroupSequenceProvider.class)
+@EntityListeners(AuditingEntityListener.class)
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idCliente;
     @Transient
     private TipoPessoa tipoPessoa = TipoPessoa.FISICA;
-    @NotBlank(message = "Campo Obrigatório!")
     @CPF(groups = PessoaFisica.class, message = "CPF inválido!")
     @Column(unique = true)
     private String cpf;
@@ -48,7 +51,10 @@ public class Cliente {
     private String nacionalidade;
     @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;
-    private LocalDate dateRegistration = LocalDate.now();
+    @CreatedDate
+    LocalDateTime createdAt;
+    @LastModifiedDate
+    LocalDateTime updatedAt;
 
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
     @JsonIgnore
