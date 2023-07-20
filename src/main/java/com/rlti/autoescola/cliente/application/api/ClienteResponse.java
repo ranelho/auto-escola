@@ -5,6 +5,7 @@ import com.rlti.autoescola.cliente.domain.enums.EstadoCivil;
 import lombok.Value;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Value
@@ -16,7 +17,7 @@ public class ClienteResponse {
     String naturalidade;
     String nacionalidade;
     EstadoCivil estadoCivil;
-    LocalDate dateRegistration;
+    LocalDateTime createdAt;
     //byte[] foto;
 
     public ClienteResponse(Cliente cliente) {
@@ -27,7 +28,7 @@ public class ClienteResponse {
         this.naturalidade = cliente.getNaturalidade();
         this.nacionalidade = cliente.getNacionalidade();
         this.estadoCivil = cliente.getEstadoCivil();
-        this.dateRegistration = cliente.getDateRegistration();
+        this.createdAt = cliente.getCreatedAt();
         //this.foto = cliente.getImagem().getFoto();
     }
 }

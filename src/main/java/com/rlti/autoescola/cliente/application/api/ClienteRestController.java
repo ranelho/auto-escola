@@ -1,15 +1,17 @@
 package com.rlti.autoescola.cliente.application.api;
 
+import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.cliente.application.service.ClienteService;
 import com.rlti.autoescola.cliente.application.service.ImagemService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import jakarta.validation.Valid;
 import java.io.IOException;
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -18,6 +20,7 @@ import java.util.UUID;
 public class ClienteRestController implements ClienteAPI {
     private final ClienteService clienteService;
     private final ImagemService imagemService;
+    private final ClienteRepository clienteRepository;
 
     @Override
     public ClienteResponse saveCliente(ClienteRequest clienteRequest) {
@@ -41,9 +44,9 @@ public class ClienteRestController implements ClienteAPI {
         return response;
     }
     @Override
-    public List<ClienteListResponse> getAllClientes() {
+    public Page<ClienteListResponse> getAllClientes(Pageable pageable) {
         log.info("[inicia] ClienteRestController - getAllClientes");
-        List<ClienteListResponse> clientes = clienteService.getAllClientes();
+        Page<ClienteListResponse> clientes = clienteService.getAllClientes(pageable);
         log.info("[finaliza] ClienteRestController - getAllClientes");
         return clientes;
     }

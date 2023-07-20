@@ -2,6 +2,7 @@ package com.rlti.autoescola.cliente.application.api;
 
 import com.rlti.autoescola.cliente.domain.Cliente;
 import lombok.Value;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.UUID;
@@ -23,5 +24,10 @@ public class ClienteListResponse {
         this.cpf = cliente.getCpf();
         this.fullName = cliente.getFullName();
 
+    }
+
+
+    public static Page<ClienteListResponse> convertePageable(Page<Cliente> clientes) {
+        return clientes.map(ClienteListResponse::new);
     }
 }

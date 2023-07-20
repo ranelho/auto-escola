@@ -2,12 +2,13 @@ package com.rlti.autoescola.cliente.application.api;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.UUID;
 
 import static org.springframework.http.HttpStatus.*;
@@ -30,7 +31,7 @@ public interface ClienteAPI {
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/all")
     @ResponseStatus(code = OK)
-    List<ClienteListResponse> getAllClientes();
+    Page<ClienteListResponse> getAllClientes(Pageable pageable);
 
     @PatchMapping("/{idCliente}")
     @ResponseStatus(code = NO_CONTENT)

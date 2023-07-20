@@ -17,8 +17,8 @@ import java.util.UUID;
 @ValidSolicitacaoRequest
 public class SolicitacaoRequest {
     UUID idServico;
-    @NotNull(message = "O tipo de pagamento não pode ser nulo")
     //TODO -> VALIDAÇÃO PARA TIPO DE PAGAMENTO
+    @NotNull(message = "O tipo de pagamento não pode ser nulo")
     TipoPagamento tipoPagamento;
     @DecimalMin(message = "O valor de entrada não pode ser negativo", value = "0.0")
     BigDecimal valorEntrada;

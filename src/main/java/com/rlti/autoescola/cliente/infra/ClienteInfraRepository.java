@@ -6,10 +6,11 @@ import com.rlti.autoescola.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -41,9 +42,9 @@ public class ClienteInfraRepository implements ClienteRepository {
         return cliente;
     }
     @Override
-    public List<Cliente> getAllClientes() {
+    public Page<Cliente> getAllClientes(Pageable pageable) {
         log.info("[inicia] ClienteInfraRepository - getAllClientes");
-        List<Cliente> todosClientes = clienteSpringDataJPARepository.findAll();
+        Page<Cliente> todosClientes = clienteSpringDataJPARepository.findAll(pageable);
         log.info("[finaliza] ClienteInfraRepository - getAllClientes");
         return todosClientes;
     }

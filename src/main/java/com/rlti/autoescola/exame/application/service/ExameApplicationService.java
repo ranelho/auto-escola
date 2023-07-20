@@ -7,6 +7,7 @@ import com.rlti.autoescola.exame.application.api.ResultadoRequest;
 import com.rlti.autoescola.exame.application.repository.ExameRepository;
 import com.rlti.autoescola.exame.domain.Exame;
 import com.rlti.autoescola.exame.domain.Resultado;
+import com.rlti.autoescola.exame.validation.ValidaDeleteExame;
 import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
 import com.rlti.autoescola.matricula.domain.Matricula;
@@ -22,7 +23,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static com.rlti.autoescola.exame.application.api.ExameResponse.converte;
-import static com.rlti.autoescola.exame.validation.ValidaDeleteExame.validaDelete;
 import static com.rlti.autoescola.exame.validation.ValidaExame.validaExame;
 
 @Service
@@ -64,10 +64,9 @@ public class ExameApplicationService implements ExameService {
     @Override
     public void deleteExame(Long idExame) {
         log.info("[inicia] ExameApplicationService.deleteExame");
-        //TODO -> criar validacao permitir exclusão de um exame que quebre a norma
         Exame exame = exameRepository.getOneExame(idExame);
         List<Exame> exames = exameRepository.getAllExamesByMatricula(exame.getMatricula());
-        validaDelete(exames, exame);
+        ValidaDeleteExame.validaDelete(exames, exame);
         exameRepository.deleteExame(exame.getIdExame());
         log.info("[finaliza] ExameApplicationService.deleteExame");
     }

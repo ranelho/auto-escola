@@ -10,10 +10,12 @@ import com.rlti.autoescola.contato.application.service.ContatoService;
 import com.rlti.autoescola.empresa.validation.ValidaCpfouCnpj;
 import com.rlti.autoescola.handler.APIException;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
-import com.rlti.autoescola.security.user.infra.UserSpringDataJpaRepository;
 import com.rlti.autoescola.security.user.domain.User;
+import com.rlti.autoescola.security.user.infra.UserSpringDataJpaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -54,11 +56,11 @@ public class ClienteApplicationService implements ClienteService {
         return new ClienteResponse(cliente);
     }
     @Override
-    public List<ClienteListResponse> getAllClientes() {
+    public Page<ClienteListResponse> getAllClientes(Pageable pageable) {
         log.info("[inicia] ClienteApplicationService - getAllClientes");
-        List<Cliente> clientes = clienteRepository.getAllClientes();
+        Page<Cliente> clientes = clienteRepository.getAllClientes(pageable);
         log.info("[finaliza] ClienteApplicationService - getAllClientes");
-        return ClienteListResponse.converte(clientes);
+        return ClienteListResponse.convertePageable(clientes);
     }
     @Override
     public void deleteCliente(UUID idCliente) {

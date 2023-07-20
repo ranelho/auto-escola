@@ -6,6 +6,7 @@ import com.rlti.autoescola.contato.application.ContatoResumoResponse;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -19,7 +20,7 @@ public class RelatorioClientesResponse {
     String naturalidade;
     String nacionalidade;
     EstadoCivil estadoCivil;
-    LocalDate dataCadastro;
+    LocalDateTime createdAt;
     List<ContatoResumoResponse> contatos;
     List<RelatorioMatriculaResponse> matriculas;
 
@@ -31,7 +32,7 @@ public class RelatorioClientesResponse {
         this.naturalidade = cliente.getNaturalidade();
         this.nacionalidade = cliente.getNacionalidade();
         this.estadoCivil = cliente.getEstadoCivil();
-        this.dataCadastro = cliente.getDateRegistration();
+        this.createdAt = cliente.getCreatedAt();
         this.contatos = ContatoResumoResponse.converte(cliente.getContatos());
         this.matriculas = RelatorioMatriculaResponse.converte(cliente.getMatriculas());
     }
