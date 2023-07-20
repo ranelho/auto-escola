@@ -11,6 +11,7 @@ spring:
         ddl-auto: update
         show_sql: true
         format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 #gera script do bd
 #      jakarta:
 #        persistence:
