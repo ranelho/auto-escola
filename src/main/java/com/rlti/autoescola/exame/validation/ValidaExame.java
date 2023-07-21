@@ -2,85 +2,60 @@ package com.rlti.autoescola.exame.validation;
 
 import com.rlti.autoescola.exame.application.api.ExameRequest;
 import com.rlti.autoescola.exame.domain.Exame;
+import com.rlti.autoescola.exame.domain.Resultado;
+import com.rlti.autoescola.exame.domain.TipoExame;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
+import java.util.EnumMap;
 import java.util.List;
 
-import static com.rlti.autoescola.exame.domain.Resultado.APTO;
-import static com.rlti.autoescola.exame.domain.Resultado.INAPTO;
+import static com.rlti.autoescola.exame.domain.Resultado.*;
 import static com.rlti.autoescola.exame.domain.TipoExame.*;
 import static com.rlti.autoescola.handler.APIException.build;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
-/**
- * @author Ranelho Lacerda
- */
+@NoArgsConstructor(access= AccessLevel.PRIVATE)
 public class ValidaExame {
-    /**
-     * Método para Validar Exame
-     * @param exames recebe uma lista com os exames cadastrados
-     * @param request recebe as informações vindo do usuario
-     * -----------------REGRAS---------------
-     * 1 - O PRIMEIRO EXAME DEVE SER CLINICO
-     * 2 - PODE-SE TER VÁRIOS EXAMES DO TIPO CLINICO, POREM TODOS TEM QUE SER INAPTO
-     * 3 - SO PODE TER UM EXAME DO TIPO CLINICO COMO APTO OU A_FAZER
-     * 4 - PARA O CADASTRO DO EXAME TIPO TEORICO O EXAME CLINICO DEVE SER APTO
-     * 5 - PODE-SE TER VÁRIOS EXAMES DO TIPO TEORICO, POREM TEM QUE SER INAPTO
-     * 6 - SO PODE TER UM EXAME DO TIPO TEORICO APTO OU A_FAZER
-     * 7 - PARA UM EXAME DO TIPO PRATICO OS EXAMES CLINICO E TEORICO DEVEM SER APTO
-     *  8 - PODE-SE TER VÁRIOS EXAMES DO TIPO PRATICO POREM TEM QUE SER INAPTO
-     *  9 - SO PODE TER UM EXAME DO TIPO PRATICO APTO OU A_FAZER
-     */
     public static void validaExame(List<Exame> exames, ExameRequest request) {
-        boolean hasClinicoApto = false;
-        boolean hasTeoricoApto = false;
+        EnumMap<TipoExame, Resultado> resultados = new EnumMap<>(TipoExame.class);
+        for (Exame exame : exames) {
+            resultados.put(exame.getTipoExame(), exame.getResultado());
+        }
 
         if (exames.isEmpty() && request.tipoExame() != CLINICO) {
             throw build(BAD_REQUEST, "O primeiro exame deve ser do tipo CLINICO");
         }
-        if (request.tipoExame().equals(TEORICO)) {
-            for (Exame exame : exames) {
-                if (exame.getTipoExame() == CLINICO && exame.getResultado() == APTO) {
-                    hasClinicoApto = true;
-                    break;
-                }
-            }
-            if (!hasClinicoApto) {
-                throw build(BAD_REQUEST, "Para cadastrar um exame TEORICO, o exame CLINICO deve estar APTO");
-            }
+
+        switch (request.tipoExame()) {
+            case CLINICO -> validaExameClinico(resultados);
+            case TEORICO -> validaExameTeorico(resultados);
+            case PRATICO -> validaExamePratico(resultados);
         }
-        if (request.tipoExame().equals(CLINICO)) {
-            for (Exame exame : exames) {
-                if (exame.getTipoExame() == CLINICO && exame.getResultado() != INAPTO) {
-                    throw build(BAD_REQUEST, "Não é permitido cadastrar outro exame CLINICO");
-                }
-            }
+    }
+
+    private static void validaExameClinico(EnumMap<TipoExame, Resultado> resultados) {
+        if (resultados.containsKey(CLINICO) && resultados.get(CLINICO) != INAPTO) {
+            throw build(BAD_REQUEST, "Não é permitido cadastrar outro exame CLINICO");
         }
-        if (request.tipoExame().equals(TEORICO)) {
-            for (Exame exame : exames) {
-                if (exame.getTipoExame() == TEORICO && exame.getResultado() != INAPTO) {
-                    throw build(BAD_REQUEST, "Não é permitido cadastrar outro exame TEORICO");
-                }
-            }
+    }
+
+    private static void validaExameTeorico(EnumMap<TipoExame, Resultado> resultados) {
+        if (!resultados.containsKey(CLINICO) || resultados.get(CLINICO) != APTO) {
+            throw build(BAD_REQUEST, "Para cadastrar um exame TEORICO, o exame CLINICO deve estar APTO");
         }
-        if (request.tipoExame().equals(PRATICO)) {
-            for (Exame exame : exames) {
-                if (exame.getTipoExame() == PRATICO && exame.getResultado() != INAPTO) {
-                    throw build(BAD_REQUEST, "Não é permitido cadastrar outro exame PRATICO");
-                }
-            }
+        if (resultados.containsKey(TEORICO) && resultados.get(TEORICO) == APTO) {
+            throw build(BAD_REQUEST, "Não é permitido cadastrar outro exame TEORICO APTO");
         }
-        if (request.tipoExame().equals(PRATICO)) {
-            for (Exame exame : exames) {
-                if (exame.getTipoExame() == CLINICO && exame.getResultado() == APTO) {
-                    hasClinicoApto = true;
-                }
-                if (exame.getTipoExame() == TEORICO && exame.getResultado() == APTO) {
-                    hasTeoricoApto = true;
-                }
-            }
-            if (!hasClinicoApto || !hasTeoricoApto) {
-                throw build(BAD_REQUEST, "Para cadastrar um exame PRATICO, os exames CLINICO e TEORICO devem estar APTOS");
-            }
+    }
+
+    private static void validaExamePratico(EnumMap<TipoExame, Resultado> resultados) {
+        if (!resultados.containsKey(CLINICO) || resultados.get(CLINICO) != APTO ||
+                !resultados.containsKey(TEORICO) || resultados.get(TEORICO) != APTO) {
+            throw build(BAD_REQUEST, "Para cadastrar um exame PRATICO, os exames CLINICO e TEORICO devem estar APTOS");
+        }
+        if (resultados.containsKey(PRATICO) && resultados.get(PRATICO) == APTO) {
+            throw build(BAD_REQUEST, "Não é permitido cadastrar outro exame TEORICO APTO");
         }
     }
 }
