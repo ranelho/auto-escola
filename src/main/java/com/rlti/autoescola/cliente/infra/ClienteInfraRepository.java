@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -60,5 +61,13 @@ public class ClienteInfraRepository implements ClienteRepository {
         Optional<Cliente> clienteOptional = clienteSpringDataJPARepository.findByCpf(cpf);
         log.info("[finaliza] ClienteInfraRepository - findByCpf");
         return clienteOptional;
+    }
+
+    @Override
+    public List<Cliente> getAllClientesRelatorio() {
+        log.info("[inicia] ClienteInfraRepository - getAllClientesRelatorio");
+        List<Cliente> clientes = clienteSpringDataJPARepository.findAll();
+        log.info("[finaliza] ClienteInfraRepository - getAllClientesRelatorio");
+        return clientes;
     }
 }

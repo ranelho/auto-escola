@@ -59,9 +59,11 @@ public class Cliente {
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
     @JsonIgnore
     List<Contato> contatos;
+
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
     @JsonIgnore
     List<Matricula> matriculas;
+
     @OneToOne(mappedBy = "cliente")
     @JsonIgnore
     Imagem imagem;
