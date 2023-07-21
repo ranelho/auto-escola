@@ -40,13 +40,6 @@ public class Exame {
         this.observacao = record.observacao();
     }
 
-    public Exame( TipoExame tipoExame, LocalDate dataExame, Resultado resultado, String observacao) {
-        this.tipoExame = tipoExame;
-        this.dataExame = dataExame;
-        this.resultado = resultado;
-        this.observacao = observacao;
-    }
-
     public void altera(ResultadoRequest request) {
         this.resultado = request.resultado();
     }

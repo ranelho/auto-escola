@@ -8,10 +8,9 @@ import com.rlti.autoescola.pagamento.appiclation.api.PagamentoResumoResponse;
 import lombok.Value;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Value
 public class RelatorioMatriculaResponse {
@@ -19,7 +18,7 @@ public class RelatorioMatriculaResponse {
     TipoPagamento tipoPagamento;
     BigDecimal valorEntrada;
     BigDecimal valorFinal;
-    LocalDate dataMatricula;
+    LocalDateTime dataMatricula;
     String status;
     List<ExameResumoResponse> exames;
     List<LaudoResumoResponse> laudos;
@@ -40,6 +39,6 @@ public class RelatorioMatriculaResponse {
     public static List<RelatorioMatriculaResponse> converte(List<Matricula> matriculas){
         return matriculas.stream()
                 .map(RelatorioMatriculaResponse::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

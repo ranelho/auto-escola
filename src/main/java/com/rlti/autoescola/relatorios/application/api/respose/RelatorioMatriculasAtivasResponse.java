@@ -5,10 +5,9 @@ import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import static com.rlti.autoescola.matricula.application.api.response.MatriculaDetalhadoResponse.calculaDesconto;
 
@@ -23,7 +22,7 @@ public class RelatorioMatriculasAtivasResponse {
     BigDecimal desconto;
     BigDecimal valorEntrada;
     BigDecimal valorFinal;
-    LocalDate dataMatricula;
+    LocalDateTime dataMatricula;
 
     public RelatorioMatriculasAtivasResponse(Matricula matricula) {
         this.idMatricula = matricula.getIdMatricula();
@@ -41,6 +40,6 @@ public class RelatorioMatriculasAtivasResponse {
     public static List<RelatorioMatriculasAtivasResponse> convert(List<Matricula> matriculas) {
         return matriculas.stream()
                 .map(RelatorioMatriculasAtivasResponse::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

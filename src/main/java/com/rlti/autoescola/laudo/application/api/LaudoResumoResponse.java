@@ -5,7 +5,6 @@ import lombok.Value;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Value
 public class LaudoResumoResponse {
@@ -22,6 +21,6 @@ public class LaudoResumoResponse {
     public static List<LaudoResumoResponse> converte(List<Laudo> laudos) {
         return laudos.stream()
                 .map(LaudoResumoResponse::new)
-                .collect((Collectors.toList()));
+                .toList();
     }
 }

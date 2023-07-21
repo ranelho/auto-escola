@@ -6,7 +6,7 @@ import lombok.Value;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Value
@@ -19,7 +19,7 @@ public class MatriculaDetalhadoResponse {
     BigDecimal valorServico;
     BigDecimal desconto;
     BigDecimal valorFinal;
-    LocalDate dataMatricula;
+    LocalDateTime dataMatricula;
     String fullName;
     String observacao;
     String status;

@@ -2,7 +2,6 @@ package com.rlti.autoescola.relatorios.application.service;
 
 import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.cliente.domain.Cliente;
-import com.rlti.autoescola.fluxo.application.api.FluxoDeCaixaResponse;
 import com.rlti.autoescola.fluxo.application.api.ReceitaPagamentoResponse;
 import com.rlti.autoescola.fluxo.application.service.FluxoApplicationService;
 import com.rlti.autoescola.fluxo.domain.Fluxo;
@@ -39,7 +38,7 @@ public class RelatoriosApplicationService implements RelatoriosService {
     @Override
     public List<RelatorioClientesResponse> getAllClientes() {
         log.info("[inicia] RelatoriosApplicationService - getAllClientes");
-        List<Cliente> clientes = clienteRepository.getAllClientes();
+        List<Cliente> clientes = clienteRepository.getAllClientesRelatorio();
         log.info("[Finaliza] RelatoriosApplicationService - getAllClientes");
         return RelatorioClientesResponse.convert(clientes);
     }

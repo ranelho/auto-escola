@@ -10,15 +10,15 @@ import com.rlti.autoescola.orcamento.domain.Orcamento;
 import com.rlti.autoescola.pagamento.domain.Pagamento;
 import com.rlti.autoescola.servico.domain.Servico;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.Hibernate;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -29,6 +29,7 @@ import static com.rlti.autoescola.matricula.annotation.constraints.ValidaMatricu
 @NoArgsConstructor
 @Getter
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Matricula {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -47,11 +48,10 @@ public class Matricula {
     private TipoPagamento tipoPagamento;
     private BigDecimal valorEntrada;
     private int desconto;
-    @Min(value = 1, message = "O valor mínimo é 1")
-    @Max(value = 12, message = "O valor máximo é 12")
     private int quantidadeParcelas;
     private BigDecimal valorFinal;
-    private LocalDate dataMatricula = LocalDate.now();
+    @CreatedDate
+    private LocalDateTime dataMatricula;
     private String observacao;
     @Enumerated(EnumType.STRING)
     private TipoServico tipoServico;

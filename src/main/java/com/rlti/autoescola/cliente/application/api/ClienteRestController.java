@@ -1,6 +1,5 @@
 package com.rlti.autoescola.cliente.application.api;
 
-import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.cliente.application.service.ClienteService;
 import com.rlti.autoescola.cliente.application.service.ImagemService;
 import jakarta.validation.Valid;
@@ -20,7 +19,6 @@ import java.util.UUID;
 public class ClienteRestController implements ClienteAPI {
     private final ClienteService clienteService;
     private final ImagemService imagemService;
-    private final ClienteRepository clienteRepository;
 
     @Override
     public ClienteResponse saveCliente(ClienteRequest clienteRequest) {
