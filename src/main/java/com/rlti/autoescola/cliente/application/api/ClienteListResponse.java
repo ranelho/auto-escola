@@ -1,31 +1,21 @@
 package com.rlti.autoescola.cliente.application.api;
 
 import com.rlti.autoescola.cliente.domain.Cliente;
-import lombok.Value;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
-@Value
-public class ClienteListResponse {
-    UUID idCliente;
-    String cpf;
-    String fullName;
+public record ClienteListResponse(UUID idCliente, String cpf, String fullName) {
+    private ClienteListResponse(Cliente cliente) {
+        this(cliente.getIdCliente(), cliente.getCpf(), cliente.getFullName());
+    }
 
-    public static List<ClienteListResponse> converte(List<Cliente>clientes){
+    public static List<ClienteListResponse> converte(List<Cliente> clientes) {
         return clientes.stream()
                 .map(ClienteListResponse::new)
-                .collect((Collectors.toList()));
+                .toList();
     }
-    private ClienteListResponse(Cliente cliente){
-        this.idCliente = cliente.getIdCliente();
-        this.cpf = cliente.getCpf();
-        this.fullName = cliente.getFullName();
-
-    }
-
 
     public static Page<ClienteListResponse> convertePageable(Page<Cliente> clientes) {
         return clientes.map(ClienteListResponse::new);
