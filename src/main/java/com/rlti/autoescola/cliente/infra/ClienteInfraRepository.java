@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
@@ -45,7 +47,11 @@ public class ClienteInfraRepository implements ClienteRepository {
     @Override
     public Page<Cliente> getAllClientes(Pageable pageable) {
         log.info("[inicia] ClienteInfraRepository - getAllClientes");
-        Page<Cliente> todosClientes = clienteSpringDataJPARepository.findAll(pageable);
+
+        Sort fixedSort = Sort.by(Sort.Direction.ASC, "fullName");
+        Pageable pageableWithFixedSort = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), fixedSort);
+
+        Page<Cliente> todosClientes = clienteSpringDataJPARepository.findAll(pageableWithFixedSort);
         log.info("[finaliza] ClienteInfraRepository - getAllClientes");
         return todosClientes;
     }
