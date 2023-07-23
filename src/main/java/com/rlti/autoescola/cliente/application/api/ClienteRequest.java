@@ -7,24 +7,26 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import lombok.Getter;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
 
-@Getter
-public class ClienteRequest {
-    @NotBlank(message = "Campo Obrigatório!")
-    @Pattern(regexp = "(^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$)")
-    @CPF(groups = PessoaFisica.class, message = "CPF inválido!")
-    String cpf;
-    @NotNull(message = "Campo Obrigatório!")
-    String fullName;
-    @Adult
-    LocalDate dataNascimento;
-    String naturalidade;
-    String nacionalidade;
-    EstadoCivil estadoCivil;
-    @Email(message = "Email inválido!")
-    String email;
-}
+public record ClienteRequest(
+        @NotBlank(message = "Campo Obrigatório!")
+        @Pattern(regexp = "(^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$)")
+        @CPF(groups = PessoaFisica.class, message = "CPF inválido!")
+        String cpf,
+
+        @NotNull(message = "Campo Obrigatório!")
+        String fullName,
+
+        @Adult
+        LocalDate dataNascimento,
+
+        String naturalidade,
+        String nacionalidade,
+        EstadoCivil estadoCivil,
+
+        @Email(message = "Email inválido!")
+        String email
+) {}

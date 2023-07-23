@@ -75,12 +75,12 @@ public class Cliente {
 
     public Cliente(ClienteRequest clienteRequest) {
         this.tipoPessoa = getTipoPessoa();
-        this.cpf = clienteRequest.getCpf();
-        this.fullName = clienteRequest.getFullName().toUpperCase();
-        this.dataNascimento = clienteRequest.getDataNascimento();
-        this.naturalidade = clienteRequest.getNaturalidade().toUpperCase();
-        this.nacionalidade = clienteRequest.getNacionalidade().toUpperCase();
-        this.estadoCivil = clienteRequest.getEstadoCivil();
+        this.cpf = clienteRequest.cpf();
+        this.fullName = clienteRequest.fullName().toUpperCase();
+        this.dataNascimento = clienteRequest.dataNascimento();
+        this.naturalidade = clienteRequest.naturalidade().toUpperCase();
+        this.nacionalidade = clienteRequest.nacionalidade().toUpperCase();
+        this.estadoCivil = clienteRequest.estadoCivil();
     }
     public Cliente(OrcamentoRequest orcamentoRequest) {
         this.cpf = orcamentoRequest.getCpf();

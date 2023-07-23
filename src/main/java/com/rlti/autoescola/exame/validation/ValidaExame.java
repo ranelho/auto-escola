@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 import java.util.EnumMap;
 import java.util.List;
 
-import static com.rlti.autoescola.exame.domain.Resultado.*;
+import static com.rlti.autoescola.exame.domain.Resultado.APTO;
+import static com.rlti.autoescola.exame.domain.Resultado.INAPTO;
 import static com.rlti.autoescola.exame.domain.TipoExame.*;
 import static com.rlti.autoescola.handler.APIException.build;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;

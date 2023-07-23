@@ -1,5 +1,5 @@
 package com.rlti.autoescola.exame.domain;
 
 public enum TipoExame {
-    CLINICO, TEORICO, PRATICO
+    CLINICO, TEORICO, NAO_APTO, PRATICO
 }

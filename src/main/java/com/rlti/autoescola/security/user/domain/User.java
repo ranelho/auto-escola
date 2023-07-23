@@ -38,10 +38,10 @@ public class User implements UserDetails {
 
 
     public User(ClienteRequest clienteRequest) {
-        String[] nameParts = extractFirstAndLastName(clienteRequest.getFullName());
+        String[] nameParts = extractFirstAndLastName(clienteRequest.fullName());
         this.firstName = nameParts[0];
         this.lastName = nameParts[1];
-        this.email = clienteRequest.getEmail();
+        this.email = clienteRequest.email();
         this.password = new  BCryptPasswordEncoder().encode(lastName.toLowerCase());
         this.role = Role.USER;
     }

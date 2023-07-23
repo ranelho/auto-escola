@@ -2,14 +2,13 @@ package com.rlti.autoescola.matricula.application.service;
 
 import com.rlti.autoescola.cliente.application.repository.ClienteRepository;
 import com.rlti.autoescola.matricula.annotation.constraints.ValidaMatricula;
-import com.rlti.autoescola.matricula.application.api.request.MatriculaUpdateRequest;
 import com.rlti.autoescola.matricula.application.api.request.MatriculaRequest;
+import com.rlti.autoescola.matricula.application.api.request.MatriculaUpdateRequest;
 import com.rlti.autoescola.matricula.application.api.response.MatriculaDetalhadoResponse;
 import com.rlti.autoescola.matricula.application.api.response.MatriculaIdResponse;
 import com.rlti.autoescola.matricula.application.api.response.MatriculaListResponse;
 import com.rlti.autoescola.matricula.application.repository.MatriculaRepository;
 import com.rlti.autoescola.matricula.domain.Matricula;
-import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import com.rlti.autoescola.orcamento.application.repository.OrcamentoRepository;
 import com.rlti.autoescola.pagamento.appiclation.service.PagamentoService;
 import com.rlti.autoescola.servico.application.repository.ServicoRepository;
@@ -20,6 +19,9 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
+
+import static com.rlti.autoescola.matricula.application.api.response.MatriculaIdResponse.*;
+import static com.rlti.autoescola.matricula.domain.TipoPagamento.valueOf;
 
 @Service
 @Log4j2
@@ -40,11 +42,10 @@ public class MatriculaApplicationService implements MatriculaService{
         var cliente = clienteRepository.findOneCliente(request.getIdCliente());
         var matricula = matriculaRepository.saveMatricula(new Matricula(cliente, servico,request));
         if (request.getValorEntrada().compareTo(BigDecimal.ZERO)>0){
-            var pagamento = pagamentoService.savePagamentoByEntrada(matricula,
-                    TipoPagamento.valueOf(request.getTipoPagamentoEntrada()));
+            pagamentoService.savePagamentoByEntrada(matricula, valueOf(request.getTipoPagamentoEntrada()));
         }
         log.info("[finaliza] MatriculaApplicationService - saveMatricula");
-        return MatriculaIdResponse.builder().idMatricula(matricula.getIdMatricula()).build();
+        return builder().idMatricula(matricula.getIdMatricula()).build();
     }
 
     @Override
@@ -54,7 +55,7 @@ public class MatriculaApplicationService implements MatriculaService{
         var matricula = matriculaRepository.saveMatricula(new Matricula(orcamento));
         orcamentoRepository.deleteOrcamento(orcamento.getIdOrcamento());
         log.info("[finaliza] MatriculaApplicationService - saveMatriculaByOrcamento");
-        return MatriculaIdResponse.builder().idMatricula(matricula.getIdMatricula()).build();
+        return builder().idMatricula(matricula.getIdMatricula()).build();
     }
 
     @Override
