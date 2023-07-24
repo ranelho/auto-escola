@@ -7,7 +7,6 @@ import lombok.Value;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Value
 public class EmpresaListResponse {
@@ -26,8 +25,8 @@ public class EmpresaListResponse {
 
     public static List<EmpresaListResponse> converte(List<Empresa> empresas) {
         return empresas.stream()
-                .map(empresa -> new EmpresaListResponse(empresa))
-                .collect(Collectors.toList());
+                .map(EmpresaListResponse::new)
+                .toList();
     }
 
     public EmpresaListResponse(Empresa empresa) {

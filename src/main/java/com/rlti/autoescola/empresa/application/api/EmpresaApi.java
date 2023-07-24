@@ -34,5 +34,5 @@ public interface EmpresaApi {
     @PatchMapping(value = "/{idEmpresa}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void updateEmpresa(@PathVariable UUID idEmpresa,
-                       @Valid @RequestBody EmpresaAlteracaoRequest empresaAlteracaoRequest);
+                       @Valid @RequestBody EmpresaUpdateRequest empresaUpdateRequest);
 }

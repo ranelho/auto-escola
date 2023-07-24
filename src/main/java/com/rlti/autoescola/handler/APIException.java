@@ -5,13 +5,14 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.io.Serial;
 import java.util.Optional;
 
 @Getter
 @Log4j2
 public class APIException extends RuntimeException {
-	private HttpStatus statusException;
-	private ErrorApiResponse bodyException;
+	private final HttpStatus statusException;
+	private final ErrorApiResponse bodyException;
 	
 	private APIException(HttpStatus statusException, String message, Exception e) {
 		super(message, e);
@@ -45,6 +46,7 @@ public class APIException extends RuntimeException {
 				.status(statusException)
 				.body(bodyException);
 	}
-	
+
+	@Serial
 	private static final long serialVersionUID = 1L;
 }

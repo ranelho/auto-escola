@@ -55,10 +55,10 @@ public class EmpresaApplicationService implements EmpresaService{
     }
 
     @Override
-    public void updateEmpresa(UUID idEmpresa, EmpresaAlteracaoRequest empresaAlteracaoRequest) {
+    public void updateEmpresa(UUID idEmpresa, EmpresaUpdateRequest empresaUpdateRequest) {
         log.info("[inicia] EmpresaApplicationService - updateEmpresa");
         Empresa empresa = empresaRepository.getOneEmpresa(idEmpresa);
-        empresa.altera(empresaAlteracaoRequest);
+        empresa.altera(empresaUpdateRequest);
         empresaRepository.saveEmpresa(empresa);
         log.info("[finaliza] EmpresaApplicationService - updateEmpresa");
     }

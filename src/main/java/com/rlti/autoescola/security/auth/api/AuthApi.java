@@ -17,25 +17,25 @@ public interface AuthApi {
 
     @PostMapping("/register")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public ResponseEntity<AuthenticationResponse> register(@Valid @RequestBody RegisterRequest request);
+    ResponseEntity<AuthenticationResponse> register(@Valid @RequestBody RegisterRequest request);
 
     @PostMapping("/authenticate")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public ResponseEntity<AuthenticationResponse> authenticate(@Valid @RequestBody AuthenticationRequest request,
-                                                               HttpServletRequest httpServletRequest);
+    ResponseEntity<AuthenticationResponse> authenticate(@Valid @RequestBody AuthenticationRequest request,
+                                                        HttpServletRequest httpServletRequest);
 
     @PostMapping("/refresh-token")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException;
+    void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException;
 
     @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     @PutMapping("/update-password/{email}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void updatePassword(@PathVariable String email, @RequestBody UpdatePasswordRequest request);
+    void updatePassword(@PathVariable String email, @RequestBody UpdatePasswordRequest request);
 
     @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'USER')")
     @PutMapping("/update-password-user")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void updatePasswordUser(@RequestHeader(name = "Authorization", required = true) String token,
-            @RequestBody UpdatePasswordRequest request);
+    void updatePasswordUser(@RequestHeader(name = "Authorization") String token,
+                            @RequestBody UpdatePasswordRequest request);
 }

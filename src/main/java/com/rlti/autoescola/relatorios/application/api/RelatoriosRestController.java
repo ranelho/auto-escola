@@ -1,6 +1,5 @@
 package com.rlti.autoescola.relatorios.application.api;
 
-import com.rlti.autoescola.fluxo.application.api.FluxoDeCaixaResponse;
 import com.rlti.autoescola.relatorios.application.api.respose.*;
 import com.rlti.autoescola.relatorios.application.service.RelatoriosService;
 import lombok.RequiredArgsConstructor;

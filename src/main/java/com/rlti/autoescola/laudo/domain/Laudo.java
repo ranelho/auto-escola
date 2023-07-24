@@ -21,7 +21,7 @@ public class Laudo {
     private Long idLaudo;
     private LocalDate dataEmissao;
     private LocalDate validade;    /* 1 ANO APÓS A DATA DE EMISSÃO */
-    @Column(unique = true, updatable = true)
+    @Column(unique = true)
     private String renach;         /* BA512150325 */
 
     @ManyToOne

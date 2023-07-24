@@ -101,7 +101,7 @@ class ValidaExameTest {
         exames.add(exameClinicoInaptoMock);
 
         // Configurando o request para ser um exame teórico
-        request = new ExameRequest(TEORICO, now(), APTO, "");;
+        request = new ExameRequest(TEORICO, now(), APTO, "");
 
         // Executando o método e verificando se lança exceção
         assertThrows(Exception.class, () -> validaExame(exames, request));

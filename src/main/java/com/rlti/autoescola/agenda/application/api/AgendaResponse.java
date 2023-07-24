@@ -5,7 +5,6 @@ import com.rlti.autoescola.agenda.domain.HorarioAula;
 import com.rlti.autoescola.agenda.domain.TipoAula;
 import lombok.Value;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 

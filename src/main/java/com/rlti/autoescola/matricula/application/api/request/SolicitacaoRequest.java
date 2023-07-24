@@ -26,7 +26,7 @@ public class SolicitacaoRequest {
     @Min(value = 1, message = "O valor mínimo é 1")
     @Max(value = 12, message = "O valor máximo é 12")
     int quantidadeParcelas;
-    @TipoPagamentoEntradaConstraint(message = "O tipo de pagamento de entrada deve ser DINHEIRO, CARTAO_DEBITO ou PIX")
+    @TipoPagamentoEntradaConstraint()
     String tipoPagamentoEntrada;
     String observacao;
     @NotNull(message = "O tipo de serviço não pode ser nulo")

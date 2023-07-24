@@ -76,7 +76,7 @@ public class PagamentoInfraRepository implements PagamentoRepository {
     @Override
     public List<Pagamento> getAllPagamentoByTipoPagamento(TipoPagamento tipoPagamento, LocalDate data) {
         log.info("[inicia] PagamentoInfraRepository - getAllPagamentoByTipoPagamento");
-        List<Pagamento> pagamentos = pagamentoSpringDataJPARepository.findByTipoPagamentoAndDataPagamento(tipoPagamento,data);;
+        List<Pagamento> pagamentos = pagamentoSpringDataJPARepository.findByTipoPagamentoAndDataPagamento(tipoPagamento,data);
         log.info("[finaliza] PagamentoInfraRepository - getAllPagamentoByTipoPagamento");
         return pagamentos;
     }

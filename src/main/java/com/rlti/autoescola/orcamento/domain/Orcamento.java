@@ -7,13 +7,11 @@ import com.rlti.autoescola.matricula.domain.TipoPagamento;
 import com.rlti.autoescola.matricula.domain.TipoServico;
 import com.rlti.autoescola.orcamento.application.api.OrcamentoRequest;
 import com.rlti.autoescola.servico.domain.Servico;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -40,8 +38,6 @@ public class Orcamento {
     protected LocalDate dataOrcamento = LocalDate.now();
     private BigDecimal valorEntrada;
     private int desconto;
-    @Min(value = 1, message = "O valor mínimo é 1")
-    @Max(value = 12, message = "O valor máximo é 12")
     private int quantidadeParcelas;
     private String observacao;
     private LocalDate validade = dataOrcamento.plusDays(5);

@@ -54,9 +54,9 @@ public class EmpresaController implements EmpresaApi{
     }
 
     @Override
-    public void updateEmpresa(UUID idEmpresa, EmpresaAlteracaoRequest empresaAlteracaoRequest) {
+    public void updateEmpresa(UUID idEmpresa, EmpresaUpdateRequest empresaUpdateRequest) {
         log.info("[inicia] EmpresaController - updateEmpresa");
-        empresaService.updateEmpresa(idEmpresa, empresaAlteracaoRequest);
+        empresaService.updateEmpresa(idEmpresa, empresaUpdateRequest);
         log.info("[inicia] EmpresaController - updateEmpresa");
     }
 }

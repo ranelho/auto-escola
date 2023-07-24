@@ -10,5 +10,5 @@ public interface EmpresaService {
     EmpresaDetalhadoResponse getOneEmpresa(UUID idEmpresa);
     EmpresaDetalhadoResponseCnpj getByCnpj(String cnpj);
     void deleteEmpresa(UUID idEmpresa);
-    void updateEmpresa(UUID idEmpresa, EmpresaAlteracaoRequest empresaAlteracaoRequest);
+    void updateEmpresa(UUID idEmpresa, EmpresaUpdateRequest empresaUpdateRequest);
 }

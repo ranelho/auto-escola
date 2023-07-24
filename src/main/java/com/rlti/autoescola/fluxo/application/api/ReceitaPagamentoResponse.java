@@ -2,7 +2,6 @@ package com.rlti.autoescola.fluxo.application.api;
 
 import com.rlti.autoescola.fluxo.domain.Fluxo;
 import com.rlti.autoescola.matricula.domain.TipoPagamento;
-import com.rlti.autoescola.pagamento.domain.Pagamento;
 import lombok.Value;
 
 import java.math.BigDecimal;

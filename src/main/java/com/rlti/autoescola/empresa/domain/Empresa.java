@@ -1,7 +1,7 @@
 package com.rlti.autoescola.empresa.domain;
 
 import com.rlti.autoescola.cliente.domain.enums.TipoPessoa;
-import com.rlti.autoescola.empresa.application.api.EmpresaAlteracaoRequest;
+import com.rlti.autoescola.empresa.application.api.EmpresaUpdateRequest;
 import com.rlti.autoescola.empresa.application.api.EmpresaRequest;
 import com.rlti.autoescola.empresa.domain.groups.EmpresaGroupSequenceProvider;
 import com.rlti.autoescola.empresa.domain.groups.PessoaJuridica;
@@ -36,7 +36,7 @@ public class Empresa {
     @CNPJ(groups = PessoaJuridica.class, message = "CNPJ inválido!")
     private String cnpj;
     @Transient
-    TipoPessoa tipoPessoa = TipoPessoa.JURIDICA;
+    final TipoPessoa tipoPessoa = TipoPessoa.JURIDICA;
     @NotBlank
     private String nomeAdministrador;
     @NotBlank
@@ -69,13 +69,13 @@ public class Empresa {
         this.aceitaTermos = empresaRequest.getAceitaTermos();
     }
 
-    public void altera(EmpresaAlteracaoRequest empresaAlteracaoRequest) {
-        this.nomeFantasia = empresaAlteracaoRequest.getNomeFantasia().toUpperCase();
-        this.nomeAdministrador = empresaAlteracaoRequest.getNomeAdministrador().toUpperCase();
-        this.areaAtuacao = empresaAlteracaoRequest.getAreaAtuacao().toUpperCase();
-        this.dataAbertura = empresaAlteracaoRequest.getDataAbertura();
-        this.email = empresaAlteracaoRequest.getEmail().toLowerCase();
-        this.telefone = empresaAlteracaoRequest.getTelefone();
-        this.enderecoComercial = empresaAlteracaoRequest.getEnderecoComercial();
+    public void altera(EmpresaUpdateRequest empresaUpdateRequest) {
+        this.nomeFantasia = empresaUpdateRequest.getNomeFantasia().toUpperCase();
+        this.nomeAdministrador = empresaUpdateRequest.getNomeAdministrador().toUpperCase();
+        this.areaAtuacao = empresaUpdateRequest.getAreaAtuacao().toUpperCase();
+        this.dataAbertura = empresaUpdateRequest.getDataAbertura();
+        this.email = empresaUpdateRequest.getEmail().toLowerCase();
+        this.telefone = empresaUpdateRequest.getTelefone();
+        this.enderecoComercial = empresaUpdateRequest.getEnderecoComercial();
     }
 }

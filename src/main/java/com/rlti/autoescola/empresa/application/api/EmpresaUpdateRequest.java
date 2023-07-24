@@ -7,8 +7,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import java.time.LocalDate;
+
 @Value
-public class EmpresaAlteracaoRequest {
+public class EmpresaUpdateRequest {
     @NotBlank
     String nomeFantasia;
     @NotBlank
